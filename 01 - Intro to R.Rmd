@@ -15,6 +15,13 @@ output: html_document
 I am a psychologist who, before learning R, used a combination of MS Excel and SPSS to process and analyse data. I had no intention of learning to program, but was aware of a few limitations of my workflow using these two tools. 
 Namely, the raw data collected and saved in MS Excel **always** required some form of tidying or manipulation, so I had to be very careful about how I stored data and named the files. If I did not keep a detailed log of the different actions I performed on the data I would forget why some data points were missing, or which column had the most up-to-date data for analsysis. So, at the early stages of my workflow there was a myriad of problems and opportunities for human error. This meant that, before the data even reached SPSS, it was often not in a good shape. Running analysis on data like this is problematic, as the saying goes, *rubbish in, rubbish out*. 
 
+### Improving your workflow
+In every discipline in SoSS, be that business studies or language and intercultural studies, when you process data you need to a have a transparent and reproducible workflow. Transparency refers to process clarity, whereby someone else reading your work should understand the the what, why, when, and where of the research protocol you followed. 
+It should also be reproducible, because if you want to demonstrate that your findings are robust and generalisable they need to stand up to scrutiny. The best way to make your data robust to this is to generate a reproducible research workflow. 
+Whilst these issues can be addressed through a combination of MS Excel and SPSS, the aforementioned problems with erroneous data entry and the process of copying and pasting data into SPSS from MS Excel make this workflow far from optimal.
+
+In R
+
 
 <!-- ```{r setup, include=FALSE} -->
 <!-- knitr::opts_chunk$set(echo = TRUE) -->
