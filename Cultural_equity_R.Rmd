@@ -1,0 +1,271 @@
+---
+title: "Cultural Equity in R"
+author: "Dr Pete McKenna"
+date: "2024-10-02"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+
+# Rationale
+
+- WEIRD datasets more commonly available and do not enhance R teaching equity
+- Use of non-WERID datasets may serve to promote feelings of belonging and inclusivity in diverse student samples
+- Students implicitly learn about the challenges of dataset retrieval and the importance of good metadata
+
+
+# Data
+
+- I have found data from 'Global Gender Gap Report 2024' for Sub-Saharan Africa
+- The goal is to read and interpret this data in R
+- The data contains a iso3 code vector, so I've also found a related dataset to provide country name data. 
+
+
+# Load packages
+
+These will need to be installed using the console if not already installed. 
+
+```{r}
+
+# Load the tidyverse
+library(tidyverse)
+library(psych)
+library(skimr)
+
+```
+
+
+# Read in the data
+
+```{r}
+
+# Read in the GGGI data
+  # either copy and paste the URL from a website or download and read in as you would other files. 
+df <-
+  read_csv("https://open.africa/dataset/36993281-baa5-490d-b6ff-d4750a09d2bb/resource/e7fd9a05-89e2-459a-98ca-e1b40f9a2b1a/download/sub-saharan-africa-ggi-ranks-and-scores.csv",
+           skip = 1)  # as the first row is empty (from inspection) skip this
+
+# Read in the iso3 code data
+iso <-
+  read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/refs/heads/master/all/all.csv") |>
+  select(1,    # Country name
+         3)    # iso3 code
+ 
+
+```
+
+# Examine the datasets
+
+```{r}
+
+# Check the first and last observations
+headTail(df)
+headTail(iso)
+
+# Check the structure of the data
+glimpse(df)
+glimpse(iso)
+
+```
+
+# Special date case
+
+Information contained in the vector `edition` relates to specific years, but these do not contain the necessary info to be converted in a date type vector (e.g., "YYYY-MM-DD"). So, we can leave it as it is. 
+
+# International Organization for Standardization (ISO) labels
+
+You can see that this information is contained in both datasets, but they are labelled differently. The GGGI data labels it `country_iso3`, whereas the iso index labels it `alpha-3`. 
+
+We will need to join these data in order to add the country names to the GGGI data.
+This is possible using R's join functions. 
+
+
+# Join iso information to get country name
+
+```{r}
+
+# Rename alpha-3
+iso <-
+  iso |>
+  rename(country_iso3 = `alpha-3`)
+
+# Join the datasets
+df1 <-
+  left_join(df, iso, 
+            by = "country_iso3") |>
+  select(8,1,7,2:6) # re-arrange the vectors to tidy up
+
+# Examine the data
+glimpse(df1)
+
+```
+We now have names instead of codes only for countries in the dataset.
+
+
+# Rehape the data
+
+It might actually be useful to split `attribute` into separate ranks and scores.
+We can do this using the `pivot_wider` function.
+
+```{r}
+
+# Widen the data by separating attribute
+df1 <-
+  df1 |>
+  pivot_wider(names_from = "attribute",
+              values_from = "value")
+
+# Check it worked
+head(df1)
+
+```
+
+
+# Are there any missing values?
+
+Use the `skimr` package function `skim` to generate a report about missing values.
+
+```{r, eval=FALSE}
+
+skim(df1)
+
+```
+
+You can see from the report that there are 8 missing values in the `rank` column. There are no other missin values. 
+As we want to plot rank, let's omit these missing values.
+
+
+# Omit missing values
+
+```{r}
+
+# Use drop_na function to omit rows with missing values
+df1 <-
+  df1 |>
+  drop_na()
+
+```
+
+
+With the NAs omitted, we can plot the rank data using ggplot2.
+Before we do, let's take a look at our vectors again, so we know roughly what our plot hsould look like.
+
+# Data parameters
+
+We want to know, for example, how many observations were recorded per year represented, how many countries, and what the max and min are for rank.
+This information will help us identify if something has gone  wrong.
+
+
+```{r}
+
+# How many years?
+df1 |>
+  group_by(edition) |>
+  count()
+
+```
+
+We can see that the years 2006 to 2024 are included. The number of observations per year (i.e., numbers of countries data) varies too. 
+
+```{r}
+
+# How many countries?
+df1 |>
+  select(name) |>
+  count()
+
+```
+
+The length of the data matches the number of countries (N = 536). It is always worth checking this even if you can infer these details from the data dimensions. 
+
+```{r}
+
+# Min and max for rank
+df1 |>
+  summarise(max_rank = max(rank),
+            min_rank = min(rank))
+
+```
+
+The Max is 151 and the min is 4.
+
+
+# Plot the data
+
+We now have a rough idea of what the plot will show. 
+We are going to plot the GGI index on the y-axis and year on the x-axis.
+If we were to plot a line per country the output would be very messy, with 536 unique lines. 
+So, let's sample a selection of countries to see how they fair in terms of their GGI ranking.
+Ideally, we want countries with data from every year (2006:2024) in the dataset, which we can find out using some more wrangling and summarising.
+
+
+# Which countries have data for every year in the dataset?
+
+```{r}
+
+# By counting the number of times a name occurs we count the number of years as these are uniqe per row
+df1 |>
+  count(name) |>
+  filter(n ==18) # country will need 18 data points to have a full set (i.e., from 2006-2024)
+
+```
+
+So, from this list let's pick 5: "Botswana", "Chad", "Kenya", "Nigeria" and "Uganda"
+
+```{r}
+
+# Pluck a sample of countries
+df2 <-
+  df1 |>
+  rename(year = edition) |> # change this to year for clarity
+  filter(name %in% c("Botswana", 
+                     "Chad", 
+                     "Kenya", 
+                     "Nigeria", 
+                     "Uganda"))
+
+# Check the countries included in the data
+unique(df2$name)
+
+```
+
+## Plot the data using a line plot
+
+```{r}
+
+# Create a vector for years included in the data
+years_incl <-
+  seq(2006, 2024, by = 1) # a sequence start with 2006 to 2024, in increments of 1
+
+# Plot the data as a line plot with points
+ggplot(df2,
+       aes(x = year,
+           y = rank,
+           fill = name)) +
+  geom_line() +
+  geom_point(size = 4, 
+             shape = 21, 
+             alpha = 0.6) +
+  labs(x = "\nYear",
+       y = "Global Gender Gap Ranking\n",
+       fill = "Country") +
+  scale_x_continuous(breaks = years_incl) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1, vjust = 1))
+
+```
+
+
+# Summary and conclusions
+
+- Today I've shown you how to read data from the web and to tidy and visualise it in R.
+- It is important to note that I selected this data because it was non-Western, and the source provided some metadata for me to make sense of it - it's really hard to work with data that you know nothing about!
+- As you have learned, programming in R can be challenging and requires you to think carefully about the structure of data.
+- However, the pay-off is amazing and worth it in the long run. 
