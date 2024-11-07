@@ -1,0 +1,467 @@
+---
+title: "Introduction to R"
+subtitle: "SoSS PGR Workshop Series AY24-25"
+author: "Dr Pete McKenna"
+date: "2024-11-06"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+
+#library(formatR)
+
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      tidy = TRUE,
+                      tidy.opts = list(width.cutoff=60))
+```
+
+# Welcome activity
+
+- Let's get started by sharing why we are here
+- What would you like to learn from today's session?
+
+# Housekeeping
+
+- Today's session will include a bit of listening, taking notes, and coding along with me.
+- Have embedded some elements of cultural diversity into the lesson as part of my lecturer training. If you have feedback about this please let me know.
+- Please have RStudio open on your laptops and be ready to write code.
+- This course/workshop is designed as an introduction, to give you a flavour for what R looks like and what it can do.
+- It is not an exhaustive introduction. I will signpost resources to those who wish to take the next steps.
+
+
+# Learning outcomes
+
+Today's session will show you how to:
+  
+- Create a script in R
+- Read in data from a URL
+- Join datasets together
+- Some data tidying and data wrangling techniques (i.e., to get your data in shape)
+- How to plot data in R
+
+
+# Importantly...
+
+- We may not be able to cover everything.
+- Programming takes time to master.
+- I have shared the slides with you so that you can keep track in case you fall behind.
+- If you would prefer to work in pairs that is absolutely fine.
+- Chris and I are on hand to help you out should you get stuck.
+
+<!--
+# Rationale
+
+- Western, Educated, Industrialised, Rich and Democratic (WEIRD) datasets more commonly available creating a bias that does not enhance R teaching equity.
+- Use of non-WERID datasets may serve to promote feelings of belonging and inclusivity in diverse student samples.
+- Students implicitly learn about the challenges of dataset retrieval and the importance of good metadata.
+- Students apply their learning through live coding activities and discussion. 
+-->
+
+# About the data
+
+[Global Gender Gap Report 2024](https://open.africa/dataset/global-gender-gap-report-2024)
+
+- I have found data from 'Global Gender Gap Report 2024' for Sub-Saharan Africa.
+- The goal is to read and interpret some of this data in R, to observe how the gender gap has changed over the years included in the report.
+- I've also found a related dataset to provide country name data. 
+
+
+# Activity 1
+
+**Why do think it is good practice to work with data from different cultures?**
+
+**Do you think there is enough cultural diversity in quantitative research?**
+
+
+# Data specifics
+
+<!--
+Quasi-experimental variable: Country, year
+*Quasi-experimental variables* are predictors that were not directly manipulated by the researcher (e.g., gender, age, nationality). 
+*Independent variables* in contrast are maipulated directly by the researcher (e.g., control vs treatment participant groups).
+
+Dependent variable: 
+-->
+
+The Global Gender Gap Index (GGGI) annually benchmarks the current state and evolution of gender parity (or equality) across four key dimensions: 
+
+- Economic Participation and Opportunity
+- Educational Attainment
+- Health and Survival
+- Political Empowerment
+
+The GGGI scores each country on a scale from 0 (total inequality) to 1 (full equality). Higher scores indicate smaller gender gaps. By highlighting these disparities, the index aims to provide insights into how countries can work toward gender equality in these critical areas.
+
+## Start by creating an R Script
+
+
+# Load packages
+
+**These will need to be installed using the console if not already installed.**
+I will demonstrate how to install them using the console. 
+
+```{r}
+
+# Load the tidyverse
+library(tidyverse)
+library(psych)
+library(skimr)
+
+```
+
+
+# Read in the data
+
+To read in data we assign it to an object using the `read_csv` function. 
+
+```{r, eval=FALSE}
+
+# Read in the GGGI data
+  # copy and paste the URL into read_csv  
+gggi <-
+  read_csv("enter the GGGI url here", # copy and paste the url provided into the quotes
+           skip = 1)  # as the first row is empty (from inspection) skip this
+
+# Read in the iso3 code data
+iso <-
+  read_csv("enter the iso URL here") |> # be sure to include the full URL, finishing with the file type
+  select(1,    # Country name
+         3)    # iso3 code
+ 
+```
+
+
+```{r, include=FALSE}
+
+# Read in the GGGI data
+  # either copy and paste the URL from a website or download and read in as you would other files. 
+gggi <-
+  read_csv("https://open.africa/dataset/36993281-baa5-490d-b6ff-d4750a09d2bb/resource/e7fd9a05-89e2-459a-98ca-e1b40f9a2b1a/download/sub-saharan-africa-ggi-ranks-and-scores.csv",
+           skip = 1)  # as the first row is empty (from inspection) skip this
+
+# Read in the iso3 code data
+iso <-
+  read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/refs/heads/master/all/all.csv") |>
+  select(1,    # Country name
+         3)    # iso3 code
+ 
+```
+
+# Examine the datasets
+
+A good way to make sure that the data was read in correctly is to check a sample of the observations (rows) in the data. 
+Run the code below on your data objects and report what each does.
+
+```{r, eval=FALSE}
+
+# Check the first and last observations
+headTail(gggi)
+headTail(iso)
+
+# Check the structure of the data
+glimpse(gggi)
+glimpse(iso)
+
+```
+
+<!--
+The function `head` gives you the first 6 rows. `headTail` from the psych package gives you the first and last 6 rows.
+
+`glimpse` gives information abour you data's structure, as well as a sample of observations. 
+
+
+
+# Special date case
+
+Information contained in the vector `edition` relates to specific years, but these do not contain the necessary info to be converted in a date type vector (e.g., "YYYY-MM-DD"). So, we can leave it as it is. 
+
+-->
+
+# Activity 2
+
+**Having examined both datasets, can you identify any common features they share?**
+
+<!--
+- GGGI = `country_iso3`, iso = `alpha-3`. 
+- To get the actual names of the country instead of these codes, we have to read in data from a different source. This second dataset contains the iso3 code and the full name of the country, which is useful for interpretation. 
+-->
+
+We will need to join these data in order to add the country names to the GGGI data.
+This is possible using R's join functions. 
+
+
+# Join iso information 
+
+```{r, results='hide'}
+
+# Rename alpha-3
+iso <- # if you assign an object back into itself you apply irreversible changes to the object
+  iso |>
+  rename(country_iso3 = `alpha-3`)
+
+# Join the datasets
+gggi1 <-
+  left_join(gggi, iso, 
+            by = "country_iso3") |>
+  select(8,1,7,2:6) # re-arrange the vectors to tidy up
+
+# Examine the data
+glimpse(gggi1)
+
+# Rename rename the vectors in gggi1 for easier interpretation
+gggi1 <-
+  gggi1 |>
+  rename(year = edition,
+         country = name)
+
+# Re-examine the data
+glimpse(gggi1)
+
+```
+
+We now have names instead of codes only for countries in the dataset.
+
+
+# Rehape the data
+
+It might actually be useful to split `attribute` into separate ranks and scores.
+We can do this using the `pivot_wider` function.
+
+```{r, results='hide'}
+
+# Widen the data by separating attribute
+gggi1 <-
+  gggi1 |>
+  pivot_wider(names_from = "attribute",
+              values_from = "value")
+
+# Check it worked
+headTail(gggi1)
+
+```
+
+
+# Activity 3
+
+Use the `skimr` package function `skim` to generate a report about the data and the presence of missing values.
+Are there any missing values in the data?
+
+```{r, eval=FALSE}
+
+skim(gggi1)
+
+```
+
+
+<!--
+You can see from the report that there are 8 missing values in the `rank` column. There are no other missin values. 
+As we want to plot rank, let's omit these missing values.
+-->
+
+# Omit missing values
+
+```{r}
+
+# Use drop_na function to omit rows with missing values
+gggi1 <- # if you assign an object back into itself you apply irreversible changes to the object
+  gggi1 |>
+  drop_na()
+
+```
+
+
+With the NAs omitted, we can plot the GGGI score data using ggplot2.
+Before we do, let's take a look at our vectors again, so we know roughly what our plot should look like.
+
+# Data parameters
+
+We want to know, for example, how many observations were recorded per year represented, how many countries, and what the max and min are for rank.
+This information will help us identify if something has gone  wrong.
+
+
+```{r, results='hide'}
+
+# How many years?
+gggi1 |>
+  select(year) |> # select year col
+  distinct() |> # single unique cases
+  count()       # count no. single unique cases
+
+```
+
+So, there are 18 unique years in the data. We can check this by examining the range of years included.
+
+```{r, results='hide'}
+
+# Extract min and max year
+gggi1 |>
+  summarise(min_year = min(year),
+            max_year = max(year))
+
+```
+
+We can see that the years 2006 to 2024 are included. 
+This makes sense as $2024-2006 = 18$ unique years.
+
+<!--
+# Number of unique countries
+
+In the example above, we used R code to calculate the number of unique years (i.e., `year`). 
+How do you think you would calculate the number of unique countries in the data?
+
+```{r, results='hide'}
+
+# How many countries?
+gggi1 |>
+  select(country) |>
+  distinct() |>
+  count()
+
+```
+
+This code tells us that there are 37 unique countries in the data.
+
+-->
+
+# GGGI Scores
+
+```{r, results='hide'}
+
+# Min and max for GGGI score
+describe(gggi1$score)
+
+```
+The Max is 0.82 and the min is 0.52
+
+
+
+# Plot the data
+
+We now have a rough idea of what the plot will show. 
+We are going to plot the GGGI score for countries in our dataset.
+This will indicate how gender parity/fairness has developed in the period 2006-2024.
+
+If we were to plot a line per country the output would be very messy, with 37 unique lines. 
+So, let's sample a selection of countries that have data from every year (2006:2024) in the dataset. 
+We can find out which countries meet this criteria using some more wrangling and summarising.
+
+
+# Which countries have data for every year in the dataset?
+
+```{r, results='hide'}
+
+# Extract no. observations per country
+gggi1 |>
+  select(country, year) |>
+  distinct() |> # preserve unique country + year combinations
+  group_by(country) |> # group by country
+  count() |> # count how many observations per country
+  filter(n == 18) # country will need 18 data points to have a full set (i.e., from 2006-2024)
+
+```
+
+
+So, from this list let's pick 5: "Botswana", "Chad", "Kenya", "Nigeria" and "Uganda"
+
+```{r, results='hide'}
+
+# Pluck a sample of countries
+gggi2 <-
+  gggi1 |>
+  filter(country %in% c("Botswana", 
+                     "Chad", 
+                     "Kenya", 
+                     "Nigeria", 
+                     "Uganda"))
+
+# Examine the data
+glimpse(gggi2)
+
+# Check the countries included in the data
+unique(gggi2$country)
+
+```
+
+## Plot the data using a line plot
+
+```{r}
+
+# Create a vector for years included in the data
+years_incl <-
+  seq(2006, 2024, by = 1) # a sequence start with 2006 to 2024, in increments of 1
+
+# Plot the data as a line plot with points
+p1 <-
+  ggplot(gggi2,
+       aes(x = year,
+           y = score,
+           fill = country)) +
+  geom_line() +
+  geom_point(size = 4, 
+             shape = 21, 
+             alpha = 0.6) +
+  labs(x = "\nYear",
+       y = "Global Gender Gap Index Score\n",
+       fill = "Country") +
+  scale_x_continuous(breaks = years_incl) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1, vjust = 1))
+
+# View plot 
+p1
+
+```
+
+# Activity 4
+
+**What inferences can you draw from the plot?**
+
+**Are the results surprising?**
+
+<!--
+
+## Flip the plot for more representative interpretation
+
+```{r}
+
+p1 +
+  scale_y_reverse() # reverse y-axis
+
+```
+
+-->
+
+# Summary and conclusions
+
+- Today I've shown you how to read data from the web and to tidy and visualise it in R.
+- I selected this data specifically for culturally inclusivity.
+- As you have learned, programming in R can be challenging and requires you to think carefully about the structure of data.
+- However, the pay-off is amazing and worth it in the long run. 
+
+
+# Thank you
+
+- Thank you for your attention today.
+- We hope you enjoyed the session as an introduction to R.
+- Please feel free to get in touch with your feedback: p.mckenna@hw.ac.uk
+
+
+# Additional resources
+
+If you are keen to learn more about R Programming here is a list of freely accessible learning materials that inspired today's session:
+
+- [R for Data Science](https://r4ds.hadley.nz/) -- useful for learning
+    *Tidyverse* syntax
+- [The R Book](https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf)
+    -- useful for data analysis syntax
+- [ggplot2 cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+    -- useful for learning to plot with ggplot2
+- [Data Wrangling and Tidying cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+    -- useful for wrangling and tidying syntax of the *Tidyverse*
+- [R Studio cheatsheets](https://www.rstudio.com/resources/cheatsheets/) --
+    useful guides for all things R Studio
+
