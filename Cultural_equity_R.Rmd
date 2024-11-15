@@ -1,5 +1,5 @@
 ---
-title: "Cultural Equity in R"
+title: "Introduction to R | SoSS PGR Workshop"
 author: "Dr Pete McKenna"
 date: "2024-10-02"
 output:
