@@ -1,2 +1,2 @@
-# hwu-msc-social-research-methodss
-Course materials and code for HWU MSc in Social Research Methods
+# README
+This repo contains the C91AR `Advanced Statistics using R` course materials for the HWU MSc in Social and Behavioural Research Methods.
