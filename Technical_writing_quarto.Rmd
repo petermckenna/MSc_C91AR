@@ -1,0 +1,16 @@
+---
+title: "Technical writing in Quarto"
+author: "Peter McKenna"
+date: "2024-03-18"
+output: html_fragment
+---
+
+# Technical writing in Quarto
+
+-   You can add mathematical and technical symbols to Quarto reports.
+
+-   The easiest way to do this is through the Insert -\> LaTeX Math -\> Inline Math.
+
+-   This will create a wrapper with dollar symbols ($X$)
+
+-   [Then you need to refer to this sheet of LaTeX symbols to input your text or formula](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols).

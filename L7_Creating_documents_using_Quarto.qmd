@@ -1,0 +1,247 @@
+---
+title: "Writing R Reports using Quarto"
+subtitle: "C91AR: Advanced Statistics using R"
+title-slide-attributes:
+    data-background-image: images/peter_staff_photo_small.jpg
+    data-background-size: auto
+    data-background-position: "50% 10%"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  html:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_html_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+
+# markdown formatting
+knitr::opts_chunk$set(echo = TRUE)
+
+# load packages
+library(tidyverse)
+
+```
+
+# Outline for today
+
+-   Cover the basics of Quarto
+-   Show you how this is made easier using Quarto
+-   Demonstrate how to compose a Quarto document
+-   Code along demo
+
+# Essentials
+
+-   Install Quarto: [Get started with
+    Quarto](https://quarto.org/docs/get-started/)
+-   `R` and `RStudio` must also be installed.
+
+# Why are we covering Quarto?
+
+-   After much deliberation I've decided to include today's session in
+    the syllabus
+-   The assessment for the course will require some interpretation of
+    data analysis, and this is not possible with scripts alone.
+-   By using Quarto, you'll be able to both analyse and interpret data
+    in a single document.
+-   Quarto also gives you MS Word like functionality, so it's even
+    simpler to use than RMarkdown
+
+# Differences between an Quarto file and an R script {.smaller}
+
+::: columns
+::: {.column width="50%"}
+R Script (.R)
+
+-   An R script file typically has a .R extension.
+-   It contains R code only, without any additional markup or
+    formatting.
+-   The code is meant to be executed line by line or all at once within
+    an R interpreter or environment.
+-   R script files are primarily used for writing and running R code,
+    without any additional documentation or presentation features.
+:::
+
+::: {.column width="50%"}
+Quarto file (.qmd)
+
+-   A Quarto file is typically used in the Quarto ecosystem, which is a
+    modern, open-source computational notebook system. It allows for the
+    creation of dynamic, reproducible documents that combine narrative
+    text, code, and output (such as tables, figures, and interactive
+    visualizations) in a single document.
+
+-   Quarto files are usually written in a Markdown-based format with
+    support for code chunks from various programming languages,
+    including R, Python, Julia, and others.
+
+-   Quarto files often include narrative explanations, analysis, and
+    visualizations alongside the code, providing a comprehensive and
+    interactive document for communicating research findings.
+
+-   The Quarto ecosystem provides tools for rendering Quarto files into
+    various formats, including HTML, PDF, and Word documents.
+:::
+:::
+
+# Getting to grips with Quarto
+
+-   Once you have successfully installed Quarto create an Quarto file
+    from the new file option in RStudio.
+
+-   Save the Quarto file (`.qmd)` in your C91AR project (as usual)
+
+-   Make sure the `Visual` option is highlighted in the top left. If you
+    have `Source` selected that will take you to the RMarkdown version
+    of the document.
+
+# Using forward slash `/`
+
+-   One each new line in a Quarto document you can specify what type of
+    content you would like to add by simply typing / and selecting from
+    the pop-up menu.
+
+-   In doing so, you can easily switch from writing headings, text, and
+    code chunks.
+
+-   These are the three main options you will need, although you will
+    see there are a variety of options available.
+
+-   **Note**: there are also many point-and-click editing option in the
+    top ribbon. You probably can't see them all on your screen, so it's
+    worth maximising the width of the editing window whilst writing.
+
+# Setting up an R report using Quarto
+
+-   In Quarto, your reports will need to include the following at the
+    beginning
+
+1.  A code chunk specifying the packages to be loaded.
+
+2.  A code chunk specifying the data to be read in.
+
+-   Click on the cog next to Render and set it to "Preview in Viewer
+    Pane".
+
+-   Once you have done this, you are ready to get writing your report.
+
+# A worked example
+
+-   Let's say we wanted to work with the `heights_and_weights.csv` data
+    we worked with last week.
+
+-   We know we need to load the following packages:
+
+    -   *tidyverse*
+
+    -   *corrr*
+
+-   So the code chunk(s) to set up this project might look as follows...
+
+# Set up Code in Quarto
+
+```{r warning=FALSE}
+# Learning about Correlation through Data Simulation in R
+
+# Load packages
+library(tidyverse)
+library(corrr)
+library(psych)
+library(GGally)
+
+# Read in the data
+handw <- 
+  read_csv("data_raw/heights_and_weights.csv")
+
+
+```
+
+As this is just the code to set up your report, I wouldn't expect any
+additional text to summarise the code.
+
+# Combining code and text
+
+You will however need to combine code and text when you are interpreting
+your descriptive and inferential statistics. For the text displayed
+here, I am simply entering text directly into the Quarto document: there
+is no need to specify a chunk type using `/`.
+
+Here is an example using the function `describe` from the `psych`
+package.
+
+------------------------------------------------------------------------
+
+```{r}
+# Examine the data
+glimpse(handw)
+
+```
+
+The heights and weights dataset contains 475 observations and 2 vectors:
+height_in and weight_lbs.
+
+------------------------------------------------------------------------
+
+```{r}
+
+# Gather means and SDs from data
+describe(handw)
+
+```
+
+The mean of height in inches was 62.91 (SD=12.12). The mean for weight
+in pounds was 132.28 (SD=54.19). Measures of both skew (-1.78) and
+kurtosis (2.89) indicated that height in inches was not normally
+distributed.
+
+------------------------------------------------------------------------
+
+Below, I present a histogram of this vector to examine the shape of
+height in inches distribution.
+
+```{r}
+# Generate a histogram of height in inches
+ggplot(data = handw,
+       aes(x = height_in)) +
+  geom_histogram(binwidth = 1) +
+  labs(title = "Hisogram of the distribution of height in inches",
+       x = "\nHieght in inches",
+       y = "Frequency\n")
+```
+
+As you can see from the histogram, height in inches is negatively
+skewed.
+
+# Some things to note
+
+-   To generate the document, you need to click on the `Render` button
+    in the top ribbon.
+
+-   Render reads from the top down, and this is why we specify the
+    packages and data at the beginning.
+
+-   If we read in the data at the end of the document it would not
+    render, as would not know what `handw` referred to in the code.
+
+-   I'm still adding comments to my code chunks to maintain a consistent
+    narrative throughout the document. This remains an important feature
+    whilst writing code in Quarto.
+    
+# Other things to note
+
+- When you are inserting code chunks, break them up in a logical way, so that each chunk is followed by interpretation text where necessary.
+
+- There's no hard and fast rule here, but I'm generally in favour of smaller, digestible chunks.
+
+
+# Any questions?
+
+# Resources
+[Get started with Quarto](https://quarto.org/docs/get-started/)
+[Get Started with Quarto video lesson](https://www.youtube.com/watch?v=_f3latmOhew)

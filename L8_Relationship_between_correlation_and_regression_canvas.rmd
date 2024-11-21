@@ -1,0 +1,319 @@
+---
+title: "The Relationship Between Correlation and Regression"
+subtitle: "C91AR: Advanced Statistics using R"
+title-slide-attributes:
+    data-background-image: images/peter_staff_photo_small.jpg
+    data-background-size: auto
+    data-background-position: "50% 10%"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  html:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_html_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+
+# markdown formatting
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Session outline
+
+-   Today, we are continuing to learn about statistics through data
+    simulation.
+-   We also continue to use the "heights_and_weights.csv" dataset we
+    used for the session on simulating correlation data.
+-   We are moving on to look at how you can estimate values given the
+    statistics of simple regression.
+
+# The relationship between correlation and regression
+
+-   Correlation tells us about the strength and relationship between two
+    variables.
+-   Regression (on the other hand) predicts the value of one variable
+    based on the value of another variable.
+-   For example, in the heights and weights data, we can use regression
+    modelling to *predict someone's weight given their height*.
+
+# Set up code for the session
+
+```{r}
+# Load packages
+library(tidyverse)
+library(corrr)
+
+
+# Read in the data
+handw <-
+  read_csv("data_raw/heights_and_weights.csv",
+           col_types = "dd")
+
+
+# Add log transformed vectors to dataset
+handw_log <-
+  handw |>
+  mutate(hlog = log(height_in),  
+         wlog = log(weight_lbs))
+
+
+# Set seed for reproducibility
+set.seed(123)
+
+
+# Change the output format
+options(scipen = 999)
+```
+
+# Remind me, why are we using the log of the data?
+
+::: panel-tabset
+### Raw data
+
+```{r echo=FALSE}
+# generate the scatter plot with ggplot2
+ggplot(data = handw,                                    # specify data source
+       mapping = aes(x = height_in, y = weight_lbs)) +  # specify x and y axis
+  geom_point(alpha = .6) +                              # modify transparency of points
+  labs(x = "\nHeight (inches)",                         # supply axis label names
+       y = "Weight (pounds)\n",
+       title = "Raw height and weight data")
+```
+
+### Normalised data
+
+```{r echo=FALSE}
+# generate a scatter plot of the log data
+ggplot(data = handw_log,                      # don't forget to enter the new dataset              
+       mapping = aes(x = hlog, y = wlog)) +  
+  geom_point(alpha = .6) +                              
+  labs(x = "\nLog(Height)",                           
+       y = "log(Weight)\n",
+       title = "log transformed height and weight data")
+
+```
+:::
+
+# Rationale for taking the log
+
+-   When we take the log of the data we normalise it, to stabilise the
+    variance in our vectors.
+
+-   This is particularly useful if the data are highly skewed or show
+    **heteroscedasticity**
+
+    -   When the different between the observed and predicted values
+        (i.e., the residuals $e_i$) is not constant across all levels of
+        the independent variables.
+
+-   Normalised data us more suitable for statistical analysis that
+    assume normality, such as linear regression.
+
+# Using regression to make predictions
+
+$$Y_i = \beta_0 + \beta_1 X_i + e_i$$
+
+-   $Y_i$ = prediction of a person $i$'s weight
+
+-   $X_i$ = observed height
+
+-   $\beta_0$ = y-intercept
+
+-   $\beta_1$ = slope parameter
+
+-   $e_i$ = residuals
+
+    -   Note, it is assumed that $e_i$ comes from a normal distribution
+        with a mean of zero and variance $\sigma^2$.
+
+# Making predictions using the available statistics
+
+To estimate the parameters of the regression between the y-intercept
+($\beta_0$) and the slope ($\beta_1$) all we need is the:
+
+-   Mean estimates for $X$ and $Y$, or $\mu_x$ & $\mu_y$
+-   Standard deviations for $X$ and $Y$, or $\sigma_x$ & $\sigma_y$
+-   Correlations between $X$ and $Y$, or $\hat{\rho}$
+
+So, the statistics required to estimate $\beta_0$ and $\beta_1$ are much
+the same as we used for simulating correlational data.
+
+# A reminder of our previous calculations
+
+-   $\mu_x = 4.11, \sigma_x = 0.26$ (estimated mean and SD of log
+    height)
+
+-   $\mu_y = 4.74, \sigma_y = 0.65$ (estimated mean and SD of log
+    weight)
+
+-   $\rho_{xy} = 0.96$ (estimated correlation between the two)
+
+# Estimating the slope $\beta_1$
+
+-   Let's start by estimating the value of the slope $\beta_1$.
+-   Importantly, $\beta_1$ can be expressed in terms of the correlation
+    coefficient $\rho$ times the ratio of the standard deviations of $Y$
+    and $X$.
+
+$$\beta_1 = \rho\frac{ \sigma_Y}{\sigma_X}$$
+
+# Plugging in the numbers
+
+-   Now, you can use the estimates of log height and log weight, to
+    estimate the slope:
+
+$$\beta_1 = \rho\frac{ \sigma_Y}{\sigma_X}$$
+
+In R Code:
+
+```{r estimate slope}
+
+# Estimate slope using formula
+b1 <- .96 * (.65 / .26)
+b1 # 2.4
+
+```
+
+# Using the Axis to fill in the blanks: part 1
+
+-   For mathematical reasons, the regression line is guaranteed to go
+    through the point corresponding to the mean of both $X$ and $Y$,
+    i.e., the point ($\mu_x$, $\mu_y$).
+
+-   One way to think about this is that the regression line pivots
+    around that point depending on the slope ($\beta_1$).
+
+-   We also know that $\beta_0$ is the y-intercept, where the line
+    crosses the vertical axis at $X$ = 0.
+
+# Using the Axis to fill in the blanks: part 2
+
+-   From all of this information we can calculate $\beta_0$.
+
+-   Remember that $\beta_1$ tells you that for each change in $X$ you
+    have a corresponding change of **2.4** for $Y$, and that the line
+    goes through points ($\mu_x$, $\mu_y$) as well as the y-intercept
+    (0, $\beta_0$).
+
+# Re-framing the calculations
+
+-   Think about stepping back unit-by-unit from the mean of $X = \mu_x$
+    to $X = 0$.
+
+-   At $X =\mu_x$, $Y = 4.74$, because as stated earlier, the regression
+    line is guaranteed to go through the point corresponding to the mean
+    of both $X$ and $Y$, i.e., the point ($\mu_x$, $\mu_y$) or (4.11,
+    4.74).
+
+-   Each unit step you take backward in the $X$ dimension, $Y$ will
+    reduce by $\beta_1 = 2.4$ units.
+
+-   When you get to zero, $Y$ will have dropped from $\mu_y$ to
+    $\mu_y - \mu_x\beta_1$.
+
+# The Solution
+
+-   With all of the above considerations taking into account the
+    solution is $\beta_0 = \mu_y - \mu_x\beta_1$.
+
+-   Using this information we can calculate the slope value:
+    $\beta_0 = 4.74 - 4.11 \times 2.4 = -5.124$
+
+-   Now we have the following statistics:
+
+    -   $\beta_1 = 2.4$
+
+    -   $\mu_x = 4.11$
+
+    -   $\mu_y - 4.74$
+
+    -   $\beta_0 = -5.124$
+
+-   So the formula becomes: $$Y_i = -5.124 + 2.4X_i + e_i$$
+
+# Checking the results
+
+-   To check the results, let's first run a regression on the log
+    transformed data using `lm()`, which estimates parameters using
+    *ordinary least squares regression*.
+
+-   Note, you are interested in the `Estimate Std` values.
+
+```{r}
+#| echo: true
+#| output-location: slide
+summary(lm(wlog ~ hlog,
+           data = handw_log))
+```
+
+# Matching the regression output to our calculations
+
+From the model output:
+
+-   Estimated slope parameter $\beta_1 = 2.433$ (2.4 from our
+    calculations)
+
+-   Estimated y-intercept $\beta_0 = -5.269$ (-5.124 from our
+    calculations)
+
+-   These don't match exactly because of the rounding we've used in our
+    calculations.
+
+# Checking your regression estimate with a plot
+
+Another way to check the accuracy of your regression calculations is to
+superimpose the regression line on the scatter-plot of the log
+transformed data.
+
+```{r}
+#| echo: true
+#| output-location: slide
+ggplot(data = handw_log, 
+       aes(hlog, wlog)) +
+  geom_point(alpha = .3)+
+  geom_abline(intercept = -5.124, 
+              slope = 2.4, 
+              colour = 'purple') +
+  labs(title = "Superimposed regression line onto log transformed data",
+       x = "\nlog(height)", 
+       y = "log(weight)\n")
+```
+
+# Predicting someone's weight given their height
+
+-   Say we want to predict the weight of someone who is 69inches or
+    175cm (average height of a person from the US). Let's plug the log
+    of this value (4.23) into our regression formula:
+
+$Y_i = -5.124 + 2.4 \times 4.23 + e_i$
+
+-   Note: We do not need to provide the residuals ($e_i$) as they are
+    estimated from the regression equation.
+
+$Y_i = 5.028$
+
+$exp(5.028) = 152.63lbs = 69.2kg$
+
+-   So, our regression model predicts that someone who is 175cm tall
+    would weigh 69.2kg.
+
+# A little more about $e_i$
+
+-   Conventionally, $e_i$ come from a normal distribution with $\mu = 0$
+    and variance $\sigma^2$.
+-   $e_i$ are important for assessing the model's performance and
+    diagnostic purposes but they are not necessary for making
+    predictions using the regression equation.
+
+# Related Reading
+
+[Learning Statistical Models Through Simulation in R: Correlation and
+Regression](https://psyteachr.github.io/stat-models-v1/correlation-and-regression.html)

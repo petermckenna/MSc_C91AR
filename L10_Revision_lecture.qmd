@@ -1,0 +1,327 @@
+---
+title: "Revision Lecture"
+subtitle: "C91AR: Advanced Statistics using R"
+title-slide-attributes:
+    data-background-image: images/peter_staff_photo_small.jpg
+    data-background-size: auto
+    data-background-position: "50% 10%"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  html:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_quarto_html_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, message = FALSE, warning = FALSE}
+# set seed
+set.seed(234)
+
+# load packages
+library(tidyverse)
+
+```
+
+# Simple regression
+
+$$Y_i = \beta_0 + \beta_1 X_i + e_i$$
+
+-   $\beta$ values represent the model coefficients
+-   In ordinary least squares (OLS) regression, $\beta_1$ (the slope)
+    indicates the gradient of the regression line.
+-   However, a more useful way to conceptualise $\beta_1$ is that it
+    represents the change in outcome ($Y$) associated with a unit change
+    in the predictor ($X$). So, if we were predicting our C91AR grade
+    from study time ($X$), and $\beta_1$ = 1.2 and we had studied for
+    60hrs ($X = 60$), then we would expect a score around
+    $1.2 \times 60 = 72\%$.\
+-   $\beta_0$ (the intercept) indicates where the regression line
+    crosses the $y$-axis, i.e., its location in geometric space.
+-   Residual term $e_i$ indicates that the regression model will not fit
+    the data perfectly
+
+# Regression modelling
+
+-   The purpose of regression is to find the best line that fits the
+    data, then **estimate the slope and intercept of that line**.
+-   The 'line of best fit' is found by identifying the line that has the
+    least difference between the observed data points and the line;
+    i.e., the one with the lowest sum of squares difference (SS).
+
+## A useful diagram
+
+![](images/regression_SS_terminology.jpg){.absolute top="200" left="0" width="350" height="300"}
+
+
+-   $SS_T$ = the difference between the observed data and the mean value
+    of Y
+-   $SS_R$ = the difference between the observed data and the regression
+    line
+-   $SS_M$ = the difference between the mean value of Y and the
+    regression line.
+-   $R^2 = \frac{SS_M}{SS_T}$ OR the amount of variance in the outcome
+    explained by the model relative to the residuals.
+
+# What about multiple regression
+
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + ... \beta_mX_{mi} + e_i$$
+
+-   Basically the same as simple regression
+-   Main difference is that:
+    -   each predictor variable ($X$) has it's own coefficient ($\beta$)
+    -   the outcome ($Y$) is predicted from a combination of all of the
+        variables, multiplied by their respective coefficients, plus a
+        residual term ($e_i$).
+
+# Tidyverse revision
+
+```{r}
+# Read in the data
+df <-
+  read_csv("data_raw/robot-expression-data_raw.csv")
+
+
+```
+
+# Using the Tidyverse verbs
+
+```{r}
+# Examine the data
+glimpse(df)
+
+# Group by and summarise
+  # English langauge and ethnicity count
+df |>
+  group_by(eth, eng) |>
+  summarise(count = n()) |>
+  mutate(freq = (count/sum(count)*100))
+
+```
+
+# Mutate and recode
+
+```{r}
+# Mutate and recode example
+  # Let's change those beans -> cereal
+df |>
+  mutate(item2 = recode(item, "Beans" = "Cereal")) |>
+  select(item2) |>
+  print()
+
+```
+
+# Changing the data
+
+```{r}
+# This does not change the data
+df |>
+  select(item)
+
+df
+
+# This does change the data
+# df1 <-
+#   df |>
+#   select(item) # but this creates a problem
+
+```
+
+# Concatenate
+
+```{r}
+# Example of concatenate
+x <- c(1,3,4,5,6,7,23)
+
+x
+
+# Filter vector using concatenate
+df |>
+  filter(item %in% c("Beans", 
+                     "Oatmeal")) |>
+  select(item)
+
+```
+
+# Summative Assessment queries
+
+## Applying changes to data objects
+
+In the assessment, you need to be careful about applying changes to
+objects. If you do, and there is an error in your code, the rest of your
+code won't run, unless you correct the code and run it all from the
+beginning. Here are some pointers to keep you on track:
+
+-   For each change you apply to the data, create a chunk that checks
+    the function is working properly WITHOUT the assign operator.
+
+-   For this "Code check" chunk, you can use `select` or other functions
+    to quickly clarify whether the changes have been applied
+    successfully.
+
+*For example*
+
+```{r}
+# Check date conversion
+# SA dates are the same
+df |>
+  mutate(Exp.date = dmy(Exp.date)) |> # for checking purposes
+  select(Exp.date)                    # for checking purposes
+```
+
+-   For the "Code apply" chunk you want to make sure you do use the
+    assign function.
+
+-   The for "Code apply" chunk, you do not want to include checking
+    functions like `select` as part of the object creation chain,
+    otherwise you will change the data into a single column. This goes
+    for other functions you may have used to check if you changes
+    applied in the "Code check" chunk (e.g., `View` or `glimpse`).
+    Remember, the assign operator modifies the data depending on the
+    instructions you have supplied in the chain that follows, so the
+    last line of your chain of commands will be the last thing that
+    edits the data.
+
+-   You have two options for checking the "Code apply" chunk, shown
+    below. The first is to explicitly provide the name of object on a
+    new line, separate from the object creation chain. The second is to
+    supply the checking functions on a separate line from the one you
+    apply the changes.
+
+-   Remember, for every separate set of commands you run, you will
+    generate a separate output window. This chunk below generates two
+    windows because the first set of arguments creates a new data object
+    (df1), but the object creation chain of commands does not include
+    instructions to display the object for reasons stated above.
+
+*For example*
+
+```{r, eval=FALSE}
+# Apply date conversion
+# No need for `select` here, otherwise df1 will become a single col
+df1 <-  # creates new object df1 based on changed df (object creation) 
+  df |>
+  mutate(Exp.date = dmy(Exp.date)) 
+
+
+df1 # include the name of your changed object so that you you can check the changes have been applied in output window
+
+```
+
+### OR
+
+```{r, eval=FALSE}
+# Apply date conversion
+df1 <-  # creates new object df1 based on changed df 
+  df |>
+  mutate(Exp.date = dmy(Exp.date)) 
+
+# Examine the data
+df1 |>
+  select(Exp.date) # examine single col from new object
+```
+
+# Input and formatting advice
+
+-   Take your time. The more you rush, the more tunnel vision will stop
+    you from spotting mistakes. I've got eyes for common errors because
+    I have made many myself. If I could go back and give my old self
+    some advice it would be to **slow down**.
+
+-   Keep code chunks tidy and small. The smaller and tidier the chunk,
+    the easier they are to read and interpret. This will also make life
+    easier for you whilst debugging your code.
+
+-   Annotate your chunks with comments to remind of yourself of what you
+    are trying to achieve. I'm keen to see your comments, as they
+    indicate your thought process in the process of code writing.
+
+-   It's probably easier just to write out the formula/technical terms
+    in the `Source` editor from the outset as the LaTeX insert on Quarto
+    is a bit dodgy. Just make sure you wrap the technical text in `$`
+    symbols correctly in the `Source` editor before switching back to
+    the Visual editor.
+
+-   Lastly, be ready for the code not to run. Accept that, this does not
+    mark the end of the world, but is completely normal (ask any
+    programmer/computer scientist!). I've often had to take a walk to
+    clear my head, then return to my desk to find I'd missed something
+    obvious in my script. And importantly, do not hesitate to get in
+    touch. I'm fully aware that this assessment is not perfect and that
+    there will be blind-spots. Your feedback/questions will help me
+    immensely in the next run of the course.
+
+## Dealing with dates
+
+```{r}
+# The lubridate function
+df <-
+  read_csv("data_raw/robot-expression-data_raw.csv")
+
+df
+
+# Check unique values
+#unique(df$Exp.date)
+
+```
+
+### Check date code
+
+```{r}
+# Check date conversion
+# SA dates are the same
+df |>
+  mutate(Exp.date = dmy(Exp.date)) |> # for checking purposes
+  select(Exp.date)                    # for checking purposes
+```
+
+### Apply date code
+
+```{r}
+# Apply date conversion
+df1 <-  # creates new object df1 with changes applied 
+  df |>
+  mutate(Exp.date = dmy(Exp.date)) 
+
+# No need for `select` here, otherwise df1 will be a single col
+
+df1 # include the name of your changed object so that you you can check the changes have been applied
+```
+
+## Using `rename`
+
+### Test rename code
+
+```{r}
+# Test renaming and selecting eth column
+df1 |>
+  rename(ethnicity = eth) |> # remember new_name = original_name
+  select(ethnicity, Exp.date) # using `select` to check changes 
+```
+
+### Apply `rename` code
+
+```{r}
+# Test renaming and selecting eth column
+df1 <-
+  df1 |>
+  rename(ethnicity = eth) 
+
+df1
+
+# No need for select, as that was for checking
+```
+
+## Technical Writing
+
+This is a comment about the data. $\beta$ is cool.
+
+$\beta_0 = 3.41, \beta_1 = 0.45, p<0.05$.
+
+The F statistics shows that the result was significant
+$F(2,15) = 4.56, p < 0.05$.

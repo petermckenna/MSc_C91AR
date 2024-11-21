@@ -1,0 +1,624 @@
+---
+title: "C91AR | Advanced Statistics using R"
+subtitle: "Wrangling and Summarising data"
+author: "Dr Peter McKenna"
+format: 
+  revealjs:
+    menu: 
+      side: right
+    smaller: true
+    scrollable: true
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: logo.css
+    theme: [default, my_quarto_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+bibliography: ref.bib
+---
+
+```{r include=F, warning=FALSE}
+
+# presentation setup
+ knitr::opts_chunk$set(echo = T, 
+                       eval = T,
+                       results = 'hide',
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
+
+# default for instructor is 
+  # echo = T
+  # eval = T
+  # results = 'hide'
+
+# you only want to see the results for certain chunks (e.g., plots)
+
+# Install pacman ("package manager") if needed
+if (!require("pacman")) install.packages("pacman")
+
+# load packages
+pacman::p_load(tidyverse,
+               broom,
+               GGally,
+               nortest,
+               psych)
+
+
+```
+
+# Packages for todays session
+
+```{r, eval=FALSE}
+
+# Load packages
+library(tidyverse)
+library(broom)
+library(GGally)
+library(nortest)
+library(psych)
+
+```
+
+# Summarising data in R
+
+- Now that we've looked at how to keep code tidy and how to tidy our data, build on what we've started to learn from the data wrangling operations
+- I've shown you how to filter and select your data, and by adding more commands to your chain of pipes (`|>`) you can also start to generate summaries of your data
+
+## Using pipes to generate summaries
+
+- Think about your data and what summaries would be useful for your research
+- Let's read in our tidy data to get started
+
+```{r, results='markup'}
+
+# Read in the tidy data
+df <-
+  read_csv("data_out/c91ar_maze_data.csv",
+           col_types = "fffdffd") |>
+  drop_na()# omit NAs
+
+# Examine the data
+glimpse(df)
+
+```
+
+
+# Dataset Metadata
+
+- `id` = anon participant code
+- `condition` = ToM manipulation with three levels (Baseline, No-ToM, and ToM)
+- `trial` = experiment trial
+- `rt` = response time
+- `follow robot` = whether participants followed the robot's suggestion
+- `accuracy` = whether or not their maze route selection was correct
+- `conf` = participants self reported confidence for each route decision.
+
+# Reseach questions
+
+- Did robot ToM affect participants trust?
+- Did robot ToM affect participants task performance?
+  + Decision time
+  + Confidence
+  
+# Descriptive Statistics
+
+- We use a combination of *Tidyverse* verbs to select, group and summarise data
+  + `group_by`
+  + `select`
+  + `arrange`
+  + `filter`
+  + `summarise`
+
+---  
+
+```{r}
+
+df |>
+  select(rt,
+         conf) |>
+  ggpairs() # from GGally
+
+
+```
+
+---
+
+- You can see that `rt` is positively skewed
+
+```{r, eval = F}
+
+# Test the normality of rt
+# shapiro.test(df$rt) 
+
+
+# Test the normlisaty of conf
+# shapiro.test(df$conf)
+
+
+# For large datasets, use Anderson-Darling instead
+  # Null hypothesis is that the data follows a particular distribution
+#library(nortest)
+
+# response time
+ad.test(df$rt)
+
+# confidence
+ad.test(df$conf)
+
+```
+
+- So, both `rt` and `conf` are not normally distributed
+
+# Working with reaction/decision time data
+
+- Sometimes, you have to make a judgement call about what constitutes a theoretically valid response in your experiment.
+- The minimum RT here is below zero, which is not possible
+- One way to make an educated guess is to examine the histogram and hone in on the region of interest
+- But, before I go any further...
+
+# Data Visualisation with `ggplot2`
+
+- This is the package used to produce plots in R
+- It comes with a whole host of its own functions and is very flexible in terms of the graphical aesthetics.
+- Annoyingly, it does not use `|>` (e.g., pipes) but instead uses the `+` symbol. 
+- So, when you combine *Tidyverse* and *ggplot2* you often see a combination beginning with `|>` and ending with `+` to chain commands together.
+
+# Visualising distributions using `ggplot2`
+
+```{r}
+
+# Visualise the full rt distribution
+df |>
+  select(rt) |>
+  ggplot(mapping = aes(rt)) +
+  geom_histogram(bins = 100) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+# Breaking down the `ggplot2` syntax
+
+- You can pipe directly into ggplot2
+- One of the key things to remember is that pipes in *ggplot2* are `+` symbols, not `|>` 
+- [See here for more info about `ggplot2`](https://ggplot2.tidyverse.org/). 
+- We will start by looking at how to create histograms. 
+
+---
+
+```{r, eval=FALSE}
+
+ggplot(mapping = aes(x, y)) + # this is the line where you tell R what you axes of interest are
+  geom_histogram(bins = 100) + # this is where you state what type of plot layer you want to add (there are lots of options)
+  labs(y = "Y axis label",
+       x = "X axis label"
+       title = "Plot title")
+
+```
+
+---
+
+```{r}
+
+# Visualise the full conf distribution
+df |>
+  select(conf) |>
+  ggplot(mapping = aes(conf)) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Confidence distribution")
+
+```
+
+
+# Using `filter` to take a closer look at the distribution extremities
+
+- Remember, when you filter by a specific range of observations, you use the command `%in% c(min:max)`.
+
+```{r}
+
+# Visualise the observations near the y-axis origin
+df |>
+  filter(rt %in% c(0:700)) |> # I'm not interested in values below zero
+  ggplot(mapping = aes(rt)) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+---
+
+```{r}
+
+# Visualise the observations at the tail of the distribution
+df |>
+  filter(rt %in% c(1500:6000)) |>
+  ggplot(mapping = aes(rt)) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+# Based on the following plot, where would say is safe to start our distribution?
+
+# Visualise new distribution
+
+```{r}
+
+# Visualise the observations included in our new limits
+df |>
+  filter(rt %in% c(500:5000)) |>
+  ggplot(mapping = aes(rt)) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+# Visualise transformed data 
+
+- This measure is one approach to normalise positively and negatively skewed distributions
+
+```{r}
+
+# Visualise the log transformed rt
+df |>
+  dplyr::filter(rt %in% c(500:5000)) |>
+  ggplot(mapping = aes(log(rt))) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of log(response time; ms) distribution")
+
+```
+
+---
+
+```{r}
+
+# Visualise the log transformed conf
+df |>
+  filter(rt %in% c(500:5000)) |>
+  ggplot(mapping = aes(log(conf))) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of log(confidence) distribution")
+
+```
+
+# Checking correlations based on new parameters
+
+```{r}
+
+df |>
+  filter(rt %in% c(500:5000)) |> # filter the data
+  mutate(rt_log = log(rt),
+         conf_log = log(conf)) |> # create a log of rt vector 
+  select(rt_log,
+         conf_log) |> # only include numeric vectors
+  ggpairs()
+
+```
+
+- According to our new limits and log transformation, there is a negative correlation between response time and confidence.
+
+# ToM condition descrtiptives
+
+```{r}
+
+# create a new object based on our chosen rt parameters
+
+df1 <-
+  df |>
+  filter(rt %in% c(500:5000)) |>
+  mutate(rt_log = log(rt),
+         conf_log = log(conf)) |>
+  mutate_if(is.character, as.factor)
+
+# Be sure to create a comment explicitly stating what df1 represents
+# You could do this in a separate .txt file or in your script
+# The last line of the chain tells R to treat the character cols as factor, because converting factors back to characters is the default behaviour when creating new data objects
+
+# df1 = data with rt 500:5000
+
+```
+
+---
+
+```{r, results='markup'}
+
+# Summarise the data
+df1 |>
+  select(condition, 
+         rt_log, 
+          conf_log) |>
+  group_by(condition) |>
+  summarise(avg_rt = mean(rt_log), # remember, we are operating in the log space now
+            sd_rt = sd(rt_log),
+            med_rt = median(rt_log),
+            avg_conf = mean(conf_log),
+            sd_conf = sd(conf_log),
+            med_conf = median(conf_log))
+
+```
+
+
+# Using the `psych` package
+
+```{r}
+
+# Overall summary of rt
+df1 |>
+  describe(omit = TRUE) # omit non-numeric vectors
+
+# Condition level summary of rt
+describe(rt_log ~ condition, data=df1) # remember, tilde means modelled by
+
+```
+
+# Exercise: use the `describe` function from the *psych* package to summarise both overall and group trends from the confidence rating participants gave after each decision.
+
+# Summarising the categorical variables
+
+```{r, results='markup'}
+
+# How often did participants in each group follow the robots advice?
+df1 |>
+  group_by(condition,
+           follow_robot) |>
+  summarise(n = n()) |>
+  mutate(freq = n/sum(n))|>
+  mutate(freq = round(freq*100, digits = 2)) |>
+  arrange(desc(freq)) # arrange the output by freq in descending order
+
+```
+
+# Visualising categorical data trends
+
+- Let's create a bar chart to visualise the categorical data trends.
+
+```{r}
+p_follow <-
+  df1 |>
+  group_by(condition,
+           follow_robot) |>
+  summarise(n = n()) |>
+  mutate(freq = n/sum(n))|>
+  mutate(freq = round(freq*100, digits = 2)) 
+
+p_follow |>  
+  ggplot(aes(x = follow_robot,
+                y = freq,
+                fill = condition,
+                group = condition)) + 
+  geom_col(stat = "identity",
+           position = "dodge") +
+  labs(title = "Proportion of Robot Compliance per Condition",
+       x = "Compliance with Robot Route Advice",
+       y = "Proportion of Responses (%)") +
+  theme_minimal() # there are also aesthetic themes available in ggplot2
+
+```
+
+---
+
+```{r, results='markup'}
+
+# How often were participants correct in their route selection?
+df1 |>
+  group_by(condition,
+           accuracy) |>
+  summarise(n = n()) |>
+  mutate(freq = n/sum(n))|>
+  mutate(freq = round(freq*100, digits = 2))
+
+```
+
+
+---
+
+```{r}
+
+p_acc <-
+  df1 |>
+  group_by(condition,
+           accuracy) |>
+  summarise(n = n()) |>
+  mutate(freq = n/sum(n))|>
+  mutate(freq = round(freq*100, digits = 2)) 
+
+p_acc |>  
+  ggplot(aes(x = accuracy,
+                y = freq,
+                fill = condition,
+                group = condition)) + 
+  geom_col(stat = "identity",
+           position = "dodge") +
+  labs(title = "Proportion of Response Accuracy per Condition",
+       x = "Route Selection Accuracy",
+       y = "Proportion of Responses (%)") +
+  theme_minimal()
+
+```
+
+# Bringing other relevant data sources using `join`
+
+- There will be occasions where you have multiple datasets that are relevant to the same project. 
+- This might be because you administer both a questionnaire and a cognitive task as part of your experiment. 
+- In such cases, it is useful to read in both data sets and create an object that joins the datasets together.
+
+# Propensity to Trust data
+
+- As well as conducting the following experiment, we also collected data about participants propensity to trust, to check whether differences in performance might be explained by baseline differences in participants baseline level of trust. 
+- There is a problem though; we collected our baseline data at a slightly later date, so there are separate P2T datasets for our experiment manipulation groups and are baseline group.
+- To get started, I will show you how to combine datasets. 
+- Note, this is slightly different to joining, as in a join we use an index column, but here, we are simply adding and existing data to another dataset with the same vectors.
+
+# Read in our datasets
+
+- You will need to have the datasets saved into the `data_raw` folder to proceed
+  + c91ed_p2t_baseline.csv
+  + c91ed_p2t_data.csv
+- We are going to do a little tidying up first, so the following code should be added to your `data_tidying` script, not the `data_summary` script we've been working on most recently.  
+
+```{r}
+
+# read in the baseline data
+baseline <-
+  read_csv("data_raw/c91ed_p2t_baseline.csv") 
+
+# examine the data
+glimpse(baseline)
+
+
+```
+
+---
+
+- We are only interested in
+  + participant id = anonymised code (factor)
+  + score = their overall P2T score (double)
+- So, let's add to the code to specify the cols we want and the data types too
+
+```{r}
+
+# read in the baseline p2t data
+base_p2t <-
+  read_csv("data_raw/c91ed_p2t_baseline.csv",
+           col_select = c("id", 
+                          "score"),
+           col_types = "fd") |>
+  drop_na()
+
+# examine the data
+glimpse(base_p2t)
+
+```
+---
+
+- Let's do the same for the participants in the other conditions (i.e., ToM and No-ToM)
+
+```{r}
+
+# read in the exp group p2t data
+exp_p2t <-
+  read_csv("data_raw/c91ed_p2t_data.csv",
+           col_select = c("id",
+                          "score"),
+           col_types = "fd")
+
+# examine the data
+glimpse(exp_p2t)
+
+```
+
+# Combining datasets using `cbind`
+
+- Now that we are happy that both of our new objects contain the data we are interested in and **importantly** have the same vector names, we can combine them.
+- We do this so that we have a single object that contains the P2T scores for participants in every condition of the experiment.
+- We combine the data using the `rbind` function
+
+```{r}
+
+# Combine the data objects
+p2t <-
+  rbind(exp_p2t,
+        base_p2t)
+
+# examine the data
+glimpse(p2t)
+
+```
+# Write a tidy `.csv` file for P2T
+
+- Now that you are happy with your new P2T object, let's create a .csv in the `data_out` or `data_tidy` folder (whichever name you have used in your directory)
+
+```{r, eval=FALSE}
+
+write_csv(p2t, "data_out/p2t_data.csv")
+
+```
+
+# Joining the P2T object with our maze data
+
+- Now we want to tell R to join our P2T data with our experiment data, what we have called `df` previously
+- Joining datasets requires us to specify an index vector, one (or more) that each of the datasets have in common.
+- Often we use the `id` column as the index, as the code given to participants for each part of the experiment should to assigned consistently.
+
+---
+
+- We now move back to the `data_summary` script
+- Let's begin by reading in our tidy P2T data 
+
+```{r}
+
+p2t <-
+  read_csv("data_out/p2t_data.csv")
+
+```
+- And now to joining the data
+
+```{r, results='markup'}
+
+# augment the existing experiment data with the P2T data
+df_p2t <-
+  df1 |>             # remember to use the latest version of the data we have been working on
+  left_join(p2t, 
+            by = "id")
+
+# examine the data
+glimpse(df_p2t)
+
+
+```
+# Rename `score` to something more descriptive
+
+- Now, I want you to rename the vector `score` to `p2t_score` for clarity
+
+```{r, echo=FALSE, eval=TRUE}
+
+df_p2t <-
+  df_p2t |>
+  rename(p2t_score = score)
+
+```
+
+# Using `rm` to remove old objects
+
+- You beginning to see how the Global Environment can soon become full of data objects after a series of operations.
+- If you feel that there are objects in there that are now redundant and require removal you can use the following function **in the console window** 
+
+```{r, eval=FALSE}
+rm(data_object)
+```
+
+- This keeps your Global Environment tidy and free of obsolete objects. 
+
+# Exercise
+
+- I'd also like for you to use what we have learned so far to plot the distribution of P2T using a histogram.
+
+```{r, echo=FALSE, eval=TRUE}
+
+df_p2t |>
+  ggplot(mapping = aes(p2t_score)) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "P2T score")
+
+```
+
+# Recap: What did we just cover?
+
+- summarising numeric and categorical data
+- plotting with *ggplot2*
+- filtering and plotting
+- Combining data with `cbind`
+- Joining data using a shared index vector using `left_join`
+
+
+

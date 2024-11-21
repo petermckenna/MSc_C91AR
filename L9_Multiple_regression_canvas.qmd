@@ -1,0 +1,407 @@
+---
+title: "Multiple Regression"
+subtitle: "C91AR: Advanced Statistics using R"
+title-slide-attributes:
+    data-background-image: images/peter_staff_photo_small.jpg
+    data-background-size: auto
+    data-background-position: "50% 10%"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  html:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_quarto_html_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+
+# markdown formatting
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+# set the seed
+set.seed(453)
+
+# load packages
+library(corrr) # correlation matrices
+library(tidyverse)
+library(psych)
+
+```
+
+
+# Content for today
+
+- Multiple regression formula
+- Worked example using the "grades.csv" dataset from PsyTeachR
+- The `predict` function
+- Partial effects
+- Standardising coefficients
+- Model comparison
+
+
+# Getting started with Multiple regression
+
+The general model for single-level data with $m$ predictors is:
+
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + ... \beta_mX_{mi} + e_i$$
+
+- Key assumption is that the model residuals are normally distributed.
+
+- Predictor variables $X$ can be either categorical or continuous, as well as interactions between predictors.
+
+- $e_i$ = difference between the predicted and the observed value of $Y$ for the *i*th participant.
+
+- The relationship is planar, i.e., can be described by a flat surface.
+
+- Error variable is independent of the predictor values.
+
+# Coefficients
+
+-   In multiple regression you will have $m+1$ regression coefficients; one for the intercept ($\beta_0$), and one for each predictor ($X_m$).
+-   Each $\beta_{h}$ value (coefficient associated with the $h^{th}$ independent variable) is understood as the partial effect of $\beta_{h}$ holding constant all other predictors.
+-   In other words, a partial effect of a coefficient in multiple regression refers to the effect of a particular IV on the DV, whilst holding all other IVs constant.
+- Response variable ($Y$) is predicted from a combination of all of the variables multiplied by their respective coefficients, plus a residual term.  
+
+# What is the purpose of multiple regression?
+
+- **To identify a linear combination of predictors that exhibits the highest correlation with the response variable.**
+
+
+# A worked example using the `grades.csv` dataset
+
+-   How do you get a good grade in statistics?
+
+```{r}
+#| echo: true
+#| output-location: slide
+grades <- 
+  read_csv("data_out/grades.csv", 
+           col_types = "ddii")
+
+grades
+
+
+```
+
+## Metadata
+
+-   N=100 statistics students
+-   `grade` = final course grade
+-   `lecture` = number of lectures attended; an integer from 0:10
+-   `nclicks` = number of times the students clicked to download online
+    materials
+-   `GPA` = grade point average prior to taking the course; ranging from
+    0 (fail) to 4 (best possible grade)
+
+## Examine pairwise correlations
+
+```{r}
+
+# Examine pairwise correlations
+grades |>
+  correlate() |>
+  shave() |> 
+  fashion() # shave & fashion tidy up the output
+
+```
+
+------------------------------------------------------------------------
+
+```{r}
+
+pairs(grades)
+
+```
+
+What can you infer from the correlation matrix?
+
+# Estimation and interpretation
+
+-   For a Generalised Linear Model (GLM) with $m$ predictors:
+
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + ... \beta_mX_{mi} + e_i$$
+
+-   Where...
+    -   $Y_i$ = the *response variable* (or, the outcome to be predicted)
+    -   $\beta_0$ = the intercept term
+    -   $\beta_1 X_{1i}$ = the regression coefficient for predictor
+        variable $X_1$
+    -   $\beta_2 X_{2i}$ = the regression coefficient for predictor variable $X_2$  
+    -   $e_i$ = model residuals
+    -   $\hat{hat}$ = presence of a hat denotes and sample estimate, not
+        the actual sample statistic
+
+# Writing out the formula in R
+
+-   Writing out a multiple regression model in R is much like what we
+    did for simple regression, except you need to add a term for each
+    predictor variable ($X$):
+
+```{r eval=FALSE}
+lm(Y ~ X1 + X2 + ... + Xm, data)
+```
+
+-   **Note**: You do not need to specify the intercept or the residuals,
+    as these are included by default.
+
+# Predicting `grade` based on `lecture` and `nclicks`
+
+```{r}
+#| echo: true
+#| output-location: slide
+my_model <- 
+  lm(grade ~ lecture + nclicks, grades)
+
+# Summarise the model
+summary(my_model)
+
+```
+
+## Model results
+
+-   From the output, we can see that
+    -   $\hat{\beta_0} = 1.46$ (intercept)
+    -   $\hat{\beta_1} = 0.09$ (`lecture` coefficient)
+    -   $\hat{\beta_2} = 0.01$ (`nclicks` coefficient)
+
+# Plugging the estimates back into the formula
+
+-   The result indicates that the following formula can be used to
+    describe how a persons grade is predicted by their lecture attendance
+    and course material download behaviour:
+
+`grade` = 1.46 + 0.09 × `lecture` + 0.01 × `nclicks`
+
+-   And, because the regression coefficients of $\hat{\beta_1}$
+    (`lecture`) and $\hat{\beta_2}$ (`nclicks`) are both positive we can
+    surmise that these predictors have a positive impact on `grade`.
+
+-   If you had data on students `nclicks` and `lecture` attendance, you
+    could use this to estimate their grade, based on the multiple
+    regression model.
+
+# Predicting from new data
+
+-   **Warning**: If you want to pass new data to your multiple regression model the variable names have to match exactly. R is unforgiving when it comes to labels, so match sure both the name and text case is the same in your data and the model.
+
+```{r}
+
+# FYI: A 'tribble' is a way to make a tibble by rows, rather than by columns
+# its interpretation is easier, as there is a direct correspondence between the data generated and its formatting.
+new_data <- 
+  tribble(~lecture, ~nclicks,
+          3, 70,
+          10, 130,
+          0, 20,
+          5, 100)
+
+```
+
+----
+
+-   Now that we've created our table `new_data`, we can pass it to
+    mutate and predict() to add a vector with the predictions for $Y$
+    (`grade`).
+
+```{r}
+# Add predicted grade vector using `predict` function
+new_data |>
+  mutate(predicted_grade = predict(my_model, new_data))
+
+```
+
+
+# Visualising Partial effects
+
+- Each regression coefficient parameter estimate indicates the *partial effect* of that variable; i.e., that variable's effect holding all other variables constant. 
+- You can visualise partial effects using `predict` by 
+  - making a table with varying values of the focal predictor and filling all other predictors with their mean values (i.e., keep them constant)
+  
+# Visualising the partial effect of `lecture` on `grade` holding `nclicks` constant
+
+- Remember, `lecture` is an integer from 0:10, so we want to create a vector that includes each of these levels.
+- To keep `nclicks` constant, let's create a vector that only contains the mean value for `nclicks`. 
+
+## R code for partial effects
+  
+```{r}
+#| echo: true
+#| output-location: slide
+
+# Create vector containing nclicks mean
+nclicks_mean <- 
+  grades |>         # take the grades dataset
+  pull(nclicks) |>  # extract single column from df as a vector
+  mean()
+
+# Create new data for prediction
+new_lecture <- 
+  tibble(lecture = 0:10,         # create vector containing each level of lecture
+         nclicks = nclicks_mean) # add vector of nclicks mean
+
+# Add predicted grades vector controlling for effects of nclicks
+new_lecture2 <- 
+  new_lecture |>
+  mutate(grade = predict(my_model, new_lecture))  
+
+# Present data
+new_lecture2
+
+```
+  
+
+# Plot Partial effets
+
+```{r}
+#| echo: true
+#| output-location: slide
+
+# Plot partial effect of lecture on grade
+# Holding `nclicks` constant
+ggplot(grades, aes(lecture, grade)) + 
+  geom_point() +
+  geom_line(data = new_lecture2) + # add your 
+  labs(title = "Partial effect of lecture on grade.", 
+       x = "Lectures attended",
+       y = "Predicted grade")
+```
+  
+  
+## A word on partial effects plots
+
+- Partial effects plots are meaningful when there are no interactions in the model between the focal predictor and any other predictors.
+- This is because, when there are interactions, the partial effect of a focal predictor $X_i$ will differ across the values of other predictors it interacts with. 
+
+
+# Tutorial exercise for this week
+
+- Visualize the partial effect of `nclicks` on `grade`.
+
+
+# Standardising Coefficients
+
+- Part of multiple regression modelling is determining which of the predictors in your model matter the most when predicting $Y$.
+- In the analysis above, all of the $\hat{\beta}$ (coefficient estimates) come from different scales, so comparing their values is meaningless. 
+- One way you can convert these scales into something comparable is to convert them into **z-scores**.
+
+$$z = \frac{X - \mu_x}{\sigma_x}$$
+
+
+## Z-scores
+
+- z-scores represent how far a value of $X$ is from the sample mean ($\mu_x$) in standard deviations ($\sigma_x$).
+- When you re-scale using z-scores the mean of the scale is set to 0.
+- So, a z-score of 1 ($z = 1$) means that that particular score for $X$ is one standard deviation higher than the mean, and a a-score of -1 would indicate a score 1SD below the mean.
+- Z-scores offer a means to compare data that come from different populations by converting the values to a standard normal distribution (a distribution with a mean of 0 and SD = 1).
+
+# Rescaling predictors
+
+```{r}
+# Create new object with scaled z-score data vectors
+grades2 <- 
+  grades %>%
+  mutate(lecture_c = (lecture - mean(lecture)) / sd(lecture), # apply z-score formula
+         nclicks_c = (nclicks - mean(nclicks)) / sd(nclicks))
+
+# Examine the data
+head(grades2)
+
+```
+
+---
+
+- Now let's fit a model using our z-scores for equal comparison
+
+```{r}
+#| echo: true
+#| output-location: slide
+my_model_scaled <- 
+  lm(grade ~ lecture_c + nclicks_c, 
+     grades2)
+
+# Summarise the model
+summary(my_model_scaled)
+
+```
+
+
+# Interpretation
+
+- Now that we have scaled the data we can compare the coefficient estimates
+- The model output indicates that `lecture_c` actually had more of an impact on `grade`, with each SD increase in lecture_c grade increased by 0.19 (i.e., $\hat{\beta_1}=0.19$). 
+- This is compared to our un-scaled model where the estimate was 0.091 (i.e., $\hat{\beta_1}=0.09$)
+
+
+# Model Comparison
+
+::::{.columns}
+
+:::{.column width="50%"}
+- You may also want to check whether a predictor variable significantly affects the dependent (or response) variable, over and above the effect of one of your control variables.
+- We saw above that the model including `lecture` and `nclicks` was significant, $F(2,97) = 3.395, p = 0.038$.
+:::
+
+:::{.column width="50%"}
+- The null hypothesis for a multiple regression model represents a model where all of the coefficients (other than the intercept) are zero:
+$H_0 : \beta_1 - \beta_2 = ... = \beta_m = 0$
+OR
+$Y_i = \beta_0$
+- Put differently, your best prediction of $Y$ is simply its mean ($\mu_y$), and the $X$ predictor variables have no effect on $Y$. 
+- The regression model above rejects $H_0$, indicating that `lecture` and `nclicks` can be used to predict `grade`.
+:::
+
+::::
+
+# Reconceptualising the question
+
+- It is possible that better students (who are more likely to attend lectures and download online course content) are simply more likely to get better grades.
+- If this is true, than the relationship between `lecture`, `nclicks`, and `grade` would be mediated by student quality.
+- So, the question becomes; **are `lecture` and `nclicks` associated with better grades above and beyond student ability, indicated by `GPA`**.
+
+# Running model comparisons
+
+1. Estimate a model containing any control predictors, excluding the focal predictors.
+2. Estimate a model containing the control predictors, including the focal predictors.
+3. Compare the two models using `anova`
+
+# R Code for model comparisons
+
+```{r}
+#| echo: true
+#| output-location: slide
+
+# Control model
+m1 <- 
+  lm(grade ~ GPA, grades) 
+
+# Focal predictor model
+m2 <- 
+  lm(grade ~ GPA + lecture + nclicks, grades) 
+
+# Run the model comparison
+anova(m1, m2)
+
+```
+
+
+# Interpretation of model comparisons
+
+- $H_0$ states that we can predict `grade` from `GPA`, just as well as we can from `GPA`, `lecture`, and `nclicks`. 
+- $H_0$ will be rejected if the inclusion of `lecture` and `nclicks` (i.e., in the focal predictor model) leads to a substantial reduction in the residual sum of squares.
+- This would indicate that their inclusion helps to signidicantly reduce the amount of unexplained variance in the model. 
+- The result $F(2,96) = 1.308, p = 0.275$ shows that our control variable model is as good at explaining the results as our focal predictor model.
+- So, `lecture` and `nclicks` do not predict better grades more so than `GPA` alone. 
+
+
+# Reading
+
+[Learning Statistical Models Through Simulation in R: Chapter 4 Multiple Regression](https://psyteachr.github.io/stat-models-v1/multiple-regression.html)
+
