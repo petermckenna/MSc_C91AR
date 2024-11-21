@@ -1,0 +1,9 @@
+Global Gender Gap Report 2024 | Sub-Saharan Africa
+
+source: https://www.open.africa/dataset/global-gender-gap-report-2024 
+
+Blurb
+The Global Gender Gap Index annually benchmarks the current state and evolution of gender parity across four key dimensions (Economic Participation and Opportunity, Educational Attainment, Health and Survival, and Political Empowerment).
+
+metadata
+gggi = global gender gap index

@@ -1,0 +1,472 @@
+id,condition,Gefen1,Gefen1-quantised,Gefen2,Gefen2-quantised,Gefen3,Gefen3-quantised,Gefen4,Gefen4-quantised,attention3,attention3-quantised,Gefen5,Gefen5-quantised,score
+6025052cdf4a8e24cdd62920,ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,30
+60c9e28c4ee862786ba5368d,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Agree,6,24
+5dee3c313ccb8a4cbe050a84,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+60b5502cafe78a4ddb2776cb,No-ToM,Agree,6,Agree,6,Slightly Disagree,3,Agree,6,Strongly Agree,7,Agree,6,27
+5f033c50099f49505831941b,No-ToM,Agree,6,Disagree,2,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,21
+5f4d290795b8189a172123ee,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+60c8aed73ab0030dcf5f1fd6,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,31
+60c8f798766829e2bc3824d7,ToM,Agree,6,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,Slightly Agree,5,Agree,6,31
+5eee1fab4baef3282fbeed9c,No-ToM,Slightly Disagree,3,Disagree,2,Strongly Agree,7,Agree,6,Strongly Agree,7,Slightly Agree,5,23
+5fbbe815c5b45b000b41b06b,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,29
+60c8f3f37aff47f7a764fba3,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+60c8a041886d0de910b2966f,ToM,Agree,6,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+60c86e93e499f90f3dd51618,No-ToM,Slightly Disagree,3,Disagree,2,Strongly Disagree,1,Disagree,2,Strongly Agree,7,Slightly Agree,5,13
+5e4c144b7e9dfa069f97e298,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Agree,6,Slightly Agree,5,29
+5fcba68961d36f8e14e43056,ToM,Agree,6,Slightly Agree,5,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,19
+5c96571aed394b0001bb2094,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+60c88d2183b9d457701cf4f4,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,29
+601865dbcd7cd60f567b8665,No-ToM,Slightly Agree,5,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,29
+5f32904e5534bf06dd638467,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Neither Agree Nor Disagree,4,Agree,6,Strongly Agree,7,25
+60c7d82161f95f3e139afc3f,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,30
+5ef91b6f49faae6a7078417f,No-ToM,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+5d984836bf54b503a6bbe9a2,ToM,Agree,6,Disagree,2,Agree,6,Agree,6,Strongly Agree,7,Agree,6,26
+5dc0077fd819104566394afa,ToM,Slightly Disagree,3,Slightly Disagree,3,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,16
+60c89c0e9445e1a77532e876,No-ToM,Slightly Disagree,3,Disagree,2,Disagree,2,Disagree,2,Strongly Agree,7,Slightly Disagree,3,12
+5833e52deffe9300018f8380,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+60c9d8ae2ac803814af726f1,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+5f7345ef4b3fc3027203ecf1,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,14
+5c7e7970efcd55000105a686,ToM,Slightly Agree,5,Disagree,2,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,20
+58765ba1ce4b2800017289e3,No-ToM,Neither Agree Nor Disagree,4,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Neither Agree Nor Disagree,4,17
+5f404c44c4c5181840e3b197,ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,26
+5d4c3fcc7a55b500168043a4,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,29
+601000c380f7d923c17143ef,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,29
+5ef5cff343a45e246d1b93e0,No-ToM,Agree,6,Slightly Disagree,3,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,24
+5f40356542b64f14cfc0c53f,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+5fe2308a91773957e88b89be,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+5ebc00a629fee7040749a921,ToM,Agree,6,Agree,6,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,26
+5b01647dc66dc6000197d6ea,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,29
+5f95ba818b704044123ba975,No-ToM,Disagree,2,Slightly Agree,5,Disagree,2,Strongly Disagree,1,Strongly Agree,7,Slightly Disagree,3,13
+5def63da5a81d3000c3f5ec9,No-ToM,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Disagree,3,Strongly Agree,7,Agree,6,27
+60478f19a85dd30008f4bc6f,ToM,Agree,6,Agree,6,Strongly Agree,7,Disagree,2,Strongly Agree,7,Agree,6,27
+60c8daf9fadf8da8da331140,No-ToM,Agree,6,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Neither Agree Nor Disagree,4,24
+5f16f1c6471098000ce94da5,ToM,Neither Agree Nor Disagree,4,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,23
+5fdb467f3de890644c47206c,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+5ef8811519f02e01d2b9fba5,No-ToM,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,Strongly Agree,7,Agree,6,29
+5e5b97cdb7348d365adb5315,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+5f9e19ae97b3c23c6eaafc96,ToM,Strongly Agree,7,Strongly Agree,7,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Strongly Agree,7,31
+591e2e99529e9f0001ec705a,ToM,Disagree,2,Slightly Disagree,3,Slightly Disagree,3,Disagree,2,Strongly Agree,7,Disagree,2,12
+5d9de8e8996ad3001b904aa5,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Disagree,3,Neither Agree Nor Disagree,4,Agree,6,Neither Agree Nor Disagree,4,20
+5ff8b3ce18f1a6125ec426e9,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+60c3c2930746d8188901cea7,ToM,Slightly Agree,5,Agree,6,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+5c1b822abdb7e80001834a09,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+5ff0b107341f4243c9da75b3,No-ToM,Disagree,2,Slightly Agree,5,Strongly Disagree,1,Disagree,2,Strongly Agree,7,Slightly Disagree,3,13
+60ad0f30b432d8c0a8e010e7,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,30
+60056b8b5db9c8774719d1a8,ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,29
+5ed8a3d6d20f6b3a6b7841db,ToM,Agree,6,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+5eb9e9df03d2bb129bb57702,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+603e4c473a28f3e731a8e7e9,ToM,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,Strongly Agree,7,Agree,6,30
+60664ccd3d950919f3df7475,ToM,Disagree,2,Disagree,2,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,14
+5c00459dbab6730001648b96,No-ToM,Agree,6,Slightly Disagree,3,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,22
+602c36b7dab92a4de0a3b700,No-ToM,Strongly Agree,7,Neither Agree Nor Disagree,4,Strongly Disagree,1,Agree,6,Strongly Agree,7,Agree,6,24
+5d9cc271e64f5a00172aa239,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Agree,6,28
+5a16e865a383a100011b5ea3,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,26
+578da5f64d107800016dbf67,ToM,Agree,6,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+60a51aece7beb17b4303be18,ToM,Slightly Agree,5,Agree,6,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Neither Agree Nor Disagree,4,23
+5ed5189b4a1f3806a88a94f5,No-ToM,Strongly Agree,7,Agree,6,Strongly Agree,7,Agree,6,Strongly Agree,7,Strongly Agree,7,33
+5f980e860513db0558a5ba3f,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,20
+5efd9ae7f2b3b61fb38f8dc2,ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,29
+60379badfe7ac701681d09ff,ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,29
+5f0f93938935de000855898b,No-ToM,Agree,6,Slightly Disagree,3,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,17
+60784e1943043fc7d824e2d8,No-ToM,Agree,6,Slightly Agree,5,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Agree,6,22
+5f63a183f422c50c4c81ef93,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+5f29d2d2c468ee168e02c479,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Disagree,3,Strongly Agree,7,Agree,6,26
+6081617b71a46e4694f4668b,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,29
+5f45eb2a277cf6216608323b,ToM,Agree,6,Agree,6,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,27
+607a01580101ea8b2652e450,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+5ffedfa49fb1035653816175,ToM,Disagree,2,Strongly Disagree,1,Slightly Disagree,3,Strongly Disagree,1,Strongly Agree,7,Slightly Agree,5,12
+602a8492c083e308e24fc90b,ToM,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,31
+60947c9e72b2d0030d9fd050,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+60c0d16d73ec63ed0d8ffb2e,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Disagree,3,Slightly Agree,5,Agree,6,25
+60a8dc307161cbf81e173a7a,No-ToM,Slightly Agree,5,Slightly Disagree,3,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,16
+603c3025b948e89c30086bed,No-ToM,Agree,6,Agree,6,Disagree,2,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,24
+60aea0103d3daf45ea98dfb1,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,30
+6092f21eb483692c6ea09303,ToM,Slightly Disagree,3,Agree,6,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Agree,6,21
+60a7bbccd9d7527d7db5e395,ToM,Slightly Agree,5,Slightly Agree,5,Strongly Disagree,1,Slightly Agree,5,Strongly Agree,7,Agree,6,22
+60b50c791594755a2b94bab6,No-ToM,Neither Agree Nor Disagree,4,Slightly Disagree,3,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,24
+5e5c3bd720268d42176ecfc7,ToM,Disagree,2,Disagree,2,Slightly Disagree,3,Disagree,2,Strongly Agree,7,Disagree,2,11
+5d00dddfbd66ed0019622060,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+5cf6413fca49dd0019155ce0,No-ToM,Slightly Agree,5,Slightly Agree,5,Disagree,2,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,24
+5f2ed914a87abd287ed66ddf,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,28
+5fccc12e239558aff7566c2b,ToM,Agree,6,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+6006d99604cd7b095d7f00de,No-ToM,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,22
+5e0a8d1b53b56e305d14cd2d,ToM,Slightly Disagree,3,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,21
+607c1d635d5767489a9623eb,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+60876d770da15b0fcd1ab9cd,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Agree,6,24
+605cb63dd75eb9e91007bd52,No-ToM,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,24
+5a4d409dd5b53b0001f829f1,ToM,Slightly Agree,5,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,29
+5f316280965ec564c886f978,No-ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Disagree,1,Slightly Disagree,3,Strongly Agree,7,Neither Agree Nor Disagree,4,15
+5d610f5bc3a4da001a53c765,No-ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,19
+604fd84b494749c39720a85f,ToM,Slightly Agree,5,Agree,6,Slightly Disagree,3,Slightly Disagree,3,Agree,6,Agree,6,23
+5c741aac5d19e300179d39ac,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Agree,6,Strongly Agree,7,Slightly Agree,5,27
+60ad72cdad9bcc92195751d1,ToM,Agree,6,Agree,6,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,28
+5e98a2f1430baa0d877dea6d,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+60832e353d9fffe2d6bcfcc3,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,29
+5f3bea9361777498f6dcd795,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Slightly Agree,5,29
+60bcb0594fcf93f1b4d05cd7,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,16
+60633a950aeb96e90172a92b,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+5febf30be6b281d5f6d6a762,ToM,Disagree,2,Slightly Agree,5,Slightly Agree,5,Strongly Disagree,1,Strongly Agree,7,Slightly Agree,5,18
+60aa10aabca2a2ef60702ea0,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+6034e66bfe421395a6a3a9ab,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,31
+6092d3d5d250e90206fdc4ee,ToM,Agree,6,Agree,6,Strongly Agree,7,Slightly Disagree,3,Strongly Agree,7,Agree,6,28
+5fba86b47b71a5a60f2ab4b0,ToM,Slightly Disagree,3,Agree,6,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,19
+5f482ac357a1ab2e05c3f0d6,No-ToM,Neither Agree Nor Disagree,4,Disagree,2,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,17
+601b5c79e845ac360826c9df,ToM,Agree,6,Slightly Disagree,3,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Agree,6,24
+6081e0ffc082c2ed4163fad6,No-ToM,Agree,6,Slightly Agree,5,Slightly Disagree,3,Disagree,2,Strongly Agree,7,Agree,6,22
+5efa032d30577f09194c04c8,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+60c576afaf4b447a213b4341,ToM,Agree,6,Agree,6,Strongly Agree,7,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,28
+5ef528c985fd341756ad62fd,ToM,Strongly Disagree,1,Slightly Disagree,3,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,12
+5ffb65b0da616b5c5ea3c63f,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,17
+5ebc4ad2306af20607134ce6,ToM,Agree,6,Slightly Disagree,3,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Agree,6,23
+60a80ae7c96c2610a00b4180,No-ToM,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Disagree,1,Disagree,2,Strongly Agree,7,Neither Agree Nor Disagree,4,16
+5f99dc8aa866bf0bf2d60f46,No-ToM,Strongly Agree,7,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,31
+60a153e67025247950c7ee24,ToM,Strongly Agree,7,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,32
+60a0dfc6f9936b0d30dfea15,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Disagree,2,14
+60abff8cd5d20e946a2da34c,ToM,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+5c9cb670b472d0001295f377,No-ToM,Agree,6,Agree,6,Strongly Agree,7,Agree,6,Strongly Agree,7,Agree,6,31
+60a696c3afad1b7f16b0c744,No-ToM,Slightly Agree,5,Strongly Disagree,1,Agree,6,Agree,6,Strongly Agree,7,Agree,6,24
+6086b9cc58c7269cc737c68e,No-ToM,Disagree,2,Slightly Disagree,3,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,15
+601952130cd928000a796a8b,ToM,Strongly Agree,7,Strongly Agree,7,Agree,6,Agree,6,Strongly Agree,7,Agree,6,32
+5f5065d2fd3fc11d40575ce7,ToM,Agree,6,Slightly Agree,5,Disagree,2,Agree,6,Strongly Agree,7,Slightly Agree,5,24
+5ea352855d02232c906f62d8,No-ToM,Disagree,2,Disagree,2,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,17
+5e8bce371e16e90ba6df085d,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Slightly Agree,5,27
+5c59ff6715f1930001c84b94,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5f98377006e2bc0b6d557b11,ToM,Slightly Agree,5,Agree,6,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,22
+60b74298885464607783ac69,ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,26
+5ffd1cdfd8115623b0a21de6,ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Agree,6,20
+5f49880fa08b214f8f65b41c,No-ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Disagree,3,21
+5ff3397d7e067a860bd69413,ToM,Slightly Agree,5,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5cf7fa27dbec640001e5a0a7,ToM,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Agree,6,Slightly Disagree,3,15
+60c8678d0c06ddfaafc29f0f,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,31
+5f123a5c0712760188fcfd46,ToM,Neither Agree Nor Disagree,4,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,16
+60c9d5a43bff10c1b79cd0e1,ToM,Strongly Agree,7,Disagree,2,Strongly Agree,7,Disagree,2,Slightly Agree,5,Strongly Agree,7,25
+6021d6fa46e21c26b89bfaff,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,25
+5a0e2710f2e3460001edb9f9,No-ToM,Slightly Agree,5,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+60476abe1e9b3823e4b126d3,ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,25
+5f00535d61fa11150b09a240,No-ToM,Slightly Disagree,3,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,17
+607891c8b885bba402af59ff,No-ToM,Agree,6,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Disagree,1,Agree,6,24
+5c47f8f76d9ae80001a16d2f,ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5ec6d06c67b0da0fb6f85e83,ToM,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,30
+6007acfc66ec422d16ca8992,No-ToM,Agree,6,Slightly Disagree,3,Strongly Disagree,1,Strongly Disagree,1,Strongly Agree,7,Agree,6,17
+5f577196f5a0531fcd3a0c9d,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5ed53209c3abab098c6b112f,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,27
+5fc13d6dc9e79a05bf187e52,No-ToM,Slightly Agree,5,Disagree,2,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,15
+5f9b712595b777398002dc17,No-ToM,Slightly Agree,5,Agree,6,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,22
+5ec64e3059d924018ecf38e1,ToM,Strongly Disagree,1,Strongly Disagree,1,Strongly Disagree,1,Disagree,2,Strongly Agree,7,Slightly Disagree,3,8
+6061aaa4240115afd962c429,No-ToM,Agree,6,Agree,6,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,24
+5fad6ab698959b09b469de28,No-ToM,Slightly Agree,5,Slightly Agree,5,Disagree,2,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,22
+60a2dc206ce94a429c60a885,ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,15
+60c4048693c8c366526dbbcb,ToM,Slightly Disagree,3,Disagree,2,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,21
+5fdea27633528a6863d0a6f4,ToM,Strongly Agree,7,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,25
+6056511161200890453ee4f1,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,25
+5ecc010e39bc6d0be9636e45,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Disagree,2,Strongly Agree,7,Slightly Agree,5,22
+5d1b7cf61b6cd1001ecc3893,ToM,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,23
+5e77a0db24d7c931311dd356,ToM,Agree,6,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,24
+60c1c8ade4bb1ec24514a4d5,No-ToM,Slightly Agree,5,Agree,6,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+60c95c6e0e75ea8567c7eec1,ToM,Strongly Agree,7,Agree,6,Strongly Agree,7,Agree,6,Strongly Agree,7,Strongly Agree,7,33
+5f1604ab044c9b75a8ad5737,No-ToM,Agree,6,Agree,6,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Agree,6,25
+5efd25f128bf7f168be86e34,No-ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,19
+5b212164cfbf200001cfb3ad,ToM,Agree,6,Agree,6,Strongly Agree,7,Agree,6,Strongly Agree,7,Agree,6,31
+5bd0107d77740000016b52fa,ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,20
+60a2c7d2f13744a90856149c,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Agree,6,Neither Agree Nor Disagree,4,16
+60b912b1f9c6de6addf14e96,ToM,Neither Agree Nor Disagree,4,Disagree,2,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Neither Agree Nor Disagree,4,16
+5e94d553ddd9ff8326b0ceee,No-ToM,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,35
+5f0b38b3d1a1d808efc3c4fa,No-ToM,Slightly Agree,5,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5f74fa0614255d15319ee076,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Strongly Disagree,1,Strongly Agree,7,Slightly Agree,5,22
+5f0e2a81dca8d41277b46bb5,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Disagree,3,22
+606e2099c130d8430c1472d9,ToM,Disagree,2,Neither Agree Nor Disagree,4,Agree,6,Agree,6,Strongly Agree,7,Neither Agree Nor Disagree,4,22
+6081e753b16df5194cf90f49,No-ToM,Slightly Agree,5,Slightly Agree,5,Disagree,2,Strongly Agree,7,Strongly Agree,7,Agree,6,25
+609059a2522f44976dbaef6b,ToM,Disagree,2,Disagree,2,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Disagree,2,16
+5f4699e88ed08d02e65b2240,No-ToM,Neither Agree Nor Disagree,4,Slightly Agree,5,Agree,6,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,23
+5e3dadeba03f5a0123542675,ToM,Neither Agree Nor Disagree,4,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+5d4fe6a2ffbcf800019d5e54,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Slightly Agree,5,29
+5dee5e827d91c34eceb20319,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5fc5cb032e43fa1672e5d224,ToM,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Agree,6,Strongly Agree,7,Agree,6,26
+5f04de147fee46163c1b40e1,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,29
+5fe75ddffef4d157617afc85,No-ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,22
+5f614deac0acc90e53c35c1d,No-ToM,Slightly Agree,5,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,26
+5fa1781899f54227772d29d2,ToM,Disagree,2,Disagree,2,Disagree,2,Disagree,2,Strongly Agree,7,Slightly Disagree,3,11
+5b4cfe36d4c93b00019c79aa,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5fd5038ab78cf82f89c86bdc,ToM,Disagree,2,Strongly Disagree,1,Strongly Disagree,1,Strongly Disagree,1,Strongly Agree,7,Slightly Agree,5,10
+5eef29a037a90c3ef3ccc5be,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+60c743b04e7b6c665f3aaa38,ToM,Slightly Agree,5,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,30
+6094224c8ade8c0a3d9e7d7a,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+60200804bbbec65b5b9042da,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,24
+60bfd7f41bbb4ec7b94d0414,ToM,Agree,6,Agree,6,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+5cfba9da04fd2c001941a7e3,ToM,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,35
+604d2228aa3435e975fd15d8,ToM,Slightly Disagree,3,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Neither Agree Nor Disagree,4,18
+5ef9a3f085fd347438975462,ToM,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,23
+5a913be789de8200013ea962,ToM,Agree,6,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,23
+5c41bf2de1e6d000016d3d28,No-ToM,Disagree,2,Disagree,2,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Disagree,2,14
+5f8969d6ea83ac000852d5ca,No-ToM,Agree,6,Neither Agree Nor Disagree,4,Disagree,2,Disagree,2,Strongly Agree,7,Neither Agree Nor Disagree,4,18
+5fad9cb5460126158bf715f8,ToM,Slightly Disagree,3,Agree,6,Disagree,2,Disagree,2,Strongly Agree,7,Disagree,2,15
+603597c8638e6a6e2c4e6179,No-ToM,Strongly Agree,7,Slightly Agree,5,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Agree,6,23
+5a280910e5bd400001e19ebd,No-ToM,Agree,6,Neither Agree Nor Disagree,4,Agree,6,Agree,6,Strongly Agree,7,Agree,6,28
+5fda8761cffa3b71e6d684bf,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,22
+5f4bea159ed8777ecd9c9c33,ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Agree,6,20
+603003d8ef81cedec8767d86,ToM,Slightly Agree,5,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,29
+60748361582deab23a76e83a,ToM,Slightly Disagree,3,Slightly Disagree,3,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,23
+5e4d7143c5482e041124617f,ToM,Agree,6,Agree,6,Strongly Agree,7,Agree,6,Strongly Agree,7,Slightly Agree,5,30
+5f0a9094da2883360c73fd9f,No-ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Disagree,2,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,20
+5f89bd495205fc0aafc1a010,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+5da833bced9e880012a496b8,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,23
+60c6edc89853b9011d2fd195,ToM,Agree,6,Disagree,2,Agree,6,Agree,6,Strongly Agree,7,Agree,6,26
+5efba8e4d65cd5139d21df9b,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Agree,6,Agree,6,Agree,6,29
+5df213d627130511af69dcda,ToM,Slightly Agree,5,Disagree,2,Disagree,2,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,18
+60294d2d684e9030126e2ed8,No-ToM,Slightly Disagree,3,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Slightly Disagree,3,24
+602a9368cfca8a0bb0acc96b,No-ToM,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,27
+5fc37d96f8b6b96571006116,No-ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,19
+60c7acf73fb3eb26e521e09b,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Slightly Agree,5,Disagree,2,Strongly Agree,7,Slightly Disagree,3,16
+60be4e7a0fdccaf0a1b9d0c0,ToM,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,16
+5f6750fc2d411c33d1786501,No-ToM,Slightly Disagree,3,Agree,6,Strongly Agree,7,Disagree,2,Strongly Agree,7,Slightly Agree,5,23
+601ddab976e6d61f205b4094,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,21
+6050ae98866a427695e22254,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Agree,6,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,20
+5fbfda1b1d5ce13850c1912f,ToM,Disagree,2,Neither Agree Nor Disagree,4,Strongly Disagree,1,Strongly Disagree,1,Strongly Agree,7,Agree,6,14
+60abbc6361c60cfd238c467a,No-ToM,Agree,6,Agree,6,Strongly Agree,7,Agree,6,Strongly Agree,7,Strongly Agree,7,32
+6030050a5bdba4dd09d142f4,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Disagree,3,20
+5f75cb3479b194268b1f46d2,ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5fb59b9ecada2200082c0842,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Disagree,1,Agree,6,27
+5f439ac86b921f5fac4f55ad,No-ToM,Disagree,2,Disagree,2,Slightly Agree,5,Slightly Disagree,3,Agree,6,Slightly Disagree,3,15
+60841ac9beb2f2a0ddc1be5b,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Agree,6,Strongly Agree,7,Strongly Agree,7,29
+6004a0d74386bb627ddcaf4a,ToM,Agree,6,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,24
+608bc4a984fb8101e2fb0e16,ToM,Slightly Disagree,3,Slightly Disagree,3,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,17
+5f2e45c31637a0000801159e,No-ToM,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Neither Agree Nor Disagree,4,19
+5fb2ab84a2f41e8f52b6290d,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,27
+6041bf57d082671c3ce0cdf6,ToM,Agree,6,Agree,6,Slightly Disagree,3,Disagree,2,Strongly Agree,7,Slightly Agree,5,22
+5be76184b863d70001604e3b,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,26
+60b3fda1c2e80ccfabaa713e,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Agree,6,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,24
+60b9e292b126e28fd60cb2c7,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,29
+5f87993abcee241dace4a140,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,22
+5eeb7ee77a37002b9322d143,No-ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,18
+5ec2faa3f115e71420091ccf,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,22
+60b3576258dd0303232cb158,ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5ea9248e5cb94c3a0c8014f2,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,22
+5f8825d4938a85280f506a83,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+5beac51129a0d600015d63d3,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Agree,6,Agree,6,Strongly Agree,7,Agree,6,27
+5f7b0056256971022889a48f,No-ToM,Disagree,2,Disagree,2,Disagree,2,Disagree,2,Strongly Agree,7,Disagree,2,10
+60c13d90b3d340a7c752fbdb,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Neither Agree Nor Disagree,4,26
+5e98bb599a58620dacc368ee,No-ToM,Agree,6,Slightly Disagree,3,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Agree,6,23
+5d40a788811e75001a0eabe4,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5e95cf855436f401c90f5a43,ToM,Neither Agree Nor Disagree,4,Slightly Disagree,3,Neither Agree Nor Disagree,4,Slightly Disagree,3,Slightly Agree,5,Neither Agree Nor Disagree,4,18
+5fec4985f4e233da1e914ce0,ToM,Slightly Agree,5,Disagree,2,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,23
+6057e81c4be322aa9e79f8bd,ToM,Neither Agree Nor Disagree,4,Slightly Disagree,3,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Neither Agree Nor Disagree,4,21
+60c3deafc9a41440f2490afe,ToM,Slightly Agree,5,Disagree,2,Slightly Disagree,3,Disagree,2,Strongly Agree,7,Agree,6,18
+5f3ff2d41b56a40aa5483bc7,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,26
+5ea89875a09cad2e96886d84,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Disagree,3,Strongly Agree,7,Agree,6,27
+602e7909ef81ce9f4fab4043,ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5f31e44019827411ed17a882,No-ToM,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,29
+5f13cc6c4d733b3ffc5c7a30,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5e90a8363f920e3bda6b5068,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,31
+5c73477642a5070001a2f940,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,31
+602689b7d9042a32f22f5792,ToM,Slightly Disagree,3,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Agree,6,26
+5f8861b049433030066f8bd0,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Neither Agree Nor Disagree,4,20
+6005f3f32fe880911d9ce11a,ToM,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Agree,6,Strongly Agree,7,Strongly Agree,7,32
+601e1cae7d6414276e39e5db,ToM,Slightly Agree,5,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5efe1f5fae9c482e94a4cc61,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Neither Agree Nor Disagree,4,23
+60c92bee08f5cc694ece6e1b,ToM,Slightly Agree,5,Slightly Agree,5,Disagree,2,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,22
+600f0f9c3bfcdc077c924e51,No-ToM,Slightly Disagree,3,Disagree,2,Strongly Disagree,1,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Disagree,3,13
+60a789d2e3297c1e58a68ec2,ToM,Slightly Disagree,3,Slightly Disagree,3,Neither Agree Nor Disagree,4,Disagree,2,Strongly Agree,7,Disagree,2,14
+605e14202c3a566911baccda,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,24
+6053d72c2c44030ec9b5b267,No-ToM,Agree,6,Slightly Disagree,3,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Agree,6,23
+5ed7f3404ea9bd2e0ad02df6,No-ToM,Disagree,2,Slightly Agree,5,Disagree,2,Disagree,2,Strongly Agree,7,Disagree,2,13
+5db15cff5d909000135837d3,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,29
+60b34b926f7ee0e97bd68250,No-ToM,Strongly Agree,7,Agree,6,Strongly Agree,7,Agree,6,Strongly Agree,7,Strongly Agree,7,33
+5fc542f02952c102d9aae133,ToM,Agree,6,Neither Agree Nor Disagree,4,Agree,6,Slightly Disagree,3,Strongly Agree,7,Agree,6,25
+5f8b031f5f71b109548721bd,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Agree,6,28
+5fbbecc81dd9320255278632,ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5f98b61a6c9fb61dc2e21794,ToM,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,35
+5c7510f6fc0a2500168fad5c,ToM,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Strongly Agree,7,23
+6012bb45b1babe06267baa0d,No-ToM,Disagree,2,Disagree,2,Strongly Disagree,1,Strongly Disagree,1,Strongly Agree,7,Slightly Agree,5,11
+5f6dc563aba62624aa605aca,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Disagree,3,Strongly Agree,7,Agree,6,25
+60c77380bc0d6711b4243648,ToM,Agree,6,Disagree,2,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Agree,6,19
+5aebbcc623e2ca0001974e39,No-ToM,Agree,6,Agree,6,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Agree,6,23
+5f6bd46ba0fdb714deb9b6ca,ToM,Strongly Agree,7,Agree,6,Slightly Agree,5,Agree,6,Strongly Agree,7,Strongly Agree,7,31
+60c0fe89173c2b1f4fe2c578,No-ToM,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,29
+60c7bbee995d8c9266686b7e,No-ToM,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Agree,6,34
+5fa863ce4a7c416f9f2671bd,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Agree,6,22
+5fdb6d2e9059456a4ffb0e24,No-ToM,Agree,6,Slightly Agree,5,Slightly Disagree,3,Agree,6,Strongly Agree,7,Strongly Agree,7,27
+5f494e24f9229236c055063b,ToM,Agree,6,Slightly Agree,5,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,21
+5bc9a08c3d893f0001bed28b,ToM,Slightly Agree,5,Disagree,2,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Agree,6,20
+603e251588a7cae131f4a3ac,No-ToM,Slightly Agree,5,Agree,6,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Agree,6,25
+5f637c9cb2555305ff8288f5,ToM,Agree,6,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5fc646b7fa88c0042a43c708,ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+60550e78c5dc78f4ad0b322d,ToM,Agree,6,Agree,6,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,23
+608858869a591bd129fbbc6c,ToM,Agree,6,Agree,6,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,29
+5fe6656cdfcbb94b1b45e783,ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Slightly Agree,5,Disagree,2,Strongly Agree,7,Slightly Agree,5,19
+5ea997a0a4cf5b0c47b6840d,ToM,Strongly Agree,7,Agree,6,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Agree,6,33
+5f823bd500e06c3654eaf783,No-ToM,Agree,6,Agree,6,Strongly Agree,7,Agree,6,Strongly Agree,7,Agree,6,31
+5f2004e38309a12637e1211a,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Slightly Disagree,3,20
+5ff38faf6079e19675de2541,ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5f11f68a399eaf107d6903a9,ToM,Strongly Agree,7,Strongly Agree,7,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,33
+5e67377f68ded74bcba094e3,No-ToM,Slightly Agree,5,Disagree,2,Disagree,2,Slightly Agree,5,Strongly Agree,7,Agree,6,20
+60071597ebe0741630df0315,ToM,Strongly Disagree,1,Strongly Disagree,1,Strongly Agree,7,Disagree,2,Strongly Agree,7,Agree,6,17
+5e527156e1cbcd271e5444ee,ToM,Agree,6,Slightly Agree,5,Neither Agree Nor Disagree,4,Agree,6,Strongly Agree,7,Slightly Agree,5,26
+5f075b60ae5a1d3504e8ccb1,ToM,Slightly Agree,5,Agree,6,Slightly Disagree,3,Slightly Agree,5,Agree,6,Agree,6,25
+607fc87d80f8b65f2a85b77b,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+5bed4fab8496450001c53493,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,21
+60bfcd986df1f0c7fefbf83d,No-ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Disagree,1,Disagree,2,Strongly Agree,7,Slightly Agree,5,15
+5f0b7b83f7e4fd490659fb54,ToM,Agree,6,Strongly Agree,7,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5eee10c49e63ac26ea06aa64,ToM,Slightly Agree,5,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+6054efc02ac1492cb49a0ab2,ToM,Agree,6,Agree,6,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,28
+5e18ffcb9debf51d4033e07d,ToM,Slightly Disagree,3,Slightly Disagree,3,Disagree,2,Disagree,2,Strongly Agree,7,Slightly Disagree,3,13
+60bfe4e353e325d48c623fde,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,25
+5efb5159147ea4089af8685d,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5ce9404d7afd86001634a2d3,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,22
+6018647476e9e60f0a16e986,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5ec09086458560104eb43971,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,24
+5f1c55c8ea92af4d99d03137,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,28
+60c8a4966f7db761d803317f,No-ToM,Agree,6,Strongly Agree,7,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,26
+5fdc9fe2c5f99b233d7e8c20,No-ToM,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Agree,6,29
+609c054972a9f485152f08d0,ToM,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,21
+5f9ee2450d07574bfe3550ae,No-ToM,Agree,6,Agree,6,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,31
+600027a01fbe4201688c506c,No-ToM,Slightly Disagree,3,Disagree,2,Neither Agree Nor Disagree,4,Disagree,2,Strongly Agree,7,Slightly Disagree,3,14
+60107a5f8ab43b3c6c7d11b3,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+6091bb8f49ce0d522b2c8c6d,ToM,Slightly Agree,5,Slightly Agree,5,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Agree,6,21
+5c8f70a02675ca0001daf60a,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+60b3d033ac7ecba4607900fc,No-ToM,Slightly Disagree,3,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,21
+6056333c2cf1906efc60ead9,No-ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Agree,6,22
+605342c9fd06574bc7c050a1,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+605bc1bfc820cec5364b4812,ToM,Slightly Disagree,3,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+5fc1a39a9c39d72827b3604c,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Agree,6,Agree,6,26
+60ae8b24fa0c669bf3e446c4,ToM,Agree,6,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Agree,6,23
+60662363a87cfcb1d2dc6ff7,ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,19
+5d80a878ec33500001aaaa94,ToM,Disagree,2,Slightly Disagree,3,Disagree,2,Disagree,2,Strongly Agree,7,Slightly Disagree,3,12
+6083fe6ac62d63cb50fc2150,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Agree,6,28
+5ec9601a2a5cfa07d72dc1d4,No-ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,21
+60395d97cc8c634852755921,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+6003a4d15db9c84939fe58c0,No-ToM,Agree,6,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+5f037c283e4a64580187b2c6,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+5dcc499cb88ed1000ad81605,ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,28
+5e6648b63b92cf3bbdb7ab5f,No-ToM,Disagree,2,Slightly Disagree,3,Disagree,2,Slightly Disagree,3,Strongly Disagree,1,Slightly Disagree,3,13
+60bb3cbbc94cc4aee371dde2,No-ToM,Slightly Disagree,3,Disagree,2,Slightly Agree,5,Disagree,2,Strongly Agree,7,Neither Agree Nor Disagree,4,16
+5cc555d346fb4500171c0a9e,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Disagree,3,22
+5fbf79278fabf61f1042c188,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,28
+5e9ef98efd3a6a04a1c3c525,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+5fc0c74abaacbc5a8a41c21f,ToM,Agree,6,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+5f917de67babc307ff2f3ad6,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,28
+60588947eeb9103d50735c83,ToM,Agree,6,Agree,6,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Agree,6,24
+6007077d37aea212c1119208,No-ToM,Disagree,2,Slightly Disagree,3,Slightly Disagree,3,Strongly Disagree,1,Slightly Agree,5,Disagree,2,11
+5de5a646047da35338baeede,No-ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,15
+5d909c555146de0019a80c41,ToM,Disagree,2,Slightly Disagree,3,Strongly Disagree,1,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,12
+5fc4e3a13624d2033b394ebd,ToM,Agree,6,Neither Agree Nor Disagree,4,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Strongly Agree,7,26
+60c770d31f37d816732cce06,ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Disagree,3,21
+60c07e5182bf1353056371f6,ToM,Strongly Disagree,1,Slightly Agree,5,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Strongly Agree,7,23
+5c6ff96f2d666100018c60f6,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,27
+5eb95face45c8503b7ba79ba,No-ToM,Disagree,2,Slightly Disagree,3,Disagree,2,Disagree,2,Strongly Agree,7,Disagree,2,11
+60479459dd0290016d41bda5,ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Disagree,3,18
+60254506dee01c0432ff5788,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+5f74a62577e0dc08621fd641,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Disagree,3,Strongly Agree,7,Agree,6,25
+601bdcd3d8db935e8d968163,No-ToM,Agree,6,Slightly Disagree,3,Disagree,2,Disagree,2,Strongly Agree,7,Agree,6,19
+5fec81b0e7417ae06c70a976,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,30
+60378f93c54b675465c1a2f8,ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,25
+5fa0b58f57837c13bc8760d6,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+606e22e5312c3b75b4de9c36,ToM,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Agree,6,34
+5f9c538d30a3e70dc1d9b0ea,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+5f2ef7e2704e4d10b4daec33,No-ToM,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5f18319541b5a021beae9b9a,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5f29510421c44f014deba2f7,No-ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+5f08b23ac6db570fef276d2e,ToM,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Strongly Agree,7,Neither Agree Nor Disagree,4,20
+5a609c8331b87a0001c6b64c,No-ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Agree,6,22
+5d72923243376f0001c2d4f8,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Agree,6,Strongly Agree,7,Strongly Agree,7,30
+5fde8b3e398b8b64d17b34f7,No-ToM,Slightly Agree,5,Agree,6,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+608020ac203ea2b733dd9c9c,ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,29
+60871e77074e1afef7a9699c,No-ToM,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Agree,6,22
+60c8bfd9f42872e2d303cc67,ToM,Slightly Agree,5,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5f6f5427a809f44b50e3d911,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Neither Agree Nor Disagree,4,23
+6096dd310d92183ab4f552b8,No-ToM,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Neither Agree Nor Disagree,4,20
+60aedf807062b97944addbc7,ToM,Strongly Disagree,1,Disagree,2,Disagree,2,Disagree,2,Strongly Agree,7,Slightly Disagree,3,10
+6095575ad618f06348664bd6,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,26
+602ecc522b8e88af492c0162,ToM,Agree,6,Slightly Agree,5,Disagree,2,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,23
+5e8a066ae2eb0669f756253a,ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,29
+60c73613c83af6dda7f626be,No-ToM,Slightly Agree,5,Slightly Disagree,3,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,24
+5f883d5edabd952af2fd9a7c,ToM,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,24
+6017fd33b8ea663b9dc54e33,ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Disagree,3,Disagree,2,Strongly Agree,7,Slightly Disagree,3,16
+5f28a0b984cfc61f36d4d957,ToM,Slightly Disagree,3,Disagree,2,Slightly Agree,5,Disagree,2,Strongly Agree,7,Slightly Disagree,3,15
+5ec66938dab5740239677741,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5ecbd3bdae617006fa9e6876,No-ToM,Strongly Agree,7,Agree,6,Agree,6,Agree,6,Agree,6,Neither Agree Nor Disagree,4,29
+5f411b4f319c2e092d469562,ToM,Slightly Agree,5,Disagree,2,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Agree,6,20
+5f7df8c2b3675a0667443c73,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+60c369ebf7b68cf1aa2f180e,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Neither Agree Nor Disagree,4,Strongly Agree,7,Neither Agree Nor Disagree,4,21
+60a3cb81622eda3114027fe6,ToM,Strongly Agree,7,Slightly Disagree,3,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Strongly Agree,7,26
+60bb88ba02a29f04080eb106,ToM,Slightly Disagree,3,Slightly Disagree,3,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,22
+5d142465f9974f0001580c55,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,26
+5fbbf8d39432d5048fb4d4b3,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+60a3bb7763f7e773637698f7,No-ToM,Slightly Disagree,3,Agree,6,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Slightly Disagree,3,20
+59858eab7678a6000110e4d6,No-ToM,Slightly Agree,5,Slightly Agree,5,Strongly Disagree,1,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,19
+5fdebabfb5d1fc684adaa1f9,No-ToM,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+60c78e09ce5b86faea33e564,No-ToM,Slightly Agree,5,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,27
+5e56dfacef82c60946b0e7c6,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+5f3714657b2a7d18f42f7316,ToM,Agree,6,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Agree,6,29
+6081a95dc08d7cacbf857e89,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Disagree,3,Strongly Agree,7,Strongly Agree,7,28
+5f05f1b685012f012ed7520d,No-ToM,Agree,6,Strongly Agree,7,Slightly Agree,5,Disagree,2,Strongly Agree,7,Slightly Agree,5,25
+5f1eb35f12e4af0196a01408,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,24
+5eeb71367c83c62e9a864883,No-ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+6008187e151c8f37107d58ed,No-ToM,Slightly Disagree,3,Disagree,2,Agree,6,Slightly Disagree,3,Agree,6,Neither Agree Nor Disagree,4,18
+601c1128034be9673e23d52d,No-ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,23
+5ea5a81513923f593cd94b07,No-ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,23
+60c881eb69b71b965cca3c5d,ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,23
+5f52fefa6df3fe1ed6430b96,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,29
+5fb411f8b58ab902c5ee69e7,No-ToM,Agree,6,Agree,6,Agree,6,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,30
+60c8b4ffbb263a42e7e86f31,ToM,Agree,6,Slightly Agree,5,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,21
+5fe8cdb82178d17ce8b9fdc5,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5fd77bb5246a37086f19c67c,ToM,Slightly Disagree,3,Neither Agree Nor Disagree,4,Agree,6,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,25
+5cfc3dfaceb2d50019394664,No-ToM,Slightly Agree,5,Disagree,2,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,22
+60ac0155998dd9751fba75cd,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+5ca333ab8001d50001c68a29,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Disagree,2,Strongly Agree,7,Slightly Disagree,3,21
+60c8a8f77be1bd74cc97df4f,No-ToM,Disagree,2,Disagree,2,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Agree,6,17
+5f15bc6286fcde6b7d115e6f,ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,26
+5c6f1d9ed8ae4f000192fadc,No-ToM,Agree,6,Agree,6,Strongly Agree,7,Agree,6,Strongly Agree,7,Agree,6,31
+5f1592e40e065a0563e69b6c,ToM,Neither Agree Nor Disagree,4,Slightly Disagree,3,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Strongly Agree,7,Disagree,2,17
+5e70b7fdbd50c9000927e813,No-ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,24
+60afe29531c8ca4d54fef28f,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+6093db76c8a4ed17e178cdbe,No-ToM,Strongly Agree,7,Strongly Agree,7,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,31
+5fdeba2d6395d9697ecb5858,No-ToM,Strongly Agree,7,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,32
+6036906e5b4bac4295d49731,ToM,Slightly Disagree,3,Disagree,2,Disagree,2,Disagree,2,Strongly Agree,7,Slightly Disagree,3,12
+60c4edfaf5f6ec630f39d73e,No-ToM,Disagree,2,Disagree,2,Strongly Disagree,1,Disagree,2,Strongly Agree,7,Disagree,2,9
+5fe9be56e66d7f8fe840a5b7,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5cf9316cd80e0b0019f490e7,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Strongly Agree,7,Agree,6,24
+5ce1372c55fe0d001869c8d8,No-ToM,Agree,6,Slightly Agree,5,Disagree,2,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,22
+5f7cc279ea05e514c8cf2d46,No-ToM,Agree,6,Agree,6,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Strongly Agree,7,25
+5f32b273c3812a01e33548b1,ToM,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Agree,6,30
+5e99952a00a6bd00090ff702,No-ToM,Agree,6,Disagree,2,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Agree,6,28
+60c678f5405845d4113e6a3d,No-ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,31
+5e70c8ae4a860a0008edf420,ToM,Agree,6,Agree,6,Neither Agree Nor Disagree,4,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5f08f9db92c3fb1783d2ea7e,No-ToM,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,Strongly Agree,7,Strongly Agree,7,31
+6089335e72cf88ca390ae1d6,ToM,Slightly Agree,5,Slightly Disagree,3,Strongly Disagree,1,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,17
+5cad063d22389a0017fa6d7e,ToM,Disagree,2,Slightly Disagree,3,Disagree,2,Slightly Disagree,3,Strongly Agree,7,Neither Agree Nor Disagree,4,14
+6046740da6ef5703583064a8,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,29
+5f0c7a2f0ab6450af12e4c05,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5da903f3b5c28d0017745a1c,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Agree,6,Slightly Agree,5,Agree,6,Slightly Agree,5,25
+5fa26d58b1145030398e72f9,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Disagree,3,Disagree,2,Strongly Agree,7,Agree,6,21
+5e5eb2c22e5b4a046a224902,ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Agree,6,Strongly Agree,7,29
+602b2d3fb9bd922649dcb9c5,No-ToM,Agree,6,Agree,6,Strongly Agree,7,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,31
+5bc7851135b90f0001432a3c,ToM,Agree,6,Agree,6,Agree,6,Agree,6,Strongly Agree,7,Agree,6,30
+6042bfe03a397a218b990b0a,ToM,Neither Agree Nor Disagree,4,Neither Agree Nor Disagree,4,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,23
+6076bf5854c0fd2915867db8,No-ToM,Slightly Disagree,3,Agree,6,Disagree,2,Agree,6,Strongly Agree,7,Agree,6,23
+5dd5d194d3ac2a5851d9394a,ToM,Agree,6,Slightly Disagree,3,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,23
+5f32545b1d37151ac36ce785,No-ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,23
+604a26040b95e97868fdabec,No-ToM,Agree,6,Disagree,2,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,25
+5e2089a47be2bb0172c9c295,No-ToM,Slightly Agree,5,Agree,6,Slightly Agree,5,Agree,6,Strongly Agree,7,Agree,6,28
+5c49519651c26300012d216f,No-ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,26
+5d24b93d71f10500194f1fba,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Slightly Agree,5,25
+60c9c6e1728092717b93abde,No-ToM,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Agree,6,34
+5f7f1a945578f30413237f48,No-ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+5efb4bbfa3de8708958b03de,No-ToM,Agree,6,Agree,6,Strongly Agree,7,Slightly Agree,5,Strongly Agree,7,Agree,6,30
+60c79a757954894151f9ea86,ToM,Agree,6,Neither Agree Nor Disagree,4,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Strongly Agree,7,26
+5d23433454fc1400185fd7ad,ToM,Slightly Agree,5,Slightly Agree,5,Agree,6,Slightly Agree,5,Strongly Agree,7,Agree,6,27
+60c99f84be084aff5f292f27,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+5e306c9e4dd79606e0ed3e74,ToM,Agree,6,Slightly Agree,5,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,30
+6047515810b4f01ccbc8d036,ToM,Agree,6,Slightly Agree,5,Slightly Agree,5,Agree,6,Strongly Agree,7,Slightly Agree,5,27
+60c89428b6379e8f36cffa70,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,25
+60b62b7a7009b979ded89ab3,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Strongly Agree,7,29
+5eff25aab3e798468bfdeccb,ToM,Slightly Agree,5,Slightly Agree,5,Slightly Agree,5,Agree,6,Strongly Agree,7,Slightly Agree,5,26
+5f9726db1f926e0aad9850ab,No-ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Disagree,3,Slightly Disagree,3,Strongly Agree,7,Agree,6,21
+5b73dc45a6cbce0001228d87,ToM,Agree,6,Agree,6,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,Strongly Agree,7,33
+6040093e0a7ed41aeb718833,ToM,Slightly Agree,5,Slightly Disagree,3,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Agree,5,23
+60bf3f3ddac76d58c7388ea8,No-ToM,Slightly Agree,5,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Slightly Disagree,3,24
+60c9041a96fabc8d7cb36cb5,No-ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+602ede929c4b05b315507c25,ToM,Slightly Agree,5,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Slightly Agree,5,22
+5ef9e7a8e1d3567a48fa1154,ToM,Agree,6,Agree,6,Slightly Agree,5,Slightly Agree,5,Strongly Agree,7,Agree,6,28
+601a4b80aa4e411db6e87016,ToM,Slightly Agree,5,Neither Agree Nor Disagree,4,Slightly Agree,5,Neither Agree Nor Disagree,4,Strongly Agree,7,Agree,6,24
+60c8ef2dd1ec0ad14f22af38,ToM,Strongly Agree,7,Slightly Agree,5,Agree,6,Neither Agree Nor Disagree,4,Strongly Agree,7,Strongly Agree,7,29
+60c9e464e8c19ca40b35cf05,No-ToM,Neither Agree Nor Disagree,4,Disagree,2,Neither Agree Nor Disagree,4,Slightly Disagree,3,Strongly Agree,7,Agree,6,19
