@@ -180,35 +180,49 @@ library(tidyverse)
 
 # Cool example to whet your R appetites
 
+- `babynames` dataset
+- Full baby name data provided by the SSA. This includes all names with at least 5 uses.
+- Five variables: `year`, `sex`, `name`, `n` and `prop` (n divided by total number of applicants in that year, which means proportions are of people of that gender with that name born in that year).
+
 ```{r, eval = TRUE, include=FALSE}
 
 # Create tibble for simplicity
 babynames_df <-
   babynames
 
-# Wrangle a fraction of names dataset from `babynames` dataset
-name_frac <-
-  babynames_df |>
-  filter(name %in% c("Angela", "Chris", "Peter")) |>
-  group_by(year) |>
-  mutate(year_total = sum(n)) |>
-  ungroup() |>
-  mutate(fraction = n / year_total) 
+```
+
+## Explore the data a bit
+
+```{r}
+
+summary(babynames_df)
 
 ```
 
+
+```{r}
+# Wrangle a fraction of names dataset from `babynames` dataset
+babynames_class <-
+  babynames_df |>
+  filter(name %in% c("Angela", "Chris", "Peter"))
+
+```
+
+
+# Plot proportion of names specified across dataset years
 
 ```{r, eval=TRUE}
 #| echo: true
 #| output-location: slide
 baby_plot <-
-  ggplot(name_frac, aes(x = year, 
-                      y = fraction, 
+  ggplot(babynames_class, aes(x = year, 
+                      y = prop, 
                       colour = name)) +
   geom_smooth(method = "loess") +
   labs(x = "\nYear", 
-       y = "Fraction\n",
-       title = "Fraction of the USA population names between 1880-2017") +
+       y = "Proportion\n",
+       title = "Proportion of the USA population names between 1880-2017") +
   theme_minimal() 
 
 baby_plot
