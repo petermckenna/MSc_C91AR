@@ -833,11 +833,11 @@ Dr Peter McKenna
 <h2>Recode variable levels</h2>
 <ul>
 <li>You may have noticed from the last session that there there are some erroneous values in the sex vector.</li>
+<li>You can check this directly by using the <code>$</code> symbol to index the vector of interest in combination with the function <code>unique</code>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># Erroneous entries</span></span>
-<span id="cb12-2"><a href=""></a></span>
-<span id="cb12-3"><a href=""></a><span class="fu">unique</span>(df<span class="sc">$</span>sex) <span class="co"># we can use the `unique` function to check all of the unique values in a vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># Check all unique entries in the vector `sex`</span></span>
+<span id="cb12-2"><a href=""></a><span class="fu">unique</span>(df<span class="sc">$</span>sex) <span class="co"># we can use the `unique` function to check all of the unique values in a vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] Female  Male    male    ffemale femalew
 Levels: Female Male male ffemale femalew</code></pre>
@@ -856,25 +856,27 @@ Levels: Female Male male ffemale femalew</code></pre>
 <ul>
 <li>Previously, the <code>recode</code> function was used in combination with <code>mutate</code> to recode values in a cell</li>
 <li>But more recently, people have moved to using <code>case_match</code>, as it is more intuitive and user friendly</li>
-<li><a href="https://dplyr.tidyverse.org/reference/case_match.html">Info on <code>case_match</code></a></li>
+<li><a href="https://dplyr.tidyverse.org/reference/case_match.html">Info on case_match</a></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># label: recode</span></span>
-<span id="cb15-2"><a href=""></a>df <span class="ot">&lt;-</span></span>
-<span id="cb15-3"><a href=""></a>  df <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">recode</span>(sex,              <span class="co"># mutate to change</span></span>
-<span id="cb15-5"><a href=""></a>                      <span class="st">"male"</span> <span class="ot">=</span> <span class="st">"Male"</span>,  <span class="co"># supply erroneous value and new value</span></span>
-<span id="cb15-6"><a href=""></a>                      <span class="st">"ffemale"</span> <span class="ot">=</span> <span class="st">"Female"</span>,</span>
-<span id="cb15-7"><a href=""></a>                      <span class="st">"femalew"</span> <span class="ot">=</span> <span class="st">"Female"</span>))</span>
-<span id="cb15-8"><a href=""></a></span>
-<span id="cb15-9"><a href=""></a><span class="co"># Check the values of a vector using unique</span></span>
-<span id="cb15-10"><a href=""></a><span class="fu">unique</span>(df<span class="sc">$</span>sex) <span class="co"># again, we use the $ symbol to isolate a specific vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># Using case_match to recode cell values</span></span>
+<span id="cb15-2"><a href=""></a>df2 <span class="ot">&lt;-</span></span>
+<span id="cb15-3"><a href=""></a>  df <span class="sc">|&gt;</span>  <span class="co"># create new and tidy object for illustration                </span></span>
+<span id="cb15-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">case_match</span>(sex,              <span class="co"># mutate to change</span></span>
+<span id="cb15-5"><a href=""></a>                      <span class="st">"male"</span> <span class="sc">~</span> <span class="st">"Male"</span>,  <span class="co"># supply erroneous value and new value</span></span>
+<span id="cb15-6"><a href=""></a>                      <span class="st">"ffemale"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb15-7"><a href=""></a>                      <span class="st">"femalew"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb15-8"><a href=""></a>                      <span class="at">.default =</span> sex)) <span class="co"># preserve all other entries in the vector</span></span>
+<span id="cb15-9"><a href=""></a></span>
+<span id="cb15-10"><a href=""></a><span class="co"># Check the values of a vector using unique</span></span>
+<span id="cb15-11"><a href=""></a><span class="fu">unique</span>(df2<span class="sc">$</span>sex) <span class="co"># again, we use the $ symbol to isolate a specific vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="data-object-considerations" class="slide level2">
-<h2>Data object considerations</h2>
+</section></section>
+<section>
+<section id="data-object-considerations" class="title-slide slide level1 center">
+<h1>Data object considerations</h1>
 <ul>
-<li><strong>NOTE</strong>: If you have assigned transformations to an object with the same original name (e.g., <code>df</code> &lt;- <code>df</code>) that object is henceforth transformed</li>
+<li><strong>NOTE</strong>: If you have assigned transformations to an object with the same original name (e.g., <code>df</code> &lt;- <code>df</code>) that object is irreversibly overwritten, unless you go back to a previous line that created it from scratch (e.g., where it was read in )</li>
 <li>That is why your operations must flow logically from top to bottom, otherwise future operations on the data will not work.</li>
 <li>The alternative strategy is to give each new object a different name, like <code>df1</code>. If you pursue this method, it is worth adding a comment next to each new object specifying how it is different to the previous.</li>
 </ul>

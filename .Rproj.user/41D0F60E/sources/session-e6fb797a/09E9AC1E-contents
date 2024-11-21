@@ -245,36 +245,46 @@ unique(df$sex) # we can use the `unique` function to check all of the unique val
 ```{r}
 
 # Using case_match to recode cell values
-df <-
-  df |>
+df2 <-
+  df |>  # create new and tidy object for illustration                
   mutate(sex = case_match(sex,              # mutate to change
                       "male" ~ "Male",  # supply erroneous value and new value
                       "ffemale" ~ "Female",
-                      "femalew" ~ "Female"))
+                      "femalew" ~ "Female",
+                      .default = sex)) # preserve all other entries in the vector
 
 # Check the values of a vector using unique
-unique(df$sex) # again, we use the $ symbol to isolate a specific vector
+unique(df2$sex) # again, we use the $ symbol to isolate a specific vector
 
 
 ```
 
 
-## Data object considerations
+# Data object considerations
 
-- **NOTE**: If you have assigned transformations to an object with the same original name (e.g., `df` <- `df`) that object is henceforth transformed
-- That is why your operations must flow logically from top to bottom, otherwise future operations on the data will not work. 
+- **NOTE**: If you have assigned transformations to an object with the same original name (e.g., `df` <- `df`) that object is irreversibly overwritten, unless you go back to a previous line that created it from scratch (e.g., where it was read in )
+- That is why your code operations must flow logically from top to bottom, otherwise future operations on the data will not work. 
+  - e.g., You might ask R to look up a column that changed name earlier in the script, which would throw an error.
 - The alternative strategy is to give each new object a different name, like `df1`. If you pursue this method, it is worth adding a comment next to each new object specifying how it is different to the previous. 
+
+```{r, eval = F}
+
+df1 <- # this object only contains data about ppt id and eth
+  df |>
+  select(id, eth)
+
+```
 
 ## Save your tidy data
 
 - Once you are satisfied with the amendments made to your data you can save it as a new tidy `.csv` file
 - Again, use comments and bookmarks to signpost this part of your script
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
 
 # save your new data object into `data_tidy`
-write_csv(df, 
-          "data_out/robot-expression-data_tidy.csv")
+write_csv(df, # name of the object
+          "data_out/robot-expression-data_tidy.csv") # desired directory
 
 ```
 
@@ -296,8 +306,8 @@ write_csv(df,
 :::
 
 :::{.column width=50%}
-- We will are working on R scripts - these are the files with the `.R` file type. 
-- Make sure you have commented and bookmarked important sections of the script.  
+- We will are working on R markdown and R Scripts - these are the files with the `.rmd` and `.R` file type. 
+- Make sure you have commented and bookmarked important sections of the R script.  
 - If you want to work on a data file, you must create an object using `read_csv` and specify the related file directory.
 - `|>` used to be represented by `%>%`, but both still work.
 :::

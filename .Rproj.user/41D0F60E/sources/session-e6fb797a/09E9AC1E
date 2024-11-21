@@ -3,7 +3,7 @@
     "path": "~/GitHub/MSc_C91AR/L3_tidying-realistic-data.Rmd",
     "project_path": "L3_tidying-realistic-data.Rmd",
     "type": "r_markdown",
-    "hash": "2857767986",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1732194295623.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "223,46",
-        "scrollLine": "214"
+        "cursorPosition": "318,46",
+        "scrollLine": "315"
     },
     "folds": "",
-    "lastKnownWriteTime": 1732195621,
+    "lastKnownWriteTime": 1732196274,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1732195621789,
+    "last_content_update": 1732196274654,
     "read_only": false,
     "read_only_alternatives": []
 }
