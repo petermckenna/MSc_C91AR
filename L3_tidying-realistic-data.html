@@ -407,6 +407,16 @@ Dr Peter McKenna
 
   <p class="date">2024-11-21</p>
 </section>
+<section>
+<section id="packages-for-todays-session" class="title-slide slide level1 center">
+<h1>Packages for today’s session</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href=""></a><span class="fu">library</span>(snakecase)</span>
+<span id="cb1-3"><a href=""></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-4"><a href=""></a><span class="fu">library</span>(skimr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="what-we-covered-in-the-last-session" class="slide level2 smaller">
 <h2>What we covered in the last session</h2>
 <div class="columns">
@@ -454,84 +464,34 @@ Dr Peter McKenna
 <li><strong>Remember</strong> you you only ever need to install packages once (unless you are using a different machine) so be sure to comment installation commands out</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># install.packages('tidyverse')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># install.packages('tidyverse')</span></span>
+<span id="cb2-2"><a href=""></a><span class="co"># install.packages('psych')</span></span>
+<span id="cb2-3"><a href=""></a></span>
+<span id="cb2-4"><a href=""></a><span class="co"># Only run these in the console if you haven't already previously</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="taking-a-look-at-the-data" class="slide level2">
-<h2>Taking a look at the data</h2>
+</section></section>
+<section>
+<section id="data-exploration" class="title-slide slide level1 center">
+<h1>Data exploration</h1>
 <ul>
-<li>The <code>head</code> function gives you the first 6 rows</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># data summary - head</span></span>
-<span id="cb2-2"><a href=""></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 12
-  id    sex    eth   eng   exp_date   interact_before perceived_robot_gender
-  &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt; &lt;fct&gt; &lt;date&gt;     &lt;fct&gt;           &lt;fct&gt;                 
-1 1     Female White Yes   2017-09-05 Never           Male                  
-2 1     Female White Yes   2017-09-05 Never           Male                  
-3 1     Female White Yes   2017-09-05 Never           Male                  
-4 1     Female White Yes   2017-09-05 Never           Male                  
-5 10    Female White No    2017-09-08 Never           Male                  
-6 10    Female White No    2017-09-08 Never           Male                  
-# ℹ 5 more variables: item &lt;fct&gt;, robot_expression &lt;fct&gt;, resp &lt;fct&gt;,
-#   time &lt;time&gt;, ppt_acc &lt;fct&gt;</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># data summary - head specific</span></span>
-<span id="cb4-2"><a href=""></a>  <span class="co"># for specific columns, e.g., cols 1, 5, and 7</span></span>
-<span id="cb4-3"><a href=""></a><span class="fu">head</span>(df[, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">7</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  id    exp_date   perceived_robot_gender
-  &lt;fct&gt; &lt;date&gt;     &lt;fct&gt;                 
-1 1     2017-09-05 Male                  
-2 1     2017-09-05 Male                  
-3 1     2017-09-05 Male                  
-4 1     2017-09-05 Male                  
-5 10    2017-09-08 Male                  
-6 10    2017-09-08 Male                  </code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
+<li>Here are a few handy functions to exploring your data
 <ul>
-<li>The <code>tail</code> function gives you the last 6 rows</li>
+<li><code>summary</code>: from base R</li>
+<li><code>headTail</code>: from <em>psych</em></li>
+<li><code>skim</code>: from <em>skimr</em></li>
+</ul></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># data summary - tail</span></span>
-<span id="cb6-2"><a href=""></a><span class="fu">tail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 12
-  id    sex    eth   eng   exp_date   interact_before perceived_robot_gender
-  &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt; &lt;fct&gt; &lt;date&gt;     &lt;fct&gt;           &lt;fct&gt;                 
-1 8     Male   White No    2017-09-07 Never           Male                  
-2 8     Male   White No    2017-09-07 Never           Male                  
-3 9     Female White No    2017-09-07 Never           Female                
-4 9     Female White No    2017-09-07 Never           Female                
-5 9     Female White No    2017-09-07 Never           Female                
-6 9     Female White No    2017-09-07 Never           Female                
-# ℹ 5 more variables: item &lt;fct&gt;, robot_expression &lt;fct&gt;, resp &lt;fct&gt;,
-#   time &lt;time&gt;, ppt_acc &lt;fct&gt;</code></pre>
-</div>
-</div>
 </section>
-<section class="slide level2">
-
+<section id="summary-function" class="slide level2">
+<h2><code>summary</code> function</h2>
 <ul>
 <li>The <code>summary</code> function summarises continuous and categorical vectors</li>
 <li>NOTE: <code>summary</code> will not count character vectors, that’s why we specified that our categorical vectors were factor type (e.g., “f”) at <code>read_csv</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># data summary - overall</span></span>
-<span id="cb8-2"><a href=""></a>df <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href=""></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># data summary - overall</span></span>
+<span id="cb3-2"><a href=""></a>df <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href=""></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       id           sex                                  eth       eng     
  1      :  4   Female : 94   White                         :164   Yes:136  
@@ -568,10 +528,291 @@ Dr Peter McKenna
 </div>
 </div>
 </section>
-<section class="slide level2">
-
+<section id="headtail" class="slide level2">
+<h2>Headtail</h2>
 <ul>
-<li>You can use the <code>$</code> symbol to specify individual cols</li>
+<li>The <code>headTail</code> function from the <em>psyche</em> package</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># data summary - head</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">headTail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    id    sex   eth  eng   exp_date interact_before perceived_robot_gender
+1    1 Female White  Yes 2017-09-05           Never                   Male
+2    1 Female White  Yes 2017-09-05           Never                   Male
+3    1 Female White  Yes 2017-09-05           Never                   Male
+4    1 Female White  Yes 2017-09-05           Never                   Male
+5 &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;                   &lt;NA&gt;
+6    9 Female White   No 2017-09-07           Never                 Female
+7    9 Female White   No 2017-09-07           Never                 Female
+8    9 Female White   No 2017-09-07           Never                 Female
+9    9 Female White   No 2017-09-07           Never                 Female
+       item robot_expression    resp     time   ppt_acc
+1     Toast                1    Like 06:43:00   Correct
+2      Milk                2    Like 07:07:00   Correct
+3     Beans                3 Dislike 07:31:00   Correct
+4   Oatmeal                4 Dislike 07:50:00   Correct
+5      &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt;       NA      &lt;NA&gt;
+6 Croissant                2    Like 01:13:00   Correct
+7     Toast                3 Dislike 01:32:00   Correct
+8     Beans                1 Dislike 01:51:00 Incorrect
+9   Oatmeal                4 Dislike 02:09:00   Correct</code></pre>
+</div>
+</div>
+</section></section>
+<section id="old-school-subsetting" class="title-slide slide level1 center">
+<h1>Old school subsetting</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># data summary - head specific</span></span>
+<span id="cb7-2"><a href=""></a>  <span class="co"># for specific columns, e.g., cols 1, 5, and 7</span></span>
+<span id="cb7-3"><a href=""></a><span class="fu">head</span>(df[, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">7</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  id    exp_date   perceived_robot_gender
+  &lt;fct&gt; &lt;date&gt;     &lt;fct&gt;                 
+1 1     2017-09-05 Male                  
+2 1     2017-09-05 Male                  
+3 1     2017-09-05 Male                  
+4 1     2017-09-05 Male                  
+5 10    2017-09-08 Male                  
+6 10    2017-09-08 Male                  </code></pre>
+</div>
+</div>
+</section>
+
+<section>
+<section id="skim" class="title-slide slide level1 center">
+<h1>Skim</h1>
+<ul>
+<li>The <code>skim</code> function from <em>skimr</em> gives you a good overview of the data</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># data summary - tail</span></span>
+<span id="cb9-2"><a href=""></a><span class="fu">skim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">df</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">228</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">difftime</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: Date</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">min</th>
+<th style="text-align: left;">max</th>
+<th style="text-align: left;">median</th>
+<th style="text-align: right;">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">exp_date</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2017-09-05</td>
+<td style="text-align: left;">2017-10-10</td>
+<td style="text-align: left;">2017-09-20</td>
+<td style="text-align: right;">20</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: difftime</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">min</th>
+<th style="text-align: left;">max</th>
+<th style="text-align: left;">median</th>
+<th style="text-align: right;">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">time</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2040 secs</td>
+<td style="text-align: left;">212220 secs</td>
+<td style="text-align: left;">34200 secs</td>
+<td style="text-align: right;">212</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">ordered</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: left;">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: left;">1: 4, 10: 4, 11: 4, 12: 4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sex</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Mal: 131, Fem: 94, mal: 1, ffe: 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">eth</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Whi: 164, Asi: 44, Mix: 8, Ara: 8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">eng</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Yes: 136, No: 92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">interact_before</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Nev: 164, Onc: 52, A f: 12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">perceived_robot_gender</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Fem: 184, Mal: 36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">item</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Toa: 49, Oat: 49, Cro: 47, Bea: 43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">robot_expression</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">1: 57, 2: 57, 3: 57, 4: 57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">resp</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Dis: 117, Lik: 106, Mis: 5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ppt_acc</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Cor: 186, Inc: 42</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="using-summary-functions-with-the-tidyverse" class="slide level2">
+<h2>Using summary functions with the tidyverse</h2>
+<ul>
+<li>You can pipe data into summary functions to specify rows or cols of interest</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co"># data summary - sex</span></span>
@@ -610,10 +851,12 @@ Levels: Female Male male ffemale femalew</code></pre>
 <li>As you can see, something has gone wrong in the labelling of sex: there should only be two values, “Female” and “Male”</li>
 </ul>
 </section>
-<section id="using-recode" class="slide level2">
-<h2>Using recode</h2>
+<section id="using-case_match-to-recode-data" class="slide level2">
+<h2>Using <code>case_match</code> to recode data</h2>
 <ul>
-<li>We can use the <code>recode</code> function in combination with <code>mutate</code> to rename the erroneously named values</li>
+<li>Previously, the <code>recode</code> function was used in combination with <code>mutate</code> to recode values in a cell</li>
+<li>But more recently, people have moved to using <code>case_match</code>, as it is more intuitive and user friendly</li>
+<li><a href="https://dplyr.tidyverse.org/reference/case_match.html">Info on <code>case_match</code></a></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># label: recode</span></span>
@@ -658,7 +901,7 @@ Levels: Female Male male ffemale femalew</code></pre>
 <li>group activity</li>
 </ul></li>
 </ul>
-</section>
+</section></section>
 <section id="some-important-considerations-and-reflections-moving-forward" class="title-slide slide level1 center">
 <h1>Some important considerations and reflections moving forward</h1>
 <div class="columns">

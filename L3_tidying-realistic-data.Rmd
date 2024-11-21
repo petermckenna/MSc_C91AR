@@ -200,10 +200,9 @@ skim(df)
 
 ```
 
+## Using summary functions with the tidyverse
 
----
-
-- You can use the `$` symbol to specify individual cols
+- You can pipe data into summary functions to specify rows or cols of interest
 
 ```{r results='markup'}
 
@@ -218,11 +217,11 @@ df |>
 ## Recode variable levels 
 
 - You may have noticed from the last session that there there are some erroneous values in the sex vector.
+- You can check this directly by using the `$` symbol to index the vector of interest in combination with the function `unique`. 
 
 ```{r results = 'markup'}
 
-# Erroneous entries
-
+# Check all unique entries in the vector `sex`
 unique(df$sex) # we can use the `unique` function to check all of the unique values in a vector
 
 # Alternatively you can use tidyverse's `distinct`
@@ -231,24 +230,27 @@ unique(df$sex) # we can use the `unique` function to check all of the unique val
 #   distinct()
 
 ```
+
 -   As you can see, something has gone wrong in the labelling of sex:
     there should only be two values, "Female" and "Male"
 
 
-## Using recode
+## Using `case_match` to recode data
 
--   We can use the `recode` function in combination with `mutate` to
-    rename the erroneously named values
+- Previously, the `recode` function was used in combination with `mutate` to recode values in a cell
+- But more recently, people have moved to using `case_match`, as it is more intuitive and user friendly
+- [Info on case_match](https://dplyr.tidyverse.org/reference/case_match.html) 
+    
 
 ```{r}
 
-# label: recode
+# Using case_match to recode cell values
 df <-
   df |>
-  mutate(sex = recode(sex,              # mutate to change
-                      "male" = "Male",  # supply erroneous value and new value
-                      "ffemale" = "Female",
-                      "femalew" = "Female"))
+  mutate(sex = case_match(sex,              # mutate to change
+                      "male" ~ "Male",  # supply erroneous value and new value
+                      "ffemale" ~ "Female",
+                      "femalew" ~ "Female"))
 
 # Check the values of a vector using unique
 unique(df$sex) # again, we use the $ symbol to isolate a specific vector
