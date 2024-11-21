@@ -358,7 +358,8 @@ dfSummary(df)
 libray(tidyverse)
 
 # keep object names lower_case_and_separated_by_underscores
-star_wars <- starwars # starwars data is included in tidyverse
+star_wars <- 
+starwars # starwars data is included in tidyverse
 
 # examine data
 glimpse(star_wars)
