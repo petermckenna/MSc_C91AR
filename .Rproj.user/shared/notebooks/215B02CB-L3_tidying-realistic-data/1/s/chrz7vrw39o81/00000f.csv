@@ -1,0 +1,60 @@
+"0",""
+"0","# presentation setup"
+"0"," knitr::opts_chunk$set(echo = T, "
+"0","                       eval = T,"
+"0","                       results = 'hide',"
+"0","                       message = FALSE, "
+"0","                       warning = FALSE, "
+"0","                       tidy.opts = list(width.cutoff = 60),"
+"0","                       tidy = TRUE)"
+"0",""
+"0","# default for instructor is "
+"0","  # echo = T"
+"0","  # eval = T"
+"0","  # results = 'hide'"
+"0",""
+"0","# you only want to see the results for certain chunks (e.g., plots)"
+"0",""
+"0","# load packages"
+"0","pacman::p_load(tidyverse,"
+"0","               snakecase,"
+"0","               psych,"
+"0","               skimr)"
+"2","also installing the dependency ‘repr’
+
+"
+"2","Warning:"
+"2"," unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4/PACKAGES'
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/repr_1.1.7.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 130538 bytes (127 KB)
+"
+"2","downloaded 127 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/skimr_2.1.5.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1243147 bytes (1.2 MB)
+"
+"2","downloaded 1.2 MB
+
+"
+"1","package ‘repr’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘skimr’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\pm72\AppData\Local\Temp\RtmpYZpL0d\downloaded_packages"
+"1",""
+"1","
+"
+"2","
+skimr installed
+"

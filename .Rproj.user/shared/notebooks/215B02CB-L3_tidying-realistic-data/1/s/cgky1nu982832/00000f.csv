@@ -1,0 +1,27 @@
+"0",""
+"0","# data summary - tail"
+"0","skim(df)"
+"1","── Data Summary ────────────────────────
+"
+"1","                           Values
+"
+"1","Name                       df    
+"
+"1","Number of rows             228   
+"
+"1","Number of columns          12    
+"
+"1","_______________________          
+"
+"1","Column type frequency:           
+"
+"1","  Date                     1     
+"
+"1","  difftime                 1     
+"
+"1","  factor                   10    
+"
+"1","________________________         
+"
+"1","Group variables            None  
+"
