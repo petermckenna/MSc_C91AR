@@ -1,0 +1,5 @@
+"0","# Wrangle a fraction of names dataset from `babynames` dataset"
+"0","babynames_class <-"
+"0","  babynames_df |>"
+"0","  filter(name %in% c(""Angela"", ""Chris"", ""Peter""))"
+"0",""

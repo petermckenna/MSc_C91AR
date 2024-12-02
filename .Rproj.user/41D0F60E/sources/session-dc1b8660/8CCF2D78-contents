@@ -41,10 +41,11 @@ bibliography: ref.bib
 ```{r, eval = TRUE, include = F}
 
 # Relevant packages
-library(babynames)
-library(tidyverse)
-library(RColorBrewer)
-library(Cairo)
+pacman::p_load(babynames,
+               tidyverse,
+               RColorBrewer,
+               Cairo,
+               summarytools)
 
 ```
 
@@ -92,7 +93,7 @@ Tell us a little bit about why you want to learn R?
 4. Take. Your. Time.
 5. Practice on a topic you care about.
 
-# Course aims
+# Course learning outcomes
 
 1.	Develop cutting-edge R programming skills for high quality research.
 2.	Apply R programming techniques to appropriately reconfigure data for analysis.
@@ -194,11 +195,22 @@ babynames_df <-
 
 ## Explore the data a bit
 
+The `summarytools` package is better than baseR's summary functions. 
+[Have a look here for more info](https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html)
+
 ```{r}
 
-summary(babynames_df)
+# Summarise with the `dfSummary` function from summarytools package
+dfSummary(babynames_df)
 
 ```
+
+## On the use of packages
+
+- Anyone using R can develop their own package.
+- Some are better than others. 
+- The one's I include on this course are widely used by scientists across disciplines.
+- If you find other packages more suited to your data, by all means use them!
 
 
 ```{r}

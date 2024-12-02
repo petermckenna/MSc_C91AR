@@ -1,52 +1,45 @@
 "0",""
-"0","summary(babynames_df)"
-"1",""
-"1","      year     "
-"1","     sex           "
-"1","     name          "
-"1","       n          "
-"1","      prop          "
-"1","
-"
-"1"," Min.   :1880  "
-"1"," Length:1924665    "
-"1"," Length:1924665    "
-"1"," Min.   :    5.0  "
-"1"," Min.   :2.260e-06  "
-"1","
-"
-"1"," 1st Qu.:1951  "
-"1"," Class :character  "
-"1"," Class :character  "
-"1"," 1st Qu.:    7.0  "
-"1"," 1st Qu.:3.870e-06  "
-"1","
-"
-"1"," Median :1985  "
-"1"," Mode  :character  "
-"1"," Mode  :character  "
-"1"," Median :   12.0  "
-"1"," Median :7.300e-06  "
-"1","
-"
-"1"," Mean   :1975  "
-"1","                   "
-"1","                   "
-"1"," Mean   :  180.9  "
-"1"," Mean   :1.363e-04  "
-"1","
-"
-"1"," 3rd Qu.:2003  "
-"1","                   "
-"1","                   "
-"1"," 3rd Qu.:   32.0  "
-"1"," 3rd Qu.:2.288e-05  "
-"1","
-"
-"1"," Max.   :2017  "
-"1","                   "
-"1","                   "
-"1"," Max.   :99686.0  "
-"1"," Max.   :8.155e-02  "
-"1","
+"0","# Summarise with the `dfSummary` function from summarytools package"
+"0","dfSummary(babynames_df)"
+"1","Data Frame Summary  
+babynames_df  
+Dimensions: 1924665 x 5  
+Duplicates: 0  
+
+------------------------------------------------------------------------------------------------------------------
+No   Variable      Stats / Values               Freqs (% of Valid)      Graph                 Valid      Missing  
+---- ------------- ---------------------------- ----------------------- --------------------- ---------- ---------
+1    year          Mean (sd) : 1974.9 (34)      138 distinct values                       :   1924665    0        
+     [numeric]     min < med < max:                                                     : :   (100.0%)   (0.0%)   
+                   1880 < 1985 < 2017                                                 : : :                       
+                   IQR (CV) : 52 (0)                                          . . . : : : :                       
+                                                                        . . : : : : : : : :                       
+
+2    sex           1. F                         1138293 (59.1%)         IIIIIIIIIII           1924665    0        
+     [character]   2. M                          786372 (40.9%)         IIIIIIII              (100.0%)   (0.0%)   
+
+3    name          1. Francis                       276 ( 0.0%)                               1924665    0        
+     [character]   2. James                         276 ( 0.0%)                               (100.0%)   (0.0%)   
+                   3. Jean                          276 ( 0.0%)                                                   
+                   4. Jesse                         276 ( 0.0%)                                                   
+                   5. Jessie                        276 ( 0.0%)                                                   
+                   6. John                          276 ( 0.0%)                                                   
+                   7. Johnnie                       276 ( 0.0%)                                                   
+                   8. Joseph                        276 ( 0.0%)                                                   
+                   9. Lee                           276 ( 0.0%)                                                   
+                   10. Leslie                       276 ( 0.0%)                                                   
+                   [ 97300 others ]             1921905 (99.9%)         IIIIIIIIIIIIIIIIIII                       
+
+4    n             Mean (sd) : 180.9 (1533.3)   13691 distinct values   :                     1924665    0        
+     [integer]     min < med < max:                                     :                     (100.0%)   (0.0%)   
+                   5 < 12 < 99686                                       :                                         
+                   IQR (CV) : 25 (8.5)                                  :                                         
+                                                                        :                                         
+
+5    prop          Mean (sd) : 0 (0)            98794 distinct values   :                     1924665    0        
+     [numeric]     min < med < max:                                     :                     (100.0%)   (0.0%)   
+                   0 < 0 < 0.1                                          :                                         
+                   IQR (CV) : 0 (8.4)                                   :                                         
+                                                                        :                                         
+------------------------------------------------------------------------------------------------------------------
 "
