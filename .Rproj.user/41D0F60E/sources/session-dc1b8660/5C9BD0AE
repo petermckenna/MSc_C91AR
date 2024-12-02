@@ -3,7 +3,7 @@
     "path": "~/GitHub/MSc_C91AR/L2_housekeeping-in-R.rmd",
     "project_path": "L2_housekeeping-in-R.rmd",
     "type": "r_markdown",
-    "hash": "3327785712",
+    "hash": "3513129428",
     "contents": "",
     "dirty": false,
     "created": 1733138543024.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "267,0",
+        "cursorPosition": "257,37",
         "scrollLine": "241"
     },
     "folds": "",
-    "lastKnownWriteTime": 1733141692,
+    "lastKnownWriteTime": 1733141735,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1733141692489,
+    "last_content_update": 1733141735353,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -2,7 +2,7 @@
 title: "Tutorial: Introduction to R"
 subtitle: "C91AR: Advanced Statistics using R"
 title-slide-attributes:
-    data-background-image: images/data-sci-process.png
+    data-background-image: images/anime_programming.png
     data-background-size: 30%
     data-background-position: "50% 10%"
 author: "Dr Peter E McKenna"
@@ -19,6 +19,14 @@ editor:
     wrap: 72
 bibliography: ref.bib    
 ---
+
+```{r, eval = T, include = F}
+
+# load packages for session
+pacman::p_load(tidyverse,
+               summarytools)
+
+```
 
 # Lab Housekeeping
 

@@ -428,10 +428,7 @@ Dr Peter E McKenna
 
 <section id="encountering-messy-code" class="title-slide slide level1 center">
 <h1>Encountering messy code</h1>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/messy_bedroom.jpg"</span>)        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
 <img data-src="images/messy_bedroom.jpg" class="quarto-figure quarto-figure-center r-stretch"><ul>
 <li>What can you tell me about this bedroom?</li>
 <li>How does this image make you feel?</li>
@@ -442,9 +439,9 @@ Dr Peter E McKenna
 <h1>What are we going to cover today?</h1>
 <ul>
 <li>This is a hybrid session, involving both lecturing and coding</li>
-<li>Setting up a project in R</li>
-<li>Setting up the relevant directories</li>
+<li>Setting up a project in R and relevant directories</li>
 <li>Learning and applying good coding practice</li>
+<li>Read in and quickly explore a dataset</li>
 <li>Outline plans for Tutorial 1</li>
 </ul>
 </section>
@@ -475,9 +472,9 @@ Dr Peter E McKenna
 <li>To do so, type the following code lines one at a time into the Console and press enter</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"data_raw"</span>) <span class="co"># for all raw data</span></span>
-<span id="cb2-2"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"data_tidy"</span>) <span class="co"># for all processed/tidy data</span></span>
-<span id="cb2-3"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"fig_out"</span>)  <span class="co"># for figures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"data_raw"</span>) <span class="co"># for all raw data</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"data_tidy"</span>) <span class="co"># for all processed/tidy data</span></span>
+<span id="cb1-3"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"fig_out"</span>)  <span class="co"># for figures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>This process ensures that you have a specific directory for a project and a set of folders ready for your work.</li>
@@ -520,41 +517,60 @@ Dr Peter E McKenna
 <section id="some-examples" class="title-slide slide level1 center">
 <h1>Some examples</h1>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Naming variables</a></li><li><a href="#tabset-1-2">Spaces</a></li><li><a href="#tabset-1-3">Pipes</a></li></ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Naming variables</a></li><li><a href="#tabset-1-2">Spaces</a></li><li><a href="#tabset-1-3">Pipes</a></li><li><a href="#tabset-1-4">Long, tidy command chains</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># load data</span></span>
-<span id="cb3-2"><a href=""></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb3-3"><a href=""></a></span>
-<span id="cb3-4"><a href=""></a><span class="co"># Strive for:</span></span>
-<span id="cb3-5"><a href=""></a>short_flights <span class="ot">&lt;-</span> </span>
-<span id="cb3-6"><a href=""></a>  flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(air_time <span class="sc">&lt;</span> <span class="dv">60</span>)</span>
-<span id="cb3-7"><a href=""></a></span>
-<span id="cb3-8"><a href=""></a><span class="co"># Avoid:</span></span>
-<span id="cb3-9"><a href=""></a>SHORTFLIGHTS <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(air_time <span class="sc">&lt;</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># load data</span></span>
+<span id="cb2-2"><a href=""></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb2-3"><a href=""></a></span>
+<span id="cb2-4"><a href=""></a><span class="co"># Strive for:</span></span>
+<span id="cb2-5"><a href=""></a>short_flights <span class="ot">&lt;-</span> </span>
+<span id="cb2-6"><a href=""></a>  flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(air_time <span class="sc">&lt;</span> <span class="dv">60</span>)</span>
+<span id="cb2-7"><a href=""></a></span>
+<span id="cb2-8"><a href=""></a><span class="co"># Avoid:</span></span>
+<span id="cb2-9"><a href=""></a>SHORTFLIGHTS <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(air_time <span class="sc">&lt;</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># In this code the author has aligned the "=" sign, giving better readability</span></span>
-<span id="cb4-2"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-4"><a href=""></a>    <span class="at">speed      =</span> distance <span class="sc">/</span> air_time,</span>
-<span id="cb4-5"><a href=""></a>    <span class="at">dep_hour   =</span> dep_time <span class="sc">%/%</span> <span class="dv">100</span>,</span>
-<span id="cb4-6"><a href=""></a>    <span class="at">dep_minute =</span> dep_time <span class="sc">%%</span>  <span class="dv">100</span></span>
-<span id="cb4-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># In this code the author has aligned the "=" sign, giving better readability</span></span>
+<span id="cb3-2"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-4"><a href=""></a>    <span class="at">speed      =</span> distance <span class="sc">/</span> air_time,</span>
+<span id="cb3-5"><a href=""></a>    <span class="at">dep_hour   =</span> dep_time <span class="sc">%/%</span> <span class="dv">100</span>,</span>
+<span id="cb3-6"><a href=""></a>    <span class="at">dep_minute =</span> dep_time <span class="sc">%%</span>  <span class="dv">100</span></span>
+<span id="cb3-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-3">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Strive for </span></span>
-<span id="cb5-2"><a href=""></a>flights <span class="sc">|&gt;</span>  </span>
-<span id="cb5-3"><a href=""></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum)) <span class="sc">|&gt;</span> </span>
-<span id="cb5-4"><a href=""></a>  <span class="fu">count</span>(dest)</span>
-<span id="cb5-5"><a href=""></a></span>
-<span id="cb5-6"><a href=""></a><span class="co"># Avoid</span></span>
-<span id="cb5-7"><a href=""></a>flights<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum))<span class="sc">|&gt;</span><span class="fu">count</span>(dest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Strive for </span></span>
+<span id="cb4-2"><a href=""></a>flights <span class="sc">|&gt;</span>  </span>
+<span id="cb4-3"><a href=""></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-4"><a href=""></a>  <span class="fu">count</span>(dest)</span>
+<span id="cb4-5"><a href=""></a></span>
+<span id="cb4-6"><a href=""></a><span class="co"># Avoid</span></span>
+<span id="cb4-7"><a href=""></a>flights<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum))<span class="sc">|&gt;</span><span class="fu">count</span>(dest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-4">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href=""></a>  <span class="fu">summarize</span>(</span>
+<span id="cb5-4"><a href=""></a>    <span class="at">distance =</span> <span class="fu">mean</span>(distance),</span>
+<span id="cb5-5"><a href=""></a>    <span class="at">speed =</span> <span class="fu">mean</span>(distance <span class="sc">/</span> air_time, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-6"><a href=""></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb5-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> speed)) <span class="sc">+</span></span>
+<span id="cb5-8"><a href=""></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb5-9"><a href=""></a>    <span class="at">method =</span> <span class="st">"loess"</span>,</span>
+<span id="cb5-10"><a href=""></a>    <span class="at">span =</span> <span class="fl">0.5</span>,</span>
+<span id="cb5-11"><a href=""></a>    <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb5-12"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>, </span>
+<span id="cb5-13"><a href=""></a>    <span class="at">linewidth =</span> <span class="dv">4</span></span>
+<span id="cb5-14"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb5-15"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -567,34 +583,6 @@ Dr Peter E McKenna
 <li>Why do you think tidy code is important?</li>
 <li>What challenges do you foresee in the implementation of tidy code principles?</li>
 </ul>
-<!--
-
-Again, if you can’t fit all of the arguments to a function on to a single line, put each argument on its own line:
-
-
-::: {.cell}
-
-```{.r .cell-code}
-flights |> 
-  group_by(dest) |> 
-  summarize(
-    distance = mean(distance),
-    speed = mean(distance / air_time, na.rm = TRUE)
-  ) |> 
-  ggplot(aes(x = distance, y = speed)) +
-  geom_smooth(
-    method = "loess",
-    span = 0.5,
-    se = FALSE, 
-    color = "white", 
-    linewidth = 4
-  ) +
-  geom_point()
-```
-:::
-
-
--->
 </section>
 
 <section id="load-packcages-for-the-session" class="title-slide slide level1 center">
@@ -603,11 +591,9 @@ flights |>
 <li>Let’s read in the expression data and use the principles of tidy code in the process of doing so</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Housekeeping in R</span></span>
-<span id="cb6-2"><a href=""></a></span>
-<span id="cb6-3"><a href=""></a><span class="co"># Load packages </span></span>
-<span id="cb6-4"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-5"><a href=""></a><span class="fu">library</span>(summarytools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Load packages </span></span>
+<span id="cb6-2"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-3"><a href=""></a><span class="fu">library</span>(summarytools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -616,18 +602,22 @@ flights |>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># Read in raw data</span></span>
 <span id="cb7-2"><a href=""></a>df <span class="ot">&lt;-</span> <span class="co"># &lt;- is the 'assign' operator </span></span>
-<span id="cb7-3"><a href=""></a>  <span class="fu">read_csv</span>(<span class="st">"data_raw/robot-expression-data_raw.csv"</span>)</span>
-<span id="cb7-4"><a href=""></a></span>
-<span id="cb7-5"><a href=""></a><span class="co"># Now the data from the csv is stored in an object called `df`</span></span>
-<span id="cb7-6"><a href=""></a></span>
-<span id="cb7-7"><a href=""></a><span class="co"># Examine the dataset </span></span>
-<span id="cb7-8"><a href=""></a><span class="fu">glimpse</span>(df) <span class="co"># glimpse provides a summary of the column/vector names, their data type. and the raw values</span></span>
-<span id="cb7-9"><a href=""></a><span class="co"># Notice that it only presents a subset of the data</span></span>
-<span id="cb7-10"><a href=""></a></span>
-<span id="cb7-11"><a href=""></a><span class="co"># Check dimensions using `dim`</span></span>
-<span id="cb7-12"><a href=""></a><span class="fu">dim</span>(df) <span class="co"># 228 rows by 12 columns</span></span>
-<span id="cb7-13"><a href=""></a><span class="co"># `dim` is really handy to check the size of data objects before and after you perform operations on the data</span></span>
-<span id="cb7-14"><a href=""></a><span class="co"># the same information is also provided by glimpse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href=""></a>  <span class="fu">read_csv</span>(<span class="st">"data_raw/robot-expression-data_raw.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Now the data from the csv is stored in an object called <code>df</code></li>
+</ul>
+</section>
+
+<section id="explore-the-data" class="title-slide slide level1 center">
+<h1>Explore the data</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># Examine the dataset </span></span>
+<span id="cb8-2"><a href=""></a><span class="fu">glimpse</span>(df) <span class="co"># glimpse provides a summary of the column/vector names, their data type. and the raw values</span></span>
+<span id="cb8-3"><a href=""></a><span class="co"># Notice that it only presents a subset of the data</span></span>
+<span id="cb8-4"><a href=""></a></span>
+<span id="cb8-5"><a href=""></a><span class="co"># Use summary tools to get an overview of the data</span></span>
+<span id="cb8-6"><a href=""></a><span class="fu">dfSummary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -635,7 +625,7 @@ flights |>
 <h1>Summary</h1>
 <p>In today’s session I showed you..</p>
 <ul>
-<li>How to set up an R Project and subdirectories</li>
+<li>How to set up an R Project and sub-directories</li>
 <li>How to present your code</li>
 <li>How to read in data</li>
 </ul>
@@ -646,288 +636,6 @@ flights |>
 <ul>
 <li>https://psyteachr.github.io/quant-fun-v2/intro-to-r.html</li>
 <li>This will give you a short introduction to working with directories and RMarkdown</li>
-</ul>
-</section>
-
-<section id="end-of-session" class="title-slide slide level1 center">
-<h1>End of session</h1>
-<ul>
-<li>In the lab, we will pick up where we left off and continue to develop our existing script</li>
-<li>Please save your R script for today</li>
-<li>If you haven’t looked at the reading for today</li>
-</ul>
-</section>
-
-<section>
-<section id="c91ar-housekeeping-in-r-lab" class="title-slide slide level1 center">
-<h1>C91AR | Housekeeping in R | Lab</h1>
-
-</section>
-<section id="what-we-are-going-to-cover" class="slide level2">
-<h2>What we are going to cover</h2>
-<ul>
-<li>Today’s lab is a follow on from what we covered in the lecture</li>
-<li>We’re going to go a little deeper into good housekeeping, by introducing some of the tidying principles I cover in next weeks lecture
-<ul>
-<li>setting column data types</li>
-<li>generate an overall summary of the data</li>
-<li>tidy vector labels</li>
-<li>rename vector labels</li>
-<li>deal with date vectors</li>
-</ul></li>
-</ul>
-</section></section>
-<section id="setting-col-types" class="title-slide slide level1 center">
-<h1>Setting col types</h1>
-<ul>
-<li>One of the most important things you’ll do when reading in data is to specify the data type of each column.</li>
-<li>If you don’t do this properly from the outset it can lead to some weird behaviour from R later on, and force you to reverse engineer your code.</li>
-<li>Proper use of the <code>col_types</code> argument in the function <code>read_csv</code> is here to help thankfully.</li>
-<li>This should be used in conjunction with a datasets metadata file, so that you know which data type to assign to each vector</li>
-</ul>
-<!--
-
-# Expression dataset metadata
-
-::: columns
-::: {.column width="50%"}
--   `ID_` = participant id
--   `sex` = participant sex
--   `eth` = participant ethnicity
--   `eng` = "Is English your native language?"
--   `Exp.date` = date of experiment
--   `interact.before` = "Have you ever interacted wtih a robot before?
-:::
-
-::: {.column width="50%"}
--   `Alyx.is` = participants guess of robot's gender
--   `item` = plastic food item offered to robot
--   `Expression` = a numeric value for each of the four robot facial
-    expressions
--   `resp` = name of the box where participants placed the food item
-    after robot expression
--   `Time` = robots onboard clock timer
--   `resp_acc` = accuracy of responses according to theoretically
-    deigned expressions
-:::
-:::
-
--->
-</section>
-
-<section id="data-types-for-the-col_types-argument" class="title-slide slide level1 center">
-<h1>Data types for the <code>col_types</code> argument</h1>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li>“l” = logical</li>
-<li>“i” = integer</li>
-<li>“d” = double numeric</li>
-<li>“c” = character</li>
-<li>“D” = date</li>
-<li>“_” = skip</li>
-<li>“?” = guess</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<ul>
-<li>For more information see the <code>read_csv</code> and <code>col_types</code> documentation in the help section</li>
-<li>You can pull this up by running <code>?read_csv</code> into the console
-<ul>
-<li>I’d recommend consulting the descriptor info at the top then skipping to the examples at the bottom of the help sheet</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</section>
-
-<section id="setting-col-types-within-the-read_csv-function" class="title-slide slide level1 center">
-<h1>Setting col types within the <code>read_csv</code> function</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># Read in data and supply data type argument</span></span>
-<span id="cb8-2"><a href=""></a>df <span class="ot">&lt;-</span></span>
-<span id="cb8-3"><a href=""></a>  <span class="fu">read_csv</span>(<span class="st">"data_raw/robot-expression-data_raw.csv"</span>,</span>
-<span id="cb8-4"><a href=""></a>           <span class="at">col_types =</span> <span class="st">"ffff?ffffftf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-
-<section>
-<section id="summarising-data-using-summarytoolsdfsummary" class="title-slide slide level1 center">
-<h1>Summarising data using summarytools::dfSummary</h1>
-<ul>
-<li>To run summaryDf() you’ll need to install and load <code>summarytools</code></li>
-<li>Based on what we’ve discussed to this point, how would you go about doing this?</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># Summarise df</span></span>
-<span id="cb9-2"><a href=""></a><span class="fu">dfSummary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="group-discussion" class="slide level2">
-<h2>Group discussion</h2>
-<ul>
-<li>Take some time to interpret the output of <code>dfSummary(df)</code>.</li>
-<li>What data types are in the tibble?</li>
-<li>Is there anything <em>messy</em> about the data?</li>
-</ul>
-<!-- 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-# Some examples of Tidy code for R scripts
-
-# Project: Project title
-# Outline purpose of script
-
-# load packages
-libray(tidyverse)
-
-# keep object names lower_case_and_separated_by_underscores
-star_wars <- 
-starwars # starwars data is included in tidyverse
-
-# examine data
-glimpse(star_wars)
-
-# when the pipeline is to long for one line, place arguments on new line
-star_wars |>
-  select(name,
-         sex
-         gender) # select cols name, sex, gender
-
-# Remember, you can also add bookmarks using four dashes to mark different sections and these will appear in the navigation panel next to your script. 
-```
-:::
-
-
--->
-</section></section>
-<section id="dealing-with-awkardly-formatted-columnvector-headings" class="title-slide slide level1 center">
-<h1>Dealing with awkardly formatted column/vector headings</h1>
-<ul>
-<li>You’ll notice that the names for columns (or vectors as they are known to programmers) are formatted unusually</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co"># Examine vector labelling</span></span>
-<span id="cb10-2"><a href=""></a><span class="fu">names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-
-<section>
-<section id="inconsistencies-worth-noting" class="title-slide slide level1 center">
-<h1>Inconsistencies worth noting</h1>
-<ul>
-<li>Use of periods and underscore as separator</li>
-<li>Lower-case and upper-case font</li>
-<li>Names that lack detail for others
-<ul>
-<li>e.g., <code>resp</code>; does that refer to the participant response or the robot’s?</li>
-</ul></li>
-</ul>
-</section>
-<section id="load-the-necessary-packages-for-today" class="slide level2">
-<h2>Load the necessary packages for today</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># load packages</span></span>
-<span id="cb11-2"><a href=""></a><span class="fu">library</span>(snakecase) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>I would add this to your bookmarked “load packages” section at the beginning of your script</li>
-</ul>
-</section></section>
-<section id="tidying-column-names-with-snakecase-package" class="title-slide slide level1 center">
-<h1>Tidying column names with <code>snakecase</code> package</h1>
-<ul>
-<li>We can use the <code>snakecase</code> package to apply uniform formatting to column names</li>
-<li>This addresses the point made earlier about consistent variable names</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># Tidy column headings using snakecase</span></span>
-<span id="cb12-2"><a href=""></a>  <span class="co"># these functions come from the snakecase package we loaded earlier</span></span>
-<span id="cb12-3"><a href=""></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> </span>
-<span id="cb12-4"><a href=""></a>  <span class="fu">to_snake_case</span>(<span class="fu">names</span>(df)) <span class="co"># lower_case with underlined separators </span></span>
-<span id="cb12-5"><a href=""></a></span>
-<span id="cb12-6"><a href=""></a><span class="co"># examine the data</span></span>
-<span id="cb12-7"><a href=""></a><span class="fu">names</span>(df) <span class="co"># notice how the cols are formatted now</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<!--
-
-# Check-point
-
--   Be sure to add descriptive comments to your code chunks
--   If you're writing code in R scripts then adding these to RMarkdown, add bookmarks with four dashes after a comment
--   Code vertically by using paragraphs at the end of an argument
-
--->
-</section>
-
-<section id="brain-break" class="title-slide slide level1 center">
-<h1>Brain break</h1>
-<p><a href="https://alexandraheller.com/wp-content/uploads/2021/02/5-5-5-5-breathing-technique.gif"></a></p>
-</section>
-
-<section id="changing-vector-names" class="title-slide slide level1 center">
-<h1>Changing vector names</h1>
-<ul>
-<li>You can also change the names of vectors using the <code>rename</code> function</li>
-<li>Note, <code>rename</code> asks for the new vector name followed by the old one
-<ul>
-<li>this takes a little getting used to but its simple after enough practice</li>
-</ul></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="co"># Rename vectors using rename</span></span>
-<span id="cb13-2"><a href=""></a>df <span class="ot">&lt;-</span></span>
-<span id="cb13-3"><a href=""></a>  df <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href=""></a>  <span class="fu">rename</span>(<span class="at">perceived_robot_gender =</span> alyx_is, <span class="co"># the new labels are intended to be more descriptive</span></span>
-<span id="cb13-5"><a href=""></a>         <span class="at">robot_expression =</span> expression,</span>
-<span id="cb13-6"><a href=""></a>         <span class="at">ppt_acc =</span> resp_acc)</span>
-<span id="cb13-7"><a href=""></a></span>
-<span id="cb13-8"><a href=""></a><span class="co"># Examine changes</span></span>
-<span id="cb13-9"><a href=""></a><span class="fu">names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><strong>Remember, using the assign operator as above will irreversably amend your tibble.</strong></li>
-<li>If you feel this is necessary proceed, but if not consider creating a new tibble object.</li>
-</ul>
-</section>
-
-<section id="dealing-with-the-date-column" class="title-slide slide level1 center">
-<h1>Dealing with the date column</h1>
-<ul>
-<li>Dates are notoriously difficult to deal with in R and our date vector could not be read properly</li>
-<li>Thankfully there is a really useful package that simplifies everything; the aptly named <code>lubridate</code></li>
-<li>It is already loaded as part of the Tidyverse</li>
-<li>Take a look at <a href="https://lubridate.tidyverse.org/">lubridate here</a></li>
-</ul>
-</section>
-
-<section id="lubridate-to-sort-out-date-column" class="title-slide slide level1 center">
-<h1>Lubridate to sort out date column</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>df <span class="ot">&lt;-</span></span>
-<span id="cb14-2"><a href=""></a>  df <span class="sc">|&gt;</span> <span class="co"># this is the pipe operator; it means, "then do this"</span></span>
-<span id="cb14-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">exp_date =</span> <span class="fu">dmy</span>(exp_date)) <span class="co"># mutate is a function that allows you to append or modify existing columns/vectors in a dataset</span></span>
-<span id="cb14-4"><a href=""></a></span>
-<span id="cb14-5"><a href=""></a><span class="co"># Examine data</span></span>
-<span id="cb14-6"><a href=""></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>The date column should now be properly machine ready formatted (i.e., YYYY-MM-DD), based on the input formatting (i.e., dd/mm/yyyy)</li>
-<li>The machine readable format YYY-MM-DD is preferable for almost all programming languages.</li>
-<li>In this format, you can ask R to make nuanced calculations between dates.</li>
-</ul>
-</section>
-
-<section id="what-did-we-cover-in-this-lab" class="title-slide slide level1 center">
-<h1>What did we cover in this lab</h1>
-<ul>
-<li>Setting column data types with the <code>col_types</code> argument</li>
-<li>Generating an overall summary of the data with <code>summary</code></li>
-<li>Tidy vector labels with <code>snakecase</code></li>
-<li>Rename vector labels with <code>rename</code></li>
-<li>Dealing with date vectors using <code>lubridate</code></li>
 </ul>
 <div class="quarto-auto-generated-content">
 <p><img src="sossdoc-logo.png" class="slide-logo"></p>

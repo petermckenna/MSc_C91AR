@@ -1,0 +1,82 @@
+"0",""
+"0","# Summarise df"
+"0","dfSummary(df)"
+"1","Data Frame Summary  
+df  
+Dimensions: 228 x 12  
+Duplicates: 0  
+
+----------------------------------------------------------------------------------------------------------------------
+No   Variable          Stats / Values                 Freqs (% of Valid)    Graph                 Valid      Missing  
+---- ----------------- ------------------------------ --------------------- --------------------- ---------- ---------
+1    ID_               1. 1                             4 ( 1.8%)                                 228        0        
+     [factor]          2. 10                            4 ( 1.8%)                                 (100.0%)   (0.0%)   
+                       3. 11                            4 ( 1.8%)                                                     
+                       4. 12                            4 ( 1.8%)                                                     
+                       5. 13                            4 ( 1.8%)                                                     
+                       6. 14                            4 ( 1.8%)                                                     
+                       7. 15                            4 ( 1.8%)                                                     
+                       8. 16                            4 ( 1.8%)                                                     
+                       9. 17                            4 ( 1.8%)                                                     
+                       10. 18                           4 ( 1.8%)                                                     
+                       [ 47 others ]                  188 (82.5%)           IIIIIIIIIIIIIIII                          
+
+2    sex               1. Female                       94 (41.2%)           IIIIIIII              228        0        
+     [factor]          2. Male                        131 (57.5%)           IIIIIIIIIII           (100.0%)   (0.0%)   
+                       3. male                          1 ( 0.4%)                                                     
+                       4. ffemale                       1 ( 0.4%)                                                     
+                       5. femalew                       1 ( 0.4%)                                                     
+
+3    eth               1. White                       164 (71.9%)           IIIIIIIIIIIIII        228        0        
+     [factor]          2. Asian                        44 (19.3%)           III                   (100.0%)   (0.0%)   
+                       3. Mixed or multiple ethic g     8 ( 3.5%)                                                     
+                       4. Arab                          8 ( 3.5%)                                                     
+                       5. African                       4 ( 1.8%)                                                     
+
+4    eng               1. Yes                         136 (59.6%)           IIIIIIIIIII           228        0        
+     [factor]          2. No                           92 (40.4%)           IIIIIIII              (100.0%)   (0.0%)   
+
+5    Exp.date          1. 18/09/2017                  24 (10.5%)            II                    228        0        
+     [character]       2. 05/10/2017                  20 ( 8.8%)            I                     (100.0%)   (0.0%)   
+                       3. 06/10/2017                  20 ( 8.8%)            I                                         
+                       4. 07/09/2017                  20 ( 8.8%)            I                                         
+                       5. 27/09/2017                  20 ( 8.8%)            I                                         
+                       6. 02/10/2017                  16 ( 7.0%)            I                                         
+                       7. 11/09/2017                  16 ( 7.0%)            I                                         
+                       8. 05/09/2017                  12 ( 5.3%)            I                                         
+                       9. 21/09/2017                  12 ( 5.3%)            I                                         
+                       10. 09/10/2017                  8 ( 3.5%)                                                      
+                       [ 10 others ]                  60 (26.3%)            IIIII                                     
+
+6    interact.before   1. Never                       164 (71.9%)           IIIIIIIIIIIIII        228        0        
+     [factor]          2. Once or twice                52 (22.8%)           IIII                  (100.0%)   (0.0%)   
+                       3. A few times                  12 ( 5.3%)           I                                         
+
+7    Alyx.is           1. Male                         36 (16.4%)           III                   220        8        
+     [factor]          2. Female                      184 (83.6%)           IIIIIIIIIIIIIIII      (96.5%)    (3.5%)   
+
+8    item              1. Toast                       49 (21.5%)            IIII                  228        0        
+     [factor]          2. Milk                        40 (17.5%)            III                   (100.0%)   (0.0%)   
+                       3. Beans                       43 (18.9%)            III                                       
+                       4. Oatmeal                     49 (21.5%)            IIII                                      
+                       5. Croissant                   47 (20.6%)            IIII                                      
+
+9    Expression        1. 1                           57 (25.0%)            IIIII                 228        0        
+     [factor]          2. 2                           57 (25.0%)            IIIII                 (100.0%)   (0.0%)   
+                       3. 3                           57 (25.0%)            IIIII                                     
+                       4. 4                           57 (25.0%)            IIIII                                     
+
+10   resp              1. Like                        106 (46.5%)           IIIIIIIII             228        0        
+     [factor]          2. Dislike                     117 (51.3%)           IIIIIIIIII            (100.0%)   (0.0%)   
+                       3. Miss                          5 ( 2.2%)                                                     
+
+11   Time              min : 2040                     212 distinct values   :                     228        0        
+     [hms, difftime]   med : 34200                                          : :                   (100.0%)   (0.0%)   
+                       max : 212220                                         : :                                       
+                       units : secs                                         : : : .                                   
+                                                                            : : : : : . . . . .                       
+
+12   resp_acc          1. Correct                     186 (81.6%)           IIIIIIIIIIIIIIII      228        0        
+     [factor]          2. Incorrect                    42 (18.4%)           III                   (100.0%)   (0.0%)   
+----------------------------------------------------------------------------------------------------------------------
+"
