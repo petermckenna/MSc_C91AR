@@ -3,7 +3,7 @@
     "path": "~/GitHub/MSc_C91AR/L1_getting-started-with-R.Rmd",
     "project_path": "L1_getting-started-with-R.Rmd",
     "type": "r_markdown",
-    "hash": "256356431",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1732196898435.0,
@@ -12,9 +12,9 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "last_setup_crc32": "e6fb797a96eee8ca",
-        "cursorPosition": "212,57",
-        "scrollLine": "201"
+        "last_setup_crc32": "",
+        "cursorPosition": "6,39",
+        "scrollLine": "0"
     },
     "folds": "",
     "lastKnownWriteTime": 1732197427,

@@ -1,6 +1,10 @@
 ---
 title: "C91AR | Advanced Statistics using R"
 subtitle: "Tidying realistic data"
+title-slide-attributes:
+    data-background-image: images/data-sci-process.png
+    data-background-size: 30%
+    data-background-position: "50% 10%"
 author: "Dr Peter McKenna"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 format: 
