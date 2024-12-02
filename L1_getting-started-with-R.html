@@ -12,7 +12,7 @@
 
   <meta name="author" content="Dr Peter E McKenna">
   <meta name="dcterms.date" content="2024-12-02">
-  <title>Introduction to R</title>
+  <title>Lecture: Introduction to R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -413,7 +413,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="images/data-sci-process.png" data-background-position="50% 10%" data-background-size="30%" class="quarto-title-block center">
-  <h1 class="title">Introduction to R</h1>
+  <h1 class="title">Lecture: Introduction to R</h1>
   <p class="subtitle">C91AR: Advanced Statistics using R</p>
 
 <div class="quarto-title-authors">
@@ -525,7 +525,7 @@ Duffany, J. L. (2017). Application of Active Learning Techniques to the Teaching
 <li>These are both available for install on the HWU Software Centre app</li>
 <li><code>R</code> is the software that runs the computation, and <code>RStudio</code> is the front end user interface.</li>
 <li>Once you have installed both of these you only need to run <code>RStudio</code></li>
-<li>My teaching philosophy focusses on practical application: the best way to learn R, is to code in R.</li>
+<li>My teaching philosophy focuses on practical application: the best way to learn R, is to code in R.</li>
 </ul>
 </section>
 <section id="some-things-to-bear-in-mind" class="slide level2">
@@ -581,7 +581,7 @@ Duffany, J. L. (2017). Application of Active Learning Techniques to the Teaching
 <h2>Explore the data a bit</h2>
 <ul>
 <li>The <code>summarytools</code> package is better than baseR’s summary functions.</li>
-<li><a href="https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html">Have a look here for more info</a></li>
+<li><a href="https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html">Have a look here for more info</a>.</li>
 </ul>
 <div class="panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Code to run <code>dfSummary</code> function</a></li><li><a href="#tabset-1-2">Output of <code>dfSummary</code></a></li></ul>
@@ -686,67 +686,7 @@ No   Variable      Stats / Values               Freqs (% of Valid)      Graph   
 </figure>
 </div>
 </div>
-</div></section><section>
-<section id="lab-housekeeping" class="title-slide slide level1 center">
-<h1>Lab Housekeeping</h1>
-
-</section>
-<section id="using-directories-with-r" class="slide level2">
-<h2>Using directories with R</h2>
-<ul>
-<li>To reference data or media in R you need to set a working directory</li>
-<li>You will also be asked to set a directory for installed packages</li>
-<li><strong>DO NOT create a folder called ‘R’</strong>, as this is the default title R gives to its own namespace, which will lead to conflicts and unusual behaviour</li>
-<li>Good practice is to create R projects in designated project folders, and I will show you how to do this</li>
-<li>Creating an <code>.RProj</code> creates a project directory, avoiding any potential confusion R may experience when switching between projects</li>
-</ul>
-</section>
-<section id="good-practice" class="slide level2">
-<h2>Good practice</h2>
-<ul>
-<li>As well as teaching you how to program in R I will also be teaching you good practice in coding.</li>
-<li>This is because I want your code to be readable to others</li>
-<li>I want you to take pride in your code</li>
-<li>The tidier your code, the easier it is to spot typos or to debug errors.</li>
-<li>For ease of interpretation, I will be coding vertically (mostly)
-<ul>
-<li>This helps identify any errors or typos and is generally easier to read.</li>
-</ul></li>
-</ul>
-</section>
-<section id="create-installation-script" class="slide level2">
-<h2>Create installation script</h2>
-<ul>
-<li>In R Studio we write scripts to perform a set of commands</li>
-<li>To add a script click the Script icon below the File tab (top left)</li>
-</ul>
-</section>
-<section id="working-with-rmarkdown" class="slide level2">
-<h2>Working with RMarkdown</h2>
-<ul>
-<li>RMarkdown allow you to combine code chunks and plain text to produce reproducible scientific reports.</li>
-<li>RMarkdown files are edited in the <em>Workspace Tab</em> - top left window</li>
-<li>Create script headings using <code>#</code> (called a “comment” or inactive code)</li>
-<li><strong>To execute code chunks in RMarkdown click the play button</strong></li>
-<li>This can be done for single lines, or multiple lines by highlighting sections and pressing CTRL(or CMD) + Enter</li>
-<li>The beauty of working in RMarkdown is that you can write text summaries around your code.</li>
-</ul>
-</section>
-<section id="reflections-on-todays-reading" class="slide level2">
-<h2>Reflections on today’s reading</h2>
-<ul>
-<li>https://psyteachr.github.io/quant-fun-v2/programming-basics.html</li>
-<li>Give you a tour of the RStudio environment</li>
-<li>functions and arguments</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">function_name</span>(<span class="at">argument1 =</span> value, <span class="at">argument2 =</span> value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>set.seed function for reproducibility</li>
-</ul>
-</section></section>
-<section id="additional-resources" class="title-slide slide level1 center">
+</div></section><section id="additional-resources" class="title-slide slide level1 center">
 <h1>Additional resources</h1>
 <ul>
 <li><p>If you are keen to learn more about R Programming here is material related to both sessions</p>

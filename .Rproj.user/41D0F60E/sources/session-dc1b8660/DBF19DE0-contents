@@ -1,0 +1,18 @@
+% data skills and employment
+@article{Smaldone_2022, title={Employability skills: Profiling data scientists in the digital labour market}, volume={40}, ISSN={02632373}, DOI={10.1016/j.emj.2022.05.005}, abstractNote={In the current scenario, data scientists are expected to make sense of vast stores of big data, which are becoming increasingly complex and heterogeneous in nature. In the context of today’s rapid technological development and its application in a growing array of fields, this role is evolving simultaneously. The present study provides an insight into the current expectations of employers seeking to hire individuals with this job title. It is argued that gaining a better understanding of data scientists’ employability criteria and the evolution of this professional role is crucial. The focus is placed on the desired prerequisites articulated through job advertisements, thus deriving relevant means for furthering theory and practice. It was achieved by harvesting relevant data from job advertisements published on US employment websites, which currently attract the US market’s highest recruitment traffic. The key contribution of this study is to have identified means of systematically mapping skills, experience, and qualifications sought by employers for their data scientists, thus providing a data-driven pathway for employability and avoiding skills gaps and mismatches in a profession that is pivotal in the Industry 4.0.}, number={5}, journal={European Management Journal}, author={Smaldone, Francesco and Ippolito, Adelaide and Lagger, Jelena and Pellicano, Marco}, year={2022}, month=oct, pages={671–684}, language={en} }
+
+% active learning and programming
+@article{Duffany_2017, title={Application of Active Learning
+Techniques to the Teaching of Introductory Programming}, volume={12},
+ISSN={1932-8540}, DOI={10.1109/RITA.2017.2658918}, abstractNote={Over
+the past few decades, there has been a movement to try to incorporate
+active learning techniques into traditional university classes. The main
+idea is that traditional classroom learning is very passive with the
+professor lecturing and the students listening. Active learning tries to
+engage students with a variety of techniques, which are mainly
+variations of traditional teaching techniques. This paper provides an
+overview of how active learning techniques might be applied to
+introductory programming classes and gives several speciﬁc examples of
+how this might be done.}, number={1}, journal={IEEE Revista
+Iberoamericana de Tecnologias del Aprendizaje}, author={Duffany, Jeffrey
+L.}, year={2017}, month=feb, pages={62--69}, language={en} }

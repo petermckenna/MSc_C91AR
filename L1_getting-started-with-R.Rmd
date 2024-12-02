@@ -1,5 +1,5 @@
 ---
-title: "Introduction to R"
+title: "Lecture: Introduction to R"
 subtitle: "C91AR: Advanced Statistics using R"
 title-slide-attributes:
     data-background-image: images/data-sci-process.png
@@ -105,22 +105,13 @@ Tell us a little bit about why you want to learn R?
 
 # What are the benefits of learning a programming language?
 
-According to @Duffany_2017
+According to @Duffany_2017 and @Smaldone_2022
 
--   Pick up basic, transferable programming skills.
--   Reinforce mathematical concepts.
--   Develop your logical thinking and problem solving skills.
--   Enhance your critical thinking skills.
-
-<p style="font-size: 20px;">Duffany, J. L. (2017). Application of Active Learning Techniques to the Teaching of Introductory Programming. IEEE Revista Iberoamericana de Tecnologias Del Aprendizaje, 12(1), 62–69. https://doi.org/10.1109/RITA.2017.2658918</p>
-
-
-# What about employability?
-
-- As @Smaldone_2022 point out, data analytic skills are becoming more desirable as companies continue to embrace developments in the digital market, e.g., data-driven decision making.
-- With basic R skills, your employment prospects widen to include positions related to Data Science.
-- More and more these days, companies are looking for graduates who can work with big data.
-- So, my hope is to start you on your programming journey, to better equip you for the labour market of Industry 4.0.
+- Pick up basic, transferable programming skills.
+- Reinforce mathematical concepts.
+- Develop your critical thinking and problem solving skills.
+- Improve your employment prospects widen to include positions related to Data Science.
+- Equip you for the labour market of Industry 4.0.
 
 ## Any questions?
 
@@ -136,7 +127,7 @@ According to @Duffany_2017
 -   `R` is the software that runs the computation, and `RStudio` is the
     front end user interface.
 -   Once you have installed both of these you only need to run `RStudio`
--   My teaching philosophy focusses on practical application: the best
+-   My teaching philosophy focuses on practical application: the best
     way to learn R, is to code in R.
 
 
@@ -180,7 +171,7 @@ library(tidyverse)
 ```
 
 - You have to install a package in order to load it
-- You only need to install a package once, so typically the install is done using a one off command in the console rather than our script (where it install every time we ran the script). 
+- You only need to install a package once, so typically the install is done using a one off command in the **console** rather than our script (where it install every time we ran the script). 
 
 # Cool example to whet your R appetites
 
@@ -199,7 +190,7 @@ babynames_df <-
 ## Explore the data a bit
 
 - The `summarytools` package is better than baseR's summary functions. 
-- [Have a look here for more info](https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html)
+- [Have a look here for more info](https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html).
 
 ::: {.panel-tabset}
 
@@ -243,9 +234,8 @@ babynames_class <-
 
 # Plot proportion of names specified across dataset years
 
-```{r, eval=TRUE}
-#| echo: true
-#| output-location: slide
+```{r, echo = FALSE, eval=TRUE}
+
 baby_plot <-
   ggplot(babynames_class, aes(x = year, 
                       y = prop, 
@@ -260,60 +250,6 @@ baby_plot
 
 ```
 
-
-# Lab Housekeeping
-
-## Using directories with R
-
--   To reference data or media in R you need to set a working directory
--   You will also be asked to set a directory for installed packages
--   **DO NOT create a folder called 'R'**, as this is the default title R
-    gives to its own namespace, which will lead to conflicts and unusual
-    behaviour
--   Good practice is to create R projects in designated project folders,
-    and I will show you how to do this
--   Creating an `.RProj` creates a project directory, avoiding any
-    potential confusion R may experience when switching between projects
-
-## Good practice
-
--   As well as teaching you how to program in R I will also be teaching
-    you good practice in coding.
--   This is because I want your code to be readable to others
--   I want you to take pride in your code
--   The tidier your code, the easier it is to spot typos or to debug
-    errors.
--   For ease of interpretation, I will be coding vertically (mostly)
-    -   This helps identify any errors or typos and is generally easier
-        to read.
-
-## Create installation script
-
--   In R Studio we write scripts to perform a set of commands
--   To add a script click the Script icon below the File tab (top left)
-
-## Working with RMarkdown
-
--   RMarkdown allow you to combine code chunks and plain text to produce reproducible scientific reports. 
--   RMarkdown files are edited in the *Workspace Tab* - top left window
--   Create script headings using `#` (called a "comment" or inactive
-    code)
--   **To execute code chunks in RMarkdown click the play button**
--   This can be done for single lines, or multiple lines by highlighting
-    sections and pressing CTRL(or CMD) + Enter
-- The beauty of working in RMarkdown is that you can write text summaries around your code.    
-    
-## Reflections on today's reading
-
-- https://psyteachr.github.io/quant-fun-v2/programming-basics.html 
-- Give you a tour of the RStudio environment
-- functions and arguments
-
-```{r functs&args, eval=FALSE}
-function_name(argument1 = value, argument2 = value)
-```
-
-- set.seed function for reproducibility    
 
 # Additional resources
 
