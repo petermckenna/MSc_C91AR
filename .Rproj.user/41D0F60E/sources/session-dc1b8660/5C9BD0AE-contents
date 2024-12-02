@@ -56,10 +56,11 @@ bibliography: ref.bib
 
 # What are we going to cover today?
 
--   Setting up a project in R
--   Setting up the relevant directories
--   Learning and applying good coding practice
--   Reading in raw data using `read_csv` function
+- This is a hybrid session, involving both lecturing and coding
+- Setting up a project in R
+- Setting up the relevant directories
+- Learning and applying good coding practice
+- Outline plans for Tutorial 1
 
 # Good Housekeeping
 
@@ -328,7 +329,7 @@ df <-
   read_csv("data_raw/robot-expression-data_raw.csv",
            col_types = "ffff?ffffftf")
 
-````
+```
 
 
 # Summarising data using summarytools::dfSummary
@@ -351,11 +352,9 @@ dfSummary(df)
 
 <!-- 
 
-```{=html}
+```{r, eval = F}
  
 # Some examples of Tidy code for R scripts
-
-```{r tidy coding, eval=F}
 
 # Project: Project title
 # Outline purpose of script
