@@ -52,7 +52,10 @@ bibliography: ref.bib
     
 # Encountering messy code
 
-[](images/messy_code.jpg)        
+![](images/messy_bedroom.jpg)        
+
+- What can you tell me about this bedroom?
+- How does this image make you feel?
 
 # What are we going to cover today?
 
@@ -64,12 +67,12 @@ bibliography: ref.bib
 
 # Good Housekeeping
 
--   Whilst you might be keen to get started with coding right away, I
+- Whilst you might be keen to get started with coding right away, I
     feel it's important to teach you about good practice from the outset.
--   In this session, I'm going to cover a set of principles about how to
+- In this session, I'm going to cover a set of principles about how to
     format your code so that it is easy to read for others, and
     therefore, easy to interpret, run, and replicate if required.
--   This is especially important these days as reproducible science is
+- This is especially important these days as reproducible science is
     becoming more important in the social science.
 
 # Using projects
@@ -126,7 +129,9 @@ dir.create("fig_out")  # for figures
     script
     -   Note, this applies to R code chunks, not the Markdown file
 
-# Naming variables
+::: {.panel-tabset}
+
+### Naming variables
 
 ```{r, eval = F}
 
@@ -142,7 +147,7 @@ SHORTFLIGHTS <- flights |> filter(air_time < 60)
 
 ```
 
-# Spaces
+### Spaces
 
 ```{r, eval = F}
 
@@ -156,7 +161,7 @@ flights |>
 
 ```
 
-# Pipes
+### Pipes
 
 ```{r, eval = F}
 
@@ -171,7 +176,14 @@ flights|>filter(!is.na(arr_delay), !is.na(tailnum))|>count(dest)
 
 ```
 
-----
+:::
+
+# Some reflections
+
+- Why do you think tidy code is important?
+- What challenges do you foresee in the implementation of tidy code principles?
+
+<!--
 
 Again, if you can’t fit all of the arguments to a function on to a single line, put each argument on its own line:
 
@@ -195,6 +207,14 @@ flights |>
 
 ```
 
+-->
+
+# Summary
+
+In today's session I showed you..
+
+- How to set up an R Project and subdirectories
+- How to present your code
 
 # Load packcages for the session
 
