@@ -195,7 +195,7 @@ flights |>
 ```
 
 
-# Read in the robot expression data
+# Load packcages for the session
 
 -   Let's read in the expression data and use the principles of tidy
     code in the process of doing so
@@ -207,6 +207,12 @@ flights |>
 # Load packages 
 library(tidyverse)
 library(summarytools)
+
+```
+
+# Read in and explore the robot expression data
+
+```{r}
 
 # Read in raw data
 df <- # <- is the 'assign' operator 
@@ -345,7 +351,7 @@ dfSummary(df)
 
 <!-- 
 
-````{=html}
+```{=html}
  
 # Some examples of Tidy code for R scripts
 

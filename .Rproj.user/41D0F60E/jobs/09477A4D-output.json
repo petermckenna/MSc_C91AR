@@ -1,0 +1,2 @@
+[1,"==> quarto preview L2_housekeeping-in-R.rmd --to revealjs --presentation --no-watch-inputs --no-browse\n\n"]
+[1,"\r\n\r\nprocessing file: L2_housekeeping-in-R.rmd\r\nError: The closing fence on line 339 (\"````\") in L2_housekeeping-in-R.rmd does not match the opening fence \"```\" on line 332. You are recommended to fix either the opening or closing fence of the code chunk to use exactly the same numbers of backticks and same level of indentation (or blockquote). See https://yihui.org/en/2021/10/unbalanced-delimiters/ for more info.\r\nExecution halted\r\n"]
