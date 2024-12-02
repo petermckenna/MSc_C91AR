@@ -428,16 +428,24 @@ Dr Peter E McKenna
 
 <section id="encountering-messy-code" class="title-slide slide level1 center">
 <h1>Encountering messy code</h1>
-<p><a href="images/messy_code.jpg"></a></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/messy_bedroom.jpg"</span>)        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="images/messy_bedroom.jpg" class="quarto-figure quarto-figure-center r-stretch"><ul>
+<li>What can you tell me about this bedroom?</li>
+<li>How does this image make you feel?</li>
+</ul>
 </section>
 
 <section id="what-are-we-going-to-cover-today" class="title-slide slide level1 center">
 <h1>What are we going to cover today?</h1>
 <ul>
+<li>This is a hybrid session, involving both lecturing and coding</li>
 <li>Setting up a project in R</li>
 <li>Setting up the relevant directories</li>
 <li>Learning and applying good coding practice</li>
-<li>Reading in raw data using <code>read_csv</code> function</li>
+<li>Outline plans for Tutorial 1</li>
 </ul>
 </section>
 
@@ -467,9 +475,9 @@ Dr Peter E McKenna
 <li>To do so, type the following code lines one at a time into the Console and press enter</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"data_raw"</span>) <span class="co"># for all raw data</span></span>
-<span id="cb1-2"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"data_tidy"</span>) <span class="co"># for all processed/tidy data</span></span>
-<span id="cb1-3"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"fig_out"</span>)  <span class="co"># for figures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"data_raw"</span>) <span class="co"># for all raw data</span></span>
+<span id="cb2-2"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"data_tidy"</span>) <span class="co"># for all processed/tidy data</span></span>
+<span id="cb2-3"><a href=""></a><span class="fu">dir.create</span>(<span class="st">"fig_out"</span>)  <span class="co"># for figures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>This process ensures that you have a specific directory for a project and a set of folders ready for your work.</li>
@@ -509,68 +517,86 @@ Dr Peter E McKenna
 </ul>
 </section>
 
-<section id="naming-variables" class="title-slide slide level1 center">
-<h1>Naming variables</h1>
+<section id="some-examples" class="title-slide slide level1 center">
+<h1>Some examples</h1>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Naming variables</a></li><li><a href="#tabset-1-2">Spaces</a></li><li><a href="#tabset-1-3">Pipes</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># load data</span></span>
-<span id="cb2-2"><a href=""></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb2-3"><a href=""></a></span>
-<span id="cb2-4"><a href=""></a><span class="co"># Strive for:</span></span>
-<span id="cb2-5"><a href=""></a>short_flights <span class="ot">&lt;-</span> </span>
-<span id="cb2-6"><a href=""></a>  flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(air_time <span class="sc">&lt;</span> <span class="dv">60</span>)</span>
-<span id="cb2-7"><a href=""></a></span>
-<span id="cb2-8"><a href=""></a><span class="co"># Avoid:</span></span>
-<span id="cb2-9"><a href=""></a>SHORTFLIGHTS <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(air_time <span class="sc">&lt;</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># load data</span></span>
+<span id="cb3-2"><a href=""></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb3-3"><a href=""></a></span>
+<span id="cb3-4"><a href=""></a><span class="co"># Strive for:</span></span>
+<span id="cb3-5"><a href=""></a>short_flights <span class="ot">&lt;-</span> </span>
+<span id="cb3-6"><a href=""></a>  flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(air_time <span class="sc">&lt;</span> <span class="dv">60</span>)</span>
+<span id="cb3-7"><a href=""></a></span>
+<span id="cb3-8"><a href=""></a><span class="co"># Avoid:</span></span>
+<span id="cb3-9"><a href=""></a>SHORTFLIGHTS <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(air_time <span class="sc">&lt;</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># In this code the author has aligned the "=" sign, giving better readability</span></span>
+<span id="cb4-2"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-4"><a href=""></a>    <span class="at">speed      =</span> distance <span class="sc">/</span> air_time,</span>
+<span id="cb4-5"><a href=""></a>    <span class="at">dep_hour   =</span> dep_time <span class="sc">%/%</span> <span class="dv">100</span>,</span>
+<span id="cb4-6"><a href=""></a>    <span class="at">dep_minute =</span> dep_time <span class="sc">%%</span>  <span class="dv">100</span></span>
+<span id="cb4-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Strive for </span></span>
+<span id="cb5-2"><a href=""></a>flights <span class="sc">|&gt;</span>  </span>
+<span id="cb5-3"><a href=""></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href=""></a>  <span class="fu">count</span>(dest)</span>
+<span id="cb5-5"><a href=""></a></span>
+<span id="cb5-6"><a href=""></a><span class="co"># Avoid</span></span>
+<span id="cb5-7"><a href=""></a>flights<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum))<span class="sc">|&gt;</span><span class="fu">count</span>(dest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 
-<section id="spaces" class="title-slide slide level1 center">
-<h1>Spaces</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># In this code the author has aligned the "=" sign, giving better readability</span></span>
-<span id="cb3-2"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-4"><a href=""></a>    <span class="at">speed      =</span> distance <span class="sc">/</span> air_time,</span>
-<span id="cb3-5"><a href=""></a>    <span class="at">dep_hour   =</span> dep_time <span class="sc">%/%</span> <span class="dv">100</span>,</span>
-<span id="cb3-6"><a href=""></a>    <span class="at">dep_minute =</span> dep_time <span class="sc">%%</span>  <span class="dv">100</span></span>
-<span id="cb3-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="some-reflections" class="title-slide slide level1 center">
+<h1>Some reflections</h1>
+<ul>
+<li>Why do you think tidy code is important?</li>
+<li>What challenges do you foresee in the implementation of tidy code principles?</li>
+</ul>
+<!--
+
+Again, if you can’t fit all of the arguments to a function on to a single line, put each argument on its own line:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+flights |> 
+  group_by(dest) |> 
+  summarize(
+    distance = mean(distance),
+    speed = mean(distance / air_time, na.rm = TRUE)
+  ) |> 
+  ggplot(aes(x = distance, y = speed)) +
+  geom_smooth(
+    method = "loess",
+    span = 0.5,
+    se = FALSE, 
+    color = "white", 
+    linewidth = 4
+  ) +
+  geom_point()
+```
+:::
+
+
+-->
 </section>
 
-<section>
-<section id="pipes" class="title-slide slide level1 center">
-<h1>Pipes</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Strive for </span></span>
-<span id="cb4-2"><a href=""></a>flights <span class="sc">|&gt;</span>  </span>
-<span id="cb4-3"><a href=""></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum)) <span class="sc">|&gt;</span> </span>
-<span id="cb4-4"><a href=""></a>  <span class="fu">count</span>(dest)</span>
-<span id="cb4-5"><a href=""></a></span>
-<span id="cb4-6"><a href=""></a><span class="co"># Avoid</span></span>
-<span id="cb4-7"><a href=""></a>flights<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum))<span class="sc">|&gt;</span><span class="fu">count</span>(dest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section class="slide level2">
-
-<p>Again, if you can’t fit all of the arguments to a function on to a single line, put each argument on its own line:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href=""></a>  <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href=""></a>  <span class="fu">summarize</span>(</span>
-<span id="cb5-4"><a href=""></a>    <span class="at">distance =</span> <span class="fu">mean</span>(distance),</span>
-<span id="cb5-5"><a href=""></a>    <span class="at">speed =</span> <span class="fu">mean</span>(distance <span class="sc">/</span> air_time, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-6"><a href=""></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb5-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> speed)) <span class="sc">+</span></span>
-<span id="cb5-8"><a href=""></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb5-9"><a href=""></a>    <span class="at">method =</span> <span class="st">"loess"</span>,</span>
-<span id="cb5-10"><a href=""></a>    <span class="at">span =</span> <span class="fl">0.5</span>,</span>
-<span id="cb5-11"><a href=""></a>    <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb5-12"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>, </span>
-<span id="cb5-13"><a href=""></a>    <span class="at">linewidth =</span> <span class="dv">4</span></span>
-<span id="cb5-14"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb5-15"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section></section>
 <section id="load-packcages-for-the-session" class="title-slide slide level1 center">
 <h1>Load packcages for the session</h1>
 <ul>
@@ -603,6 +629,16 @@ Dr Peter E McKenna
 <span id="cb7-13"><a href=""></a><span class="co"># `dim` is really handy to check the size of data objects before and after you perform operations on the data</span></span>
 <span id="cb7-14"><a href=""></a><span class="co"># the same information is also provided by glimpse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+
+<section id="summary" class="title-slide slide level1 center">
+<h1>Summary</h1>
+<p>In today’s session I showed you..</p>
+<ul>
+<li>How to set up an R Project and subdirectories</li>
+<li>How to present your code</li>
+<li>How to read in data</li>
+</ul>
 </section>
 
 <section id="sessions-activities" class="title-slide slide level1 center">
