@@ -24,7 +24,8 @@ bibliography: ref.bib
 
 # load packages for session
 pacman::p_load(tidyverse,
-               summarytools)
+               summarytools,
+               snakecase)
 
 ```
 
@@ -181,7 +182,7 @@ df <-
 - To run summaryDf() you'll need to install and load `summarytools`
 - Based on what we've discussed to this point, how would you go about doing this?
 
-```{r}
+```{r, eval = F}
 
 # Summarise df
 dfSummary(df)
@@ -248,7 +249,7 @@ names(df)
 
 ## Load the necessary packages for today
 
-```{r load packages, warning=F}
+```{r load packages, warning=F, eval = F}
 
 # load packages
 library(snakecase) 

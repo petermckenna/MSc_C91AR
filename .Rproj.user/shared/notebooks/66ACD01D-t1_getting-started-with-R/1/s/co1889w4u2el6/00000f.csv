@@ -1,0 +1,6 @@
+"0",""
+"0","# load packages for session"
+"0","pacman::p_load(tidyverse,"
+"0","               summarytools,"
+"0","               snakecase)"
+"0",""
