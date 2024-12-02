@@ -1,0 +1,499 @@
+---
+title: "C91AR | Advanced Statistics using R"
+subtitle: "Housekeeping in R" 
+title-slide-attributes:
+    data-background-image: images/data-sci-process.png
+    data-background-size: 30%
+    data-background-position: "50% 10%"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  revealjs:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_quarto_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+bibliography: ref.bib   
+---
+
+```{r setup, include=F, warning=FALSE}
+
+ knitr::opts_chunk$set(echo = T, 
+                       eval = T, 
+                       results = 'hide',
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
+
+# default for instructor is echo = T; eval = T
+
+# you only want to see the results for certain chunks (e.g., plots)
+ 
+```
+
+# Reading for Today's session
+
+-   [Intro to R](https://psyteachr.github.io/quant-fun-v2/intro-to-r.html)
+    -   Covers the basics of working directories in R
+    -   **Reminder: we are not using the R server on this course**
+-   [Chapter 4 Workflow: code style](https://r4ds.hadley.nz/workflow-style)
+    -   Covers the basics of code formatting
+-   Why did I ask you to read this?
+    -   These chapters provide valuable advice about how to set up your
+        project and format your code.
+    -   The principles covered here will be the building blocks for your
+        R journey and will make life a lot easier for you in the long-term.
+        
+    
+# Encountering messy code
+
+[](images/messy_code.jpg)        
+
+# What are we going to cover today?
+
+-   Setting up a project in R
+-   Setting up the relevant directories
+-   Learning and applying good coding practice
+-   Reading in raw data using `read_csv` function
+
+# Good Housekeeping
+
+-   Whilst you might be keen to get started with coding right away, I
+    feel it's important to teach you about good practice from the outset.
+-   In this session, I'm going to cover a set of principles about how to
+    format your code so that it is easy to read for others, and
+    therefore, easy to interpret, run, and replicate if required.
+-   This is especially important these days as reproducible science is
+    becoming more important in the social science.
+
+# Using projects
+
+-   In R, we create projects which become the directories for our work
+-   It's a bit like having a folder for each of your subjects.
+-   Make sure you name your projects appropriately
+-   Unless you are adding a project to another related project, use the
+    `New Directory` option and fill out the required details
+
+# Adding folders
+
+-   Once you are in to your new project you need to create a set of
+    useful folders
+-   To do so, type the following code lines one at a time into the
+    Console and press enter
+
+```{r dir_folders, eval=F}
+dir.create("data_raw") # for all raw data
+dir.create("data_tidy") # for all processed/tidy data
+dir.create("fig_out")  # for figures
+```
+
+-   This process ensures that you have a specific directory for a
+    project and a set of folders ready for your work.
+-   You can add other folders or amend their names if you wish, but for
+    now stick to these suggestions
+
+# Saving data in your directory
+
+-   Once you have set up your directories, save your experiment data
+    into the "data_raw" folder.
+-   The best format for R is to save data as a `.csv` but there are
+    options to read in other file formats (e.g., `.xlsx`).
+-   Unprocessed data is saved in the "data_raw" folder and processed
+    data in the "data_tidy" folder so that we the raw and processed data
+    separate
+-   This will save you a lot of headache once you get to grips with
+    processing data and creating new `.csv`s for different purposes.
+
+## Save the raw data provided
+
+-   I have provided some untidy raw data for exercises in C91AR
+-   Save the data from Canvas "robot-expression-data_raw" into the
+    "data_raw" folder
+
+# Tidy code principles
+
+-   For a detailed overview of good coding in R see [this chapter in R
+    for Data Science V2](https://r4ds.hadley.nz/workflow-style).
+    -   Focus on how the code is formatted, not the content (for now).
+-   Good commenting using `#` is essential when writing in R
+-   Also, you can use four dashes `----` to bookmark sections of your R
+    script
+    -   Note, this applies to R code chunks, not the Markdown file
+
+# Naming variables
+
+```{r, eval = F}
+
+# load data
+library(nycflights13)
+
+# Strive for:
+short_flights <- 
+  flights |> filter(air_time < 60)
+
+# Avoid:
+SHORTFLIGHTS <- flights |> filter(air_time < 60)
+
+```
+
+# Spaces
+
+```{r, eval = F}
+
+# In this code the author has aligned the "=" sign, giving better readability
+flights |> 
+  mutate(
+    speed      = distance / air_time,
+    dep_hour   = dep_time %/% 100,
+    dep_minute = dep_time %%  100
+  )
+
+```
+
+# Pipes
+
+```{r, eval = F}
+
+# Strive for 
+flights |>  
+  filter(!is.na(arr_delay), !is.na(tailnum)) |> 
+  count(dest)
+
+# Avoid
+flights|>filter(!is.na(arr_delay), !is.na(tailnum))|>count(dest)
+
+
+```
+
+----
+
+Again, if you can’t fit all of the arguments to a function on to a single line, put each argument on its own line:
+
+```{r, eval = F}
+
+flights |> 
+  group_by(dest) |> 
+  summarize(
+    distance = mean(distance),
+    speed = mean(distance / air_time, na.rm = TRUE)
+  ) |> 
+  ggplot(aes(x = distance, y = speed)) +
+  geom_smooth(
+    method = "loess",
+    span = 0.5,
+    se = FALSE, 
+    color = "white", 
+    linewidth = 4
+  ) +
+  geom_point()
+
+```
+
+
+# Read in the robot expression data
+
+-   Let's read in the expression data and use the principles of tidy
+    code in the process of doing so
+
+```{r read in data, }
+
+# Housekeeping in R
+
+# Load packages 
+library(tidyverse)
+library(summarytools)
+
+# Read in raw data
+df <- # <- is the 'assign' operator 
+  read_csv("data_raw/robot-expression-data_raw.csv")
+
+# Now the data from the csv is stored in an object called `df`
+
+# Examine the dataset 
+glimpse(df) # glimpse provides a summary of the column/vector names, their data type. and the raw values
+# Notice that it only presents a subset of the data
+
+# Check dimensions using `dim`
+dim(df) # 228 rows by 12 columns
+# `dim` is really handy to check the size of data objects before and after you perform operations on the data
+# the same information is also provided by glimpse
+
+```
+
+# Sessions activities
+
+-   https://psyteachr.github.io/quant-fun-v2/intro-to-r.html
+-   This will give you a short introduction to working with directories
+    and RMarkdown
+
+# End of session
+
+-   In the lab, we will pick up where we left off and continue to
+    develop our existing script
+-   Please save your R script for today
+-   If you haven't looked at the reading for today
+
+# C91AR \| Housekeeping in R \| Lab
+
+## What we are going to cover
+
+-   Today's lab is a follow on from what we covered in the lecture
+-   We're going to go a little deeper into good housekeeping, by
+    introducing some of the tidying principles I cover in next weeks
+    lecture
+    -   setting column data types
+    -   generate an overall summary of the data
+    -   tidy vector labels
+    -   rename vector labels
+    -   deal with date vectors
+
+# Setting col types
+
+-   One of the most important things you'll do when reading in data is
+    to specify the data type of each column.
+-   If you don't do this properly from the outset it can lead to some
+    weird behaviour from R later on, and force you to reverse engineer
+    your code.
+-   Proper use of the `col_types` argument in the function `read_csv` is
+    here to help thankfully.
+-   This should be used in conjunction with a datasets metadata file, so
+    that you know which data type to assign to each vector
+
+<!--
+
+# Expression dataset metadata
+
+::: columns
+::: {.column width="50%"}
+-   `ID_` = participant id
+-   `sex` = participant sex
+-   `eth` = participant ethnicity
+-   `eng` = "Is English your native language?"
+-   `Exp.date` = date of experiment
+-   `interact.before` = "Have you ever interacted wtih a robot before?
+:::
+
+::: {.column width="50%"}
+-   `Alyx.is` = participants guess of robot's gender
+-   `item` = plastic food item offered to robot
+-   `Expression` = a numeric value for each of the four robot facial
+    expressions
+-   `resp` = name of the box where participants placed the food item
+    after robot expression
+-   `Time` = robots onboard clock timer
+-   `resp_acc` = accuracy of responses according to theoretically
+    deigned expressions
+:::
+:::
+
+-->
+
+# Data types for the `col_types` argument
+
+::: columns
+::: {.column width="50%"}
+-   "l" = logical
+-   "i" = integer
+-   "d" = double numeric
+-   "c" = character
+-   "D" = date
+-   "\_" = skip
+-   "?" = guess
+:::
+
+::: {.column width="50%"}
+- For more information see the `read_csv` and `col_types` documentation in the help section
+- You can pull this up by running `?read_csv` into the console  
+  + I'd recommend consulting the descriptor info at the top then skipping to the examples at the bottom of the help sheet 
+:::
+:::
+
+# Setting col types within the `read_csv` function
+
+```{r set col types, eval=FALSE}
+
+# Read in data and supply data type argument
+df <-
+  read_csv("data_raw/robot-expression-data_raw.csv",
+           col_types = "ffff?ffffftf")
+
+````
+
+
+# Summarising data using summarytools::dfSummary
+
+- To run summaryDf() you'll need to install and load `summarytools`
+- Based on what we've discussed to this point, how would you go about doing this?
+
+```{r}
+
+# Summarise df
+dfSummary(df)
+
+```
+
+## Group discussion
+
+- Take some time to interpret the output of `dfSummary(df)`.
+- What data types are in the tibble?
+- Is there anything *messy* about the data?
+
+<!-- 
+
+````{=html}
+ 
+# Some examples of Tidy code for R scripts
+
+```{r tidy coding, eval=F}
+
+# Project: Project title
+# Outline purpose of script
+
+# load packages
+libray(tidyverse)
+
+# keep object names lower_case_and_separated_by_underscores
+star_wars <- 
+starwars # starwars data is included in tidyverse
+
+# examine data
+glimpse(star_wars)
+
+# when the pipeline is to long for one line, place arguments on new line
+star_wars |>
+  select(name,
+         sex
+         gender) # select cols name, sex, gender
+
+# Remember, you can also add bookmarks using four dashes to mark different sections and these will appear in the navigation panel next to your script. 
+
+
+```
+
+-->
+
+# Dealing with awkardly formatted column/vector headings
+
+-   You'll notice that the names for columns (or vectors as they are
+    known to programmers) are formatted unusually
+
+```{r head formatting, eval=TRUE}
+
+# Examine vector labelling
+names(df)
+
+```
+
+# Inconsistencies worth noting
+
+-   Use of periods and underscore as separator
+-   Lower-case and upper-case font
+-   Names that lack detail for others
+    -   e.g., `resp`; does that refer to the participant response or the
+        robot's?
+
+## Load the necessary packages for today
+
+```{r load packages, warning=F}
+
+# load packages
+library(snakecase) 
+
+```
+
+-   I would add this to your bookmarked "load packages" section at the
+    beginning of your script
+
+# Tidying column names with `snakecase` package
+
+- We can use the `snakecase` package to apply uniform formatting to column names
+- This addresses the point made earlier about consistent variable names    
+
+```{r tidy headings}
+
+# Tidy column headings using snakecase
+  # these functions come from the snakecase package we loaded earlier
+names(df) <- 
+  to_snake_case(names(df)) # lower_case with underlined separators 
+
+# examine the data
+names(df) # notice how the cols are formatted now
+
+```
+
+<!--
+
+# Check-point
+
+-   Be sure to add descriptive comments to your code chunks
+-   If you're writing code in R scripts then adding these to RMarkdown, add bookmarks with four dashes after a comment
+-   Code vertically by using paragraphs at the end of an argument
+
+-->
+
+# Brain break
+
+[](https://alexandraheller.com/wp-content/uploads/2021/02/5-5-5-5-breathing-technique.gif)
+
+# Changing vector names
+
+-   You can also change the names of vectors using the `rename` function
+-   Note, `rename` asks for the new vector name followed by the old one
+    -   this takes a little getting used to but its simple after enough
+        practice
+
+```{r renaming vectors}
+
+# Rename vectors using rename
+df <-
+  df |>
+  rename(perceived_robot_gender = alyx_is, # the new labels are intended to be more descriptive
+         robot_expression = expression,
+         ppt_acc = resp_acc)
+
+# Examine changes
+names(df)
+
+```
+
+- **Remember, using the assign operator as above will irreversably amend your tibble.**
+- If you feel this is necessary proceed, but if not consider creating a new tibble object.
+
+# Dealing with the date column
+
+-   Dates are notoriously difficult to deal with in R and our date
+    vector could not be read properly
+-   Thankfully there is a really useful package that simplifies
+    everything; the aptly named `lubridate`
+-   It is already loaded as part of the Tidyverse
+-   Take a look at [lubridate here](https://lubridate.tidyverse.org/)
+
+# Lubridate to sort out date column
+
+```{r dates and lubridate}
+
+df <-
+  df |> # this is the pipe operator; it means, "then do this"
+  mutate(exp_date = dmy(exp_date)) # mutate is a function that allows you to append or modify existing columns/vectors in a dataset
+
+# Examine data
+glimpse(df)
+
+```
+
+- The date column should now be properly machine ready formatted (i.e., YYYY-MM-DD), based on the input formatting (i.e., dd/mm/yyyy)
+- The machine readable format YYY-MM-DD is preferable for almost all programming languages.
+- In this format, you can ask R to make nuanced calculations between dates.
+
+# What did we cover in this lab
+
+-   Setting column data types with the `col_types` argument
+-   Generating an overall summary of the data with `summary`
+-   Tidy vector labels with `snakecase`
+-   Rename vector labels with `rename`
+-   Dealing with date vectors using `lubridate`
