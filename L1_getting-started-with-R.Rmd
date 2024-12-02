@@ -67,7 +67,7 @@ Tell us a little bit about why you want to learn R?
 ::: {.column width="50%"}
 -   R is undergoing continuous development, meaning that it can be used
     for almost any data task.
--   R forums, R social media (e.g., #rstats) and ChatGPT offer excellent
+-   R forums, R social media (e.g., #rstats) and Co-Pilot or ChatGPT offer excellent
     support.
 :::    
 :::    
@@ -122,6 +122,9 @@ According to @Duffany_2017
 - More and more these days, companies are looking for graduates who can work with big data.
 - So, my hope is to start you on your programming journey, to better equip you for the labour market of Industry 4.0.
 
+## Any questions?
+
+![](images/messy_code.jpg)
 
 # How the course will be delivered
 
@@ -195,8 +198,12 @@ babynames_df <-
 
 ## Explore the data a bit
 
-The `summarytools` package is better than baseR's summary functions. 
-[Have a look here for more info](https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html)
+- The `summarytools` package is better than baseR's summary functions. 
+- [Have a look here for more info](https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html)
+
+::: {.panel-tabset}
+
+### Code to run `dfSummary` function
 
 ```{r}
 
@@ -205,6 +212,17 @@ dfSummary(babynames_df)
 
 ```
 
+### Output of `dfSummary`
+
+```{r, echo = FALSE, eval=TRUE}
+
+# Summarise with the `dfSummary` function from summarytools package
+dfSummary(babynames_df)
+
+```
+
+:::
+
 ## On the use of packages
 
 - Anyone using R can develop their own package.
@@ -212,8 +230,9 @@ dfSummary(babynames_df)
 - The one's I include on this course are widely used by scientists across disciplines.
 - If you find other packages more suited to your data, by all means use them!
 
+## Some fun with names
 
-```{r}
+```{r, eval=TRUE}
 # Wrangle a fraction of names dataset from `babynames` dataset
 babynames_class <-
   babynames_df |>
