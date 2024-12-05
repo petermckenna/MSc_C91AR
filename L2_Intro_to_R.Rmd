@@ -1,0 +1,218 @@
+---
+title: "Lecture: Introduction to R"
+subtitle: "C91AR: Advanced Statistics using R"
+title-slide-attributes:
+    data-background-image: images/data-sci-process.png
+    data-background-size: 30%
+    data-background-position: "50% 10%"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  revealjs:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_quarto_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+bibliography: ref.bib    
+---
+
+```{r setup, include=F, warning=FALSE}
+
+ knitr::opts_chunk$set(echo = T, 
+                       cache = F,
+                       eval = F,    
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
+
+# default for instructor is echo = T; eval = T
+
+# you only want to see the results for certain chunks (e.g., plots)
+ 
+```
+
+
+
+```{r, eval = TRUE, include = F}
+
+# Relevant packages
+pacman::p_load(babynames,
+               tidyverse,
+               RColorBrewer,
+               Cairo,
+               summarytools)
+
+```
+
+# Create subdirectories ----
+
+dir.create("data_raw")
+dir.create("data_tidy")
+dir.create("fig_output")
+
+
+# Load and install packages ----
+
+install.packages("tidyverse")
+
+library(tidyverse)
+
+
+# Some basic R programming ----
+
+3 + 5
+
+12/7
+
+x <- 5
+
+7 -> x
+
+# some simple maths
+
+x <- 23
+
+y <- 67
+
+area_rect <- x * y
+
+# BMI
+
+height <- 1.8
+
+weight <- 80
+
+bmi <- (weight/(height*height))  
+
+bmi <- (height/(weight*weight))
+
+
+# Using functions ----
+
+sqrt(4)
+
+a <- 49
+
+sqrt(a)
+
+round(3.14159)
+
+args(round)
+
+round(3.14159, digits = 2)
+
+
+# Vectors and data types ----
+
+test_scores <-
+  c(3, 5, 2, 8, 7)
+
+test_scores
+
+students <-
+  c("Roland", "Sophie", "Max", "Teresa", "Mandy")
+
+length(test_scores)
+
+length(students)
+
+class(test_scores)
+
+class(students)
+
+students <-
+  c(students, "Dennis")
+
+students
+
+
+# Mixed data types ----
+
+test_answers <-
+  c("a", 5, 8, TRUE, 3i)
+
+class(test_answers)
+
+str(test_answers)
+
+
+# Sub-setting vectors ----
+
+test_answers
+
+test_answers[2]
+
+test_answers[c(3, 2)]
+
+test_answers[c(9, 23, 5)]
+
+
+# Conditional sub-setting
+
+test_scores <-
+  c(test_scores, 10, 2, 1, 3, 6)
+
+test_scores > 3
+
+test_scores[test_scores > 3]
+
+test_scores[test_scores <= 2 | test_scores == 6]
+
+students[students == "Max" | students == "Mandy"]
+
+
+# Tidyverse Exercises ----
+
+# Download the data
+
+download.file("https://github.com/petermckenna/ddi/blob/main/exp_data.csv", "data_raw/exp_data.csv", mode = "wb")
+
+download.file("https://github.com/petermckenna/ddi/blob/main/exp_data.csv", "exp_data.csv", mode = "wb")
+
+
+# Read in the data ----
+
+data <-
+  read_csv("data_raw/exp_data_copy.csv")
+
+
+# Inspect the data ----
+
+head(data)
+
+tail(data)
+
+glimpse(data)
+
+
+# Data wrangling with the tidyverse ----
+
+# filtering
+
+data %>%
+  filter(id == 1:5)
+
+data %>%
+  filter(voice_type == "female")
+
+female_data <-
+  data %>%
+  filter(voice_type == "female")
+
+# mutate to create new vector
+
+data %>%
+  mutate(gender = ifelse(id == 1:6, 
+                         "female", 
+                         "male"))
+
+# summarising data
+
+data %>%
+  summarise(avg_conv = mean(conv_len))
+    
