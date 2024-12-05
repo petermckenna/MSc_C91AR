@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Dr Peter McKenna">
-  <meta name="dcterms.date" content="2024-11-21">
+  <meta name="dcterms.date" content="2024-12-02">
   <title>C91AR | Advanced Statistics using R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -405,7 +405,7 @@ Dr Peter McKenna
 </div>
 </div>
 
-  <p class="date">2024-11-21</p>
+  <p class="date">2024-12-02</p>
 </section>
 <section>
 <section id="packages-for-todays-session" class="title-slide slide level1 center">
@@ -877,9 +877,17 @@ Levels: Female Male male ffemale femalew</code></pre>
 <h1>Data object considerations</h1>
 <ul>
 <li><strong>NOTE</strong>: If you have assigned transformations to an object with the same original name (e.g., <code>df</code> &lt;- <code>df</code>) that object is irreversibly overwritten, unless you go back to a previous line that created it from scratch (e.g., where it was read in )</li>
-<li>That is why your operations must flow logically from top to bottom, otherwise future operations on the data will not work.</li>
+<li>That is why your code operations must flow logically from top to bottom, otherwise future operations on the data will not work.
+<ul>
+<li>e.g., You might ask R to look up a column that changed name earlier in the script, which would throw an error.</li>
+</ul></li>
 <li>The alternative strategy is to give each new object a different name, like <code>df1</code>. If you pursue this method, it is worth adding a comment next to each new object specifying how it is different to the previous.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>df1 <span class="ot">&lt;-</span> <span class="co"># this object only contains data about ppt id and eth</span></span>
+<span id="cb16-2"><a href=""></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href=""></a>  <span class="fu">select</span>(id, eth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="save-your-tidy-data" class="slide level2">
 <h2>Save your tidy data</h2>
@@ -888,9 +896,9 @@ Levels: Female Male male ffemale femalew</code></pre>
 <li>Again, use comments and bookmarks to signpost this part of your script</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="co"># save your new data object into `data_tidy`</span></span>
-<span id="cb16-2"><a href=""></a><span class="fu">write_csv</span>(df, </span>
-<span id="cb16-3"><a href=""></a>          <span class="st">"data_out/robot-expression-data_tidy.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># save your new data object into `data_tidy`</span></span>
+<span id="cb17-2"><a href=""></a><span class="fu">write_csv</span>(df, <span class="co"># name of the object</span></span>
+<span id="cb17-3"><a href=""></a>          <span class="st">"data_out/robot-expression-data_tidy.csv"</span>) <span class="co"># desired directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="week-3-lecture" class="slide level2">
@@ -918,8 +926,8 @@ Levels: Female Male male ffemale femalew</code></pre>
 </ul>
 </div><div class="column" style="width:50%;">
 <ul>
-<li>We will are working on R scripts - these are the files with the <code>.R</code> file type.</li>
-<li>Make sure you have commented and bookmarked important sections of the script.<br>
+<li>We will are working on R markdown and R Scripts - these are the files with the <code>.rmd</code> and <code>.R</code> file type.</li>
+<li>Make sure you have commented and bookmarked important sections of the R script.<br>
 </li>
 <li>If you want to work on a data file, you must create an object using <code>read_csv</code> and specify the related file directory.</li>
 <li><code>|&gt;</code> used to be represented by <code>%&gt;%</code>, but both still work.</li>
@@ -982,16 +990,16 @@ Levels: Female Male male ffemale femalew</code></pre>
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># Using case_when and str_detect to modify rows by string patterns</span></span>
-<span id="cb17-2"><a href=""></a>df <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> </span>
-<span id="cb17-4"><a href=""></a>           dplyr<span class="sc">::</span><span class="fu">case_when</span>(<span class="fu">str_detect</span>(sex, </span>
-<span id="cb17-5"><a href=""></a>                                       <span class="st">"^[Mm]"</span>) <span class="sc">~</span> <span class="st">"Male"</span>,</span>
-<span id="cb17-6"><a href=""></a>                                <span class="fu">str_detect</span>(sex, </span>
-<span id="cb17-7"><a href=""></a>                                           <span class="st">"^[Ff]"</span>) <span class="sc">~</span> <span class="st">"Female"</span>,</span>
-<span id="cb17-8"><a href=""></a>                                <span class="cn">TRUE</span> <span class="sc">~</span> sex))</span>
-<span id="cb17-9"><a href=""></a></span>
-<span id="cb17-10"><a href=""></a><span class="co"># Note: ChatGPT is particularly useful for regex patterns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="co"># Using case_when and str_detect to modify rows by string patterns</span></span>
+<span id="cb18-2"><a href=""></a>df <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> </span>
+<span id="cb18-4"><a href=""></a>           dplyr<span class="sc">::</span><span class="fu">case_when</span>(<span class="fu">str_detect</span>(sex, </span>
+<span id="cb18-5"><a href=""></a>                                       <span class="st">"^[Mm]"</span>) <span class="sc">~</span> <span class="st">"Male"</span>,</span>
+<span id="cb18-6"><a href=""></a>                                <span class="fu">str_detect</span>(sex, </span>
+<span id="cb18-7"><a href=""></a>                                           <span class="st">"^[Ff]"</span>) <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb18-8"><a href=""></a>                                <span class="cn">TRUE</span> <span class="sc">~</span> sex))</span>
+<span id="cb18-9"><a href=""></a></span>
+<span id="cb18-10"><a href=""></a><span class="co"># Note: ChatGPT is particularly useful for regex patterns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>This might look like a foreign language right now, so let me parse it out for you</li>
@@ -1052,14 +1060,14 @@ Levels: Female Male male ffemale femalew</code></pre>
 <li>Note, when I say <em>wrangling</em> here, I’m referring to all the operations I might perform on tidy data, e.g., summarising, plotting, analysing</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="co"># Wrangling data</span></span>
-<span id="cb18-2"><a href=""></a></span>
-<span id="cb18-3"><a href=""></a><span class="co"># load packages</span></span>
-<span id="cb18-4"><a href=""></a><span class="fu">library</span>(tidyverse) <span class="co"># load in our toolkit</span></span>
-<span id="cb18-5"><a href=""></a></span>
-<span id="cb18-6"><a href=""></a><span class="co"># read in data</span></span>
-<span id="cb18-7"><a href=""></a>df <span class="ot">&lt;-</span></span>
-<span id="cb18-8"><a href=""></a>  <span class="fu">read_csv</span>(<span class="st">"data_out/robot-expression-data_tidy.csv"</span>) <span class="co"># don't forget the `.csv` bit!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="co"># Wrangling data</span></span>
+<span id="cb19-2"><a href=""></a></span>
+<span id="cb19-3"><a href=""></a><span class="co"># load packages</span></span>
+<span id="cb19-4"><a href=""></a><span class="fu">library</span>(tidyverse) <span class="co"># load in our toolkit</span></span>
+<span id="cb19-5"><a href=""></a></span>
+<span id="cb19-6"><a href=""></a><span class="co"># read in data</span></span>
+<span id="cb19-7"><a href=""></a>df <span class="ot">&lt;-</span></span>
+<span id="cb19-8"><a href=""></a>  <span class="fu">read_csv</span>(<span class="st">"data_out/robot-expression-data_tidy.csv"</span>) <span class="co"># don't forget the `.csv` bit!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -1072,10 +1080,10 @@ Levels: Female Male male ffemale femalew</code></pre>
 <li>Let’s say we only want to look at males whose first language was English</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>df <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href=""></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>, <span class="co"># this only works because we have a vector called `sex` which has values labelled `Male`</span></span>
-<span id="cb19-3"><a href=""></a>         eng <span class="sc">==</span> <span class="st">"Yes"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a href=""></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>df <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href=""></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>, <span class="co"># this only works because we have a vector called `sex` which has values labelled `Male`</span></span>
+<span id="cb20-3"><a href=""></a>         eng <span class="sc">==</span> <span class="st">"Yes"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href=""></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -1100,13 +1108,13 @@ Levels: Female Male male ffemale femalew</code></pre>
 <li>Let’s subset the data by native language and response accuracy</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="co"># label: select</span></span>
-<span id="cb20-2"><a href=""></a></span>
-<span id="cb20-3"><a href=""></a><span class="co"># Subset by native language and response accuracy </span></span>
-<span id="cb20-4"><a href=""></a>df <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href=""></a>  <span class="fu">select</span>(eng,</span>
-<span id="cb20-6"><a href=""></a>         ppt_acc) <span class="sc">|&gt;</span></span>
-<span id="cb20-7"><a href=""></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># label: select</span></span>
+<span id="cb21-2"><a href=""></a></span>
+<span id="cb21-3"><a href=""></a><span class="co"># Subset by native language and response accuracy </span></span>
+<span id="cb21-4"><a href=""></a>df <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href=""></a>  <span class="fu">select</span>(eng,</span>
+<span id="cb21-6"><a href=""></a>         ppt_acc) <span class="sc">|&gt;</span></span>
+<span id="cb21-7"><a href=""></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
@@ -1115,13 +1123,13 @@ Levels: Female Male male ffemale femalew</code></pre>
 <li>Sub-setting and renaming can be done as follows</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># label: select and rename</span></span>
-<span id="cb21-2"><a href=""></a></span>
-<span id="cb21-3"><a href=""></a><span class="co"># Subset by native language and response accuracy </span></span>
-<span id="cb21-4"><a href=""></a>df <span class="sc">|&gt;</span></span>
-<span id="cb21-5"><a href=""></a>  <span class="fu">select</span>(<span class="at">native_english =</span> eng,</span>
-<span id="cb21-6"><a href=""></a>         <span class="at">participant_accuracy =</span> ppt_acc) <span class="sc">|&gt;</span></span>
-<span id="cb21-7"><a href=""></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="co"># label: select and rename</span></span>
+<span id="cb22-2"><a href=""></a></span>
+<span id="cb22-3"><a href=""></a><span class="co"># Subset by native language and response accuracy </span></span>
+<span id="cb22-4"><a href=""></a>df <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href=""></a>  <span class="fu">select</span>(<span class="at">native_english =</span> eng,</span>
+<span id="cb22-6"><a href=""></a>         <span class="at">participant_accuracy =</span> ppt_acc) <span class="sc">|&gt;</span></span>
+<span id="cb22-7"><a href=""></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section id="a-glimpse-into-summary-chains" class="title-slide slide level1 center">
@@ -1130,10 +1138,10 @@ Levels: Female Male male ffemale femalew</code></pre>
 <li>Summarise count of response accuracy by robot expression.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>df <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href=""></a>  <span class="fu">group_by</span>(robot_expression,</span>
-<span id="cb22-3"><a href=""></a>           ppt_acc) <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a href=""></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>df <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href=""></a>  <span class="fu">group_by</span>(robot_expression,</span>
+<span id="cb23-3"><a href=""></a>           ppt_acc) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href=""></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
