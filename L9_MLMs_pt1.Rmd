@@ -1,411 +1,83 @@
 ---
-title: "LMMs (Chapter 4, 5, 6, & 7)"
-author: "Peter McKenna"
-date: "2024-07-08"
-output: html_document
+title: "C91AR: Advanced Statistics using R"
+subtitle: "Lecture 9: Multi-level modelling part 1"
+title-slide-attributes:
+    data-background-image: images/data-sci-process.png
+    data-background-size: 30%
+    data-background-position: "50% 10%"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  revealjs:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_quarto_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+bibliography: ref.bib    
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=F, warning=FALSE}
 
-# Set seed
-set.seed(123)  # For reproducibility
+ knitr::opts_chunk$set(echo = T, 
+                       cache = F,
+                       eval = F,    
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
 
-# load packages
-library(lme4)
-library(tidyverse)
-library(MASS)
+# default for instructor is echo = T; eval = T
 
+# you only want to see the results for certain chunks (e.g., plots)
+ 
 ```
 
-# Chapter 4: Interactions
+# Sources
 
--   Important in situations where the effect of one predictor on the response depends on the value of another predictor variable. This dependency can be interpreted and estimated through the inclusion of an interaction term.
--   When the relationship between more than one predictor variable is of theoretical relevance.
+- [This video on multi-level modelling](https://www.youtube.com/watch?v=hQmYzCYuD1k&t=4931s)
+- [Introduction to Multilevel Modelling](https://www.learn-mlms.com/02-multiple-regression.html)
+- [Introducing Linear mixed-effects models](https://psyteachr.github.io/stat-models-v1/introducing-linear-mixed-effects-models.html)
 
-### Continuous by categorical interactions
 
-#### Example context: Dwelling setting, sonic distraction, and RT
+# Introduction to Multi-level modelling
 
--   examining the effects of sonic distraction on cognitive performance
--   ppts assigned to randomly receive different levels of sonic distraction (e.g., city sounds, jack-hammer, people yelling etc.) while they complete an RT task (e.g., respond quickly as possible to flashing light)
--   each participant performs the task for a randomly chosen level of distraction (0 to 100)
--   $H_{1}$ = urban living makes people's task performance more immune to sonic distraction.
--   the objective is to compare the relationship between distraction and performance for `city` dwellers vs `rural` dwellers
+# OLS regression limitations
 
-**Variables**
+- assumes data points are independently and identically distributed
+  - i.e., subject 1's data has nothing to do with subject 2's data
 
--   DV = mean RT, with higher levels reflecting slower RTs
--   continuous predictor variable, level of sonic distraction (`dist_level`)
--   group factor with two levels (`urban` vs `rural`)
--   in this examining sonic distractions, let's assume that the mean RT for urban dwellers was 450ms, and that for each unit increase in sonic distraction, RT increased by 2:
+- The downside of aggregating the response variable (DV) as is done in OLS regression
+  - reduces the complexity of your data
+  - reduces the power of your analysing
+  - ignores measurement error (which may be of theoretical interest)
+  - can hide where heteroscedasticity is come from
 
-$Y_{i} = 450 + 2X_{i} + e_{i}$
 
--   Where mean RT at the intercept ($\beta_{0}$) was 450ms
--   Each unit increase in RT increased time in the response variable by 2ms, otherwise known as the slope ($\beta_{1}$). So $X_{i}$ in the formula represents the amount of sonic distraction.
+## Remind me what heteroscedasticity is...
 
-#### Simulate data for urban group
+Across all measurements there are different variances. So, across all the values of X, the variance in Y is not equal.
+Multilevel models allow you to probe the nature of this heteroscedasticity. 
 
-```{r}
-set.seed(1031)
+# Co-pilots Explanation
 
-n_subj <- 100L  # simulate data for 100 subjects
-b0_urban <- 450 # y-intercept
-b1_urban <- 2   # slope
+Heteroscedasticity is a fancy term used in statistics to describe a situation where the variability of a variable is not consistent across all levels of another variable that predicts it. 
 
-# decomposition table
-urban <- tibble(
-  subj_id = 1:n_subj,
-  group = "urban",
-  b0 = 450,
-  b1 = 2,
-  dist_level = sample(0:n_subj, n_subj, replace = TRUE),
-  err = rnorm(n_subj, mean = 0, sd = 80),
-  simple_rt = b0 + b1 * dist_level + err)
+Imagine you're looking at the relationship between people's income and their spending habits. For people with lower incomes, their spending might be pretty similar and predictable. But as people's incomes increase, their spending habits can vary a lot more. Some might save a lot, while others might spend on luxury items. This increasing spread or variability in spending as income rises is an example of heteroscedasticity[1](https://quickonomics.com/terms/heteroscedasticity/)[2](https://www.statisticshowto.com/heteroscedasticity-simple-definition-examples/).
 
-urban
+In simpler terms, if you plot this data on a graph, you might see that the points spread out more as you move along the income axis, forming a sort of cone shape. This uneven spread is what we call heteroscedasticity[2](https://www.statisticshowto.com/heteroscedasticity-simple-definition-examples/).
 
-```
 
--   Plot the data with line of best fit
 
-```{r}
+# So, what do I do?
 
-ggplot(urban, aes(dist_level, simple_rt)) + 
-  geom_point(alpha = .2) +
-  geom_smooth(method = "lm", se = FALSE)
+- any time you have multiple measurements of something your data is no longer independent
 
-```
+ 
 
-#### Simulate data for rural group
-
--   For this group, let's assume that their RT will be higher due to quieter living setting, with intercept 500ms and slope 3
-
-$Y_{i} = 500 + 3X_{i} + e_{i}$
-
-```{r}
-
-b0_rural <- 500
-b1_rural <- 3
-
-rural <- tibble(
-  subj_id = 1:n_subj + n_subj,
-  group = "rural",
-  b0 = b0_rural,
-  b1 = b1_rural,
-  dist_level = sample(0:n_subj, n_subj, replace = TRUE),
-  err = rnorm(n_subj, mean = 0, sd = 80),
-  simple_rt = b0 + b1 * dist_level + err)
-
-```
-
--   Now let's plot the data side by side
-
-```{r}
-
-all_data <- 
-  bind_rows(urban, rural)
-
-ggplot(all_data %>% mutate(group = fct_relevel(group, "urban")), 
-       aes(dist_level, simple_rt, colour = group)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  facet_wrap(~ group) + 
-  theme(legend.position = "none")
-
-```
-
-### How to test diference between slopes
-
--   Two separate regressions would not allow us to assess whether the two slopes significantly differ from one another.
--   We can represent one of the regression lines in terms of "offset" values from the other
-    -   you can arbitrarily choose one group to represent the 'baseline' (e.g., the "urban" group in the worked example in Chapter 4) and represent the y-intercept and slope of the other group as offsets from this baseline.
--   So, if we treat the "urban" group as the baseline, we can express the y-intercept and slope for the "rural" groups in terms of two offsets $\beta_{2}$ & $\beta_{3}$, for the y-intercept and slope, respectively.
-
-y-intercept: $\beta_{0_\textit{_rural}} = \beta_{0_\textit{_urban}} + \beta_{2}$
-
-slope: $\beta_{1_\textit{_rural}} = \beta_{1_\textit{_urban}} + \beta_{3}$
-
--   The urban group had parameters $\beta_{0_\textit{_urban}}$ = 450 and $\beta_{1_\textit{_urban}}$ = 2, whereas the rural group had $\beta_{0_\textit{_rural}}$ = 500 and $\beta_{1_\textit{_urban}}$ = 3. Case in point:
-
-$\beta_{2}$ = 50, as $\beta_{0_\textit{_rural}}$ - $\beta_{0_\textit{_urban}}$ = 500 - 450 = 50
-
-$\beta_{3}$ = 1, as $\beta_{1_\textit{_rural}}$ - $\beta_{1_\textit{_urban}}$ = 3 - 2 = 1
-
--   So, the two regression models become the following:
-
-$Y_{i_\textit{_urban}} = \beta_{0_\textit{_urban}} + \beta_{1_\textit{_urban}}X_{i} + e_{i}$
-
-and
-
-$Y_{i_\textit{_rural}} = (\beta_{0_\textit{_urban}} + \beta_{2}) + (\beta_{1_\textit{_urban}} + \beta_{3})X_{i} + e_{i}$
-
--   The final trick is to define an additional dummy predictor variable that takes on the value 0 for the urban group (chosen as our baseline) and 1 for the other group.
-
-#### Final interaction model with dummy coding
-
-$Y_{i} = \beta_{0} + \beta_{1}X_{1i} + \beta_{2}X_{2i} + \beta_{3}X_{1i}X_{2i} + e_{i}$
-
-| value                   | description                                                                 |
-|--------------------------|----------------------------------------------|
-| $X_{1i}$                | continuous predictor                                                        |
-| $X_{2i}$                | dummy coded variable taking on 0 for baseline and 1 for the alternate group |
-| $\beta_{0}$             | y-intercept for the baseline group                                          |
-| $\beta_{1}$             | slope for the baseline group                                                |
-| $\beta_{2}$             | offset to y-intercept for the alternative group                             |
-| $\beta_{3}$             | offset to slope for the alternative group                                   |
-| $\beta_{3}X_{1i}X_{2i}$ | interaction term                                                            |
-
-**Estimation in R**
-
-`lm(Y ~ X1 + X2 + X1:X2, data)`, or as a short cut `lm(Y ~ X1 * X2)`
-
--   Lets show that the above GLM gives us the two regression lines that we want.
--   To derive the regression equation for the urban group, we plug in 0 for $X_{2i}$. This gives us
-
-$Y_{i} = \beta_{0} + \beta_{1}X_{1i} + \beta_{2}0 + \beta_{3}X_{1i}0 + e_{i}$
-
-...which dropping the zero terms becomes
-
-$Y_{i} = \beta_{0} + \beta_{1}X_{1i} + e_{i}$,
-
-which is the regression equation for our baseline (urban) group. Compare this to $Y_{i_\textit{_urban}}$ above.
-
-Plugging in 1 for $X_{2i}$ gives us the equation for the rural group, resulting in
-
-$Y_{i} = \beta_{0} + \beta_{1}X_{1i} + \beta_{2}1 + \beta_{3}X_{1i}1 + e_{i}$,
-
-...which after reducing can be expressed as
-
-$Y_{i} = \beta_{0} + \beta_{2} + (\beta_{1} + \beta_{3})X_{1i} + e_{i}$.
-
-Compare this to $Y_{i_\textit{_rural}}$ above. You can see that the dummy coding trick worked!
-
-## Estimating whether the slopes are different
-
--   If $\beta_{3} = 0$ then there is a single slope for both groups (although, they can have different intercepts)
--   This would also mean that the two slopes were parallel
--   Conversely, if $\beta_{3} \neq 0$ then the two groups have different slopes and the slopes are not parallel
--   Because we are (generally) estimating population effects you cannot rely on the visualisation of group slopes to determine whether there is an interaction or not - you must run an inferential test to be certain.
-
-## Run interaction analysis
-
-```{r}
-# augment data to include numeric code for groups
-all_data2 <- all_data %>%
-  mutate(grp = if_else(group == "rural", 1, 0))
-
-# model the data
-sonic_mod <- lm(simple_rt ~ dist_level + grp + dist_level:grp,
-                all_data2)
-
-summary(sonic_mod)
-
-```
-
-## Categorical by categorical interacations
-
-- careful not to confuse factors and levels: factors are variables with a single or multiple levels
-- so in the previous maze analysis the robust ANOVA analysed a single factor design with level levels (Baseline, Sensor, ToM)
-- you can calculate how many cells a design has by multiplying the number of levels in each factor; e.g., a $2 \times 2$ design would have 4 cells. 
-
-### A worked example: The effects of cognitive therapy and drug therapy on mood
-
-- examine different types of therapy on depressed patients: cognitive and drug
-- half of pxs randomly assigned to receive Cognitive Behavioural Therapy (CBT) and the other half some type of control activity
-- We also further divide the patients through random assignment into a drug therapy group, whose members receive anti-depressants, and an control group, whose members receive a placebo.
-- After treatment, (or control/placebo), you measure their mood on a scale, with higher numbers corresponding to a more positive mood. 
-- Let's imagine that the means we obtain are blow the population means, free of measurement or sampling error.
-- Bear in mind, that in this hypothetical example we assume to know the population mean, though this is almost never the case.
-- Often you can determine whether there is an interaction if the slopes of your group lines differ
-
-
-## Effects in a factorial design
-
-- **Main effect** = the effect of a factor on the DV **ignoring** the other factors in the design.
-- The test of a main effect is a test of the equivalence of marginal means.
-- The $H_{0}$ would be that the marginal means are the equal for each level in your factor:
-
-$\overline{Y}_{1...} = \overline{Y}_{2...} = ... = \overline{Y}_{k...}$
-
-i.e., that all row means are equal.
-
-
-### Simple effect
-
-- A **Simple effect** is the efect of one factor at a specific levl of another factor (i.e., holding that factor constant at a particular value).
-
-
-### An interaction
-
-- **interaction** = the effect of one variable differs across the levels of another variable.
-- Put differently, you could say that an interaction is present when the simple effects of one factor differ across the levels of another factor. 
-
-
-### Higer-order designs
-
-- Difficult to interpret 3 factor designs, and 4 factor even more so
-
-
-# The GLM for a factorial design
-- GLM formula for a $2 \times 2$ ANOVA is
-
-$Y_{ijk} = \mu + A_{i} + B_{j} + AB_{ij} + S(AB)_{ijk}.$
-
-| symbol | description |
-|--------|-------------|
-| $Y_{ijk}$ | the score for observation $k$ at level $i$ of $A$ and level $j$ of $B$. |
-| $\mu$ | the grand mean
-| $A_{i}$ | the main effect of factor $A$ at level $i$ of $A$ |
-| $B_{j}$ | the main effect of factor $B$ at level $j$ of $B$ |
-| $AB_{ij}$ | the $AB$ interaction at level $i$ of $A$ and level $j$ of $B$ |
-| $S(AB)_{ijk}$ | the residual |
-
-- Individual main and interaction effects sum to zero, often written as
-  + $\sum_{i}A_{i} = 0$
-  + $\sum_{j}B_{j} = 0$
-  + $\sum_{ij}AB_{ij} = 0$
-
-  
-## Code you own categorical predictors in factorial designs
-
-- default in R for categorical predictors are not ideal for experiments
-- default coding of categories gives you **simple effects** rather than **main effects** (typically, you'll want the latter)
-- coding categorical predictors by hand is best practice
-- don't include them as factor variables either - R isn't very good at handling these
-
-### Coding scheme for categorical variables
-
-#### Simple effects vs main effects
-
-- In an $A \times B$ design, the *simple effect of $A$* is the effect of $A$ controlling for $B$
-- Whilst the *main effect of $A$* is the effect of $A$ **ignoring** $B$
-- The distinction between simple interactions and main interactions has the same logic: the simple interaction of $AB$ in an $ABC$ design is the interaction of $AB$ at a particular level of $C$; the main interaction of $AB$ is the interaction **ignoring** $C$. 
-- The latter is what we are usually talking about when we talk about lower-order interactions in a three-way design. It is also what is generated in the standard ANOVA output in R using the `aov` function.
-
-#### The key coding schemes
-
-- You're coding scheme will impact
-  + the intercept term in the model
-  + the interpretation of the tests for all but the highest-order effects and interaction in factorial design
-- It can also influence the interpretation/estimation of random effects in a mixed-effects model
-- If you have a design with only a single two-level factor, and are using maximal random-effects structure, the choice of coding scheme doesn't really matter. 
-
-For a two-level factor, you could use the following codes
-
-| Scheme | $A_{1}$ | $A_{2}$ |
-|--------|---------|---------|
-| Treatment (dummy) | 0 | 1 |
-| Sum | -1 | 1 |
-| Deviation | $-\frac{1}{2}$ | $\frac{1}{2}$ |
-
-
-#### What about factors with more than two levels?
-
-- A factor with $k$ levels requires $k-1$ variables
-- Each predictor contrasts a particular "target" level of the factor with a level that you (arbitrarily) choose as the "baseline" level
-- For example, a three level factor $A$ with $A1$ chosen as the baseline would include two predictors, comparing $A2$ and $A1$ and the other comparing $A3$ to $A1$. 
-- For treatment coding, the target level is set to 1, otherwise 0.
-- For sum coding, the levels must sum to zero, so for a given predictor, the target level is given the value 1, the baseline is given the value -1, and any other level is given the value 0
-- For deviation coding, the values must also sum to 0. Deviation coding is recommended whenever you are trying to draw ANOVA-style inferences. Un this scheme, the target level gets the value $\frac{k-1}{k}$ while any non-target level get the value $-\frac{1}{k}$
-
-**Three level factor example**
-
-
-*Treatment (Dummy)*
-
-| Level | A2v1 | A3v1 |
-|-------|------|------|
-| A1 | 0 | 0 |
-| A2 | 1 | 0 |
-| A3 | 0 | 1 | 
-
-
-*Sum*
-
-| Level | A2v1 | A3v1 |
-|-------|------|------|
-| A1 | -1 | -1 |
-| A2 | 1 | 0 |
-| A3 | 0 | 1 | 
-
-
-*Deviation*
-
-| Level | A2v1 | A3v1 |
-|-------|------|------|
-| A1 | $-\frac{1}{3}$ | $-\frac{1}{3}$ |
-| A2 | $\frac{2}{3}$ | $-\frac{1}{3}$ |
-| A3 | $-\frac{1}{3}$ | $\frac{2}{3}$ |
-
-
-### How to create your own numeric predictors
-
-```{r}
-
-## create your own numeric predictors
-## make an example table
-dat <- tibble(Y = rnorm(12),
-             A = rep(paste0("A", 1:3), each = 4))
-
-```
-
-Treatment coding
-
-```{r}
-
-## examples of three level factors
-## treatment coding
-dat_treat <- dat %>%
-  mutate(A2v1 = if_else(A == "A2", 1L, 0L),
-     A3v1 = if_else(A == "A3", 1L, 0L))
-
-dat_treat
-
-```
-
-Sum coding
-
-```{r}
-
-## sum coding
-dat_sum <- dat %>%
-  mutate(A2v1 = case_when(A == "A1" ~ -1L, # baseline
-                          A == "A2" ~ 1L,  # target
-                          TRUE      ~ 0L), # anything else
-         A3v1 = case_when(A == "A1" ~ -1L, # baseline
-                          A == "A3" ~  1L, # target
-                          TRUE      ~ 0L)) # anything else
-
-dat_sum
-
-```
-
-Deviation coding
-
-```{r}
-
-## deviation coding
-## baseline A1
-dat_dev <- dat %>%
-  mutate(A2v1 = if_else(A == "A2", 2/3, -1/3), # target A2
-         A3v1 = if_else(A == "A3", 2/3, -1/3)) # target A3
-
-dat_dev
-
-```
-
-## Interactions: conclusions
-
-- The interpretation of all but the highest order effect depends on the coding scheme
-- The treatment coding, you are looking at simple effects and simple interactions, **not** main effects and main interactions
-- The parameter estimates for sum coding differs from deviation coding only in the magnitude of the parameter estimates, but have identical interpretations.
-- Because it is not subject to scaling effects seen under sum coding, deviation should be used by default for ANOVA-style designs
-- The default coding for factors in R is "treatment" coding
-- To obtain canonical ANOVA-style interpretations of main effects and interactions use **deviation coding NOT the default treatment coding**. 
-
-------------------------------------------------------------------------
 
 # Gaining a deeper understanding of LMMs for research
 
