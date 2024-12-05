@@ -1,0 +1,64 @@
+---
+title: "C91AR: Advanced Statistics using R"
+subtitle: "Lecture 10: Multi-level modelling part 2"
+title-slide-attributes:
+    data-background-image: images/data-sci-process.png
+    data-background-size: 30%
+    data-background-position: "50% 10%"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  revealjs:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_quarto_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+bibliography: ref.bib    
+---
+
+# Source for today's follow up
+
+- [This video on multi-level modelling](https://www.youtube.com/watch?v=hQmYzCYuD1k&t=4931s)
+
+# Exmaple 
+
+Say we spcify the following model to predict language tet score based on gender and whether the school is public or private.
+
+```{r, eval = F}
+
+test_score ~ gender_student + school_type
+
+```
+ 
+We can deconstruct the data for MLM analysis like so 
+
+- DV: test score
+- IV1: gender of student
+- IV2: school type
+- Cluster variable: school number (multiple schools within school type)
+- Level 1: gender of student (each test score is matched to a gender)
+- Level 2: school type (multiple language scores matched to a school type)
+
+# MLM equations (again)
+
+Level 1
+
+$Y_{sd} = \beta_{0s} + \beta_{1s}X_{sd} + e_{sd}$
+
+- $Y_{sd}$: predicted score for DV for ppt *s* at level 2 
+- $\beta_{0s}$: intercept (for levels of level 2 *d*)
+- $\beta_{1s}$: slope for level 1 (and could include different slopes)
+- $X_{sd}$: Level 1 predicted score for ppt *s* who is in level 2 *d* 
+- $e_{sd}$: error for participant *s* who is in Level 2*d*
+
+----
+
+Level 2 (random intercept)
+
+$\beta_{0s} = \gamma_{0} + S_{0s}$
+
+
