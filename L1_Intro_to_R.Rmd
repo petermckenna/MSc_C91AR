@@ -1,5 +1,5 @@
 ---
-title: "Lecture: Welcome to C91AR"
+title: "Lecture: Introduction to R"
 subtitle: "C91AR: Advanced Statistics using R"
 title-slide-attributes:
     data-background-image: images/data-sci-process.png
@@ -281,3 +281,4 @@ baby_plot
     
     
 # References    
+    
