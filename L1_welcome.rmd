@@ -1,6 +1,6 @@
 ---
-title: "Lecture: Welcome to C91AR"
-subtitle: "C91AR: Advanced Statistics using R"
+title: "C91AR: Advanced Statistics using R"
+subtitle: "Lecture 1: Welcome to C91AR"
 title-slide-attributes:
     data-background-image: images/data-sci-process.png
     data-background-size: 30%

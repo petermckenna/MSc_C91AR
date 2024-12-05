@@ -1,6 +1,6 @@
 ---
 title: "C91AR | Advanced Statistics using R"
-subtitle: "Housekeeping in R" 
+subtitle: "Lecture 3: Tidy Code Principles" 
 title-slide-attributes:
     data-background-image: images/data-sci-process.png
     data-background-size: 30%

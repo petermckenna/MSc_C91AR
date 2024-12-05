@@ -11,8 +11,8 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Dr Peter E McKenna">
-  <meta name="dcterms.date" content="2024-11-21">
-  <title>Introduction to R</title>
+  <meta name="dcterms.date" content="2024-12-02">
+  <title>Lecture: Introduction to R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -413,7 +413,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="images/data-sci-process.png" data-background-position="50% 10%" data-background-size="30%" class="quarto-title-block center">
-  <h1 class="title">Introduction to R</h1>
+  <h1 class="title">Lecture: Introduction to R</h1>
   <p class="subtitle">C91AR: Advanced Statistics using R</p>
 
 <div class="quarto-title-authors">
@@ -424,7 +424,7 @@ Dr Peter E McKenna
 </div>
 </div>
 
-  <p class="date">2024-11-21</p>
+  <p class="date">2024-12-02</p>
 </section>
 <section id="before-we-get-started" class="title-slide slide level1 center">
 <h1>Before we get started…</h1>
@@ -443,7 +443,7 @@ Dr Peter E McKenna
 </div><div class="column" style="width:50%;">
 <ul>
 <li>R is undergoing continuous development, meaning that it can be used for almost any data task.</li>
-<li>R forums, R social media (e.g., #rstats) and ChatGPT offer excellent support.</li>
+<li>R forums, R social media (e.g., #rstats) and Co-Pilot or ChatGPT offer excellent support.</li>
 </ul>
 </div>
 </div>
@@ -475,8 +475,8 @@ Dr Peter E McKenna
 </ol>
 </section>
 
-<section id="course-aims" class="title-slide slide level1 center">
-<h1>Course aims</h1>
+<section id="course-learning-outcomes" class="title-slide slide level1 center">
+<h1>Course learning outcomes</h1>
 <ol type="1">
 <li>Develop cutting-edge R programming skills for high quality research.</li>
 <li>Apply R programming techniques to appropriately reconfigure data for analysis.</li>
@@ -501,6 +501,7 @@ Duffany, J. L. (2017). Application of Active Learning Techniques to the Teaching
 </p>
 </section>
 
+<section>
 <section id="what-about-employability" class="title-slide slide level1 center">
 <h1>What about employability?</h1>
 <ul>
@@ -510,7 +511,10 @@ Duffany, J. L. (2017). Application of Active Learning Techniques to the Teaching
 <li>So, my hope is to start you on your programming journey, to better equip you for the labour market of Industry 4.0.</li>
 </ul>
 </section>
+<section id="any-questions" class="slide level2">
+<h2>Any questions?</h2>
 
+<img data-src="images/messy_code.jpg" class="r-stretch"></section></section>
 <section>
 <section id="how-the-course-will-be-delivered" class="title-slide slide level1 center">
 <h1>How the course will be delivered</h1>
@@ -521,7 +525,7 @@ Duffany, J. L. (2017). Application of Active Learning Techniques to the Teaching
 <li>These are both available for install on the HWU Software Centre app</li>
 <li><code>R</code> is the software that runs the computation, and <code>RStudio</code> is the front end user interface.</li>
 <li>Once you have installed both of these you only need to run <code>RStudio</code></li>
-<li>My teaching philosophy focusses on practical application: the best way to learn R, is to code in R.</li>
+<li>My teaching philosophy focuses on practical application: the best way to learn R, is to code in R.</li>
 </ul>
 </section>
 <section id="some-things-to-bear-in-mind" class="slide level2">
@@ -564,93 +568,125 @@ Duffany, J. L. (2017). Application of Active Learning Techniques to the Teaching
 </ul>
 </section>
 
+<section>
 <section id="cool-example-to-whet-your-r-appetites" class="title-slide slide level1 center">
 <h1>Cool example to whet your R appetites</h1>
+<ul>
+<li><code>babynames</code> dataset</li>
+<li>Full baby name data provided by the SSA. This includes all names with at least 5 uses.</li>
+<li>Five variables: <code>year</code>, <code>sex</code>, <code>name</code>, <code>n</code> and <code>prop</code> (n divided by total number of applicants in that year, which means proportions are of people of that gender with that name born in that year).</li>
+</ul>
+</section>
+<section id="explore-the-data-a-bit" class="slide level2">
+<h2>Explore the data a bit</h2>
+<ul>
+<li>The <code>summarytools</code> package is better than baseR’s summary functions.</li>
+<li><a href="https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html">Have a look here for more info</a>.</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Code to run <code>dfSummary</code> function</a></li><li><a href="#tabset-1-2">Output of <code>dfSummary</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>baby_plot <span class="ot">&lt;-</span></span>
-<span id="cb2-2"><a href=""></a>  <span class="fu">ggplot</span>(name_frac, <span class="fu">aes</span>(<span class="at">x =</span> year, </span>
-<span id="cb2-3"><a href=""></a>                      <span class="at">y =</span> fraction, </span>
-<span id="cb2-4"><a href=""></a>                      <span class="at">colour =</span> name)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>) <span class="sc">+</span></span>
-<span id="cb2-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Year"</span>, </span>
-<span id="cb2-7"><a href=""></a>       <span class="at">y =</span> <span class="st">"Fraction</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb2-8"><a href=""></a>       <span class="at">title =</span> <span class="st">"Fraction of the USA population names between 1880-2017"</span>) <span class="sc">+</span></span>
-<span id="cb2-9"><a href=""></a>  <span class="fu">theme_minimal</span>() </span>
-<span id="cb2-10"><a href=""></a></span>
-<span id="cb2-11"><a href=""></a>baby_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># Summarise with the `dfSummary` function from summarytools package</span></span>
+<span id="cb2-2"><a href=""></a><span class="fu">dfSummary</span>(babynames_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Data Frame Summary  
+babynames_df  
+Dimensions: 1924665 x 5  
+Duplicates: 0  
+
+------------------------------------------------------------------------------------------------------------------
+No   Variable      Stats / Values               Freqs (% of Valid)      Graph                 Valid      Missing  
+---- ------------- ---------------------------- ----------------------- --------------------- ---------- ---------
+1    year          Mean (sd) : 1974.9 (34)      138 distinct values                       :   1924665    0        
+     [numeric]     min &lt; med &lt; max:                                                     : :   (100.0%)   (0.0%)   
+                   1880 &lt; 1985 &lt; 2017                                                 : : :                       
+                   IQR (CV) : 52 (0)                                          . . . : : : :                       
+                                                                        . . : : : : : : : :                       
+
+2    sex           1. F                         1138293 (59.1%)         IIIIIIIIIII           1924665    0        
+     [character]   2. M                          786372 (40.9%)         IIIIIIII              (100.0%)   (0.0%)   
+
+3    name          1. Francis                       276 ( 0.0%)                               1924665    0        
+     [character]   2. James                         276 ( 0.0%)                               (100.0%)   (0.0%)   
+                   3. Jean                          276 ( 0.0%)                                                   
+                   4. Jesse                         276 ( 0.0%)                                                   
+                   5. Jessie                        276 ( 0.0%)                                                   
+                   6. John                          276 ( 0.0%)                                                   
+                   7. Johnnie                       276 ( 0.0%)                                                   
+                   8. Joseph                        276 ( 0.0%)                                                   
+                   9. Lee                           276 ( 0.0%)                                                   
+                   10. Leslie                       276 ( 0.0%)                                                   
+                   [ 97300 others ]             1921905 (99.9%)         IIIIIIIIIIIIIIIIIII                       
+
+4    n             Mean (sd) : 180.9 (1533.3)   13691 distinct values   :                     1924665    0        
+     [integer]     min &lt; med &lt; max:                                     :                     (100.0%)   (0.0%)   
+                   5 &lt; 12 &lt; 99686                                       :                                         
+                   IQR (CV) : 25 (8.5)                                  :                                         
+                                                                        :                                         
+
+5    prop          Mean (sd) : 0 (0)            98794 distinct values   :                     1924665    0        
+     [numeric]     min &lt; med &lt; max:                                     :                     (100.0%)   (0.0%)   
+                   0 &lt; 0 &lt; 0.1                                          :                                         
+                   IQR (CV) : 0 (8.4)                                   :                                         
+                                                                        :                                         
+------------------------------------------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="on-the-use-of-packages" class="slide level2">
+<h2>On the use of packages</h2>
+<ul>
+<li>Anyone using R can develop their own package.</li>
+<li>Some are better than others.</li>
+<li>The one’s I include on this course are widely used by scientists across disciplines.</li>
+<li>If you find other packages more suited to your data, by all means use them!</li>
+</ul>
+</section>
+<section id="some-fun-with-names" class="slide level2">
+<h2>Some fun with names</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Wrangle a fraction of names dataset from `babynames` dataset</span></span>
+<span id="cb4-2"><a href=""></a>babynames_class <span class="ot">&lt;-</span></span>
+<span id="cb4-3"><a href=""></a>  babynames_df <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href=""></a>  <span class="fu">filter</span>(name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Angela"</span>, <span class="st">"Chris"</span>, <span class="st">"Peter"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section id="plot-proportion-of-names-specified-across-dataset-years" class="title-slide slide level1 center">
+<h1>Plot proportion of names specified across dataset years</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>baby_plot <span class="ot">&lt;-</span></span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">ggplot</span>(babynames_class, <span class="fu">aes</span>(<span class="at">x =</span> year, </span>
+<span id="cb5-3"><a href=""></a>                      <span class="at">y =</span> prop, </span>
+<span id="cb5-4"><a href=""></a>                      <span class="at">colour =</span> name)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Year"</span>, </span>
+<span id="cb5-7"><a href=""></a>       <span class="at">y =</span> <span class="st">"Proportion</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb5-8"><a href=""></a>       <span class="at">title =</span> <span class="st">"Proportion of the USA population names between 1880-2017"</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href=""></a>  <span class="fu">theme_minimal</span>() </span>
+<span id="cb5-10"><a href=""></a></span>
+<span id="cb5-11"><a href=""></a>baby_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>
 
-<section id="cool-example-to-whet-your-r-appetites-output" class="title-slide slide level1 output-location-slide center"><h1>Cool example to whet your R appetites</h1><div class="cell output-location-slide">
+<section id="plot-proportion-of-names-specified-across-dataset-years-output" class="title-slide slide level1 output-location-slide center"><h1>Plot proportion of names specified across dataset years</h1><div class="cell output-location-slide">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="L1_getting-started-with-R_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+<p><img data-src="L1_getting-started-with-R_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
 </figure>
 </div>
 </div>
-</div></section><section>
-<section id="lab-housekeeping" class="title-slide slide level1 center">
-<h1>Lab Housekeeping</h1>
-
-</section>
-<section id="using-directories-with-r" class="slide level2">
-<h2>Using directories with R</h2>
-<ul>
-<li>To reference data or media in R you need to set a working directory</li>
-<li>You will also be asked to set a directory for installed packages</li>
-<li><strong>DO NOT create a folder called ‘R’</strong>, as this is the default title R gives to its own namespace, which will lead to conflicts and unusual behaviour</li>
-<li>Good practice is to create R projects in designated project folders, and I will show you how to do this</li>
-<li>Creating an <code>.RProj</code> creates a project directory, avoiding any potential confusion R may experience when switching between projects</li>
-</ul>
-</section>
-<section id="good-practice" class="slide level2">
-<h2>Good practice</h2>
-<ul>
-<li>As well as teaching you how to program in R I will also be teaching you good practice in coding.</li>
-<li>This is because I want your code to be readable to others</li>
-<li>I want you to take pride in your code</li>
-<li>The tidier your code, the easier it is to spot typos or to debug errors.</li>
-<li>For ease of interpretation, I will be coding vertically (mostly)
-<ul>
-<li>This helps identify any errors or typos and is generally easier to read.</li>
-</ul></li>
-</ul>
-</section>
-<section id="create-installation-script" class="slide level2">
-<h2>Create installation script</h2>
-<ul>
-<li>In R Studio we write scripts to perform a set of commands</li>
-<li>To add a script click the Script icon below the File tab (top left)</li>
-</ul>
-</section>
-<section id="working-with-rmarkdown" class="slide level2">
-<h2>Working with RMarkdown</h2>
-<ul>
-<li>RMarkdown allow you to combine code chunks and plain text to produce reproducible scientific reports.</li>
-<li>RMarkdown files are edited in the <em>Workspace Tab</em> - top left window</li>
-<li>Create script headings using <code>#</code> (called a “comment” or inactive code)</li>
-<li><strong>To execute code chunks in RMarkdown click the play button</strong></li>
-<li>This can be done for single lines, or multiple lines by highlighting sections and pressing CTRL(or CMD) + Enter</li>
-<li>The beauty of working in RMarkdown is that you can write text summaries around your code.</li>
-</ul>
-</section>
-<section id="reflections-on-todays-reading" class="slide level2">
-<h2>Reflections on today’s reading</h2>
-<ul>
-<li>https://psyteachr.github.io/quant-fun-v2/programming-basics.html</li>
-<li>Give you a tour of the RStudio environment</li>
-<li>functions and arguments</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">function_name</span>(<span class="at">argument1 =</span> value, <span class="at">argument2 =</span> value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>set.seed function for reproducibility</li>
-</ul>
-</section></section>
-<section id="additional-resources" class="title-slide slide level1 center">
+</div></section><section id="additional-resources" class="title-slide slide level1 center">
 <h1>Additional resources</h1>
 <ul>
 <li><p>If you are keen to learn more about R Programming here is material related to both sessions</p>
