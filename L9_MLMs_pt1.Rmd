@@ -60,6 +60,7 @@ bibliography: ref.bib
 ## Remind me what heteroscedasticity is...
 
 Across all measurements there are different variances. So, across all the values of X, the variance in Y is not equal.
+Often heteroscedasticity is due to indvidual differences between people. 
 Multilevel models allow you to probe the nature of this heteroscedasticity. 
 
 # Co-pilots Explanation
@@ -72,11 +73,29 @@ In simpler terms, if you plot this data on a graph, you might see that the point
 
 
 
-# So, what do I do?
+# So, whats the alternative?
 
 - any time you have multiple measurements of something your data is no longer independent
-
+- MLMs also cope well with missing data
+- MLMs differ to OLS as the model iterates over several possible outcomes rather than focussing solely on the one with the lowest error.
  
+
+# Introduction to fixed and random coefficients
+
+- Fixed coefficients:
+  - intercepts and slopes are assumed to be the same across different  contexts
+
+- Random coefficients:
+  - intercepts and slopes are allowed to vary across different contexts
+  - can conceptualise them as "variable coefficients"
+
+# Random coefficients
+
+- Grouping or clustering variable(s)
+  - where there is non-independence in the data
+  - in social science, this might be human participants who have data measured multiple times 
+  - e.g., students from different schools, where school could be used as the clustering variable
+
 
 
 # Gaining a deeper understanding of LMMs for research
@@ -917,9 +936,6 @@ Brackets have been placed around the predictors associated with the two-level va
 This is the regression way of estimating parameters for a $3 \times 2$ factorial design. 
 
 
-# Multiparameter tests
-
-When you have data
 
   
 
