@@ -52,7 +52,7 @@ bibliography: ref.bib
 
 - The downside of aggregating the response variable (DV) as is done in OLS regression
   - reduces the complexity of your data
-  - reduces the power of your analysing
+  - reduces the power of your analysis
   - ignores measurement error (which may be of theoretical interest)
   - can hide where heteroscedasticity is come from
 
@@ -66,12 +66,13 @@ Multilevel models allow you to probe the nature of this heteroscedasticity.
 # Co-pilots Explanation
 
 Heteroscedasticity is a fancy term used in statistics to describe a situation where the variability of a variable is not consistent across all levels of another variable that predicts it. 
-
-Imagine you're looking at the relationship between people's income and their spending habits. For people with lower incomes, their spending might be pretty similar and predictable. But as people's incomes increase, their spending habits can vary a lot more. Some might save a lot, while others might spend on luxury items. This increasing spread or variability in spending as income rises is an example of heteroscedasticity[1](https://quickonomics.com/terms/heteroscedasticity/)[2](https://www.statisticshowto.com/heteroscedasticity-simple-definition-examples/).
-
+Imagine you're looking at the relationship between people's income and their spending habits. For people with lower incomes, their spending might be pretty similar and predictable. 
+But as people's incomes increase, their spending habits can vary a lot more. 
+Some might save a lot, while others might spend on luxury items. 
+This increasing spread or variability in spending as income rises is an example of heteroscedasticity[1](https://quickonomics.com/terms/heteroscedasticity/)[2](https://www.statisticshowto.com/heteroscedasticity-simple-definition-examples/).
 In simpler terms, if you plot this data on a graph, you might see that the points spread out more as you move along the income axis, forming a sort of cone shape. This uneven spread is what we call heteroscedasticity[2](https://www.statisticshowto.com/heteroscedasticity-simple-definition-examples/).
 
-
+![Heteroscedasticity](images/heteroscedasticity_plots.png)
 
 # So, whats the alternative?
 
@@ -83,7 +84,7 @@ In simpler terms, if you plot this data on a graph, you might see that the point
 # Introduction to fixed and random coefficients
 
 - Fixed coefficients:
-  - intercepts and slopes are assumed to be the same across different  contexts
+  - intercepts and slopes are assumed to be the same across different contexts
 
 - Random coefficients:
   - intercepts and slopes are allowed to vary across different contexts
@@ -94,7 +95,7 @@ In simpler terms, if you plot this data on a graph, you might see that the point
 - Grouping or clustering variable(s)
   - where there is non-independence in the data
   - in social science, this might be human participants who have data measured multiple times 
-  - e.g., students from different schools, where school could be used as the clustering variable
+  - e.g., students from different schools, where school could be used as the clustering variable; cognitive task DV, where multiple measures of the DV are collected per participant
 
 
 
@@ -109,21 +110,49 @@ In simpler terms, if you plot this data on a graph, you might see that the point
 
 Let's start by breaking down the difference between Ordinary Least Squares (OLS) regression and Linear Mixed-Effects (LME) regression in simple terms with an example, using LaTeX formatting to preserve mathematical expressions.
 
-### Ordinary Least Squares (OLS) Regression
+**Ordinary Least Squares (OLS) Regression**
+OLS Regression is a simple and widely used method for predicting the value of a dependent variable based on one or more independent variables. 
+The OLS method finds the line (or hyperplane in higher dimensions) that minimizes the sum of squared differences between the observed values and the values predicted by the line.
 
-**OLS Regression** is a simple and widely used method for predicting the value of a dependent variable based on one or more independent variables. The OLS method finds the line (or hyperplane in higher dimensions) that minimizes the sum of squared differences between the observed values and the values predicted by the line.
+**OLS Regression Model**
+The OLS regression model is given by: 
 
-#### OLS Regression Model
+$$ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots + \beta_p x_{ip} + \epsilon_i $$ 
 
-The OLS regression model is given by: $$ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots + \beta_p x_{ip} + \epsilon_i $$ where: - $y_i$ is the dependent variable. - $\beta_0$ is the intercept. - $\beta_1, \beta_2, \ldots, \beta_p$ are the coefficients for the independent variables. - $x_{i1}, x_{i2}, \ldots, x_{ip}$ are the independent variables. - $\epsilon_i$ is the error term.
+where: 
+- $y_i$ is the dependent/response variable. 
+- $\beta_0$ is the intercept. 
+- $\beta_1, \beta_2, \ldots, \beta_p$ are the coefficients for the independent variables. 
+- $x_{i1}, x_{i2}, \ldots, x_{ip}$ are the independent variables. 
+- $\epsilon_i$ is the error term.
 
-### Linear Mixed-Effects (LME) Regression
 
-**LME Regression** extends OLS regression by allowing for both fixed effects (parameters associated with the entire population) and random effects (parameters associated with individual experimental units). This is particularly useful when dealing with grouped or hierarchical data.
+## Remind me what a regression coefficient is
 
-#### LME Regression Model
+- A regression coefficient is a way to measure the relationship betweem two things. 
+- Say you measure the happiness of individuals at a xmas market. Some spend a little, some a moderate amount, and others a lot.
+- The regression coefficient tells you how much each person's happiness increased per each unit of money they spent. 
+- If the coefficient is positive, then spending led to greater happiness, but if negative, spending led to lower happiness.
+- It's worth noting that in this example, there may be a ceiling, whereby spending plateaud at a certain point, not leading to increases in happiness. 
+  - The relationship between money spent and happiness is likely to be asymtotic and exponential
 
-The LME regression model is given by: $$ y_{ij} = \beta_0 + \beta_1 x_{ij} + u_j + \epsilon_{ij} $$ where: - $y_{ij}$ is the dependent variable for observation $i$ in group $j$. - $\beta_0$ is the fixed intercept. - $\beta_1$ is the fixed coefficient for the independent variable. - $x_{ij}$ is the independent variable. - $u_j$ is the random effect for group $j$. - $\epsilon_{ij}$ is the error term.
+# Linear Mixed-Effects (LME) Regression
+
+LME Regression extends OLS regression by allowing for both fixed effects (parameters associated with the entire population) and random effects (parameters associated with individual experimental units). This is particularly useful when dealing with grouped or hierarchical data.
+
+**LME Regression Model**
+
+The LME regression model is given by: 
+
+$$ y_{ij} = \beta_0 + \beta_1 x_{ij} + u_j + \epsilon_{ij} $$ 
+
+where: 
+- $y_{ij}$ is the dependent variable for observation $i$ in group $j$. 
+- $\beta_0$ is the fixed intercept. 
+- $\beta_1$ is the fixed coefficient for the independent variable. 
+- $x_{ij}$ is the independent variable. 
+- $u_j$ is the random effect for group $j$. 
+- $\epsilon_{ij}$ is the error term.
 
 ### Example
 
