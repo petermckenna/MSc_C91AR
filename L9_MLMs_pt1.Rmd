@@ -135,6 +135,7 @@ where:
 - If the coefficient is positive, then spending led to greater happiness, but if negative, spending led to lower happiness.
 - It's worth noting that in this example, there may be a ceiling, whereby spending plateaud at a certain point, not leading to increases in happiness. 
   - The relationship between money spent and happiness is likely to be asymtotic and exponential
+ - In OLS regresion with a single IV the coefficient is the same as the correlation between the predictor and response variable.  
 
 # Linear Mixed-Effects (LME) Regression
 
