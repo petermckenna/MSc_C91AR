@@ -1,4 +1,0 @@
-"0",""
-"0","# data summary - head specific"
-"0","  # for specific columns, e.g., cols 1, 5, and 7"
-"0","head(df[, c(1,5,7)])"

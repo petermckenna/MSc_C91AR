@@ -1,6 +1,0 @@
-"0",""
-"0","# Read in data and supply data type argument"
-"0","df <-"
-"0","  read_csv(""data_raw/robot-expression-data_raw.csv"","
-"0","           col_types = ""ffff?ffffftf"")"
-"0",""
