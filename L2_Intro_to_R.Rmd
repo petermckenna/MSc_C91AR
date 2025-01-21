@@ -1,5 +1,5 @@
 ---
-title: "Lecture: Introduction to R"
+title: "Lecture 2: Introduction to R cont"
 subtitle: "C91AR: Advanced Statistics using R"
 title-slide-attributes:
     data-background-image: images/data-sci-process.png
@@ -37,7 +37,6 @@ bibliography: ref.bib
 ```
 
 
-
 ```{r, eval = TRUE, include = F}
 
 # Relevant packages
@@ -49,29 +48,102 @@ pacman::p_load(babynames,
 
 ```
 
-# Create subdirectories ----
+# Lecture & Computer lab reading
+
+- [PsyTeachR Chapter on Prgramming Basics](https://psyteachr.github.io/quant-fun-v2/programming-basics.html)
+- [R for Data Science chapter on Workflow](https://r4ds.hadley.nz/workflow-basics)
+  - will cover this in more detail in the lab and as we progress on the course
+
+
+# Session objectives
+
+- Show you how to set up a project in R
+- Show you how to create subdirectories in your project
+- Cover some basic principles of programming R
+- What we don't finish today we can revisit in the computer lab
+- **Feel free to discuss your code with your neighbour if you're stuck**
+
+
+# Computer lab objectives (for Thursday)
+
+- Pick up where to finish today in this session
+- Focus on creating an RMarkdown document
+
+
+# Using projects
+
+-   In R, we create projects which become the directories for our work
+-   It's a bit like having a folder for each of your subjects/projects.
+-   Make sure you name your projects appropriately
+-   Unless you are adding a project to another related project, use the
+    `New Directory` option and fill out the required details
+
+
+# Some important rules about directories in R
+
+-   **DO NOT create a folder called 'R'**, as this is the default title R
+    gives to its own namespace, which will lead to conflicts and unusual
+    behaviour
+-   Good practice is to create R projects in designated project folders,
+    and I will show you how to do this
+-   Creating an `.RProj` creates a project directory, avoiding any
+    potential confusion R may experience when switching between projects
+
+    
+## DEMO: Setting up a project in R
+
+- Let's set up our project and create
+- We'll create an R script today for the exercise, but we'll move over to RMarkdown files come the tutorial.
+- Call your R script "intro_to_R.R"
+
+
+# Create sub-directories
+
+::: {.panel-tabset}
+
+### Relevance
+
+-   Once you are in to your new project you need to create a set of
+    useful folders
+-   To do so, type the following code lines one at a time into the
+    Console and press enter
+- We will be adding files to these folders throughout the course
+
+### Code
+
+```{r eval = F}
+
+# Create subdirectories
 
 dir.create("data_raw")
 dir.create("data_tidy")
 dir.create("fig_output")
 
+```
 
-# Load and install packages ----
+:::
 
-install.packages("tidyverse")
+## DEMO: Basic R programming
 
-library(tidyverse)
+```{r basics, eval=FALSE}
 
-
-# Some basic R programming ----
+# Using operators
 
 3 + 5
 
 12/7
 
+# Assigning variables
+
 x <- 5
 
 7 -> x
+
+```
+
+----
+
+```{r basics 2, eval=F}
 
 # some simple maths
 
@@ -81,18 +153,33 @@ y <- 67
 
 area_rect <- x * y
 
+```
+
+# Before I continue, do you have any questions?
+
+----
+
+```{r basics 3, eval=F}
+
 # BMI
 
 height <- 1.8
 
 weight <- 80
 
-bmi <- (weight/(height*height))  
+bmi <- 
+  (weight/(height*height)) # write over 2 lines to keep things tidy  
 
-bmi <- (height/(weight*weight))
+bmi <- 
+  (height/(weight*weight))
 
+```
 
-# Using functions ----
+# R Functions
+
+```{r functions, eval=F}
+
+# Using functions
 
 sqrt(4)
 
@@ -102,34 +189,46 @@ sqrt(a)
 
 round(3.14159)
 
-args(round)
+args(round) # shows you the format of the function input
 
 round(3.14159, digits = 2)
 
+```
 
-# Vectors and data types ----
+# Vectors and data types
+
+```{r vectors, eval=F}
 
 test_scores <-
-  c(3, 5, 2, 8, 7)
+  c(3, 5, 2, 8, 7) # use concatenate to create a vector of (numeric) values
 
 test_scores
 
 students <-
-  c("Roland", "Sophie", "Max", "Teresa", "Mandy")
+  c("Roland", "Sophie", "Max", "Teresa", "Mandy") # use concatenate to create a vector of (character) values
 
+# length function
 length(test_scores)
 
-length(students)
-
-class(test_scores)
-
+# class function
 class(students)
+
+```
+
+
+# Given what you have learned above, what do you think the following code does?
+
+```{r question, eval = F}
 
 students <-
   c(students, "Dennis")
 
-students
+```
 
+
+# Futher exercises (time dependent)
+
+```{r mixed data, eval = F}
 
 # Mixed data types ----
 
@@ -140,6 +239,11 @@ class(test_answers)
 
 str(test_answers)
 
+```
+
+----
+
+```{r subsetting, eval = F}
 
 # Sub-setting vectors ----
 
@@ -151,6 +255,11 @@ test_answers[c(3, 2)]
 
 test_answers[c(9, 23, 5)]
 
+```
+
+----
+
+```{r cond subsetting, eval=F}
 
 # Conditional sub-setting
 
@@ -165,6 +274,39 @@ test_scores[test_scores <= 2 | test_scores == 6]
 
 students[students == "Max" | students == "Mandy"]
 
+```
+
+# Cleanup
+
+```{r cleanup, eval=F}
+
+# Clear data
+rm(list = ls())  # Removes all objects from environment
+
+# Clear packages
+p_unload(all)  # Remove all contributed packages
+
+# Clear plots
+graphics.off()  # Clears plots, closes all graphics devices
+
+# Clear console
+cat("\014")  # Mimics ctrl+L
+
+```
+
+# Summary
+
+- Set up an R project (.RProj file)
+- Created relevant subdirectories for the course (for use later on)
+- Covered some basics of R programming using an R script to give you some hands on experience programming in R
+
+# Computer lab
+
+- Creating RMarkdown files
+- Writing text and code in RMarkdown
+- Writing tidy code (in more detail)
+
+<!--
 
 # Tidyverse Exercises ----
 
@@ -215,4 +357,6 @@ data %>%
 
 data %>%
   summarise(avg_conv = mean(conv_len))
+  
+  -->
     

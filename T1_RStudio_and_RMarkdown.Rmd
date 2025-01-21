@@ -29,6 +29,8 @@ pacman::p_load(tidyverse,
 
 ```
 
+
+
 # Lab Housekeeping
 
 ## Using directories with R
