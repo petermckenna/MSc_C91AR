@@ -157,7 +157,8 @@ where:
 
 ### Example
 
-Imagine you are studying the effect of study hours on test scores among students from different schools. You have data on test scores, study hours, and the school each student attends.
+Imagine you are studying the effect of study hours on test scores among students from different schools. 
+You have data on test scores, study hours, and the school each student attends.
 
 #### OLS Regression Example
 

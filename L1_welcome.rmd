@@ -102,13 +102,20 @@ Tell us a little bit about why you want to learn R?
 5.	Interpret the output of simple (e.g., linear regression) and advanced (e.g., multiple regression) statistical analyses performed in R.
 6.	Compose professionally formatted research reports in R that include code chunks and text summaries.
 
+# Course Assessment
+
+- Week 5 R Quiz (ungraded)
+- Week 6 (optional): Create an aesthetically pleasing plot of simulated data
+- Summative assessment due 11/04/25 at 1500 (GMT)
+  - RMarkdown report
+  - Read, tidy, analyse, interpret dataset (all covered in syllabus)
 
 # What are the benefits of learning a programming language?
 
 According to @Duffany_2017 and @Smaldone_2022
 
 - Pick up basic, transferable programming skills.
-- Reinforce mathematical concepts.
+- Reinforce mathematical concepts; the formula for each test is included in the syllabus.
 - Develop your critical thinking and problem solving skills.
 - Improve your employment prospects widen to include positions related to Data Science.
 - Equip you for the labour market of Industry 4.0.
@@ -218,7 +225,7 @@ dfSummary(babynames_df)
 
 - Anyone using R can develop their own package.
 - Some are better than others. 
-- The one's I include on this course are widely used by scientists across disciplines.
+- Those that I include on this course are widely used by scientists across disciplines.
 - If you find other packages more suited to your data, by all means use them!
 
 ## Some fun with names

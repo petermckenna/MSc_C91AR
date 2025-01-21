@@ -132,7 +132,7 @@ all_data <-
             sim1000tstandrt)
 ```
 
-# Plot the full simulated data 
+# Plot the full simulated data
 
 ```{r}
 #plot the data

@@ -1,0 +1,71 @@
+---
+title: "Tutorial: Ordinary Least Suares (OLS) Regression"
+subtitle: "C91AR: Advanced Statistics using R"
+title-slide-attributes:
+    data-background-image: images/peter_staff_photo_small.jpg
+    data-background-size: auto
+    data-background-position: "50% 10%"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  revealjs:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_quarto_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+
+# markdown formatting
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+
+# Ordinary Least Squares (OLS) Tutorial
+
+- Today, we are going to put into practice what we learnt about regression on Monday.
+- I am going to give you another simulated dataset to work with.
+- Like last week, we will write our reports in Quarto.
+- Slightly different tact though; I'd like for you to work in teams today (provided everyone shows up).
+- I would recommend writing the report on a single computer and sharing this report you co-wrote at the end (via email). 
+- I would also recommend that one of you give instructions from Mondays lecture notes.
+
+# Task for the day
+
+::::{.columns}
+
+:::{.column width="50%"}
+- Write a Quarto report
+- Set the seed
+- Load relevant packages
+- Read in the data
+- Generate a scatter plot of the relationship between the vectors to determine normality of the distribution
+:::
+
+:::{.column width="50"}
+- Calculate the relevant statistics to make a prediction:
+  - Means ($\mu_x, \mu_y$)
+  - SDs ($\sigma_x, \sigma_y$)
+  - Correlation ($\rho_{xy}$)
+  - Slope of the regression line ($\beta_1$)
+  - The y-intercept ($\beta_0$)
+- Check your calculations against the output of the regression model using `lm()`
+- Generate a scatter plot with your regression line superimposed.
+:::
+
+::::
+  
+# Interperting the output of regression
+
+- $R^2$ in OLS represents the square of the correlation between the model variables.
+- So, if you want to calculate the simple correlation you take the square root of the $R^2$ value
+- $R^2$ also tells us how much of the variation in $Y$ is explained (and not explained) by $X$, as a percentage.
+- The F-statistic and $p$-value tells us the percent chance (e.g., 0.05) that the F-ratio value would happen if the null hypothesis were true (i.e., there was no effect of the predictor on the response variable).
+- Remember $\beta_1$ (slope) can be thought of as representing the change rin the outcome associated with a unit change in the predictor.
+
