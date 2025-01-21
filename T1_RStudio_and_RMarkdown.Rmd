@@ -1,11 +1,11 @@
 ---
-title: "Tutorial 1: Using RStudio and RMarkdown"
+title: "Computer Lab 1: Using RStudio and RMarkdown"
 subtitle: "C91AR: Advanced Statistics using R"
 title-slide-attributes:
-    data-background-image: images/anime_programming.png
-    data-background-size: 30%
-    data-background-position: "50% 10%"
-author: "Dr Peter E McKenna"
+    data-background-image: images/anime_programming.jpg
+    data-background-size: 20%
+    data-background-position: "50% 8%"
+author: "Dr Pete McKenna"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 format: 
   revealjs:
@@ -20,20 +20,31 @@ editor:
 bibliography: ref.bib    
 ---
 
-```{r, eval = T, include = F}
+```{r setup, include=F, warning=FALSE}
 
-# load packages for session
-pacman::p_load(tidyverse,
-               summarytools,
-               snakecase)
+ knitr::opts_chunk$set(echo = T, 
+                       cache = F,
+                       eval = F,    
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
 
+# default for instructor is echo = T; eval = T
+
+# you only want to see the results for certain chunks (e.g., plots)
+ 
 ```
 
 
+# What are we going to cover in this Computer Lab?
 
-# Lab Housekeeping
+- Setting up an R Project
+- Creating related subdirectories
+- Create an R Markdown file
+- Add some content to our R Markdown file
 
-## Using directories with R
+# Using directories with R
 
 -   To reference data or media in R you need to set a working directory
 -   You will also be asked to set a directory for installed packages
@@ -44,20 +55,27 @@ pacman::p_load(tidyverse,
     and I will show you how to do this
 -   Creating an `.RProj` creates a project directory, avoiding any
     potential confusion R may experience when switching between projects
+  
+    
+# Setting up R Project and Directories
 
-## Good practice
+ **DEMO**: Setting up an R Project and directories
+- Work in pairs with someone who has done this already at Monday's lecture. 
+- Once we have set the RProject up this will be the **primary launch file for this course**
 
--   As well as teaching you how to program in R I will also be teaching
-    you good practice in coding.
--   This is because I want your code to be readable to others
--   I want you to take pride in your code
--   The tidier your code, the easier it is to spot typos or to debug
-    errors.
--   For ease of interpretation, I will be coding vertically (mostly)
-    -   This helps identify any errors or typos and is generally easier
-        to read.
+<!-- # Good practice -->
 
-## Working with RMarkdown
+<!-- -   As well as teaching you how to program in R, I will also be teaching -->
+<!--     you good practice in coding. -->
+<!-- -   This is because I want your code to be readable to others -->
+<!-- -   I want you to take pride in your code -->
+<!-- -   The tidier your code, the easier it is to spot typos or to debug -->
+<!--     errors. -->
+<!-- -   For ease of interpretation, I will be coding vertically (mostly) -->
+<!--     -   This helps identify any errors or typos and is generally easier -->
+<!--         to read. -->
+
+# Working with RMarkdown
 
 :::: {.columns}
 
@@ -80,8 +98,40 @@ pacman::p_load(tidyverse,
 # Setting up an RMarkdown file
 
 - **DEMO**: Setting up an RMarkdown file
+- Remember to comment inside chunks and to keep things tidy
 
-# What's the difference between R Markdown and R scripts
+
+# Entering code into code chunks
+
+```{r, eval = F}
+
+# Using operators
+
+3 + 5
+
+12/7
+
+# Assigning variables
+
+x <- 5
+
+7 -> x
+
+```
+
+# Adding formula
+
+- We wrap mathematical formula in double dollars for format it appropriately
+- Wrap the following in double dollars to write the formula for simple regression
+
+```{r}
+
+# Y_i = \beta_0 + \beta_1 X_i + e_i
+
+```
+
+
+# What's the difference between R Markdown and R scripts {.smaller}
 
 :::: {.columns}
 
@@ -93,6 +143,8 @@ pacman::p_load(tidyverse,
 - Execution: Code is executed line-by-line or in chunks, typically within an R environment like RStudio.
 - Output: Produces console output, plots, and other results directly in the R environment.
 - Usage: Ideal for scripting, data analysis, and running R code interactively.
+:::
+
 
 ::: {.column width="50%"}
 **R Markdown**
@@ -102,7 +154,6 @@ pacman::p_load(tidyverse,
 - Execution: Code chunks are embedded within markdown text and executed to produce a final document.
 - Output: Generates documents in various formats (HTML, PDF, Word) that include both the code and its output (e.g., plots, tables).
 - Usage: Perfect for creating reports, presentations, and reproducible research documents.
-
 :::
 
 ::::
@@ -114,7 +165,14 @@ pacman::p_load(tidyverse,
 - Define and create an R Markdown file
 - Run R code in our R Markdown file
 
-# RMarkdown Resources
+# Reminder!
+
+- **Always open the .RProj file for this class**
+- Do not open any other file as a srarting point
+
+# R Markdown Resources
 
 [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
-[R Markdown with RStudio](https://www.youtube.com/watch?v=DNS7i2m4sB0)
+
+[RStudio basics of R Markdown](https://www.youtube.com/watch?v=u4ZdvYXjsIo&t=46s)
+

@@ -1,11 +1,11 @@
 ---
-title: "XXX"
-subtitle: "XXX"
+title: "XXXXXX"
+subtitle: "C91AR: Advanced Statistics using R"
 title-slide-attributes:
-    data-background-image: images/data-sci-process.png
-    data-background-size: 30%
-    data-background-position: "50% 10%"
-author: "Dr Peter E McKenna"
+    data-background-image: images/anime_programming.jpg
+    data-background-size: 20%
+    data-background-position: "50% 8%"
+author: "Dr Pete McKenna"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 format: 
   revealjs:
