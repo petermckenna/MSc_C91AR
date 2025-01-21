@@ -57,361 +57,64 @@ pacman::p_load(tidyverse,
     -   This helps identify any errors or typos and is generally easier
         to read.
 
-## Create installation script
-
--   In R Studio we write scripts to perform a set of commands
--   To add a script click the Script icon below the File tab (top left)
-
 ## Working with RMarkdown
 
+:::: {.columns}
+
+::: {.column width="50%"}
 -   RMarkdown allow you to combine code chunks and plain text to produce reproducible scientific reports. 
 -   RMarkdown files are edited in the *Workspace Tab* - top left window
 -   Create script headings using `#` (called a "comment" or inactive
     code)
+:::
+
+::: {.column width="50%"}
 -   **To execute code chunks in RMarkdown click the play button**
 -   This can be done for single lines, or multiple lines by highlighting
     sections and pressing CTRL(or CMD) + Enter
-- The beauty of working in RMarkdown is that you can write text summaries around your code.    
-    
-## Reflections on today's reading
-
-- https://psyteachr.github.io/quant-fun-v2/programming-basics.html 
-- Give you a tour of the RStudio environment
-- functions and arguments
-
-```{r functs&args, eval=FALSE}
-function_name(argument1 = value, argument2 = value)
-```
-
-- set.seed function for reproducibility   
-
-# End of session
-
--   In the lab, we will pick up where we left off and continue to
-    develop our existing script
--   Please save your R script for today
--   If you haven't looked at the reading for today
-
-# C91AR \| Housekeeping in R \| Lab
-
-## What we are going to cover
-
--   Today's lab is a follow on from what we covered in the lecture
--   We're going to go a little deeper into good housekeeping, by
-    introducing some of the tidying principles I cover in next weeks
-    lecture
-    -   setting column data types
-    -   generate an overall summary of the data
-    -   tidy vector labels
-    -   rename vector labels
-    -   deal with date vectors
-
-# Setting col types
-
--   One of the most important things you'll do when reading in data is
-    to specify the data type of each column.
--   If you don't do this properly from the outset it can lead to some
-    weird behaviour from R later on, and force you to reverse engineer
-    your code.
--   Proper use of the `col_types` argument in the function `read_csv` is
-    here to help thankfully.
--   This should be used in conjunction with a datasets metadata file, so
-    that you know which data type to assign to each vector
-
-<!--
-
-# Expression dataset metadata
-
-::: columns
-::: {.column width="50%"}
--   `ID_` = participant id
--   `sex` = participant sex
--   `eth` = participant ethnicity
--   `eng` = "Is English your native language?"
--   `Exp.date` = date of experiment
--   `interact.before` = "Have you ever interacted wtih a robot before?
+-   The beauty of working in RMarkdown is that you can write text summaries around your code.    
 :::
+
+::::
+
+# Setting up an RMarkdown file
+
+- **DEMO**: Setting up an RMarkdown file
+
+# What's the difference between R Markdown and R scripts
+
+:::: {.columns}
 
 ::: {.column width="50%"}
--   `Alyx.is` = participants guess of robot's gender
--   `item` = plastic food item offered to robot
--   `Expression` = a numeric value for each of the four robot facial
-    expressions
--   `resp` = name of the box where participants placed the food item
-    after robot expression
--   `Time` = robots onboard clock timer
--   `resp_acc` = accuracy of responses according to theoretically
-    deigned expressions
-:::
-:::
+**R scripts**
 
--->
-
-# Data types for the `col_types` argument
-
-::: columns
-::: {.column width="50%"}
--   "l" = logical
--   "i" = integer
--   "d" = double numeric
--   "c" = character
--   "D" = date
--   "\_" = skip
--   "?" = guess
-:::
+- Purpose: Primarily used for writing and running R code.
+- Format: Plain text files with .R extension.
+- Execution: Code is executed line-by-line or in chunks, typically within an R environment like RStudio.
+- Output: Produces console output, plots, and other results directly in the R environment.
+- Usage: Ideal for scripting, data analysis, and running R code interactively.
 
 ::: {.column width="50%"}
-- For more information see the `read_csv` and `col_types` documentation in the help section
-- You can pull this up by running `?read_csv` into the console  
-  + I'd recommend consulting the descriptor info at the top then skipping to the examples at the bottom of the help sheet 
+**R Markdown**
+
+- Purpose: Combines R code with narrative text to create dynamic documents.
+- Format: Markdown files with .Rmd extension.
+- Execution: Code chunks are embedded within markdown text and executed to produce a final document.
+- Output: Generates documents in various formats (HTML, PDF, Word) that include both the code and its output (e.g., plots, tables).
+- Usage: Perfect for creating reports, presentations, and reproducible research documents.
+
 :::
-:::
 
-# Setting col types within the `read_csv` function
+::::
 
-```{r set col types, eval=FALSE}
+# What did we cover today
 
-# Read in data and supply data type argument
-df <-
-  read_csv("data_raw/robot-expression-data_raw.csv",
-           col_types = "ffff?ffffftf")
+- How to create an R Project
+- How to create related subdirectories
+- Define and create an R Markdown file
+- Run R code in our R Markdown file
 
-```
+# RMarkdown Resources
 
-
-# Summarising data using summarytools::dfSummary
-
-- To run summaryDf() you'll need to install and load `summarytools`
-- Based on what we've discussed to this point, how would you go about doing this?
-
-```{r, eval = F}
-
-# Summarise df
-dfSummary(df)
-
-```
-
-## Group discussion
-
-- Take some time to interpret the output of `dfSummary(df)`.
-- What data types are in the tibble?
-- Is there anything *messy* about the data?
-
-<!-- 
-
-```{r, eval = F}
- 
-# Some examples of Tidy code for R scripts
-
-# Project: Project title
-# Outline purpose of script
-
-# load packages
-libray(tidyverse)
-
-# keep object names lower_case_and_separated_by_underscores
-star_wars <- 
-starwars # starwars data is included in tidyverse
-
-# examine data
-glimpse(star_wars)
-
-# when the pipeline is to long for one line, place arguments on new line
-star_wars |>
-  select(name,
-         sex
-         gender) # select cols name, sex, gender
-
-# Remember, you can also add bookmarks using four dashes to mark different sections and these will appear in the navigation panel next to your script. 
-
-
-```
-
--->
-
-# Dealing with awkardly formatted column/vector headings
-
--   You'll notice that the names for columns (or vectors as they are
-    known to programmers) are formatted unusually
-
-```{r head formatting, eval=TRUE}
-
-# Examine vector labelling
-names(df)
-
-```
-
-# Inconsistencies worth noting
-
--   Use of periods and underscore as separator
--   Lower-case and upper-case font
--   Names that lack detail for others
-    -   e.g., `resp`; does that refer to the participant response or the
-        robot's?
-
-## Load the necessary packages for today
-
-```{r load packages, warning=F, eval = F}
-
-# load packages
-library(snakecase) 
-
-```
-
--   I would add this to your bookmarked "load packages" section at the
-    beginning of your script
-
-# Tidying column names with `snakecase` package
-
-- We can use the `snakecase` package to apply uniform formatting to column names
-- This addresses the point made earlier about consistent variable names    
-
-```{r tidy headings}
-
-# Tidy column headings using snakecase
-  # these functions come from the snakecase package we loaded earlier
-names(df) <- 
-  to_snake_case(names(df)) # lower_case with underlined separators 
-
-# examine the data
-names(df) # notice how the cols are formatted now
-
-```
-
-<!--
-
-# Check-point
-
--   Be sure to add descriptive comments to your code chunks
--   If you're writing code in R scripts then adding these to RMarkdown, add bookmarks with four dashes after a comment
--   Code vertically by using paragraphs at the end of an argument
-
--->
-
-# Brain break
-
-[](https://alexandraheller.com/wp-content/uploads/2021/02/5-5-5-5-breathing-technique.gif)
-
-# Changing vector names
-
--   You can also change the names of vectors using the `rename` function
--   Note, `rename` asks for the new vector name followed by the old one
-    -   this takes a little getting used to but its simple after enough
-        practice
-
-```{r renaming vectors}
-
-# Rename vectors using rename
-df <-
-  df |>
-  rename(perceived_robot_gender = alyx_is, # the new labels are intended to be more descriptive
-         robot_expression = expression,
-         ppt_acc = resp_acc)
-
-# Examine changes
-names(df)
-
-```
-
-- **Remember, using the assign operator as above will irreversably amend your tibble.**
-- If you feel this is necessary proceed, but if not consider creating a new tibble object.
-
-# Dealing with the date column
-
--   Dates are notoriously difficult to deal with in R and our date
-    vector could not be read properly
--   Thankfully there is a really useful package that simplifies
-    everything; the aptly named `lubridate`
--   It is already loaded as part of the Tidyverse
--   Take a look at [lubridate here](https://lubridate.tidyverse.org/)
-
-# Lubridate to sort out date column
-
-```{r dates and lubridate}
-
-df <-
-  df |> # this is the pipe operator; it means, "then do this"
-  mutate(exp_date = dmy(exp_date)) # mutate is a function that allows you to append or modify existing columns/vectors in a dataset
-
-# Examine data
-glimpse(df)
-
-```
-
-- The date column should now be properly machine ready formatted (i.e., YYYY-MM-DD), based on the input formatting (i.e., dd/mm/yyyy)
-- The machine readable format YYY-MM-DD is preferable for almost all programming languages.
-- In this format, you can ask R to make nuanced calculations between dates.
-
-# What did we cover in this lab
-
--   Setting column data types with the `col_types` argument
--   Generating an overall summary of the data with `summary`
--   Tidy vector labels with `snakecase`
--   Rename vector labels with `rename`
--   Dealing with date vectors using `lubridate`
-
-
-# Using RMarkdown or Quarto
-
-# Learning about Correlation through Data Simulation
-
-```{r warning=FALSE}
-
-# Load packages
-library(tidyverse)
-library(corrr)
-library(psych)
-library(GGally)
-
-# Read in the data
-handw <-
-  read_csv("data_raw/heights_and_weights.csv")
-```
-
-## Examine the data
-
-```{r}
-
-# Examine the data
-glimpse(handw)
-head(handw)
-tail(handw)
-```
-
-The heights and weights dataset contains 475 observations and 2 vectors: `height_in` and `weight_lbs`.
-
-## Descriptive Statistics
-
-```{r}
-
-# Gather means and SDs of handw
-describe(handw)
-
-```
-
-The mean of height in inches was 62.91 (SD=12.12). The mean for weight in pounds was 132.28 (SD=54.19). Measures of both skew (-1.78) and kurtosis (2.89) indicate that height in inches was not normally distributed.
-
-## Plot the distribution of height in inches
-
-```{r}
-
-# Generate a histrogram of height in inches
-ggplot(data = handw,
-       mapping = aes(x = height_in)) +
-  geom_histogram(binwidth = 1) +
-  labs(title = "Histrogram of the distribution of height in inches",
-       x = "\nHeight in inches",
-       y = "Frequency\n")
-
-```
-
-## Copying and pasting code
-
-```{r}
-tibble(
-  height_cm = rnorm(30, mean = 179, sd = 13),   # generate data on a normal distribution
-  weight_kg = rnorm(30, mean = 78, sd = 5)) %>%
-  mutate_if(is.numeric, round, digits = 0) %>%  # remove decimals for simplicity
-  mutate(id = row_number())                     # add an id column based on the row number  
-```
-
+[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+[R Markdown with RStudio](https://www.youtube.com/watch?v=DNS7i2m4sB0)
