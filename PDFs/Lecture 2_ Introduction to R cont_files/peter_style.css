@@ -1,0 +1,44 @@
+/* Style for the slide logo */
+.reveal .slide-logo {
+  height: 180px !important;
+  width: 180px !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+
+/* Style for the title text */
+.reveal .title {
+	font-size: 70px !important; /* Font size */
+	margin-top: 148px;
+}
+
+/* Style for the subtitle text */
+.reveal .subtitle {
+	font-size: 44px; /* Font size */
+	margin-top: 10px;
+}
+
+/* Additional styles for author and date if needed */
+.reveal .author {
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+.reveal .date {
+	font-size: 18px;
+	margin-top: 20px;
+}
+
+/*
+.reveal {
+	.slides{
+		code {
+			
+			background-color: #333;
+			
+			color: #333;
+			
+		}
+	}
+}
+*/

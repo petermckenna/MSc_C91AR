@@ -4,6 +4,8 @@ window.QuartoSupport = function () {
     return /print-pdf/gi.test(window.location.search);
   }
 
+<<<<<<< HEAD
+=======
   // helper for theme toggling
   function toggleBackgroundTheme(el, onDarkBackground, onLightBackground) {
     if (onDarkBackground) {
@@ -18,6 +20,7 @@ window.QuartoSupport = function () {
     }
   }
 
+>>>>>>> 19d35df33e2893f473b0021ef24cc3093b4cc2a0
   // implement controlsAudo
   function controlsAuto(deck) {
     const config = deck.getConfig();
@@ -125,6 +128,10 @@ window.QuartoSupport = function () {
     }
   }
 
+<<<<<<< HEAD
+  // add footer text
+  function addFooter(deck) {
+=======
   // tweak slide-number element
   function tweakSlideNumber(deck) {
     deck.on("slidechanged", function (ev) {
@@ -138,6 +145,7 @@ window.QuartoSupport = function () {
 
    // add footer text
    function addFooter(deck) {
+>>>>>>> 19d35df33e2893f473b0021ef24cc3093b4cc2a0
     const revealParent = deck.getRevealElement();
     const defaultFooterDiv = document.querySelector(".footer-default");
     if (defaultFooterDiv) {
@@ -152,17 +160,25 @@ window.QuartoSupport = function () {
             prevSlideFooter.remove();
           }
           const currentSlideFooter = ev.currentSlide.querySelector(".footer");
+<<<<<<< HEAD
+=======
           const onDarkBackground = Reveal.getSlideBackground(ev.indexh, ev.indexv).classList.contains('has-dark-background')
           const onLightBackground = Reveal.getSlideBackground(ev.indexh, ev.indexv).classList.contains('has-light-background')
+>>>>>>> 19d35df33e2893f473b0021ef24cc3093b4cc2a0
           if (currentSlideFooter) {
             defaultFooterDiv.style.display = "none";
             const slideFooter = currentSlideFooter.cloneNode(true);
             handleLinkClickEvents(deck, slideFooter);
             deck.getRevealElement().appendChild(slideFooter);
+<<<<<<< HEAD
+          } else {
+            defaultFooterDiv.style.display = "block";
+=======
             toggleBackgroundTheme(slideFooter, onDarkBackground, onLightBackground)
           } else {
             defaultFooterDiv.style.display = "block";
             toggleBackgroundTheme(defaultFooterDiv, onDarkBackground, onLightBackground)
+>>>>>>> 19d35df33e2893f473b0021ef24cc3093b4cc2a0
           }
         });
       }
@@ -309,7 +325,10 @@ window.QuartoSupport = function () {
       fixupForPrint(deck);
       applyGlobalStyles(deck);
       addLogoImage(deck);
+<<<<<<< HEAD
+=======
       tweakSlideNumber(deck);
+>>>>>>> 19d35df33e2893f473b0021ef24cc3093b4cc2a0
       addFooter(deck);
       addChalkboardButtons(deck);
       handleTabbyClicks();
