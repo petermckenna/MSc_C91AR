@@ -20,12 +20,13 @@ editor:
 bibliography: ref.bib    
 ---
 
-```{r, eval = T, include = F}
+```{r, eval = T}
 
 # load packages for session
 pacman::p_load(tidyverse,
                summarytools,
-               snakecase)
+               snakecase,
+               starwars)
 
 ```
 

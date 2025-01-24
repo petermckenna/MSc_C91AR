@@ -2,10 +2,10 @@
 title: "C91AR | Advanced Statistics using R"
 subtitle: "Lecture 3: Tidy Code Principles" 
 title-slide-attributes:
-    data-background-image: images/data-sci-process.png
-    data-background-size: 30%
-    data-background-position: "50% 10%"
-author: "Dr Peter E McKenna"
+    data-background-image: images/anime_programming.jpg
+    data-background-size: 20%
+    data-background-position: "50% 8%"
+author: "Dr Pete McKenna"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 format: 
   revealjs:
@@ -20,10 +20,10 @@ editor:
 bibliography: ref.bib   
 ---
 
-```{r setup, include=F, warning=FALSE}
+```{r setup, include=F}
 
  knitr::opts_chunk$set(echo = T, 
-                       eval = T, 
+                       eval = F, 
                        results = 'hide',
                        message = FALSE, 
                        warning = FALSE, 
@@ -36,11 +36,31 @@ bibliography: ref.bib
  
 ```
 
+# Let's create an R Markdown for today
+
+- Call the file "Lecture3_tidy-code.rmd"
+
+
+# Packages for today's session
+
+- Add this package installation to your Markdown file
+- Remember to annotate inside your code chunks using `#` 
+- Also, you can add text summaries outside the code chunks to add clarity and interpretation. 
+
+```{r, eval=T}
+
+# Let's stick to pacman to keep loading and installation simple
+pacman::p_load(tidyverse,
+               nycflights13,
+               summarytools)
+
+```
+
+
 # Reading for Today's session
 
--   [Intro to R](https://psyteachr.github.io/quant-fun-v2/intro-to-r.html)
-    -   Covers the basics of working directories in R
-    -   **Reminder: we are not using the R server on this course**
+-   [Chapter 2: Workflow Basics](https://r4ds.hadley.nz/workflow-basics)
+    - covers basics of writing R code (e.g., commenting and functions)
 -   [Chapter 4 Workflow: code style](https://r4ds.hadley.nz/workflow-style)
     -   Covers the basics of code formatting
 -   Why did I ask you to read this?
@@ -52,8 +72,10 @@ bibliography: ref.bib
     
 # Encountering messy code
 
-```{r, echo=F, fig.align='center', results='asis'}
+```{r, eval = T, echo=F, fig.align='center', results='asis'}
+
 knitr::include_graphics("images/messy_bedroom.jpg")        
+
 ```
 
 - What can you tell me about this bedroom?
@@ -62,20 +84,22 @@ knitr::include_graphics("images/messy_bedroom.jpg")
 # What are we going to cover today?
 
 - This is a hybrid session, involving both lecturing and coding
-- Setting up a project in R and relevant directories
-- Learning and applying good coding practice
+- We are going to use the `nycflights13` data to learn about and apply tidy code principles
+- In doing so, we will get our first glimpse of *tidyverse* code
+- Outline plans for Tutorial 2
+
+<!--
 - Read in and quickly explore a dataset
-- Outline plans for Tutorial 1
+
 
 # Good Housekeeping
 
-- Whilst you might be keen to get started with coding right away, I
-    feel it's important to teach you about good practice from the outset.
-- In this session, I'm going to cover a set of principles about how to
-    format your code so that it is easy to read for others, and
-    therefore, easy to interpret, run, and replicate if required.
-- This is especially important these days as reproducible science is
-    becoming more important in the social science.
+- Whilst you might be keen to keep writing new code, I
+    feel it's important to teach you about good practice early.
+- Being tidy with your code is important as it makes it easier to interpret for everyone (i.e., you and your project collaborators)    
+- Tidy code is especially pertinent these days as reproducible science has gained prominence.
+
+<!--
 
 # Using projects
 
@@ -92,34 +116,10 @@ knitr::include_graphics("images/messy_bedroom.jpg")
 -   To do so, type the following code lines one at a time into the
     Console and press enter
 
-```{r dir_folders, eval=F}
-dir.create("data_raw") # for all raw data
-dir.create("data_tidy") # for all processed/tidy data
-dir.create("fig_out")  # for figures
-```
-
 -   This process ensures that you have a specific directory for a
     project and a set of folders ready for your work.
 -   You can add other folders or amend their names if you wish, but for
     now stick to these suggestions
-
-# Saving data in your directory
-
--   Once you have set up your directories, save your experiment data
-    into the "data_raw" folder.
--   The best format for R is to save data as a `.csv` but there are
-    options to read in other file formats (e.g., `.xlsx`).
--   Unprocessed data is saved in the "data_raw" folder and processed
-    data in the "data_tidy" folder so that we the raw and processed data
-    separate
--   This will save you a lot of headache once you get to grips with
-    processing data and creating new `.csv`s for different purposes.
-
-## Save the raw data provided
-
--   I have provided some untidy raw data for exercises in C91AR
--   Save the data from Canvas "robot-expression-data_raw" into the
-    "data_raw" folder
 
 # Tidy code principles
 
@@ -130,7 +130,55 @@ dir.create("fig_out")  # for figures
 -   Also, you can use four dashes `----` to bookmark sections of your R
     script
     -   Note, this applies to R code chunks, not the Markdown file
+-->
 
+# What is the *tidyverse*?
+
+The *tidyverse* is a collection of R packages designed for data science. These packages share an underlying design philosophy, grammar, and data structures (e.g., datasets), making it easier to learn and use them together. The tidyverse simplifies many common data science tasks, making your code more readable and easier to maintain.
+
+# Key *tidyverse* verbs and syntax
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- `mutate()`: adds new variables or modifies existing variables.
+- `select()`: picks (and amends) variables based on their names.
+- `filter()`: subsets cases based on specified conditional criteria.
+- `count()`:  counts the number of occurrences of unique values.
+:::
+
+:::{.column width="50%"}
+- `summarise()`: reduces multiple values down to a single summary.
+- `arrange()`: changes the ordering of the vectors.
+- `|>`: the **pipe operator** means 'then do this'
+- [More information about Tidyverse verbs here](https://dplyr.tidyverse.org/)
+:::
+
+::::
+
+# Why are you telling me this now?
+
+The examples of tidy code formatting in this lesson use these verbs.
+We will examine these functions in more detail in future, but it's useful for you to have some grounding before discussion 'tidy code'. 
+
+# `nycflights13` dataset metadata
+
+```{r}
+
+?nycflights13
+
+```
+
+# A quick tool at the data
+
+```{r}
+
+# Use summary tools to get an overview of the data
+dfSummary(nycflights13)
+
+```
+
+What can you infer from this summary?
 
 # Some examples
 
@@ -138,10 +186,7 @@ dir.create("fig_out")  # for figures
 
 ### Naming variables
 
-```{r, eval = F}
-
-# load data
-library(nycflights13)
+```{r}
 
 # Strive for:
 short_flights <- 
@@ -152,23 +197,25 @@ SHORTFLIGHTS <- flights |> filter(air_time < 60)
 
 ```
 
+Given what we have learned so far, what do you think this code does?
+
 ### Spaces
 
-```{r, eval = F}
+```{r}
 
 # In this code the author has aligned the "=" sign, giving better readability
 flights |> 
   mutate(
     speed      = distance / air_time,
-    dep_hour   = dep_time %/% 100,
-    dep_minute = dep_time %%  100
+    dep_hour   = dep_time %/% 100, # %/% = integer division that discards the remainder
+    dep_minute = dep_time %%  100  # %% = modulus operator returns the remainder of the division of two numbers.
   )
 
 ```
 
 ### Pipes
 
-```{r, eval = F}
+```{r}
 
 # Strive for 
 flights |>  
@@ -181,9 +228,11 @@ flights|>filter(!is.na(arr_delay), !is.na(tailnum))|>count(dest)
 
 ```
 
+If I told you that the operator `!` means **ignore**, what do you think this code does?
+
 ### Long, tidy command chains
 
-```{r, eval = F}
+```{r}
 
 flights |> 
   group_by(dest) |> 
@@ -205,11 +254,42 @@ flights |>
 
 :::
 
-# Some reflections
+# Recap
 
+- You read about tidy code principles
+- I introduced you to the *tidyverse*
+- We did a little a little exploration and summarising of `nycflights13` dataset
+
+# Next session
+
+- We will be applying these skills to an experiment dataset
+- Learn how to read in datasets
+- Perform more data cleaning using the *tidyverse*
+
+<!--
 - Why do you think tidy code is important?
 - What challenges do you foresee in the implementation of tidy code principles?
 
+
+## Reading in and tidying data
+
+# Saving data in your directory
+
+-   Once you have set up your directories, save your experiment data
+    into the "data_raw" folder.
+-   The best format for R is to save data as a `.csv` but there are
+    options to read in other file formats (e.g., `.xlsx`).
+-   Unprocessed data is saved in the "data_raw" folder and processed
+    data in the "data_tidy" folder so that we the raw and processed data
+    separate
+-   This will save you a lot of headache once you get to grips with
+    processing data and creating new `.csv`s for different purposes.
+
+## Save the raw data provided
+
+-   I have provided some untidy raw data for exercises in C91AR
+-   Save the data from Canvas "robot-expression-data_raw" into the
+    "data_raw" folder
 
 # Load packcages for the session
 
@@ -249,6 +329,48 @@ glimpse(df) # glimpse provides a summary of the column/vector names, their data 
 dfSummary(df)
 
 
+```
+
+# Data wrangling with the tidyverse ----
+
+# Filtering
+
+```{r}
+
+data %>%
+  filter(id == 1:5)
+
+data %>%
+  filter(voice_type == "female")
+
+female_data <-
+  data %>%
+  filter(voice_type == "female")
+
+```
+
+# Mutate
+
+```{r}
+
+# mutate to create new vector
+
+data %>%
+  mutate(gender = ifelse(id == 1:6, 
+                         "female", 
+                         "male"))
+
+# summarising data
+
+```
+
+# Summarise
+
+```{r}
+
+data %>%
+  summarise(avg_conv = mean(conv_len))
+  
 ```
 
 # Summary
@@ -292,7 +414,7 @@ In today's session I showed you..
 -   This should be used in conjunction with a datasets metadata file, so
     that you know which data type to assign to each vector
 
-<!--
+
 
 # Expression dataset metadata
 
@@ -319,7 +441,7 @@ In today's session I showed you..
 :::
 :::
 
--->
+
 
 # Data types for the `col_types` argument
 
@@ -371,7 +493,7 @@ dfSummary(df)
 - What data types are in the tibble?
 - Is there anything *messy* about the data?
 
-<!-- 
+
 
 ```{r, eval = F}
  
@@ -401,7 +523,7 @@ star_wars |>
 
 ```
 
--->
+
 
 # Dealing with awkardly formatted column/vector headings
 
@@ -452,7 +574,7 @@ names(df) # notice how the cols are formatted now
 
 ```
 
-<!--
+
 
 # Check-point
 
@@ -460,7 +582,7 @@ names(df) # notice how the cols are formatted now
 -   If you're writing code in R scripts then adding these to RMarkdown, add bookmarks with four dashes after a comment
 -   Code vertically by using paragraphs at the end of an argument
 
--->
+
 
 # Brain break
 
@@ -589,6 +711,6 @@ tibble(
   mutate(id = row_number())                     # add an id column based on the row number  
 ```
 
-
+-->
 
 
