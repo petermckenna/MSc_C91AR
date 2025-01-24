@@ -134,9 +134,11 @@ knitr::include_graphics("images/messy_bedroom.jpg")
 
 # What is the *tidyverse*?
 
-The *tidyverse* is a collection of R packages designed for data science. These packages share an underlying design philosophy, grammar, and data structures (e.g., datasets), making it easier to learn and use them together. The tidyverse simplifies many common data science tasks, making your code more readable and easier to maintain.
+- The *tidyverse* is a collection of R packages designed for data science. 
+- These packages share an underlying design philosophy, grammar, and data structures (e.g., datasets), making it easier to learn and use them together. 
+- The tidyverse simplifies many common data science tasks, making your code more readable and easier to maintain.
 
-# Key *tidyverse* verbs and syntax
+# Key tidyverse verbs and syntax
 
 :::: {.columns}
 
@@ -161,20 +163,20 @@ The *tidyverse* is a collection of R packages designed for data science. These p
 The examples of tidy code formatting in this lesson use these verbs.
 We will examine these functions in more detail in future, but it's useful for you to have some grounding before discussion 'tidy code'. 
 
-# `nycflights13` dataset metadata
+# `flights` metadata
 
 ```{r}
 
-?nycflights13
+?flights
 
 ```
 
-# A quick tool at the data
+# A quick tool to explore the data
 
 ```{r}
 
 # Use summary tools to get an overview of the data
-dfSummary(nycflights13)
+dfSummary(flights)
 
 ```
 
@@ -254,11 +256,30 @@ flights |>
 
 :::
 
+# Cleanup
+
+```{r cleanup, eval=F}
+
+# Clear data
+rm(list = ls())  # Removes all objects from environment
+
+# Clear packages
+p_unload(all)  # Remove all contributed packages
+
+# Clear plots
+graphics.off()  # Clears plots, closes all graphics devices
+
+# Clear console
+cat("\014")  # Mimics ctrl+L
+
+```
+
 # Recap
 
 - You read about tidy code principles
 - I introduced you to the *tidyverse*
 - We did a little a little exploration and summarising of `nycflights13` dataset
+- Showed you how to clean up after yourself.
 
 # Next session
 
