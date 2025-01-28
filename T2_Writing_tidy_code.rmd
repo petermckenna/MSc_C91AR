@@ -25,7 +25,8 @@ bibliography: ref.bib
 # load packages for session
 pacman::p_load(tidyverse,
                summarytools,
-               snakecase,
+               #snakecase,
+               nycflights13, 
                starwars)
 
 ```
@@ -33,29 +34,174 @@ pacman::p_load(tidyverse,
 ## Tutorial 2
 
 - Today's lesson is going to include some:
-  + recap
-  + troubleshooting
-  + group activity
+  + General recap
+  + Further exploration and applications of the Tidyverse verbs
+  + Paired activity
 
-# Some important considerations and reflections moving forward
+# General Recap
 
-:::columns
-:::{.column width=50%}
+General Recap, a stern, quirky chap,  
+Would bellow, "Forget? That's a tactical trap!"  
+He drilled through lessons with a comical flair,  
+"Lost your memory? Try losing a war—if you dare!"  
+His motto remains, a soldier's creed:  
+"Recall or retreat—your life may concede!"  
+
+ChatGPT (2025)
+
+# Actual recap
+
 - **Always** open the `.RProj` file to get the session started, as this will load us onto the correct directory where our data is located.
-- When using `<-` and `|>` to modify data objects, either
-  + comment out the `<-` line first to check the code works
-  + or add `print()` to the end of your pipe chain, then add `<-` once satisfied
+- Create a Markdown file for the activities using the format "LectureX_less_details.rmd"
+- Your R Markdown files will contain both text and R code chunks. 
+- Make sure you use the `#` key to appropriately header your Markdown file.  
+- Make sure you use `#` inside code chunks to provide further code clarification using comments
+
+# Syntax recap 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- `mutate()`: adds new variables or modifies existing variables.
+- `select()`: picks (and amends) variables based on their names.
+- `filter()`: subsets cases based on specified conditional criteria.
+- `count()`:  counts the number of occurrences of unique values.
 :::
 
-:::{.column width=50%}
-- We will are working on R markdown and R Scripts - these are the files with the `.rmd` and `.R` file type. 
-- Make sure you have commented and bookmarked important sections of the R script.  
+:::{.column width="50%"}
+- `summarise()`: reduces multiple values down to a single summary.
+- `arrange()`: changes the ordering of the vectors.
+- `|>`: the **pipe operator** means 'then do this'
+- `<-`: the **assign** operator to create new variables or data
+:::
+
+::::
+
+# On the assign operator
+
+- What is the difference between these two chunks of code?
+
+```{r}
+
+# Sample 1
+short_flights <- 
+  flights |> filter(air_time < 60)
+
+# Sample 2
+flights |>
+  filter(air_time < 60)
+
+```
+
+
+- What possible challenges might arise from these two approaches?
+- How can these be handled in Markdown?
+
+
+<!--
+
+- When using `<-` and `|>` to modify data objects
 - If you want to work on a data file, you must create an object using `read_csv` and specify the related file directory.
 - `|>` used to be represented by `%>%`, but both still work.
-:::
-:::
 
-# Class activity
+-->
+
+# Reminder about tidy Code
+
+```{r}
+
+# Strive for:
+short_flights <- 
+  flights |> filter(air_time < 60)
+
+# Avoid:
+SHORTFLIGHTS <- flights |> filter(air_time < 60)
+
+```
+
+
+# Coding along demo to get us started
+
+- The `glimpse` function is a really nice way to examine the structure of your data
+
+```{r}
+
+# examine data
+glimpse(starwars)
+
+# you could also check the related help section
+# ?starwars
+
+```
+
+# Quick summary with `summarytools`
+
+- I will sort the installation issue out!
+
+```{r}
+
+dfSummary(starwars)
+
+```
+
+
+# Data exploration: Count the number of unique species in the dataset
+
+```{r}
+
+starwars |>
+  summarise(n_species = n_distinct(species))
+
+```
+
+
+# Data filtering: Find all *non-human characters who weigh less than 75kg*
+
+```{r}
+
+starwars |>
+  filter(species != "Human",  # != denotes "not including"
+         mass    < 75)
+
+```
+
+
+# Grouping and Summarising: Calculate the average height for each species
+
+```{r}
+
+starwars |>
+  group_by(species) |>
+  summarise(mean_height = mean(height, na.rm = TRUE)) # na.rm = TRUE denotes "remove NA values"
+
+```
+
+# Paried activity
+
+- **In pairs**, I'd like you to write some tidy code chunks with the `starwars` dataset
+- This dataset is a part of the *tidyverse* package, so it's already loaded
+- You will need to refer to the **Syntax Recap** above to write your code
+- So, in your pairs, it would be worth having someone consult the syntax, whilst the other writes the code in Markdown
+
+# Markdown Tasks
+
+- T1: Using `filter`, subset the data so it contains female characters with blue eyes
+- T2: Using `summarise` count the number of different planets represented in the vector `homeworld`
+- T2: Using `group_by` and `summarise`, calculate the **average height and weight** of each species
+- T4: Using `select`, subset the data by `name`, `gender` and `eye_color`
+  - You will need to look up how to use `select` for this one
+
+
+<!--
+# when the pipeline is to long for one line, place arguments on new line
+star_wars |>
+  select(name,
+         sex
+         gender)
+
+
+
+
 
 - Now that I've guided you through a set of tidying operations on the data, I'd like for you to have a go yourself.
 - Start a new R script called `data_tidying.R`
