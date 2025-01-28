@@ -1,11 +1,11 @@
 ---
-title: "Tutorial 2: Writing Tidy Code with the Tidyverse"
+title: "Tutorial 2: Writing Tidy Code"
 subtitle: "C91AR: Advanced Statistics using R"
 title-slide-attributes:
-    data-background-image: images/anime_programming.png
-    data-background-size: 30%
-    data-background-position: "50% 10%"
-author: "Dr Peter E McKenna"
+    data-background-image: images/anime_programming.jpg
+    data-background-size: 20%
+    data-background-position: "50% 8%"
+author: "Dr Pete McKenna"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 format: 
   revealjs:
@@ -20,14 +20,30 @@ editor:
 bibliography: ref.bib    
 ---
 
+```{r setup, include=F}
+
+ knitr::opts_chunk$set(echo = T, 
+                       eval = F, 
+                       results = 'hide',
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
+
+# default for instructor is echo = T; eval = T
+
+# you only want to see the results for certain chunks (e.g., plots)
+
+```
+
+# Packages for today
+
 ```{r, eval = T}
 
 # load packages for session
 pacman::p_load(tidyverse,
                summarytools,
-               #snakecase,
-               nycflights13, 
-               starwars)
+               nycflights13)
 
 ```
 
@@ -52,7 +68,7 @@ ChatGPT (2025)
 # Actual recap
 
 - **Always** open the `.RProj` file to get the session started, as this will load us onto the correct directory where our data is located.
-- Create a Markdown file for the activities using the format "LectureX_less_details.rmd"
+- Create a Markdown file for the activities using the format "LectureX_lesson_details.rmd"
 - Your R Markdown files will contain both text and R code chunks. 
 - Make sure you use the `#` key to appropriately header your Markdown file.  
 - Make sure you use `#` inside code chunks to provide further code clarification using comments
@@ -106,7 +122,7 @@ flights |>
 
 -->
 
-# Reminder about tidy Code
+# Reminder about tidy code
 
 ```{r}
 
@@ -120,8 +136,9 @@ SHORTFLIGHTS <- flights |> filter(air_time < 60)
 ```
 
 
-# Coding along demo to get us started
+# Coding along demo with `starwars` data
 
+- Continue using the R Markdown we created on Monday (related to tidy code)
 - The `glimpse` function is a really nice way to examine the structure of your data
 
 ```{r}
@@ -168,6 +185,8 @@ starwars |>
 
 # Grouping and Summarising: Calculate the average height for each species
 
+- `group_by` = Group data by one or more variables
+
 ```{r}
 
 starwars |>
@@ -190,9 +209,41 @@ starwars |>
 - T2: Using `group_by` and `summarise`, calculate the **average height and weight** of each species
 - T4: Using `select`, subset the data by `name`, `gender` and `eye_color`
   - You will need to look up how to use `select` for this one
+  
+# Cleanup
+
+```{r cleanup, eval=F}
+
+# Clear data
+rm(list = ls())  # Removes all objects from environment
+
+# Clear packages
+p_unload(all)  # Remove all contributed packages
+
+# Clear plots
+graphics.off()  # Clears plots, closes all graphics devices
+
+# Clear console
+cat("\014")  # Mimics ctrl+L
+
+```
+
+# Recap
+
+- Tidy coding practice
+- Complexity of the assign `<-` operator
+- *tidyverse verbs*
+
+
+# Next week
+
+- Cleaning messy, realistic data
 
 
 <!--
+
+
+
 # when the pipeline is to long for one line, place arguments on new line
 star_wars |>
   select(name,
@@ -239,7 +290,7 @@ star_wars |>
 
 ----
 
-```{r eval=FALSE}
+``{r eval=FALSE}
 
 # Using case_when and str_detect to modify rows by string patterns
 df |>
@@ -252,7 +303,7 @@ df |>
 
 # Note: ChatGPT is particularly useful for regex patterns
 
-```
+``
 
 - This might look like a foreign language right now, so let me parse it out for you
 
@@ -304,7 +355,7 @@ df |>
 - This is my preferred workflow in R; to separate *tidying* from *wrangling*
 - Note, when I say *wrangling* here, I'm referring to all the operations I might perform on tidy data, e.g., summarising, plotting, analysing
 
-```{r eval = F}
+``{r eval = F}
 
 # Wrangling data
 
@@ -316,7 +367,7 @@ df <-
   read_csv("data_out/robot-expression-data_tidy.csv") # don't forget the `.csv` bit!
 
 
-```
+``
 
 # Filtering data
 
@@ -325,14 +376,14 @@ df <-
 - With filter you specify the vector and value of interest. These must follow the same convention as the data (e.g., labels must match)
 - Let's say we only want to look at males whose first language was English
 
-```{r}
+``{r}
 
 df |>
   filter(sex == "Male", # this only works because we have a vector called `sex` which has values labelled `Male`
          eng == "Yes") |>
   print()
 
-```
+``
 
 
 # `filter` activity
@@ -351,7 +402,7 @@ df |>
     position on the dataframe (e.g., "1")
 -   Let's subset the data by native language and response accuracy
 
-```{r}
+``{r}
 
 # label: select
 
@@ -361,13 +412,13 @@ df |>
          ppt_acc) |>
   print()
 
-```
+``
 
 ---
 
 - Sub-setting and renaming can be done as follows
 
-```{r}
+``{r}
 
 # label: select and rename
 
@@ -377,20 +428,20 @@ df |>
          participant_accuracy = ppt_acc) |>
   print()
 
-```
+``
 
 # A glimpse into summary chains
 
 - Summarise count of response accuracy by robot expression.
 
-```{r}
+``{r}
 
 df |>
   group_by(robot_expression,
            ppt_acc) |>
   count()
 
-```
+``
 
 # C91AR | Tidying realistic data | Lab
 
@@ -431,3 +482,6 @@ df |>
   + filter data
   + select specific columns
   + saving data into a new .csv after tidying it up
+  
+  
+-->  

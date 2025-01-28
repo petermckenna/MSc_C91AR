@@ -1,0 +1,16 @@
+
+```{r setup, include=F}
+
+ knitr::opts_chunk$set(echo = T, 
+                       eval = F, 
+                       results = 'hide',
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
+
+# default for instructor is echo = T; eval = T
+
+# you only want to see the results for certain chunks (e.g., plots)
+
+```
