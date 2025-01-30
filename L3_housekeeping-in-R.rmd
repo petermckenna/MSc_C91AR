@@ -52,7 +52,8 @@ bibliography: ref.bib
 # Let's stick to pacman to keep loading and installation simple
 pacman::p_load(tidyverse,
                nycflights13,
-               summarytools)
+               #summarytools,
+               trim)
 
 ```
 
@@ -195,7 +196,7 @@ short_flights <-
   flights |> filter(air_time < 60)
 
 # Avoid:
-SHORTFLIGHTS <- flights |> filter(air_time < 60)
+#SHORTFLIGHTS <- flights |> filter(air_time < 60)
 
 ```
 
