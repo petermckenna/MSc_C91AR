@@ -1,26 +1,23 @@
 ---
 title: "C91AR | Advanced Statistics using R"
-subtitle: "Tidying realistic data"
+subtitle: "Lecture 4: Tidying realistic data"
 title-slide-attributes:
-    data-background-image: images/data-sci-process.png
-    data-background-size: 30%
-    data-background-position: "50% 10%"
-author: "Dr Peter McKenna"
+    data-background-image: images/anime_programming.jpg
+    data-background-size: 20%
+    data-background-position: "50% 8%"
+author: "Dr Pete McKenna"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 format: 
   revealjs:
-    menu: 
-      side: right
-    smaller: true
-    scrollable: true
+    code-block-height: 300px
     slide-number: true
     logo: sossdoc-logo.png
-    css: logo.css
+    css: peter_style.css
     theme: [default, my_quarto_theme.scss]
 editor: 
   markdown: 
     wrap: 72
-bibliography: ref.bib
+bibliography: ref.bib    
 ---
 
 ```{r include=F, warning=FALSE}
@@ -45,24 +42,27 @@ bibliography: ref.bib
 pacman::p_load(tidyverse,
                snakecase,
                psych,
-               skimr)
+               summarytools)
 
 ```
 
+# Setup for this module
 
-# Packages for today's session
+-   Create an R Markdown called "Lecture4_tiding_real_data"
+-   Load the following packages
 
 ```{r eval = F}
 
-library(tidyverse)
-library(snakecase)
-library(psych)
-library(skimr)
+# load packages
+pacman::p_load(tidyverse,
+               snakecase,
+               psych,
+               summarytools)
 
 ```
 
-
-```{r include=F}
+<!--
+```{r include=F, eval=F}
 
 
 #| label: data setup
@@ -90,16 +90,56 @@ df <-
 names(df) # notice how the cols are formatted now
  
 ```
+-->
+
+# What we covered have covered thus far
+
+-   Setting up an RProject
+-   Creating sub-directories
+-   Functions in R
+-   Operators (e.g., `>`, `!=`, `==`) in R
+-   Creating an object with that data (e.g., `short_flights`)
+-   Writing tidy code with the *tidyverse* verbs
+
+---
+
+![](images/grogu_30%.png)
+
+---
+
+![](images/yoda_50%.png)
+
+:::
+
+# Some advice moving forward
+
+-   If this is your first experience of programming do not worry - it
+    takes time to get into the philosophy of it
+-   I will be showing you new functions and arguments but, after week 6
+    this will ease up as we focus on data analysis.
+-   Do talk to your peers and ask questions in class
+-   Programming has a steep learning curve, but once you wrap your head
+    around the principles it has be very rewarding (I promise!)
+
+# Any questions about what we have covered so far?
 
 
-## What we covered in the last session {.smaller}
+# What we are moving on to
 
+-   Reading in real data from a data file
+-   Tidying vector labels and values
+-   Dealing with date data
+-   Summarising data
+
+```{=html}
+<!--
 ::: columns
 ::: {.column width="50%"}
 -   Setting up an RProject
 -   Creating sub-directories
--   Saving data to a sub-directory
--   Creating an object with that data
+-   Creating an object with that data (e.g., `short_flights`)
+-   Writing tidy code with the *tidyverse* verbs
+
 :::
 
 ::: {.column width="50%"}
@@ -111,20 +151,24 @@ names(df) # notice how the cols are formatted now
 :::
 :::
 
-## Realistic data in research
+-->
+```
+
+# Realistic data in research [@McAleer_2022]
 
 -   A core strength to using a programming language for data processing
     and analysis is that you reduce the risk of human error
     significantly.
 -   This is especially important when confronted with realistic datasets
     that may be untidy for historical or procedural reasons (e.g., a
-    database that is maintained by different people who used their
-    own unique way of storing and labelling things).
+    database that is maintained by different people who used their own
+    unique way of storing and labelling things).
 -   An option would be to simply open the data and update the values as
     an when required.
 -   However, if the issue is prevalent across many datasets then an
     automated solution is more efficient.
 
+<!--
 ## Today's demonstration
 
 -   We are going to build on what we achieved last session
@@ -150,37 +194,134 @@ names(df) # notice how the cols are formatted now
 
 ```
 
+-->
+
+# Reading in and tidying data
+
+# Saving data in your directory
+
+-   At the beginning of the course we create three subdirectories `data_raw`, `data_tidy`, and `fig_out`
+-   We are going to real untidy experiment data into the "data_raw" folder.
+-   The best format for R is to save data as a `.csv` but there are
+    options to read in other file formats (e.g., `.xlsx`).
+-   Unprocessed data is saved in the "data_raw" folder and processed
+    data in the "data_tidy" folder so that we the raw and processed data
+    separate
+-   This will save you a lot of headache once you get to grips with
+    processing data and creating new `.csv`s for different purposes.
+    
+---
+
+![](images/data-sci-process.png)
+
+# Save the raw data provided
+
+-   Save the data from Canvas Module **Course datasets** called "robot-expression-data_raw.csv" into the
+    "data_raw" folder
+
+
+# Read in and explore the robot expression data
+
+```{r}
+
+# Read in raw data
+df <- 
+  read_csv("data_raw/robot-expression-data_raw.csv")
+
+```
+# Expression dataset metadata
+
+::: columns
+::: {.column width="50%"}
+-   `ID_` = participant id
+-   `sex` = participant sex
+-   `eth` = participant ethnicity
+-   `eng` = "Is English your native language?"
+-   `Exp.date` = date of experiment
+-   `interact.before` = "Have you ever interacted wtih a robot before?
+:::
+
+::: {.column width="50%"}
+-   `Alyx.is` = participants guess of robot's gender
+-   `item` = plastic food item offered to robot
+-   `Expression` = a numeric value for each of the four robot facial
+    expressions
+-   `resp` = name of the box where participants placed the food item
+    after robot expression
+-   `Time` = robots onboard clock timer
+-   `resp_acc` = accuracy of responses according to theoretically
+    deigned expressions
+:::
+:::
+
+
+# Data types for the `col_types` argument
+
+::: columns
+::: {.column width="50%"}
+-   "l" = logical
+-   "i" = integer (no decimals)
+-   "d" = double numeric (has decimals)
+-   "c" = character
+-   "D" = date
+-   "\_" = skip
+-   "?" = guess
+:::
+
+::: {.column width="50%"}
+- For more information see the `read_csv` and `col_types` documentation in the help section
+- You can pull this up by running `?read_csv` into the console  
+  + I'd recommend consulting the descriptor info at the top then skipping to the examples at the bottom of the help sheet 
+:::
+:::
+
+# Setting col types within the `read_csv` function
+
+```{r set col types, eval=FALSE}
+
+# Read in data and supply data type argument
+df <-
+  read_csv("data_raw/robot-expression-data_raw.csv",
+           col_types = "ffff?ffffftf")
+
+```
+
+- Now the data from the csv is stored in an object called `df`
+
 # Data exploration
 
-- Here are a few handy functions to exploring your data
-  - `summary`: from base R
-  - `headTail`: from *psych*
-  - `skim`: from *skimr*
-  
-## `summary` function
+-   Here are a few handy functions to exploring your data
+    -   `summary`: from base R
+    -   `headTail`: from *psych*
+    -   `dfSummary`: from *summarytools*
 
-- The `summary` function summarises continuous and categorical vectors 
-- NOTE: `summary` will not count character vectors, that's why we specified that our categorical vectors were factor type (e.g., "f") at `read_csv`
+# Base R's `summary` function
 
-```{r results='markup'}
+-   The `summary` function summarises continuous and categorical vectors
+-   NOTE: `summary` will not count character vectors, that's why we
+    specified that our categorical vectors were factor type (e.g., "f")
+    at `read_csv`
+
+```{r}
 
 # data summary - overall
 df |>
   summary()
 
 ```
-  
 
-## Headtail
+## `psych::headTail` function
 
-- The `headTail` function from the *psyche* package
+-   The `headTail` function from the *psyche* package
 
-```{r results='markup'}
+```{r}
 
 # data summary - head
 headTail(df)
 
 ```
+
+<!--
 
 # Old school subsetting
 
@@ -192,21 +333,41 @@ head(df[, c(1,5,7)])
 
 ```
 
+-->
+
+# `summarytools` package
+
+-   We've seen how we can get an overview of the data using `dfSummary`
+-   This function is particularly useful for spotting anomalies in the
+    data
+
+```{r}
+
+dfSummary(df)
+
+```
+
+<!--
+```{=html}
+
 # Skim
 
 - The `skim` function from *skimr* gives you a good overview of the data
 
-```{r results='markup'}
+```{r results='markup', eval=F}
 
 # data summary - tail
 skim(df)
 
 
 ```
+-->
+
 
 ## Using summary functions with the tidyverse
 
-- You can pipe data into summary functions to specify rows or cols of interest
+-   You can pipe data into summary functions to specify rows or cols of
+    interest
 
 ```{r results='markup'}
 
@@ -217,13 +378,14 @@ df |>
 
 ```
 
+## Recoding variable levels
 
-## Recode variable levels 
+-   You may have noticed from the last session that there there are some
+    erroneous values in the sex vector.
+-   You can check this directly by using the `$` symbol to index the
+    vector of interest in combination with the function `unique`.
 
-- You may have noticed from the last session that there there are some erroneous values in the sex vector.
-- You can check this directly by using the `$` symbol to index the vector of interest in combination with the function `unique`. 
-
-```{r results = 'markup'}
+```{r}
 
 # Check all unique entries in the vector `sex`
 unique(df$sex) # we can use the `unique` function to check all of the unique values in a vector
@@ -238,13 +400,16 @@ unique(df$sex) # we can use the `unique` function to check all of the unique val
 -   As you can see, something has gone wrong in the labelling of sex:
     there should only be two values, "Female" and "Male"
 
+# Using `case_match` to recode data
 
-## Using `case_match` to recode data
+-   Previously, the `recode` function was used in combination with
+    `mutate` to recode values in a cell
+-   But more recently, people have moved to using `case_match`, as it is
+    more intuitive and user friendly
+-   [Info on
+    case_match](https://dplyr.tidyverse.org/reference/case_match.html)
 
-- Previously, the `recode` function was used in combination with `mutate` to recode values in a cell
-- But more recently, people have moved to using `case_match`, as it is more intuitive and user friendly
-- [Info on case_match](https://dplyr.tidyverse.org/reference/case_match.html) 
-    
+---
 
 ```{r}
 
@@ -264,36 +429,61 @@ unique(df2$sex) # again, we use the $ symbol to isolate a specific vector
 ```
 
 
-# Data object considerations
+# Recap on the assign operator considerations
 
-- **NOTE**: If you have assigned transformations to an object with the same original name (e.g., `df` <- `df`) that object is irreversibly overwritten, unless you go back to a previous line that created it from scratch (e.g., where it was read in )
-- That is why your code operations must flow logically from top to bottom, otherwise future operations on the data will not work. 
-  - e.g., You might ask R to look up a column that changed name earlier in the script, which would throw an error.
-- The alternative strategy is to give each new object a different name, like `df1`. If you pursue this method, it is worth adding a comment next to each new object specifying how it is different to the previous. 
+-   **NOTE**: If you have assigned transformations to an object with the
+    same original name (e.g., `df` \<- `df`) that object is irreversibly
+    overwritten, unless you go back to a previous line that created it
+    from scratch (e.g., where it was read in )
+-   That is why your code operations must flow logically from top to
+    bottom, otherwise future operations on the data will not work.
+    -   e.g., You might ask R to look up a column that changed name
+        earlier in the script, which would throw an error.
+-   The alternative strategy is to give each new object a different
+    name, like `df1`. If you pursue this method, it is worth adding a
+    comment next to each new object specifying how it is different to
+    the previous.
 
 ```{r, eval = F}
 
-df1 <- # this object only contains data about ppt id and eth
+df1 <- 
   df |>
-  select(id, eth)
+  select(id, eth) 
+
+# df1 only contains data about ppt id and eth
 
 ```
 
 ## Save your tidy data
 
-- Once you are satisfied with the amendments made to your data you can save it as a new tidy `.csv` file
-- Again, use comments and bookmarks to signpost this part of your script
+-   Once you are satisfied with the amendments made to your data you can
+    save it as a new tidy `.csv` file
+-   Again, use comments and bookmarks to signpost this part of your
+    script
 
 ```{r, eval = FALSE}
 
 # save your new data object into `data_tidy`
 write_csv(df, # name of the object
-          "data_out/robot-expression-data_tidy.csv") # desired directory
+          "data_tidy/robot-expression-data_tidy.csv") # desired directory
 
 ```
 
 
+# Cleanup
 
+```{r cleanup, eval=F}
 
+# Clear data
+rm(list = ls())  # Removes all objects from environment
 
+# Clear packages
+p_unload(all)  # Remove all contributed packages
 
+# Clear plots
+graphics.off()  # Clears plots, closes all graphics devices
+
+# Clear console
+cat("\014")  # Mimics ctrl+L
+
+```
