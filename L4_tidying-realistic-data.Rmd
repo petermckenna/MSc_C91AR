@@ -1,26 +1,23 @@
 ---
 title: "C91AR | Advanced Statistics using R"
-subtitle: "Tidying realistic data"
+subtitle: "Lecture 4: Tidying realistic data"
 title-slide-attributes:
-    data-background-image: images/data-sci-process.png
-    data-background-size: 30%
-    data-background-position: "50% 10%"
-author: "Dr Peter McKenna"
+    data-background-image: images/anime_programming.jpg
+    data-background-size: 20%
+    data-background-position: "50% 8%"
+author: "Dr Pete McKenna"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 format: 
   revealjs:
-    menu: 
-      side: right
-    smaller: true
-    scrollable: true
+    code-block-height: 300px
     slide-number: true
     logo: sossdoc-logo.png
-    css: logo.css
+    css: peter_style.css
     theme: [default, my_quarto_theme.scss]
 editor: 
   markdown: 
     wrap: 72
-bibliography: ref.bib
+bibliography: ref.bib 
 ---
 
 ```{r include=F, warning=FALSE}
