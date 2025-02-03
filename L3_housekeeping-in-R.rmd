@@ -185,9 +185,7 @@ What can you infer from this summary?
 
 # Some examples
 
-::: {.panel-tabset}
-
-### Naming variables
+# Naming variables
 
 ```{r}
 
@@ -202,7 +200,7 @@ short_flights <-
 
 Given what we have learned so far, what do you think this code does?
 
-### Spaces
+# Spaces
 
 ```{r}
 
@@ -216,7 +214,7 @@ flights |>
 
 ```
 
-### Pipes
+# Pipes
 
 ```{r}
 
@@ -233,7 +231,7 @@ flights|>filter(!is.na(arr_delay), !is.na(tailnum))|>count(dest)
 
 If I told you that the operator `!` means **ignore**, what do you think this code does?
 
-### Long, tidy command chains
+# Long, tidy command chains
 
 ```{r}
 
@@ -255,7 +253,6 @@ flights |>
 
 ```
 
-:::
 
 # Cleanup
 

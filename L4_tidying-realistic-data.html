@@ -8,10 +8,17 @@
 <link href="L4_tidying-realistic-data_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="L4_tidying-realistic-data_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="L4_tidying-realistic-data_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<<<<<<< HEAD
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Dr Pete McKenna">
   <meta name="dcterms.date" content="2025-02-03">
+=======
+  <meta name="generator" content="quarto-1.3.450">
+
+  <meta name="author" content="Dr Pete McKenna">
+  <meta name="dcterms.date" content="2025-01-31">
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
   <title>C91AR | Advanced Statistics using R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -32,7 +39,11 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
+<<<<<<< HEAD
     pre > code.sourceCode > span { line-height: 1.25; }
+=======
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -95,7 +106,30 @@
     code span.va { color: #00e0e0; } /* Variable */
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
+<<<<<<< HEAD
   </style>
+=======
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
   <link rel="stylesheet" href="L4_tidying-realistic-data_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="peter_style.css">
   <link href="L4_tidying-realistic-data_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -223,8 +257,12 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
+<<<<<<< HEAD
     padding-bottom: 0.5rem;
     margin-bottom: 0;
+=======
+    margin-bottom: 0.5rem;
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -404,6 +442,7 @@ Dr Pete McKenna
 </div>
 </div>
 
+<<<<<<< HEAD
   <p class="date">2025-02-03</p>
 </section>
 <section>
@@ -439,12 +478,107 @@ Dr Pete McKenna
 </section>
 <section id="realistic-data-in-research" class="slide level2">
 <h2>Realistic data in research</h2>
+=======
+  <p class="date">2025-01-31</p>
+</section>
+<section id="setup-for-this-module" class="title-slide slide level1 center">
+<h1>Setup for this module</h1>
+<ul>
+<li>Create an R Markdown called “Lecture4_tiding_real_data”</li>
+<li>Load the following packages</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,</span>
+<span id="cb1-3"><a href="#cb1-3"></a>               snakecase,</span>
+<span id="cb1-4"><a href="#cb1-4"></a>               psych,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>               summarytools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+
+
+
+-->
+</section>
+
+<section>
+<section id="what-we-covered-have-covered-thus-far" class="title-slide slide level1 center">
+<h1>What we covered have covered thus far</h1>
+<ul>
+<li>Setting up an RProject</li>
+<li>Creating sub-directories</li>
+<li>Functions in R</li>
+<li>Operators (e.g., <code>&gt;</code>, <code>!=</code>, <code>==</code>) in R</li>
+<li>Creating an object with that data (e.g., <code>short_flights</code>)</li>
+<li>Writing tidy code with the <em>tidyverse</em> verbs</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>How you started the course…</p>
+
+<img data-src="images/grogu_30.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<p>How you might be feeling now…</p>
+
+<img data-src="images/yoda_50.png" class="r-stretch"></section></section>
+<section id="some-advice-moving-forward" class="title-slide slide level1 center">
+<h1>Some advice moving forward</h1>
+<ul>
+<li>If this is your first experience of programming do not worry - it takes time to get into the philosophy of it</li>
+<li>I will be showing you new functions and arguments but, after week 6 this will ease up as we focus on data analysis.</li>
+<li>Do talk to your peers and ask questions in class</li>
+<li>Programming has a steep learning curve, but once you wrap your head around the principles it has be very rewarding (I promise!)</li>
+</ul>
+</section>
+
+<section id="any-questions-about-what-we-have-covered-so-far" class="title-slide slide level1 center">
+<h1>Any questions about what we have covered so far?</h1>
+
+</section>
+
+<section id="what-we-are-moving-on-to" class="title-slide slide level1 center">
+<h1>What we are moving on to</h1>
+<ul>
+<li>Reading in real data from a data file</li>
+<li>Tidying vector labels and values</li>
+<li>Dealing with date data</li>
+<li>Summarising data</li>
+<li><strong>What we don’t get through today we will continue with on Thursday</strong></li>
+</ul>
+<!--
+::: columns
+::: {.column width="50%"}
+-   Setting up an RProject
+-   Creating sub-directories
+-   Creating an object with that data (e.g., `short_flights`)
+-   Writing tidy code with the *tidyverse* verbs
+
+:::
+
+::: {.column width="50%"}
+-   Setting column data types with the `col_types` argument
+-   Generating an overall summary of the data with `summary`
+-   Tidy vector labels with `snakecase`
+-   Rename vector labels with `rename`
+-   Dealing with date vectors using `lubridate`
+:::
+:::
+
+-->
+</section>
+
+<section id="realistic-data-in-research-mcaleer_2022" class="title-slide slide level1 center">
+<h1>Realistic data in research <span class="citation" data-cites="McAleer_2022">(<a href="#/references" role="doc-biblioref" onclick="">McAleer et al. 2022</a>)</span></h1>
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 <ul>
 <li>A core strength to using a programming language for data processing and analysis is that you reduce the risk of human error significantly.</li>
 <li>This is especially important when confronted with realistic datasets that may be untidy for historical or procedural reasons (e.g., a database that is maintained by different people who used their own unique way of storing and labelling things).</li>
 <li>An option would be to simply open the data and update the values as an when required.</li>
 <li>However, if the issue is prevalent across many datasets then an automated solution is more efficient.</li>
 </ul>
+<<<<<<< HEAD
 </section>
 <section id="todays-demonstration" class="slide level2">
 <h2>Today’s demonstration</h2>
@@ -470,6 +604,140 @@ Dr Pete McKenna
 </div>
 </section></section>
 <section>
+=======
+<!--
+## Today's demonstration
+
+-   We are going to build on what we achieved last session
+-   We will be learning a few more tidying operations
+-   Then well look at ways to explore and summarise our data
+
+## To get started
+
+-   Open the script you have been working on
+-   We are going to continue to work with the
+    "robot-expression-data_raw.csv" file
+-   To get us back to where we were, run the script in its entirety
+-   **Remember** you you only ever need to install packages once (unless
+    you are using a different machine) so be sure to comment
+    installation commands out
+
+
+::: {.cell}
+
+```{.r .cell-code}
+# install.packages('tidyverse')
+# install.packages('psych')
+
+# Only run these in the console if you haven't already previously
+```
+:::
+
+
+-->
+</section>
+
+<section id="reading-in-and-tidying-data" class="title-slide slide level1 center">
+<h1>Reading in and tidying data</h1>
+
+</section>
+
+<section>
+<section id="saving-data-in-your-directory" class="title-slide slide level1 center">
+<h1>Saving data in your directory</h1>
+<ul>
+<li>At the beginning of the course we create three subdirectories “data_raw”, “data_tidy”, and “fig_out”</li>
+<li>We are going to real untidy experiment data into the “data_raw” folder.</li>
+<li>The best format for R is to save data as a <code>.csv</code> but there are options to read in other file formats (e.g., <code>.xlsx</code>).</li>
+<li>Unprocessed data is saved in the “data_raw” folder and processed data in the “data_tidy” folder so that we the raw and processed data separate</li>
+<li>This will save you a lot of headache once you get to grips with processing data and creating new <code>.csv</code>s for different purposes.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/data-sci-process.png" class="r-stretch"></section></section>
+<section id="save-the-raw-data-provided" class="title-slide slide level1 center">
+<h1>Save the raw data provided</h1>
+<ul>
+<li>Save the data from Canvas Module <strong>Course datasets</strong> called “robot-expression-data_raw.csv” into the “data_raw” folder</li>
+</ul>
+</section>
+
+<section id="read-in-and-explore-the-robot-expression-data" class="title-slide slide level1 center">
+<h1>Read in and explore the robot expression data</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Read in raw data</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>df <span class="ot">&lt;-</span> </span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">read_csv</span>(<span class="st">"data_raw/robot-expression-data_raw.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="expression-dataset-metadata" class="title-slide slide level1 center">
+<h1>Expression dataset metadata</h1>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><code>ID_</code> = participant id</li>
+<li><code>sex</code> = participant sex</li>
+<li><code>eth</code> = participant ethnicity</li>
+<li><code>eng</code> = “Is English your native language?”</li>
+<li><code>Exp.date</code> = date of experiment</li>
+<li><code>interact.before</code> = “Have you ever interacted wtih a robot before?</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><code>Alyx.is</code> = participants guess of robot’s gender</li>
+<li><code>item</code> = plastic food item offered to robot</li>
+<li><code>Expression</code> = a numeric value for each of the four robot facial expressions</li>
+<li><code>resp</code> = name of the box where participants placed the food item after robot expression</li>
+<li><code>Time</code> = robots onboard clock timer</li>
+<li><code>resp_acc</code> = accuracy of responses according to theoretically deigned expressions</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="data-types-for-the-col_types-argument" class="title-slide slide level1 center">
+<h1>Data types for the <code>col_types</code> argument</h1>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>“f” = factor (i.e., categorical variable)</li>
+<li>“l” = logical</li>
+<li>“i” = integer (no decimals)</li>
+<li>“d” = double numeric (has decimals)</li>
+<li>“c” = character</li>
+<li>“D” = date</li>
+<li>“_” = skip</li>
+<li>“?” = guess</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>For more information see the <code>read_csv</code> and <code>col_types</code> documentation in the help section</li>
+<li>You can pull this up by running <code>?read_csv</code> into the console
+<ul>
+<li>I’d recommend consulting the descriptor info at the top then skipping to the examples at the bottom of the help sheet</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="setting-col-types-within-the-read_csv-function" class="title-slide slide level1 center">
+<h1>Setting col types within the <code>read_csv</code> function</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Read in data and supply data type argument</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>df <span class="ot">&lt;-</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">read_csv</span>(<span class="st">"data_raw/robot-expression-data_raw.csv"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>           <span class="at">col_types =</span> <span class="st">"ffff?ffffftf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Now the data from the csv is stored in an object called <code>df</code></li>
+</ul>
+</section>
+
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 <section id="data-exploration" class="title-slide slide level1 center">
 <h1>Data exploration</h1>
 <ul>
@@ -477,17 +745,29 @@ Dr Pete McKenna
 <ul>
 <li><code>summary</code>: from base R</li>
 <li><code>headTail</code>: from <em>psych</em></li>
+<<<<<<< HEAD
 <li><code>skim</code>: from <em>skimr</em></li>
 </ul></li>
 </ul>
 </section>
 <section id="summary-function" class="slide level2">
 <h2><code>summary</code> function</h2>
+=======
+<li><code>dfSummary</code>: from <em>summarytools</em></li>
+</ul></li>
+</ul>
+</section>
+
+<section>
+<section id="base-rs-summary-function" class="title-slide slide level1 center">
+<h1>Base R’s <code>summary</code> function</h1>
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 <ul>
 <li>The <code>summary</code> function summarises continuous and categorical vectors</li>
 <li>NOTE: <code>summary</code> will not count character vectors, that’s why we specified that our categorical vectors were factor type (e.g., “f”) at <code>read_csv</code></li>
 </ul>
 <div class="cell">
+<<<<<<< HEAD
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># data summary - overall</span></span>
 <span id="cb3-2"><a href=""></a>df <span class="sc">|&gt;</span></span>
 <span id="cb3-3"><a href=""></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -529,10 +809,20 @@ Dr Pete McKenna
 </section>
 <section id="headtail" class="slide level2">
 <h2>Headtail</h2>
+=======
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># data summary - overall</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="psychheadtail-function" class="slide level2">
+<h2><code>psych::headTail</code> function</h2>
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 <ul>
 <li>The <code>headTail</code> function from the <em>psyche</em> package</li>
 </ul>
 <div class="cell">
+<<<<<<< HEAD
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># data summary - head</span></span>
 <span id="cb5-2"><a href=""></a><span class="fu">headTail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -807,6 +1097,71 @@ Dr Pete McKenna
 </table>
 </div>
 </div>
+=======
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># data summary - head</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">headTail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+
+# Old school subsetting
+
+
+::: {.cell}
+
+```{.r .cell-code}
+# data summary - head specific
+  # for specific columns, e.g., cols 1, 5, and 7
+head(df[, c(1,5,7)])
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+# A tibble: 6 × 3
+    ID_ Exp.date   Alyx.is
+  <dbl> <chr>      <chr>  
+1     1 05/09/2017 Male   
+2     1 05/09/2017 Male   
+3     1 05/09/2017 Male   
+4     1 05/09/2017 Male   
+5    10 08/09/2017 Male   
+6    10 08/09/2017 Male   
+```
+:::
+:::
+
+
+-->
+</section></section>
+<section>
+<section id="summarytools-package" class="title-slide slide level1 center">
+<h1><code>summarytools</code> package</h1>
+<ul>
+<li>We’ve seen how we can get an overview of the data using <code>dfSummary</code></li>
+<li>This function is particularly useful for spotting anomalies in the data</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">dfSummary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+
+
+```{=html}
+
+# Skim
+
+- The `skim` function from *skimr* gives you a good overview of the data
+
+::: {.cell}
+
+```{.r .cell-code}
+# data summary - tail
+skim(df)
+```
+
+:::
+
+-->
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 </section>
 <section id="using-summary-functions-with-the-tidyverse" class="slide level2">
 <h2>Using summary functions with the tidyverse</h2>
@@ -814,6 +1169,7 @@ Dr Pete McKenna
 <li>You can pipe data into summary functions to specify rows or cols of interest</li>
 </ul>
 <div class="cell">
+<<<<<<< HEAD
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co"># data summary - sex</span></span>
 <span id="cb10-2"><a href=""></a>df <span class="sc">|&gt;</span></span>
 <span id="cb10-3"><a href=""></a>  <span class="fu">select</span>(sex) <span class="sc">|&gt;</span></span>
@@ -830,11 +1186,28 @@ Dr Pete McKenna
 </section>
 <section id="recode-variable-levels" class="slide level2">
 <h2>Recode variable levels</h2>
+=======
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># data summary - sex</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">select</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     sex           
+ Length:228        
+ Class :character  
+ Mode  :character  </code></pre>
+</div>
+</div>
+</section></section>
+<section id="recoding-variable-levels" class="title-slide slide level1 center">
+<h1>Recoding variable levels</h1>
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 <ul>
 <li>You may have noticed from the last session that there there are some erroneous values in the sex vector.</li>
 <li>You can check this directly by using the <code>$</code> symbol to index the vector of interest in combination with the function <code>unique</code>.</li>
 </ul>
 <div class="cell">
+<<<<<<< HEAD
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># Check all unique entries in the vector `sex`</span></span>
 <span id="cb12-2"><a href=""></a><span class="fu">unique</span>(df<span class="sc">$</span>sex) <span class="co"># we can use the `unique` function to check all of the unique values in a vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -845,18 +1218,34 @@ Levels: Female Male male ffemale femalew</code></pre>
 <span id="cb14-2"><a href=""></a><span class="co"># df |&gt;</span></span>
 <span id="cb14-3"><a href=""></a><span class="co">#   select(sex) |&gt;</span></span>
 <span id="cb14-4"><a href=""></a><span class="co">#   distinct()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+=======
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Check all unique entries in the vector `sex`</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">unique</span>(df<span class="sc">$</span>sex) </span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># Alternatively you can use tidyverse's `distinct`</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">select</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 </div>
 <ul>
 <li>As you can see, something has gone wrong in the labelling of sex: there should only be two values, “Female” and “Male”</li>
 </ul>
 </section>
+<<<<<<< HEAD
 <section id="using-case_match-to-recode-data" class="slide level2">
 <h2>Using <code>case_match</code> to recode data</h2>
+=======
+
+<section id="using-case_match-to-recode-data" class="title-slide slide level1 center">
+<h1>Using <code>case_match</code> to recode data</h1>
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 <ul>
 <li>Previously, the <code>recode</code> function was used in combination with <code>mutate</code> to recode values in a cell</li>
 <li>But more recently, people have moved to using <code>case_match</code>, as it is more intuitive and user friendly</li>
 <li><a href="https://dplyr.tidyverse.org/reference/case_match.html">Info on case_match</a></li>
 </ul>
+<<<<<<< HEAD
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># Using case_match to recode cell values</span></span>
 <span id="cb15-2"><a href=""></a>df2 <span class="ot">&lt;-</span></span>
@@ -887,6 +1276,65 @@ Levels: Female Male male ffemale femalew</code></pre>
 <span id="cb16-2"><a href=""></a>  df <span class="sc">|&gt;</span></span>
 <span id="cb16-3"><a href=""></a>  <span class="fu">select</span>(id, eth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+=======
+</section>
+
+<section id="case_match-syntax" class="title-slide slide level1 center">
+<h1><code>case_match</code> syntax</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Using case_match to recode cell values</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>df2 <span class="ot">&lt;-</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  df <span class="sc">|&gt;</span>  <span class="co"># create new and tidy object for illustration                </span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">case_match</span>(sex,              <span class="co"># mutate to change</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>                      <span class="st">"male"</span> <span class="sc">~</span> <span class="st">"Male"</span>,      <span class="co"># supply erroneous value and new value</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>                      <span class="st">"ffemale"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>                      <span class="st">"femalew"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>                      <span class="at">.default =</span> sex))      <span class="co"># preserve all other entries in the vector</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co"># Check the values of a vector using unique</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="fu">unique</span>(df2<span class="sc">$</span>sex) <span class="co"># again, we use the $ symbol to isolate a specific vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section>
+<section id="recap-on-the-assign-operator-considerations" class="title-slide slide level1 center">
+<h1>Recap on the assign operator considerations</h1>
+<ul>
+<li><strong>Irreversibly overwriting dataframe/tibble</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>df <span class="ot">&lt;-</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">select</span>(id, eth) </span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="co"># df only contains data about ppt id and eth</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Create new dataframes/tibbles</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>df1 <span class="ot">&lt;-</span> </span>
+<span id="cb12-2"><a href="#cb12-2"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">select</span>(id, eth) </span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="co"># df1 only contains data about ppt id and eth</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="co"># df contains all 12 vectors </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+
+-   **NOTE**: If you have assigned transformations to an object with the
+    same original name (e.g., `df` \<- `df`) that object is irreversibly
+    overwritten, unless you go back to a previous line that created it
+    from scratch (e.g., where it was read in )    
+-   That is why your code operations must flow logically from top to
+    bottom, otherwise future operations on the data will not work.
+    -   e.g., You might ask R to look up a column that changed name
+        earlier in the script, which would throw an error.
+-   The alternative strategy is to give each new object a different
+    name, like `df1`. If you pursue this method, it is worth adding a
+    comment next to each new object specifying how it is different to
+    the previous.
+    
+-->
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 </section>
 <section id="save-your-tidy-data" class="slide level2">
 <h2>Save your tidy data</h2>
@@ -895,6 +1343,7 @@ Levels: Female Male male ffemale femalew</code></pre>
 <li>Again, use comments and bookmarks to signpost this part of your script</li>
 </ul>
 <div class="cell">
+<<<<<<< HEAD
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># save your new data object into `data_tidy`</span></span>
 <span id="cb17-2"><a href=""></a><span class="fu">write_csv</span>(df, <span class="co"># name of the object</span></span>
 <span id="cb17-3"><a href=""></a>          <span class="st">"data_out/robot-expression-data_tidy.csv"</span>) <span class="co"># desired directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -906,6 +1355,42 @@ Levels: Female Male male ffemale femalew</code></pre>
 </div>
 </div>
 </section></section>
+=======
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># save your new data object into `data_tidy`</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">write_csv</span>(df, <span class="co"># name of the object</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>          <span class="st">"data_tidy/robot-expression-data_tidy.csv"</span>) <span class="co"># desired directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section id="cleanup" class="title-slide slide level1 center">
+<h1>Cleanup</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Clear data</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())  <span class="co"># Removes all objects from environment</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co"># Clear packages</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="fu">p_unload</span>(all)  <span class="co"># Remove all contributed packages</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co"># Clear plots</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="fu">graphics.off</span>()  <span class="co"># Clears plots, closes all graphics devices</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="co"># Clear console</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\014</span><span class="st">"</span>)  <span class="co"># Mimics ctrl+L</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="references" class="title-slide slide level1 smaller scrollable">
+<h1>References</h1>
+
+<img src="sossdoc-logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-McAleer_2022" class="csl-entry" role="listitem">
+McAleer, Phil, Niamh Stack, Heather Woods, Lisa Marie DeBruine, Helena Paterson, Emily Nordmann, Carolina Ellen Kuepper-Tetzel, and Dale J. Barr. 2022. <span>“Embedding Data Skills in Research Methods Education: Preparing Students for Reproducible Research,”</span> November. <a href="https://doi.org/10.31234/osf.io/hq68s">https://doi.org/10.31234/osf.io/hq68s</a>.
+</div>
+</div>
+</section>
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
     </div>
   </div>
 
@@ -932,6 +1417,10 @@ Levels: Female Male male ffemale femalew</code></pre>
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+<<<<<<< HEAD
+=======
+'smaller': false,
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1117,6 +1606,7 @@ Levels: Female Male male ffemale femalew</code></pre>
       });
     </script>
     
+<<<<<<< HEAD
 
     <script>
 
@@ -1192,6 +1682,45 @@ Levels: Female Male male ffemale femalew</code></pre>
 
     
 
+=======
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
@@ -1268,6 +1797,7 @@ Levels: Female Male male ffemale femalew</code></pre>
         // clear code selection
         e.clearSelection();
       });
+<<<<<<< HEAD
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1289,6 +1819,12 @@ Levels: Female Male male ffemale femalew</code></pre>
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
+=======
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1298,6 +1834,7 @@ Levels: Female Male male ffemale femalew</code></pre>
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
+<<<<<<< HEAD
           placement: 'bottom-start',
         };
         if (contentFn) {
@@ -1309,6 +1846,10 @@ Levels: Female Male male ffemale femalew</code></pre>
         if (onUntriggerFn) {
           config.onUntrigger = onUntriggerFn;
         }
+=======
+          placement: 'bottom-start'
+        };
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1322,11 +1863,15 @@ Levels: Female Male male ffemale femalew</code></pre>
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
+<<<<<<< HEAD
           if (note) {
             return note.innerHTML;
           } else {
             return "";
           }
+=======
+          return note.innerHTML;
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
         });
       }
       const findCites = (el) => {

@@ -11,7 +11,11 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Dr Pete McKenna">
+<<<<<<< HEAD
   <meta name="dcterms.date" content="2025-01-27">
+=======
+  <meta name="dcterms.date" content="2025-01-28">
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
   <title>C91AR | Advanced Statistics using R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -404,7 +408,11 @@ Dr Pete McKenna
 </div>
 </div>
 
+<<<<<<< HEAD
   <p class="date">2025-01-27</p>
+=======
+  <p class="date">2025-01-28</p>
+>>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 </section>
 <section id="lets-create-an-r-markdown-for-today" class="title-slide slide level1 center">
 <h1>Let’s create an R Markdown for today</h1>
@@ -562,10 +570,11 @@ Dr Pete McKenna
 
 <section id="some-examples" class="title-slide slide level1 center">
 <h1>Some examples</h1>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Naming variables</a></li><li><a href="#tabset-1-2">Spaces</a></li><li><a href="#tabset-1-3">Pipes</a></li><li><a href="#tabset-1-4">Long, tidy command chains</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
+
+</section>
+
+<section id="naming-variables" class="title-slide slide level1 center">
+<h1>Naming variables</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Strive for:</span></span>
 <span id="cb4-2"><a href=""></a>short_flights <span class="ot">&lt;-</span> </span>
@@ -575,8 +584,10 @@ Dr Pete McKenna
 <span id="cb4-6"><a href=""></a>SHORTFLIGHTS <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(air_time <span class="sc">&lt;</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Given what we have learned so far, what do you think this code does?</p>
-</div>
-<div id="tabset-1-2">
+</section>
+
+<section id="spaces" class="title-slide slide level1 center">
+<h1>Spaces</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># In this code the author has aligned the "=" sign, giving better readability</span></span>
 <span id="cb5-2"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
@@ -586,8 +597,10 @@ Dr Pete McKenna
 <span id="cb5-6"><a href=""></a>    <span class="at">dep_minute =</span> dep_time <span class="sc">%%</span>  <span class="dv">100</span>  <span class="co"># %% = modulus operator returns the remainder of the division of two numbers.</span></span>
 <span id="cb5-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="tabset-1-3">
+</section>
+
+<section id="pipes" class="title-slide slide level1 center">
+<h1>Pipes</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Strive for </span></span>
 <span id="cb6-2"><a href=""></a>flights <span class="sc">|&gt;</span>  </span>
@@ -598,8 +611,10 @@ Dr Pete McKenna
 <span id="cb6-7"><a href=""></a>flights<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(arr_delay), <span class="sc">!</span><span class="fu">is.na</span>(tailnum))<span class="sc">|&gt;</span><span class="fu">count</span>(dest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If I told you that the operator <code>!</code> means <strong>ignore</strong>, what do you think this code does?</p>
-</div>
-<div id="tabset-1-4">
+</section>
+
+<section id="long-tidy-command-chains" class="title-slide slide level1 center">
+<h1>Long, tidy command chains</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
 <span id="cb7-2"><a href=""></a>  <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span> </span>
@@ -616,9 +631,6 @@ Dr Pete McKenna
 <span id="cb7-13"><a href=""></a>    <span class="at">linewidth =</span> <span class="dv">4</span></span>
 <span id="cb7-14"><a href=""></a>  ) <span class="sc">+</span></span>
 <span id="cb7-15"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
 </div>
 </section>
 
