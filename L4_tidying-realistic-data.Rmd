@@ -17,11 +17,7 @@ format:
 editor: 
   markdown: 
     wrap: 72
-<<<<<<< HEAD
 bibliography: ref.bib 
-=======
-bibliography: ref.bib    
->>>>>>> f47344b21ddf2ae924c6a81901019135d7cf7812
 ---
 
 ```{r include=F, warning=FALSE}
@@ -237,6 +233,7 @@ df <-
   read_csv("data_raw/robot-expression-data_raw.csv")
 
 ```
+
 # Expression dataset metadata
 
 ::: columns
