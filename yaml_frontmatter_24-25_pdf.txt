@@ -1,0 +1,19 @@
+---
+title: "C91AR | Advanced Statistics using R"
+subtitle: "XXXXX"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+bibliography: ref.bib
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+    fig_caption: true
+    latex_engine: xelatex
+    includes:
+      in_header: preamble.tex
+    keep_tex: true
+editor: 
+  markdown: 
+    wrap: 72
+---
