@@ -1,0 +1,478 @@
+---
+title: "C91AR: Advanced Statistics using R"
+subtitle: "Wrangling Real Data"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+bibliography: ref.bib
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+    fig_caption: true
+    latex_engine: xelatex
+    includes:
+      in_header: preamble.tex
+    keep_tex: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r include=F, warning=FALSE}
+
+# presentation setup
+ knitr::opts_chunk$set(echo = T, 
+                       eval = T,
+                       results = 'hide',
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
+
+# default for instructor is 
+  # echo = F
+  # eval = T
+  # results = 'hide'
+
+# you only want to see the results for certain chunks (e.g., plots)
+
+
+```
+
+# Packages for todays session
+
+```{r}
+
+# Load packages
+pacman::p_load(tidyverse,
+               broom,
+               GGally,
+               nortest,
+               psych)
+
+```
+
+# What are we going to cover today
+
+- Wrangling, summarising, and visualising numeric data
+- Assessing the distribution of numeric data (though we will cover this more thoroughly in week 7)
+- Wrangling, summarising, and visualising categorical data
+
+
+# Summarising data in R
+
+- Now that we've looked at how to keep code tidy and how to tidy our data, build on what we've started to learn from the data wrangling operations
+- I've shown you how to filter and select your data, and by adding more commands to your chain of pipes (`|>`) you can also start to generate summaries of your data
+
+# Using pipes to generate summaries
+
+- Think about your data and what summaries would be useful for your research
+- Let's read in our tidy data to get started
+
+```{r}
+
+# Read in the tidy data
+df <-
+  read_csv("data_tidy/c91ar_maze_data.csv",
+           col_types = "cccdccd") |>
+  drop_na()# omit NAs
+
+```
+
+# Examine the data
+
+```{r}
+
+# Examine the data
+glimpse(df)
+
+```
+
+
+# Dataset Metadata
+
+- `id` = anon participant code
+- `condition` = ToM manipulation with three levels (Baseline, No-ToM, and ToM)
+- `trial` = experiment trial
+- `rt` = response time
+- `follow robot` = whether participants followed the robot's suggestion
+- `accuracy` = whether or not their maze route selection was correct
+- `conf` = participants self reported confidence for each route decision.
+
+# Reseach questions
+
+- Did robot ToM affect participants trust?
+- Did robot ToM affect participants task performance?
+  + Decision time
+  + Confidence
+  
+# Descriptive Statistics
+
+- We use a combination of *Tidyverse* verbs to select, group and summarise data
+  + `group_by`
+  + `select`
+  + `arrange`
+  + `filter`
+  + `summarise`
+
+---  
+
+```{r}
+
+df |>
+  select(rt,
+         conf) |>
+  ggpairs() # from GGally
+
+
+```
+
+---
+
+- You can see that `rt` is positively skewed and `conf` is negatively skewed
+- Think, **where is the tail?**
+
+```{r, eval = F}
+
+# Test the normality of rt
+# shapiro.test(df$rt) 
+
+
+# Test the normlisaty of conf
+# shapiro.test(df$conf)
+
+
+# For large datasets, use Anderson-Darling instead
+  # Null hypothesis is that the data follows a particular distribution
+#library(nortest)
+
+# response time
+ad.test(df$rt)
+
+# confidence
+ad.test(df$conf)
+
+```
+
+- So, both `rt` and `conf` are not normally distributed
+
+# Working with reaction/decision time data
+
+- Sometimes, you have to make a judgement call about what constitutes a theoretically valid response in your experiment.
+- The minimum RT here is below zero, which is not possible
+- One way to make an educated guess is to examine the histogram and hone in on the region of interest
+- But, before I go any further...
+
+# Data Visualisation with `ggplot2`
+
+- This is the package used to produce plots in R
+- It comes with a whole host of its own functions and is very flexible in terms of the graphical aesthetics.
+- Annoyingly, it does not use `|>` (e.g., pipes) but instead uses the `+` symbol. 
+- So, when you combine *Tidyverse* and *ggplot2* you often see a combination beginning with `|>` and ending with `+` to chain commands together.
+
+# Visualising distributions using `ggplot2`
+
+```{r}
+
+# Visualise the full rt distribution
+df |>
+  select(rt) |>
+  ggplot(mapping = aes(rt)) +
+  geom_histogram(bins = 100) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+----
+
+```{r}
+
+# Visualise the full conf distribution
+df |>
+  select(conf) |>
+  ggplot(mapping = aes(conf)) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+
+# Taking a closer look at the distribution extremities
+
+```{r}
+
+# Visualise the observations near the y-axis origin
+df |>
+  filter(rt %in% c(0:700)) |> # I'm not interested in values below zero
+  ggplot(mapping = aes(rt)) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+---
+
+```{r}
+
+# Visualise the observations at the tail of the distribution
+df |>
+  filter(rt %in% c(1500:6000)) |>
+  ggplot(mapping = aes(rt)) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+# Based on the following plot, where would say is safe to start our distribution?
+
+# Visualise new distribution
+
+```{r}
+
+# Visualise the observations included in our new limits
+df |>
+  filter(rt %in% c(500:5000)) |>
+  ggplot(mapping = aes(rt)) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+# Visualise transformed data 
+
+- This measure is one approach to normalise positively and negatively skewed distributions
+
+```{r}
+
+# Visualise the log transformed rt
+df |>
+  dplyr::filter(rt %in% c(500:5000)) |>
+  ggplot(mapping = aes(log(rt))) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of log(response time; ms) distribution")
+
+```
+
+---
+
+```{r}
+
+# Visualise the log transformed conf
+df |>
+  filter(rt %in% c(500:5000)) |>
+  ggplot(mapping = aes(log(conf))) +
+  geom_histogram(bins = 30) + 
+  labs(y = "Frequency",
+       title = "Histogram of log(confidence) distribution")
+
+```
+
+# Checking correlations based on new parameters
+
+```{r}
+
+df |>
+  filter(rt %in% c(500:3000)) |> # filter the data
+  mutate(rt_log = log(rt),
+         conf_log = log(conf)) |> # create a log of rt vector 
+  select(rt_log,
+         conf_log) |> # only include numeric vectors
+  ggpairs()
+
+```
+
+- According to our new limits and log transformation, there is no correlation between response time and confidence.
+
+# ToM condition descrtiptives
+
+```{r}
+
+# create a new object based on our chosen rt parameters
+
+df1 <-
+  df |>
+  filter(rt %in% c(500:5000)) |>
+  mutate(rt_log = log(rt),
+         conf_log = log(conf)) |>
+  mutate_if(is.character, as.factor)
+
+```
+
+# Creating new tibbles/objects
+
+- Be sure to create a comment explicitly stating what df1 represents
+- You could do this in a separate .txt file or in your script
+- The last line of the chain tells R to treat the character cols as factor, because converting factors back to characters is the default behaviour when creating new data objects
+- df1 = data with rt 500:5000
+
+---
+
+```{r, results='markup'}
+
+# Summarise the data
+df1 |>
+  select(condition, 
+         rt_log, 
+         conf_log) %>%
+  group_by(condition) %>% 
+  summarise(avg_rt = mean(rt_log), # remember, we are operating in the log space now
+            sd_rt = sd(rt_log),
+            med_rt = median(rt_log),
+            avg_conf = mean(conf_log),
+            sd_conf = sd(conf_log),
+            med_conf = median(conf_log))
+
+```
+
+
+# Describing numeric vectors using `psych` package
+
+```{r}
+
+# Overall summary of rt
+df1 |>
+  describe(omit = TRUE) # omit non-numeric vectors
+
+```
+
+
+# Descritives of your numeric variables per each level of the predictors
+
+```{r}
+
+# Condition level summary of rt
+describe(rt_log ~ condition, data=df1) # remember, tilde means modelled by
+
+```
+
+# Exercise: use the `describe` function from the *psych* package to summarise both overall and group trends from the confidence rating participants gave after each decision.
+
+# Summarising the categorical variables
+
+- In the long data format (which is the go-to for R) each row represents a unique observation in the data.
+- So, when you summarise categorical data, you need to input the number of rows into the calculation to compute overall proportions. 
+
+```{r}
+
+# How often did participants in each group follow the robots advice?
+total_n <- 
+  nrow(df1) # nrow counts the number of rows
+
+df1 |>
+  group_by(condition, follow_robot) |>
+  summarise(n = n(), 
+            .groups = 'drop') |> # ensures that the grouping is dropped after summarising
+  mutate(freq = n / total_n) |>
+  mutate(freq = round(freq * 100, digits = 2))
+  
+  
+```
+
+# Visualising categorical data trends
+
+```{r}
+
+p_follow <-
+  df1 |>
+  group_by(condition, follow_robot) |>
+  summarise(n = n(), 
+            .groups = 'drop') |> # ensures that the grouping is dropped after summarising
+  mutate(freq = n / total_n) |>
+  mutate(freq = round(freq * 100, digits = 2))
+
+p_follow |>  
+  ggplot(aes(x = follow_robot,
+                y = freq,
+                fill = condition,
+                group = condition)) + 
+  geom_col(stat = "identity",
+           position = "dodge") +
+  labs(title = "Proportion of Robot Compliance per Condition",
+       x = "Compliance with Robot Route Advice",
+       y = "Proportion of Responses (%)") +
+  theme_minimal()
+
+```
+
+---
+
+```{r, results='markup'}
+
+# How often were participants correct in their route selection?
+
+df1 |>
+  group_by(condition, 
+           accuracy) |>
+  summarise(n = n(), 
+            .groups = 'drop') |> 
+  mutate(freq = n / total_n) |>
+  mutate(freq = round(freq * 100, digits = 2))
+
+```
+
+---
+
+```{r}
+
+p_acc <-
+  df1 |>
+  group_by(condition, 
+           accuracy) |>
+  summarise(n = n(), 
+            .groups = 'drop') |> 
+  mutate(freq = n / total_n) |>
+  mutate(freq = round(freq * 100, digits = 2))
+
+p_acc |>  
+  ggplot(aes(x = accuracy,
+                y = freq,
+                fill = condition,
+                group = condition)) + 
+  geom_col(stat = "identity",
+           position = "dodge") +
+  labs(title = "Proportion of Response Accuracy per Condition",
+       x = "Route Selection Accuracy",
+       y = "Proportion of Responses (%)") +
+  theme_minimal()
+
+```
+
+
+# Wrap up
+
+- Today we covered
+  - How to wrangle and summarise numeric and categorical data
+  - Had brief explosure to checking the normality of numeric distributions
+  - You got your first taste of `ggplot2` plotting
+
+- Next week there are no official lectures or tutorials. Please get in touch to discuss anything. I'm happy to help de-bug your code.
+
+
+# Cleanup
+
+```{r cleanup, eval=F}
+
+# Clear data
+rm(list = ls())  # Removes all objects from environment
+
+# Clear packages
+p_unload(all)  # Remove all contributed packages
+
+# Clear plots
+graphics.off()  # Clears plots, closes all graphics devices
+
+# Clear console
+cat("\014")  # Mimics ctrl+L
+
+```
+
+
+# References
+
+

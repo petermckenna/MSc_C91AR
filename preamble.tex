@@ -1,0 +1,38 @@
+% Load necessary packages
+\usepackage{amsmath}    % For advanced math typesetting
+\usepackage{graphicx}   % For including images
+\usepackage{hyperref}   % For hyperlinks
+\usepackage{geometry}   % For setting page dimensions
+\usepackage{fancyhdr}   % For custom headers and footers
+\usepackage{setspace}   % For setting line spacing
+
+% Set page dimensions
+\geometry{
+  a4paper,
+  left=25mm,
+  right=25mm,
+  top=25mm,
+  bottom=25mm
+}
+
+% Custom header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+
+% Custom commands
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+% Set line spacing
+\setstretch{1.5}
+
+% Additional settings
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=magenta,
+  urlcolor=cyan,
+  pdftitle={Your Document Title},
+  pdfpagemode=FullScreen,
+}
