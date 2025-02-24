@@ -38,6 +38,13 @@ bibliography: ref.bib
 
 # you only want to see the results for certain chunks (e.g., plots)
 
+```
+
+
+# Packages for today
+
+```{r}
+
 # load packages
 pacman::p_load(tidyverse,
                snakecase,
@@ -48,6 +55,7 @@ pacman::p_load(tidyverse,
 
 ```
 
+
 # Reading for Today
 
 [Chapter 12: Screening data](https://psyteachr.github.io/quant-fun-v2/screening-data.html)
@@ -55,12 +63,12 @@ pacman::p_load(tidyverse,
 
 # Aims for this module
 
-- Cover some of the processes which to check your data
-  - Missing Data
-  - Listwise Deletion
-  - Pairwise deletion
-  - Implausible values
-  - Violations of statistical assumptions
+- I'll show you how to deliberately untidy data using the **`messy`** package
+- We'll do some more label tidying
+- Examined the case of listwise deletion (the reading covers other approaches)
+- Test distribution normality
+- Show you **`tidyplots`** as an alternative to **`ggplot2`**
+
 
 # Read in tidy data
   
@@ -127,6 +135,11 @@ unique(df_messy$condition) # what a mess!
 
 ```
 
+- What a mess! This was created using the `messy::add_special_chars` function
+
+
+- Tidying up the mess
+
 ```{r}
 
 # using a combination of case_when and str_detect
@@ -139,14 +152,41 @@ df_messy_levels <-
 
 unique(df_messy_levels$condition)
 
-# Prbably want to do a little more tidying
+```
+
+# Still not happy with the level labels?
+
+```{r}
+
+# Probably we do a little more tidying
 df_messy_levels <-
   df_messy_levels |>
-  mutate(condition = case_match("NoToM" ~ "No_ToM",
+  mutate(condition = case_match(condition, 
+                                "NoToM" ~ "No_ToM",
                                 "baseline" ~ "Baseline",
-                                .default = TRUE))
+                                .default = condition))
 
 unique(df_messy_levels$condition)
+
+```
+
+# Tidy up our object list
+
+- You can see how our list of objects is growing in the global environment.
+- You may decide at a certain point to drop some of the objects to keep the list short
+- Let's update `df_messy` and remove `df_messy_levels` 
+
+```{r}
+
+# Update df_messy with df_messy_levels values
+df_messy <-
+  df_messy_levels
+
+# remove df_messy levels - as this is now contained in df_messy
+rm(df_messy_levels)
+
+# check data
+unique(df_messy$condition)
 
 ```
 
@@ -156,6 +196,31 @@ unique(df_messy_levels$condition)
 - But this may not be ideal as we might end up removing a lot of useful observations from the dataset
 - It may only pertain to a variable that is not integral to our research question, so could be ignored
 
+# Using `drop_na`
+
+```{r}
+
+df_messy_na <-
+  df_messy |>
+  drop_na()
+  
+```
+
+- What percentage of the observations is missing?
+
+```{r, include = F}
+
+# 33.1%
+
+```
+
+# Remove `df_messy_na`
+
+```{r}
+
+rm(df_messy_na)
+
+```
 
 # Replacing missing values with the mean
 
@@ -164,28 +229,12 @@ unique(df_messy_levels$condition)
 
 ```{r}
 
-# examine the histrogram
+# examine the histogram
 df_messy |>
   ggplot(mapping = aes(rt)) +
   geom_histogram(bins = 100) + 
   labs(y = "Frequency",
        title = "Histogram of Response time (ms) distribution")
-
-```
-
-# Visualise implausible values
-
-```{r}
-
-df |>
-  mutate(condition case_match()
-  pivot_longer(cols = c("baseline", "no_tom", "tom"), 
-               names_to = "test", 
-               values_to = "score") %>%
-  ggplot(aes(x = test, y = score)) +
-  geom_violin() +
-  geom_boxplot() +
-  geom_jitter(width = .2)
 
 ```
 
@@ -220,7 +269,6 @@ df_messy |>
 
 # Create mean variable
 avg_rt <- 1646.523
-log_rt <- log(1646.523)
 
 # create new object that replaces missing rt values with the mean
 df_messy1 <-
@@ -249,6 +297,16 @@ df_messy1 |>
   pluck("count_nas")
 
 ```
+
+
+# How big are the group sizes after removing missing cases?
+
+```{r, eval=F}
+
+# What would I write here to check the group sizes?
+
+```
+
 # Plot the data
 
 ```{r}
@@ -263,7 +321,7 @@ df_messy1 |>
 
 # Tidyplots equivalent
 
-```{r}
+```{r, eval=FALSE}
 
 # using tidyplots
 df_messy1 <-
@@ -271,593 +329,94 @@ df_messy1 <-
   mutate(log_rt = log(rt)) # tidyplots needs to be passed existing vectors
 
 df_messy1 |>
-  tidyplot(x = log_rt) |>
+  tidyplot(x = log_rt, color = condition) |>
   add_histogram(bins = 30) |> 
-  add_title("Histogram of log(rt) distribution") |>
+  add_title("Histogram of log(rt) distribution per group") |>
   adjust_x_axis_title("log(rt)") |>
   adjust_y_axis_title("Frequency")
 
 ```
 
-<!--
+---
 
-# Setup for this module
+```{r, echo=FALSE}
 
--   Continue working on R Markdown called "Lecture4_tiding_real_data" (or create this file if you weren't here on Monday)
--   Load the following packages
+# using tidyplots
+df_messy1 <-
+  df_messy1 |>
+  mutate(log_rt = log(rt)) # tidyplots needs to be passed existing vectors
 
-```{r eval = F}
-
-# load packages
-pacman::p_load(tidyverse,
-               snakecase,
-               psych,
-               summarytools)
+df_messy1 |>
+  tidyplot(x = log_rt, color = condition) |>
+  add_histogram(bins = 30) |> 
+  add_title("Histogram of log(rt) distribution per group") |>
+  adjust_x_axis_title("log(rt)") |>
+  adjust_y_axis_title("Frequency")
 
 ```
 
-<!--
-```{r include=F, eval=F}
+# Checking the normality of the data using `psych`
 
+```{r}
 
-#| label: data setup
-# load data
-df <-
-  read_csv("data_raw/robot-expression-data_raw.csv",
-           col_types = "ffff?ffffftf")
+# Overall
+describe(df_messy1$log_rt) |>
+  select(11,12)
 
-names(df) <- 
-  to_snake_case(names(df)) # lower_case with underlined separators 
+# By group
+describeBy(log_rt ~ condition,
+           mat = TRUE,
+           data = df_messy1) |>
+  select(2, 13:14)
 
-# Rename vectors using rename
-df <-
-  df |>
-  rename(perceived_robot_gender = alyx_is, # the new labels are intended to be more descriptive
-         robot_expression = expression,
-         ppt_acc = resp_acc)
-
-# sort out date col
-df <-
-  df |> # this is the pipe operator; it means, "then do this"
-  mutate(exp_date = dmy(exp_date))
-
-# examine the data
-names(df) # notice how the cols are formatted now
- 
 ```
+- What is `select` doing here?
+- What are the rules for violations to Skew and Kurtosis?
 
 
-# What we covered have covered thus far
+# Boxplot with comparison analysis from `tidyplots`
 
--   Setting up an RProject
--   Creating sub-directories
--   Functions in R
--   Operators (e.g., `>`, `!=`, `==`) in R
--   Creating an object with that data (e.g., `short_flights`)
--   Writing tidy code with the *tidyverse* verbs
+```{r, eval=FALSE}
+
+df_messy1 |> 
+  tidyplot(x = condition, 
+           y = log_rt, 
+           color = condition) |> 
+  add_boxplot() |> 
+  add_test_pvalue(ref.group = 1) |>
+  add_title("Comparing log(rt) against the baseline") |>
+  adjust_x_axis_title("Experimental group") |>
+  adjust_y_axis_title("log(rt)") |>
+  adjust_legend_title("Experimental group")
+
+```
 
 ---
 
-How you started the course...
+```{r, echo=FALSE}
 
-![](images/grogu_30.png)
-
----
-
-How you might be feeling now...
-
-![](images/yoda_50.png)
-
-
-# Some advice moving forward
-
--   If this is your first experience of programming do not worry - it
-    takes time to get into the philosophy of it
--   I will be showing you new functions and arguments but, after week 6
-    this will ease up as we focus on data analysis.
--   Do talk to your peers and ask questions in class
--   Programming has a steep learning curve, but once you wrap your head
-    around the principles it has be very rewarding (I promise!)
-
-# Any questions about what we have covered so far?
-
-
-# What we are moving on to
-
--   Reading in real data from a data file
--   Tidying vector labels and values
--   Dealing with date data
--   Summarising data
--   **What we don't get through today we will continue with on Thursday**
-
-```{=html}
-<!--
-::: columns
-::: {.column width="50%"}
--   Setting up an RProject
--   Creating sub-directories
--   Creating an object with that data (e.g., `short_flights`)
--   Writing tidy code with the *tidyverse* verbs
-
-:::
-
-::: {.column width="50%"}
--   Setting column data types with the `col_types` argument
--   Generating an overall summary of the data with `summary`
--   Tidy vector labels with `snakecase`
--   Rename vector labels with `rename`
--   Dealing with date vectors using `lubridate`
-:::
-:::
-
-```
-
-# Realistic data in research [@McAleer_2022]
-
--   A core strength to using a programming language for data processing
-    and analysis is that you reduce the risk of human error
-    significantly.
--   This is especially important when confronted with realistic datasets
-    that may be untidy for historical or procedural reasons (e.g., a
-    database that is maintained by different people who used their own
-    unique way of storing and labelling things).
--   An option would be to simply open the data and update the values as
-    an when required.
--   However, if the issue is prevalent across many datasets then an
-    automated solution is more efficient.
-
-## Today's demonstration
-
--   We are going to build on what we achieved last session
--   We will be learning a few more tidying operations
--   Then well look at ways to explore and summarise our data
-
-## To get started
-
--   Open the script you have been working on
--   We are going to continue to work with the
-    "robot-expression-data_raw.csv" file
--   To get us back to where we were, run the script in its entirety
--   **Remember** you you only ever need to install packages once (unless
-    you are using a different machine) so be sure to comment
-    installation commands out
-
-```{r, eval=F, include=F}
-
-# install.packages('tidyverse')
-# install.packages('psych')
-
-# Only run these in the console if you haven't already previously
+df_messy1 |> 
+  tidyplot(x = condition, 
+           y = log_rt, 
+           color = condition) |> 
+  add_boxplot() |> 
+  add_test_pvalue(ref.group = 1) |>
+  add_title("Comparing log(rt) against the baseline") |>
+  adjust_x_axis_title("Experimental group") |>
+  adjust_y_axis_title("log(rt)") |>
+  adjust_legend_title("Experimental group")
 
 ```
 
 
+# Roundup
 
-# Reading in and tidying data
+- I showed you how to deliberately untidy data using the **`messy`** package
+- We did some label tidying
+- We examined the case of listwise deletion, with your reading covering other approaches to missing data
+- We examined test statistics for distribution normality
+- Gave you a fist look at **`tidyplots`** as an alternative to **`ggplot2`**
 
-# Saving data in your directory
-
--   At the beginning of the course we create three subdirectories "data_raw", "data_tidy", and "fig_out"
--   We are going to real untidy experiment data into the "data_raw" folder.
--   The best format for R is to save data as a `.csv` but there are
-    options to read in other file formats (e.g., `.xlsx`).
--   Unprocessed data is saved in the "data_raw" folder and processed
-    data in the "data_tidy" folder so that we the raw and processed data
-    separate
--   This will save you a lot of headache once you get to grips with
-    processing data and creating new `.csv`s for different purposes.
-    
----
-
--->
-
----
-
-![](images/data-sci-process.png)
-
-
-
-# Save the raw data provided
-
--   Save the data from Canvas Module **Course datasets** called "robot-expression-data_raw.csv" into the
-    "data_raw" folder
-
-
-# Read in and explore the robot expression data
-
-```{r}
-
-# Read in raw data
-df <- 
-  read_csv("data_raw/robot-expression-data_raw.csv")
-
-```
-
-# Expression dataset metadata
-
-::: columns
-::: {.column width="50%"}
--   `ID_` = participant id
--   `sex` = participant sex
--   `eth` = participant ethnicity
--   `eng` = "Is English your native language?"
--   `Exp.date` = date of experiment
--   `interact.before` = "Have you ever interacted wtih a robot before?
-:::
-
-::: {.column width="50%"}
--   `Alyx.is` = participants guess of robot's gender
--   `item` = plastic food item offered to robot
--   `Expression` = a numeric value for each of the four robot facial
-    expressions
--   `resp` = name of the box where participants placed the food item
-    after robot expression
--   `Time` = robots onboard clock timer
--   `resp_acc` = accuracy of responses according to theoretically
-    deigned expressions
-:::
-:::
-
-
-# Data types for the `col_types` argument
-
-::: columns
-::: {.column width="50%"}
--   "f" = factor (i.e., categorical variable)
--   "l" = logical
--   "i" = integer (no decimals)
--   "d" = double numeric (has decimals)
--   "c" = character
--   "D" = date
--   "\_" = skip
--   "?" = guess
-:::
-
-::: {.column width="50%"}
-- For more information see the `read_csv` and `col_types` documentation in the help section
-- You can pull this up by running `?read_csv` into the console  
-  + I'd recommend consulting the descriptor info at the top then skipping to the examples at the bottom of the help sheet 
-:::
-:::
-
-# Setting col types within the `read_csv` function
-
-```{r set col types, eval=FALSE}
-
-# Read in data and supply data type argument
-df <-
-  read_csv("data_raw/robot-expression-data_raw.csv",
-           col_types = "ffff?ffffftf") # this is good for Base R
-
-df <-
-  read_csv("data_raw/robot-expression-data_raw.csv",
-           col_types = "cccc?ccccctc") # tidyverse prefers character vectors over factors
-
-```
-
-- Now the data from the csv is stored in an object called `df`
-
-# Data exploration
-
--   Here are a few handy functions to exploring your data
-    -   `summary`  : from base R
-    -   `glimpse`  : from *tidyverse*
-    -   `headTail` : from *psych*
-    -   `dfSummary`: from *summarytools*
-
-# Summarising data function
-
--   The `summary` function summarises continuous and categorical vectors
--   NOTE: `summary` will not count character vectors, that's why we
-    specified that our categorical vectors were factor type (e.g., "f")
-    at `read_csv`
-
-```{r}
-
-# data summary - overall
-df |>
-  summary()
-
-# structure of the data
-glimpse(df)
-
-```
-
-- Why is `glimpse` especially useful having used the `col_types` with `read_csv`? 
-
-# `psych::headTail` function
-
--   The `headTail` function from the *psyche* package
-
-```{r}
-
-# data summary - head
-headTail(df)
-
-```
-
-<!--
-
-# Old school subsetting
-
-```{r results='markup'}
-
-# data summary - head specific
-  # for specific columns, e.g., cols 1, 5, and 7
-head(df[, c(1,5,7)])
-
-```
-
--->
-
-# `summarytools` package
-
--   We've seen how we can get an overview of the data using `dfSummary`
--   This function is particularly useful for spotting anomalies in the
-    data
-
-```{r}
-
-dfSummary(df)
-
-```
-
-<!--
-```{=html}
-
-# Skim
-
-- The `skim` function from *skimr* gives you a good overview of the data
-
-```{r results='markup', eval=F}
-
-# data summary - tail
-skim(df)
-
-
-```
--->
-
-# Tidying vector lables (i.e., column names)
-
-- We can use the `snakecase` package function `to_snake_case` to apply uniform *snake case* formatting to column names
-- This addresses the point made earlier about consistent variable names
-
-```{r tidy headings}
-
-# check application of snake_case to data
-to_snake_case(names(df))
-
-# irreversibly apply snake_case to vector labels
-names(df) <- 
-  to_snake_case(names(df)) # lower_case with underlined separators 
-
-# examine the data
-names(df) 
-
-```
-
-
-# Changing vector names
-
--   You can also change the names of vectors using the `rename` function
--   Note, the `rename` argument asks for the **new vector label followed by the old one**
-    -   this takes a little getting used to but its simple after enough
-        practice
-
-```{r renaming vectors}
-
-# Rename vectors to more descriptive labels
-df |>
-  rename(perceived_robot_gender = alyx_is, 
-         robot_expression       = expression,
-         ppt_acc                = resp_acc) |>
-  print()
-
-
-```
-
-- Using the code `names(df)` in the console, examine the vector labels. What does the output tell you?
-
-<!--
-# Recoding variables
-
--   You can use `distinct` to check unique values of a vector, similarly to `unique(df$vector)` 
-
-```{r}
-
-# data summary - sex
-df |>
-  select(sex) |>
-  distinct()
-
-```
--->
-
-# Recoding variable levels
-
--   You may have noticed from the last session that there there are some
-    erroneous values in the sex vector.
--   You can check this directly by using the `$` symbol to index the
-    vector of interest in combination with the function `unique`.
-
-```{r, eval=F}
-
-# Check all unique entries in the vector `sex`
-unique(df$sex) 
-
-# Alternatively you can use tidyverse's `distinct`
-df |>
-  select(sex) |>
-  distinct()
-
-```
-
--   What does `select` do here?
--   As you can see, something has gone wrong in the labelling of sex:
-    there should only be two values, "Female" and "Male"
-
-# Using `case_match` to recode data
-
--   Previously, the `recode` function was used in combination with
-    `mutate` to recode values in a cell
--   But more recently, people have moved to using `case_match`, as it is
-    more intuitive and user friendly
--   [Info on
-    case_match](https://dplyr.tidyverse.org/reference/case_match.html)
-
-# `case_match` syntax
-
-```{r}
-
-# Using case_match to recode cell values
-df <-
-  df |>  # create new and tidy object for illustration                
-  mutate(sex = case_match(sex,              # mutate to change
-                      "male" ~ "Male",      # supply erroneous value and new value
-                      "ffemale" ~ "Female",
-                      "femalew" ~ "Female",
-                      .default = sex))      # preserve all other entries in the vector
-
-# Check the values of a vector using unique
-unique(df$sex) # again, we use the $ symbol to isolate a specific vector
-
-
-```
-
-
-# For larger datasets
-
-- If you wanted to match values by a pattern, you can use `stringr` commands to recode variable levels
-- In this case, we use the function `case_when` and `str_detect` to search the `sex` vector for values starting with either capital or lower case "m" and replace it with "Male", and the same for principle "f", to be recoded as "Female"
-
-```{r eval=FALSE}
-
-# Using case_when and str_detect to modify rows by string patterns
-df |>
-  mutate(sex = 
-           case_when(str_detect(sex,
-                                "^[Mm]") ~ "Male",
-                     str_detect(sex,
-                                "^[Ff]") ~ "Female",
-                     TRUE ~ sex))
-
-```
-
-# Dealing with the date column
-
--   Dates are notoriously difficult to deal with in R and our date
-    vector could not be read properly
--   Thankfully there is a really useful package that simplifies
-    everything; the aptly named `lubridate`
--   It is already loaded as part of the Tidyverse
--   Take a look at [lubridate here](https://lubridate.tidyverse.org/)
-
-
-# `lubridate` to sort out date column
-
-- For more information see the [Tidyverse lubridate page](https://lubridate.tidyverse.org/)
-
-```{r dates and lubridate}
-
-df <-
-  df |> 
-  mutate(exp_date = dmy(exp_date)) # mutate is a function that allows you to append or modify existing columns/vectors in a dataset
-
-# Examine data
-glimpse(df)
-
-```
-
-- The date column should now be properly machine ready formatted (i.e., YYYY-MM-DD), based on the input formatting (i.e., dd/mm/yyyy)
-- The machine readable format YYY-MM-DD is preferable for almost all programming languages.
-- In this format, you can ask R to make nuanced calculations between dates.
-
-# Recap on the assign `<-` operator considerations
-
-- **Irreversibly overwriting dataframe/tibble**
-
-```{r, eval = F}
-
-df <- 
-  df |>
-  select(id, eth) 
-
-# df only contains data about ppt id and eth
-
-```
-
-
-**Create new dataframes/tibbles**
-
-```{r, eval = F}
-
-df1 <- 
-  df |>
-  select(id, eth) 
-
-# df1 only contains data about ppt id and eth
-# df contains all 12 vectors 
-
-```
-
-
-# Introdution Data wrangling
-
-- You can create *tidyverse* scripts that summarise data similarly to `psych`
-- `psych` is better for numeric data, which we'll be using next week.
-
-```{r}
-
-df |>
-  group_by(sex,
-           resp_acc) |>
-  summarise(n = n()) |>
-  mutate(freq = n/sum(n))|>
-  mutate(freq = round(freq*100, digits = 2))
-  
-```
-
-- Having had a look at the output, which is the above code doing? Think about each step of the process, punctuated by `|>`
-
-# Exercise
-
-- What code would you write to calculate the proportion of different ethnicities and their prior experience with robots?
-- How would we create a tibble called `df_non_native` that only included non-native English speakers in the data?
-
-<!--
-
--   **NOTE**: If you have assigned transformations to an object with the
-    same original name (e.g., `df` \<- `df`) that object is irreversibly
-    overwritten, unless you go back to a previous line that created it
-    from scratch (e.g., where it was read in )    
--   That is why your code operations must flow logically from top to
-    bottom, otherwise future operations on the data will not work.
-    -   e.g., You might ask R to look up a column that changed name
-        earlier in the script, which would throw an error.
--   The alternative strategy is to give each new object a different
-    name, like `df1`. If you pursue this method, it is worth adding a
-    comment next to each new object specifying how it is different to
-    the previous.
-    
--->
-
-# Save your tidy data
-
--   Once you are satisfied with the amendments made to your data you can
-    save it as a new tidy `.csv` file
--   Again, use comments and bookmarks to signpost this part of your
-    script
-
-```{r, eval = FALSE}
-
-# save your new data object into `data_tidy`
-write_csv(df, # name of the object
-          "data_tidy/robot-expression-data_tidy.csv") # desired directory
-
-```
-
-- Note: you can provide any name you like for the file in here, the important part is to pass `read_csv` the tibble of interest, and to include `data_tidy` in the stated directory
 
 
 # Cleanup
