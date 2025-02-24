@@ -305,6 +305,12 @@ df_messy1 |>
 
 # What would I write here to check the group sizes?
 
+# group variable = condition
+df_messy1 |>
+  group_by(condition) |>
+  count()
+
+
 ```
 
 # Plot the data
@@ -370,6 +376,7 @@ describeBy(log_rt ~ condition,
   select(2, 13:14)
 
 ```
+
 - What is `select` doing here?
 - What are the rules for violations to Skew and Kurtosis?
 
