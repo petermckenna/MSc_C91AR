@@ -1,0 +1,478 @@
+---
+title: "C91AR | Advanced Statistics using R"
+subtitle: "Computer lab 6: Screening Data & Tests of Normality"
+title-slide-attributes:
+    data-background-image: images/anime_programming.jpg
+    data-background-size: 20%
+    data-background-position: "50% 8%"
+author: "Dr Pete McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+format: 
+  revealjs:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_quarto_theme.scss]
+editor: 
+  markdown: 
+    wrap: 72
+bibliography: ref.bib    
+---
+
+```{r include=F, warning=FALSE}
+
+# presentation setup
+ knitr::opts_chunk$set(echo = T, 
+                       eval = T,
+                       results = 'hide',
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
+
+# default for instructor is 
+  # echo = T
+  # eval = T
+  # results = 'hide'
+
+# you only want to see the results for certain chunks (e.g., plots)
+
+```
+
+
+# Packages for today
+
+```{r}
+
+# load packages
+pacman::p_load(tidyverse,
+               snakecase,
+               psych,
+               summarytools,
+               messy,
+               tidyplots,
+               GGally)
+
+```
+
+
+# Task for today
+
+- I'm going to give you a dataset 
+- Your job is to tidy up (where required)
+    - vector labels
+    - cell values
+- Check the distribution of the data
+    - using `describe`
+    - by creating and examining a histogram     
+- Check for missing values and replace with the mean
+- Plot a transformed version of the data    
+
+# The data
+
+- In the course datasets the file is titled: "handw_messy.csv"
+- Download this into your data_raw folder
+- This will be the file we are working with today
+
+# Correct metadata
+
+- The data comes from a real dataset of people's heights and weights
+- height should be labelled `height_in`
+- weight should be labelled `weight_lbs`
+
+# The data
+
+- The data contained in each vector will need to be checked for missing values
+- If there are missing values, replace these with the mean of that vector
+
+# Visualisation
+
+- You should use histograms to examine the distribution of each vector
+    - you can use either **`ggplot2`** or **`tidyplots`** to do this
+- `ggpairs` from the **`GGally`** package will help you examine the relationship between the vectors, and to determine if a transformation is required.
+- Time permitting, you should visualise the data post-transformation too.
+
+
+<!--
+# Reading for Today
+
+[Chapter 12: Screening data](https://psyteachr.github.io/quant-fun-v2/screening-data.html)
+
+
+# Aims for this module
+
+- I'll show you how to deliberately untidy data using the **`messy`** package
+- We'll do some more label tidying
+- Examined the case of listwise deletion (the reading covers other approaches)
+- Test distribution normality
+- Show you **`tidyplots`** as an alternative to **`ggplot2`**
+
+
+# Read in tidy data
+  
+```{r, eval=F, include = F}
+
+# read in dataset
+df <-
+  read_csv("data_tidy/c91ar_maze_data.csv",
+           col_types = "cccdccd")
+
+```
+
+# Maze study metadata
+
+- `id` = anon participant code
+- `condition` = ToM manipulation with three levels (Baseline, No-ToM, and ToM)
+- `trial` = experiment trial
+- `rt` = response time
+- `follow robot` = whether participants followed the robot's suggestion
+- `accuracy` = whether or not their maze route selection was correct
+- `conf` = participants self reported confidence for each route decision.
+
+# Untidy the dataset
+
+```{r, eval=F, include = F}
+
+# make script reproducible
+set.seed(1234)
+
+# untidy our maze data
+df_messy <-
+  df |>
+  make_missing(cols = "follow_robot", 
+               missing = NA,
+               messiness = 0.05) |> # add missing values to follow_robot
+  make_missing(cols = "rt",
+               missing = NA,
+               messiness = 0.3) |> # add missing and erroneous values to rt
+  add_special_chars(cols = "condition") # add special chars to condition levels
+  
+
+```
+
+# Examine the data
+
+```{r, eval=F, include = F}
+
+df_messy |>
+  dfSummary()
+  
+```
+
+- What do you notice from the output of `dfSummary`?
+- What have we done??
+
+
+# Recode our condition levels
+
+- Check variable levels
+
+```{r, eval=F, include = F}
+
+unique(df_messy$condition) # what a mess!
+
+```
+
+- What a mess! This was created using the `messy::add_special_chars` function
+
+
+- Tidying up the mess
+
+```{r, eval=F, include = F}
+
+# using a combination of case_when and str_detect
+df_messy_levels <-
+  df_messy |>
+  mutate(
+    condition = str_replace_all(condition, 
+                                "[^[:alnum:][:space:]]", "")
+  )
+
+unique(df_messy_levels$condition)
+
+```
+
+# Still not happy with the level labels?
+
+```{r, eval=F, include = F}
+
+# Probably we do a little more tidying
+df_messy_levels <-
+  df_messy_levels |>
+  mutate(condition = case_match(condition, 
+                                "NoToM" ~ "No_ToM",
+                                "baseline" ~ "Baseline",
+                                .default = condition))
+
+unique(df_messy_levels$condition)
+
+```
+
+# Tidy up our object list
+
+- You can see how our list of objects is growing in the global environment.
+- You may decide at a certain point to drop some of the objects to keep the list short
+- Let's update `df_messy` and remove `df_messy_levels` 
+
+```{r, eval=F, include = F}
+
+# Update df_messy with df_messy_levels values
+df_messy <-
+  df_messy_levels
+
+# remove df_messy levels - as this is now contained in df_messy
+rm(df_messy_levels)
+
+# check data
+unique(df_messy$condition)
+
+```
+
+# Listwise deletion
+
+- The `drop_na` function from **`tidyr`** removes any row of data that contains an NA (i.e., missing) value
+- But this may not be ideal as we might end up removing a lot of useful observations from the dataset
+- It may only pertain to a variable that is not integral to our research question, so could be ignored
+
+# Using `drop_na`
+
+```{r, eval=F, include = F}
+
+df_messy_na <-
+  df_messy |>
+  drop_na()
+  
+```
+
+- What percentage of the observations is missing?
+
+```{r, eval=F, include = F}
+
+# 33.1%
+
+```
+
+# Remove `df_messy_na`
+
+```{r, eval=F, include = F}
+
+rm(df_messy_na)
+
+```
+
+# Replacing missing values with the mean
+
+- Say we have a continuous variable that **is integral** to our analysis
+- An option is to replace missing values in a normal distribution with the mean
+
+```{r, eval=F, include = F}
+
+# examine the histogram
+df_messy |>
+  ggplot(mapping = aes(rt)) +
+  geom_histogram(bins = 100) + 
+  labs(y = "Frequency",
+       title = "Histogram of Response time (ms) distribution")
+
+```
+
+# Cleaning
+
+- Let's set the bounds that we had previously, between 500:5000 ms and take the log
+
+```{r, eval=F, include = F}
+
+df_messy |>
+  filter(rt %in% c(500:5000)) |>
+  ggplot(mapping = aes(log(rt))) +
+  geom_histogram(bins = 100) + 
+  labs(y = "Frequency",
+       title = "Histogram of log(rt) distribution")
+
+```
+
+# Calculate the mean for log(rt)
+
+```{r, eval=F, include = Fr}
+
+df_messy |>
+  filter(rt %in% c(500:5000)) |>
+  summarise(avg_rt = mean(rt))
+
+```
+
+# Replace missing values with `avg_rt`
+
+```{r, eval=F, include = F}
+
+# Create mean variable
+avg_rt <- 1646.523
+
+# create new object that replaces missing rt values with the mean
+df_messy1 <-
+  df_messy |>
+  filter(rt %in% c(500:5000)) |>              # remember to set the new bounds!
+  mutate(rt = if_else(is.na(rt), 
+                      avg_rt, # if the cell is empty, enter the mean of the vector
+                      rt))                     # otherwise, put what was there already 
+
+```
+
+# Examine the vector
+
+```{r, eval=F, include = F}
+
+# Check for old
+df_messy |>
+  summarise(count_nas = is.na(rt) |>
+              sum()) |>
+  pluck("count_nas")
+
+# Check for new
+df_messy1 |>
+  summarise(count_nas = is.na(rt) |>
+              sum()) |>
+  pluck("count_nas")
+
+```
+
+
+# How big are the group sizes after removing missing cases?
+
+```{r, eval=F, include = F}
+
+# What would I write here to check the group sizes?
+
+```
+
+# Plot the data
+
+```{r, eval=F, include = F}
+
+df_messy1 |>
+  ggplot(mapping = aes(log(rt))) +
+  geom_histogram(bins = 100) + 
+  labs(y = "Frequency",
+       title = "Histogram of log(rt) distribution")
+
+```
+
+# Tidyplots equivalent
+
+```{r, eval=F, include = F}
+
+# using tidyplots
+df_messy1 <-
+  df_messy1 |>
+  mutate(log_rt = log(rt)) # tidyplots needs to be passed existing vectors
+
+df_messy1 |>
+  tidyplot(x = log_rt, color = condition) |>
+  add_histogram(bins = 30) |> 
+  add_title("Histogram of log(rt) distribution per group") |>
+  adjust_x_axis_title("log(rt)") |>
+  adjust_y_axis_title("Frequency")
+
+```
+
+---
+
+```{r, eval=F, include = F}
+
+# using tidyplots
+df_messy1 <-
+  df_messy1 |>
+  mutate(log_rt = log(rt)) # tidyplots needs to be passed existing vectors
+
+df_messy1 |>
+  tidyplot(x = log_rt, color = condition) |>
+  add_histogram(bins = 30) |> 
+  add_title("Histogram of log(rt) distribution per group") |>
+  adjust_x_axis_title("log(rt)") |>
+  adjust_y_axis_title("Frequency")
+
+```
+
+# Checking the normality of the data using `psych`
+
+```{r, eval=F, include = F}
+
+# Overall
+describe(df_messy1$log_rt) |>
+  select(11,12)
+
+# By group
+describeBy(log_rt ~ condition,
+           mat = TRUE,
+           data = df_messy1) |>
+  select(2, 13:14)
+
+```
+- What is `select` doing here?
+- What are the rules for violations to Skew and Kurtosis?
+
+
+# Boxplot with comparison analysis from `tidyplots`
+
+```{r, eval=F, include = F}
+
+df_messy1 |> 
+  tidyplot(x = condition, 
+           y = log_rt, 
+           color = condition) |> 
+  add_boxplot() |> 
+  add_test_pvalue(ref.group = 1) |>
+  add_title("Comparing log(rt) against the baseline") |>
+  adjust_x_axis_title("Experimental group") |>
+  adjust_y_axis_title("log(rt)") |>
+  adjust_legend_title("Experimental group")
+
+```
+
+---
+
+```{r, eval=F, include = F}
+
+df_messy1 |> 
+  tidyplot(x = condition, 
+           y = log_rt, 
+           color = condition) |> 
+  add_boxplot() |> 
+  add_test_pvalue(ref.group = 1) |>
+  add_title("Comparing log(rt) against the baseline") |>
+  adjust_x_axis_title("Experimental group") |>
+  adjust_y_axis_title("log(rt)") |>
+  adjust_legend_title("Experimental group")
+
+```
+
+-->
+
+# Roundup
+
+- You did some label tidying
+- You applied the test statistics for distribution normality
+- You examined the relationship between two variables
+- Gave you a fist look at **`tidyplots`** as an alternative to **`ggplot2`**
+
+# Cleanup
+
+```{r cleanup, eval=F}
+
+# Clear data
+rm(list = ls())  # Removes all objects from environment
+
+# Clear packages
+p_unload(all)  # Remove all contributed packages
+
+# Clear plots
+graphics.off()  # Clears plots, closes all graphics devices
+
+# Clear console
+cat("\014")  # Mimics ctrl+L
+
+```
+
+
+# References
