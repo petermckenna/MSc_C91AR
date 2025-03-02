@@ -405,7 +405,7 @@ ggplot(all_data,
 
 # Save the simulated dataset
 
-```{r}
+```{r, eval=FALSE}
 
 # write data as a csv into "data" folder
 write_csv(all_data, "data_out/simulated_handw.csv")

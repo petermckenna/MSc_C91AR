@@ -1,0 +1,140 @@
+---
+title: "Data simulation on my own"
+format: html
+editor: visual
+---
+
+# Data simulation
+
+```{r}
+#| message: false
+
+# Load packages
+library(tidyverse)
+library(corrr)
+library(psych)
+library(GGally)
+
+```
+
+```{r}
+# Read in data
+df <- read_csv("data_raw/trust_and_rt-1.csv",
+               col_types = "dd")
+glimpse(df)
+
+
+# Set seed
+set.seed(682)
+
+```
+
+In the above code chunk, I have loaded packages that I will need to conduct the analyses. I have also read in the data set and named this data set 'df'. The glimpse function enables me to determine how many observations and vectors the data set contains as well as the data type of each vector.
+
+```{r}
+# Examine df
+describe(df)
+```
+
+The trust score has a mean of 50.08 (SD = 1.02). Based on the skew value (0.15), trust looks to be normally distributed. However, the kurtosis value (-0.07) indicates that trust is not normally distributed. Response time has a mean of 1262.41 (SD = 1.01). Based on the skew value (0.10), response time looks to be normally distributed. However, the kurtosis value (0.00) indicates that it is not normally distributed.
+
+```{r}
+# Scatterplot of trust and response time
+ggplot(data = df, mapping = aes(x = resp_time,
+                                y = trust_score)) +
+  geom_point() +
+  labs(x = "Response Time (ms)",
+       y = "Trust",
+       title = "Scatterplot of Response Time and Trust")
+```
+
+The scatterplot of trust and response time indicates a positive association. This means that as response time increases (the particiipants become slower), trust scores increase. However, considering the kurtosis values indicates that response time and trust are not normally distributed and therefore a Pearson correlation test would not be possible, the logarithm of response time and trust should be taken.
+
+```{r}
+# Create log of trust and response time
+df_log <- df |>
+  mutate(tlog = log(trust_score),
+         rlog = log(resp_time))
+
+# Create scatterplot of logged variables
+ggplot(data = df_log, mapping = aes(x = rlog,
+                                    y = tlog)) +
+  geom_point() +
+  labs(x = "Log of Response Time",
+       y = "Log of Trust Scores",
+       title = "Scatterplot of Logged Response Time and Trust")
+```
+
+The above code first creates the logarithm of trust and response time and then creates a scatterplot of these variables.
+
+```{r}
+# Calculate descriptive statistics to use for data simulation
+df_log |>
+  summarise(mean_tlog = mean(tlog),
+            sd_tlog = sd(tlog),
+            mean_rlog = mean(rlog),
+            sd_rlog = sd(rlog)) |>
+  mutate_if(is.numeric, round, digits = 2)
+
+# Calculate correlation
+cor(df$trust_score, df$resp_time)
+
+
+# Create covariance variable
+my_cov <-
+  .80 * 1.02 * 1.01
+
+# Create sigma variable
+my_sigma <-
+  matrix(c(1.02^2, my_cov,
+           my_cov, 1.01^2),
+         ncol = 2)
+my_sigma
+```
+
+```{r}
+# Simulate data
+log_rt_t <-
+  MASS::mvrnorm(n = 6,
+                mu = c(response_time = 7.14,
+                       trust = 3.91),
+                Sigma = my_sigma)
+log_rt_t
+
+# Use exponent to bring the log values back to the real space
+exp(log_rt_t)
+```
+
+```{r}
+# Simulate new humans
+new_humans <-
+  MASS::mvrnorm(n = 500,
+                mu = c(trust_score = 50.08,
+                       resp_time = 1262.41),
+                Sigma = my_sigma) |>
+  as_tibble() |>
+  mutate(type = "Simulated")
+
+# Combine real and simulated data
+all_data <-
+  bind_rows(df |>
+              mutate(type = "real"),
+                     new_humans)
+glimpse(all_data)
+
+# Plot the data
+ggplot(data = all_data, mapping = aes(x = resp_time,
+                                      y = trust_score)) +
+  geom_point(aes(colour = type),
+             aplha = .6)
+
+
+
+
+
+
+```
+
+```{r}
+write_csv(all_data, "data_tidy/simulated_trust_and_reposnetime.csv")
+```

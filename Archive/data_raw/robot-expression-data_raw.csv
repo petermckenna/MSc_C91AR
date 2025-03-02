@@ -1,0 +1,229 @@
+ID_,sex,eth,eng,Exp.date,interact.before,Alyx.is,item,Expression,resp,Time,resp_acc
+1,Female,White,Yes,05/09/2017,Never,Male,Toast,1,Like,06:43:00,Correct
+1,Female,White,Yes,05/09/2017,Never,Male,Milk,2,Like,07:07:00,Correct
+1,Female,White,Yes,05/09/2017,Never,Male,Beans,3,Dislike,07:31:00,Correct
+1,Female,White,Yes,05/09/2017,Never,Male,Oatmeal,4,Dislike,07:50:00,Correct
+10,Female,White,No,08/09/2017,Never,Male,Oatmeal,2,Like,06:46:00,Correct
+10,Female,White,No,08/09/2017,Never,Male,Beans,3,Dislike,07:23:00,Correct
+10,Female,White,No,08/09/2017,Never,Male,Croissant,4,Dislike,07:43:00,Correct
+10,Female,White,No,08/09/2017,Never,Male,Toast,1,Like,08:05:00,Correct
+11,Female,White,Yes,11/09/2017,Never,Female,Oatmeal,2,Like,08:26:00,Correct
+11,Female,White,Yes,11/09/2017,Never,Female,Milk,4,Dislike,08:50:00,Correct
+11,Female,White,Yes,11/09/2017,Never,Female,Toast,1,Like,09:14:00,Correct
+11,Female,White,Yes,11/09/2017,Never,Female,Beans,3,Dislike,09:34:00,Correct
+12,Male,White,No,11/09/2017,Once or twice,Female,Croissant,2,Like,04:35:00,Correct
+12,Male,White,No,11/09/2017,Once or twice,Female,Milk,4,Dislike,05:05:00,Correct
+12,Male,White,No,11/09/2017,Once or twice,Female,Toast,3,Like,05:26:00,Incorrect
+12,Male,White,No,11/09/2017,Once or twice,Female,Oatmeal,1,Dislike,05:53:00,Incorrect
+13,Female,White,No,11/09/2017,Once or twice,Female,Beans,3,Like,09:02:00,Incorrect
+13,Female,White,No,11/09/2017,Once or twice,Female,Toast,1,Dislike,09:29:00,Incorrect
+13,Female,White,No,11/09/2017,Once or twice,Female,Milk,2,Like,09:55:00,Correct
+13,Female,White,No,11/09/2017,Once or twice,Female,Croissant,4,Like,10:32:00,Incorrect
+14,Female,White,Yes,11/09/2017,Once or twice,Female,Croissant,3,Dislike,03:37:00,Correct
+14,Female,White,Yes,11/09/2017,Once or twice,Female,Milk,1,Like,03:58:00,Correct
+14,Female,White,Yes,11/09/2017,Once or twice,Female,Oatmeal,4,Dislike,04:19:00,Correct
+14,Female,White,Yes,11/09/2017,Once or twice,Female,Toast,2,Like,04:37:00,Correct
+15,Male,Asian,Yes,12/09/2017,Never,Female,Oatmeal,3,Dislike,39:35:00,Correct
+15,Male,Asian,Yes,12/09/2017,Never,Female,Beans,2,Like,39:55:00,Correct
+15,Male,Asian,Yes,12/09/2017,Never,Female,Croissant,1,Like,40:14:00,Correct
+15,Male,Asian,Yes,12/09/2017,Never,Female,Toast,4,Dislike,40:32:00,Correct
+16,Male,White,Yes,12/09/2017,Never,Female,Beans,3,Dislike,06:54:00,Correct
+16,Male,White,Yes,12/09/2017,Never,Female,Toast,2,Like,07:14:00,Correct
+16,Male,White,Yes,12/09/2017,Never,Female,Croissant,4,Dislike,07:32:00,Correct
+16,Male,White,Yes,12/09/2017,Never,Female,Milk,1,Like,07:52:00,Correct
+17,Male,White,Yes,13/09/2017,Never,Female,Croissant,3,Miss,02:37:00,Incorrect
+17,Male,White,Yes,13/09/2017,Never,Female,Croissant,4,Dislike,03:00:00,Correct
+17,Male,White,Yes,13/09/2017,Never,Female,Milk,1,Like,03:20:00,Correct
+17,Male,White,Yes,13/09/2017,Never,Female,Toast,2,Like,03:39:00,Correct
+18,Male,White,Yes,13/09/2017,Never,Female,Toast,3,Dislike,05:02:00,Correct
+18,Male,White,Yes,13/09/2017,Never,Female,Milk,4,Like,05:22:00,Incorrect
+18,male,White,Yes,13/09/2017,Never,Female,Croissant,2,Like,05:41:00,Correct
+18,Male,White,Yes,13/09/2017,Never,Female,Oatmeal,1,Like,05:58:00,Correct
+19,Male,White,Yes,14/09/2017,Once or twice,Female,Croissant,4,Dislike,24:49:00,Correct
+19,Male,White,Yes,14/09/2017,Once or twice,Female,Milk,1,Like,25:06:00,Correct
+19,Male,White,Yes,14/09/2017,Once or twice,Female,Oatmeal,2,Like,25:24:00,Correct
+19,Male,White,Yes,14/09/2017,Once or twice,Female,Beans,3,Dislike,25:41:00,Correct
+2,Male,White,Yes,05/09/2017,Never,Female,Beans,1,Dislike,01:14:00,Incorrect
+2,Male,White,Yes,05/09/2017,Never,Female,Toast,2,Like,01:38:00,Correct
+2,Male,White,Yes,05/09/2017,Never,Female,Croissant,4,Dislike,01:57:00,Correct
+2,Male,White,Yes,05/09/2017,Never,Female,Oatmeal,3,Dislike,02:20:00,Correct
+20,Male,White,Yes,18/09/2017,Never,Female,Milk,4,Dislike,19:52:00,Correct
+20,Male,White,Yes,18/09/2017,Never,Female,Oatmeal,1,Like,20:13:00,Correct
+20,Male,White,Yes,18/09/2017,Never,Female,Toast,3,Like,20:34:00,Incorrect
+20,Male,White,Yes,18/09/2017,Never,Female,Beans,2,Like,20:54:00,Correct
+21,Male,White,Yes,18/09/2017,A few times,Female,Croissant,4,Dislike,25:50:00,Correct
+21,Male,White,Yes,18/09/2017,A few times,Female,Beans,2,Like,26:12:00,Correct
+21,Male,White,Yes,18/09/2017,A few times,Female,Oatmeal,1,Like,26:33:00,Correct
+21,Male,White,Yes,18/09/2017,A few times,Female,Milk,3,Dislike,26:51:00,Correct
+22,Female,White,Yes,18/09/2017,Once or twice,Female,Beans,4,Dislike,02:25:00,Correct
+22,Female,White,Yes,18/09/2017,Once or twice,Female,Oatmeal,2,Like,02:44:00,Correct
+22,Female,White,Yes,18/09/2017,Once or twice,Female,Croissant,3,Dislike,03:02:00,Correct
+22,Female,White,Yes,18/09/2017,Once or twice,Female,Toast,1,Like,03:22:00,Correct
+23,ffemale,White,Yes,18/09/2017,Never,Female,Oatmeal,4,Dislike,09:11:00,Correct
+23,Female,White,Yes,18/09/2017,Never,Female,Croissant,3,Dislike,09:31:00,Correct
+23,Female,White,Yes,18/09/2017,Never,Female,Milk,1,Like,09:51:00,Correct
+23,Female,White,Yes,18/09/2017,Never,Female,Toast,2,Like,10:09:00,Correct
+24,Male,Mixed or multiple ethic groups,No,18/09/2017,A few times,Female,Croissant,4,Dislike,23:59:00,Correct
+24,Male,Mixed or multiple ethic groups,No,18/09/2017,A few times,Female,Toast,3,Like,24:17:00,Incorrect
+24,Male,Mixed or multiple ethic groups,No,18/09/2017,A few times,Female,Beans,2,Like,24:34:00,Correct
+24,Male,Mixed or multiple ethic groups,No,18/09/2017,A few times,Female,Milk,1,Like,24:52:00,Correct
+25,Male,Asian,No,18/09/2017,Never,Female,Beans,1,Like,07:20:00,Correct
+25,Male,Asian,No,18/09/2017,Never,Female,Oatmeal,2,Dislike,07:50:00,Incorrect
+25,Male,Asian,No,18/09/2017,Never,Female,Toast,3,Dislike,08:12:00,Correct
+25,Male,Asian,No,18/09/2017,Never,Female,Croissant,4,Dislike,08:36:00,Correct
+26,Male,White,Yes,19/09/2017,A few times,Female,Toast,1,Like,41:03:00,Correct
+26,Male,White,Yes,19/09/2017,A few times,Female,Croissant,2,Like,41:23:00,Correct
+26,Male,White,Yes,19/09/2017,A few times,Female,Beans,4,Dislike,41:43:00,Correct
+26,Male,White,Yes,19/09/2017,A few times,Female,Oatmeal,3,Dislike,42:01:00,Correct
+27,Female,White,Yes,19/09/2017,Never,Female,Oatmeal,1,Like,12:46:00,Correct
+27,Female,White,Yes,19/09/2017,Never,Female,Croissant,3,Like,13:17:00,Incorrect
+27,Female,White,Yes,19/09/2017,Never,Female,Milk,2,Like,13:36:00,Correct
+27,Female,White,Yes,19/09/2017,Never,Female,Toast,4,Like,14:15:00,Incorrect
+28,Female,White,Yes,20/09/2017,Never,Female,Beans,1,Like,05:15:00,Correct
+28,Female,White,Yes,20/09/2017,Never,Female,Croissant,3,Dislike,05:38:00,Correct
+28,Female,White,Yes,20/09/2017,Never,Female,Oatmeal,4,Dislike,05:55:00,Correct
+28,Female,White,Yes,20/09/2017,Never,Female,Toast,2,Like,06:13:00,Correct
+29,Male,Mixed or multiple ethic groups,Yes,20/09/2017,Once or twice,Female,Milk,1,Like,05:35:00,Correct
+29,Male,Mixed or multiple ethic groups,Yes,20/09/2017,Once or twice,Female,Croissant,4,Dislike,05:53:00,Correct
+29,Male,Mixed or multiple ethic groups,Yes,20/09/2017,Once or twice,Female,Beans,2,Like,06:12:00,Correct
+29,Male,Mixed or multiple ethic groups,Yes,20/09/2017,Once or twice,Female,Oatmeal,3,Dislike,06:30:00,Correct
+3,Male,Arab,No,05/09/2017,Never,Male,Beans,1,Dislike,14:27:00,Incorrect
+3,Male,Arab,No,05/09/2017,Never,Male,Oatmeal,3,Dislike,15:06:00,Correct
+3,Male,Arab,No,05/09/2017,Never,Male,Croissant,2,Like,15:24:00,Correct
+3,Male,Arab,No,05/09/2017,Never,Male,Toast,4,Like,15:42:00,Incorrect
+30,Male,White,Yes,21/09/2017,Never,Female,Beans,1,Dislike,09:40:00,Incorrect
+30,Male,White,Yes,21/09/2017,Never,Female,Oatmeal,4,Dislike,10:01:00,Correct
+30,Male,White,Yes,21/09/2017,Never,Female,Milk,3,Dislike,10:19:00,Correct
+30,Male,White,Yes,21/09/2017,Never,Female,Toast,2,Like,10:37:00,Correct
+31,Female,White,No,21/09/2017,Never,Female,Beans,2,Like,00:43:00,Correct
+31,Female,White,No,21/09/2017,Never,Female,Toast,1,Like,01:04:00,Correct
+31,Female,White,No,21/09/2017,Never,Female,Milk,3,Dislike,01:22:00,Correct
+31,femalew,White,No,21/09/2017,Never,Female,Oatmeal,4,Dislike,01:46:00,Correct
+32,Female,White,Yes,21/09/2017,Never,Female,Croissant,2,Like,19:27:00,Correct
+32,Female,White,Yes,21/09/2017,Never,Female,Toast,1,Dislike,19:47:00,Incorrect
+32,Female,White,Yes,21/09/2017,Never,Female,Beans,4,Dislike,20:05:00,Correct
+32,Female,White,Yes,21/09/2017,Never,Female,Oatmeal,3,Dislike,20:25:00,Correct
+33,Male,White,Yes,22/09/2017,Never,Female,Toast,2,Dislike,15:41:00,Incorrect
+33,Male,White,Yes,22/09/2017,Never,Female,Beans,3,Dislike,16:02:00,Correct
+33,Male,White,Yes,22/09/2017,Never,Female,Croissant,1,Dislike,16:27:00,Incorrect
+33,Male,White,Yes,22/09/2017,Never,Female,Oatmeal,4,Dislike,17:10:00,Correct
+34,Female,White,No,27/09/2017,Never,Female,Oatmeal,2,Dislike,06:29:00,Incorrect
+34,Female,White,No,27/09/2017,Never,Female,Beans,3,Like,06:52:00,Incorrect
+34,Female,White,No,27/09/2017,Never,Female,Croissant,4,Dislike,07:11:00,Correct
+34,Female,White,No,27/09/2017,Never,Female,Milk,1,Like,07:29:00,Correct
+35,Male,White,No,27/09/2017,Never,Female,Toast,2,Miss,00:34:00,Incorrect
+35,Male,White,No,27/09/2017,Never,Female,Toast,4,Dislike,00:58:00,Correct
+35,Male,White,No,27/09/2017,Never,Female,Oatmeal,1,Like,01:22:00,Correct
+35,Male,White,No,27/09/2017,Never,Female,Beans,3,Like,01:40:00,Incorrect
+36,Male,Asian,No,27/09/2017,Never,Male,Milk,2,Like,38:42:00,Correct
+36,Male,Asian,No,27/09/2017,Never,Male,Oatmeal,4,Dislike,39:07:00,Correct
+36,Male,Asian,No,27/09/2017,Never,Male,Toast,3,Dislike,39:26:00,Correct
+36,Male,Asian,No,27/09/2017,Never,Male,Croissant,1,Like,39:44:00,Correct
+37,Male,White,Yes,27/09/2017,Never,Female,Oatmeal,3,Dislike,29:59:00,Correct
+37,Male,White,Yes,27/09/2017,Never,Female,Toast,1,Like,30:23:00,Correct
+37,Male,White,Yes,27/09/2017,Never,Female,Milk,2,Like,30:43:00,Correct
+37,Male,White,Yes,27/09/2017,Never,Female,Croissant,4,Dislike,31:03:00,Correct
+38,Male,White,Yes,27/09/2017,Never,Female,Croissant,3,Dislike,46:48:00,Correct
+38,Male,White,Yes,27/09/2017,Never,Female,Toast,1,Like,47:12:00,Correct
+38,Male,White,Yes,27/09/2017,Never,Female,Oatmeal,4,Dislike,47:35:00,Correct
+38,Male,White,Yes,27/09/2017,Never,Female,Milk,2,Like,47:55:00,Correct
+39,Female,White,Yes,02/10/2017,Once or twice,Female,Beans,3,Dislike,05:03:00,Correct
+39,Female,White,Yes,02/10/2017,Once or twice,Female,Croissant,2,Like,05:22:00,Correct
+39,Female,White,Yes,02/10/2017,Once or twice,Female,Oatmeal,1,Dislike,05:39:00,Incorrect
+39,Female,White,Yes,02/10/2017,Once or twice,Female,Toast,4,Dislike,05:56:00,Correct
+4,Male,White,Yes,07/09/2017,Never,Female,Milk,1,Dislike,05:42:00,Incorrect
+4,Male,White,Yes,07/09/2017,Never,Female,Beans,3,Dislike,06:04:00,Correct
+4,Male,White,Yes,07/09/2017,Never,Female,Croissant,4,Dislike,06:24:00,Correct
+4,Male,White,Yes,07/09/2017,Never,Female,Toast,2,Like,06:42:00,Correct
+40,Female,White,No,02/10/2017,Never,Female,Oatmeal,3,Dislike,04:18:00,Correct
+40,Female,White,No,02/10/2017,Never,Female,Milk,2,Like,04:41:00,Correct
+40,Female,White,No,02/10/2017,Never,Female,Toast,4,Dislike,05:01:00,Correct
+40,Female,White,No,02/10/2017,Never,Female,Croissant,1,Like,05:24:00,Correct
+41,Female,Asian,No,02/10/2017,Never,Female,Toast,3,Dislike,04:26:00,Correct
+41,Female,Asian,No,02/10/2017,Never,Female,Oatmeal,4,Dislike,04:45:00,Correct
+41,Female,Asian,No,02/10/2017,Never,Female,Beans,1,Like,05:02:00,Correct
+41,Female,Asian,No,02/10/2017,Never,Female,Milk,2,Like,05:20:00,Correct
+42,Male,White,Yes,02/10/2017,Never,Female,Toast,3,Dislike,34:15:00,Correct
+42,Male,White,Yes,02/10/2017,Never,Female,Croissant,4,Dislike,34:34:00,Correct
+42,Male,White,Yes,02/10/2017,Never,Female,Oatmeal,2,Like,34:52:00,Correct
+42,Male,White,Yes,02/10/2017,Never,Female,Beans,1,Like,35:17:00,Correct
+43,Male,White,Yes,04/10/2017,Never,NA,Croissant,4,Dislike,22:21:00,Correct
+43,Male,White,Yes,04/10/2017,Never,NA,Toast,1,Like,22:40:00,Correct
+43,Male,White,Yes,04/10/2017,Never,NA,Beans,3,Dislike,22:58:00,Correct
+43,Male,White,Yes,04/10/2017,Never,NA,Milk,2,Like,23:17:00,Correct
+44,Male,White,Yes,05/10/2017,Never,Female,Oatmeal,4,Dislike,05:01:00,Correct
+44,Male,White,Yes,05/10/2017,Never,Female,Milk,2,Like,05:21:00,Correct
+44,Male,White,Yes,05/10/2017,Never,Female,Croissant,1,Like,05:39:00,Correct
+44,Male,White,Yes,05/10/2017,Never,Female,Beans,3,Dislike,05:56:00,Correct
+45,Female,White,Yes,05/10/2017,Once or twice,NA,Milk,4,Dislike,12:44:00,Correct
+45,Female,White,Yes,05/10/2017,Once or twice,NA,Toast,2,Like,13:03:00,Correct
+45,Female,White,Yes,05/10/2017,Once or twice,NA,Oatmeal,3,Dislike,13:20:00,Correct
+45,Female,White,Yes,05/10/2017,Once or twice,NA,Croissant,1,Dislike,13:38:00,Incorrect
+46,Male,African,Yes,05/10/2017,Never,Female,Milk,4,Dislike,14:28:00,Correct
+46,Male,African,Yes,05/10/2017,Never,Female,Beans,3,Like,14:52:00,Incorrect
+46,Male,African,Yes,05/10/2017,Never,Female,Croissant,1,Like,15:10:00,Correct
+46,Male,African,Yes,05/10/2017,Never,Female,Oatmeal,2,Like,15:29:00,Correct
+47,Male,White,Yes,05/10/2017,Never,Female,Beans,4,Dislike,42:30:00,Correct
+47,Male,White,Yes,05/10/2017,Never,Female,Croissant,3,Dislike,42:49:00,Correct
+47,Male,White,Yes,05/10/2017,Never,Female,Oatmeal,2,Like,43:06:00,Correct
+47,Male,White,Yes,05/10/2017,Never,Female,Toast,1,Like,43:24:00,Correct
+48,Female,Asian,Yes,05/10/2017,Never,Male,Oatmeal,1,Like,10:51:00,Correct
+48,Female,Asian,Yes,05/10/2017,Never,Male,Milk,2,Like,11:09:00,Correct
+48,Female,Asian,Yes,05/10/2017,Never,Male,Toast,3,Dislike,11:29:00,Correct
+48,Female,Asian,Yes,05/10/2017,Never,Male,Croissant,4,Dislike,11:47:00,Correct
+49,Male,Asian,No,06/10/2017,Never,Male,Toast,1,Dislike,25:12:00,Incorrect
+49,Male,Asian,No,06/10/2017,Never,Male,Croissant,2,Like,25:33:00,Correct
+49,Male,Asian,No,06/10/2017,Never,Male,Beans,4,Dislike,25:51:00,Correct
+49,Male,Asian,No,06/10/2017,Never,Male,Milk,3,Like,26:11:00,Incorrect
+5,Female,Asian,No,06/09/2017,Never,Male,Oatmeal,1,Like,05:20:00,Correct
+5,Female,Asian,No,06/09/2017,Never,Male,Beans,4,Miss,05:45:00,Incorrect
+5,Female,Asian,No,06/09/2017,Never,Male,Milk,2,Dislike,06:11:00,Incorrect
+5,Female,Asian,No,06/09/2017,Never,Male,Croissant,3,Like,06:28:00,Incorrect
+50,Male,Asian,No,06/10/2017,Once or twice,Female,Croissant,1,Like,15:26:00,Correct
+50,Male,Asian,No,06/10/2017,Once or twice,Female,Toast,3,Dislike,15:54:00,Correct
+50,Male,Asian,No,06/10/2017,Once or twice,Female,Beans,2,Like,16:19:00,Correct
+50,Male,Asian,No,06/10/2017,Once or twice,Female,Oatmeal,4,Dislike,16:51:00,Correct
+51,Female,White,Yes,06/10/2017,Never,Female,Beans,1,Like,04:41:00,Correct
+51,Female,White,Yes,06/10/2017,Never,Female,Milk,3,Dislike,05:05:00,Correct
+51,Female,White,Yes,06/10/2017,Never,Female,Oatmeal,4,Dislike,05:25:00,Correct
+51,Female,White,Yes,06/10/2017,Never,Female,Toast,2,Dislike,05:48:00,Incorrect
+52,Male,White,No,06/10/2017,Never,Female,Beans,1,Dislike,47:41:00,Incorrect
+52,Male,White,No,06/10/2017,Never,Female,Oatmeal,4,Dislike,48:03:00,Correct
+52,Male,White,No,06/10/2017,Never,Female,Croissant,2,Like,48:23:00,Correct
+52,Male,White,No,06/10/2017,Never,Female,Toast,3,Dislike,48:41:00,Correct
+53,Female,Asian,Yes,06/10/2017,Never,Female,Milk,1,Like,17:42:00,Correct
+53,Female,Asian,Yes,06/10/2017,Never,Female,Oatmeal,4,Dislike,18:05:00,Correct
+53,Female,Asian,Yes,06/10/2017,Never,Female,Toast,3,Dislike,18:24:00,Correct
+53,Female,Asian,Yes,06/10/2017,Never,Female,Beans,2,Like,18:41:00,Correct
+54,Male,Arab,No,09/10/2017,Once or twice,Male,Croissant,2,Like,14:38:00,Correct
+54,Male,Arab,No,09/10/2017,Once or twice,Male,Milk,1,Like,14:59:00,Correct
+54,Male,Arab,No,09/10/2017,Once or twice,Male,Toast,3,Dislike,15:17:00,Correct
+54,Male,Arab,No,09/10/2017,Once or twice,Male,Oatmeal,4,Dislike,15:36:00,Correct
+55,Female,Asian,Yes,09/10/2017,Never,Female,Beans,2,Like,22:34:00,Correct
+55,Female,Asian,Yes,09/10/2017,Never,Female,Oatmeal,1,Dislike,23:00:00,Incorrect
+55,Female,Asian,Yes,09/10/2017,Never,Female,Milk,4,Dislike,23:18:00,Correct
+55,Female,Asian,Yes,09/10/2017,Never,Female,Toast,3,Dislike,23:36:00,Correct
+56,Male,White,No,10/10/2017,Once or twice,Female,Milk,2,Dislike,07:43:00,Incorrect
+56,Male,White,No,10/10/2017,Once or twice,Female,Croissant,3,Dislike,08:24:00,Correct
+56,Male,White,No,10/10/2017,Once or twice,Female,Oatmeal,1,Miss,08:43:00,Incorrect
+56,Male,White,No,10/10/2017,Once or twice,Female,Oatmeal,4,Dislike,09:03:00,Correct
+57,Female,Asian,No,10/10/2017,Once or twice,Female,Milk,2,Like,57:56:00,Correct
+57,Female,Asian,No,10/10/2017,Once or twice,Female,Oatmeal,3,Dislike,58:17:00,Correct
+57,Female,Asian,No,10/10/2017,Once or twice,Female,Croissant,4,Dislike,58:38:00,Correct
+57,Female,Asian,No,10/10/2017,Once or twice,Female,Beans,1,Like,58:57:00,Correct
+6,Male,White,No,07/09/2017,Once or twice,Female,Beans,1,Like,07:56:00,Correct
+6,Male,White,No,07/09/2017,Once or twice,Female,Toast,4,Dislike,08:20:00,Correct
+6,Male,White,No,07/09/2017,Once or twice,Female,Milk,3,Dislike,08:41:00,Correct
+6,Male,White,No,07/09/2017,Once or twice,Female,Oatmeal,2,Like,09:02:00,Correct
+7,Female,White,No,07/09/2017,Never,Female,Beans,2,Miss,06:57:00,Incorrect
+7,Female,White,No,07/09/2017,Never,Female,Milk,1,Like,07:13:00,Correct
+7,Female,White,No,07/09/2017,Never,Female,Croissant,3,Like,07:31:00,Incorrect
+7,Female,White,No,07/09/2017,Never,Female,Toast,4,Like,07:51:00,Incorrect
+8,Male,White,No,07/09/2017,Never,Male,Milk,2,Like,05:03:00,Correct
+8,Male,White,No,07/09/2017,Never,Male,Croissant,1,Dislike,05:26:00,Incorrect
+8,Male,White,No,07/09/2017,Never,Male,Beans,4,Dislike,05:47:00,Correct
+8,Male,White,No,07/09/2017,Never,Male,Toast,3,Dislike,06:08:00,Correct
+9,Female,White,No,07/09/2017,Never,Female,Croissant,2,Like,01:13:00,Correct
+9,Female,White,No,07/09/2017,Never,Female,Toast,3,Dislike,01:32:00,Correct
+9,Female,White,No,07/09/2017,Never,Female,Beans,1,Dislike,01:51:00,Incorrect
+9,Female,White,No,07/09/2017,Never,Female,Oatmeal,4,Dislike,02:09:00,Correct
