@@ -10,9 +10,9 @@
 <link href="L7_Correlation_and_regression_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.450">
 
-  <meta name="author" content="Dr Peter E McKenna">
-  <meta name="dcterms.date" content="2025-02-28">
-  <title>The Relationship Between Correlation and Regression</title>
+  <meta name="author" content="Dr Pete McKenna">
+  <meta name="dcterms.date" content="2025-03-10">
+  <title>Lecture 7: The Relationship Between Correlation and Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -95,7 +95,26 @@
     code span.va { color: #00e0e0; } /* Variable */
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="L7_Correlation_and_regression_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="peter_style.css">
   <link href="L7_Correlation_and_regression_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -391,20 +410,26 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="images/peter_staff_photo_small.jpg" data-background-position="50% 10%" data-background-size="auto" class="quarto-title-block center">
-  <h1 class="title">The Relationship Between Correlation and Regression</h1>
+<section id="title-slide" data-background-image="images/anime_programming.jpg" data-background-position="50% 8%" data-background-size="20%" class="quarto-title-block center">
+  <h1 class="title">Lecture 7: The Relationship Between Correlation and Regression</h1>
   <p class="subtitle">C91AR: Advanced Statistics using R</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr Peter E McKenna 
+Dr Pete McKenna 
 </div>
 </div>
 </div>
 
-  <p class="date">2025-02-28</p>
+  <p class="date">2025-03-10</p>
 </section>
+<section id="reading-for-today" class="title-slide slide level1 center">
+<h1>Reading for today</h1>
+<p><span class="citation" data-cites="Barr_2025">Barr (<a href="#/references" role="doc-biblioref" onclick="">2025</a>)</span></p>
+<p><span class="citation" data-cites="Canduela_Raeside_2020">Canduela and Raeside (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></p>
+</section>
+
 <section id="session-outline" class="title-slide slide level1 center">
 <h1>Session outline</h1>
 <ul>
@@ -422,8 +447,8 @@ Dr Peter E McKenna
 <li>Rather than draw by hand, a procedure called <strong>least squares regression</strong> can be used to reliably draw this line.</li>
 </ul>
 </section>
-<section id="lest-squares-regression" class="slide level2">
-<h2>Lest squares regression</h2>
+<section id="least-squares-regression" class="slide level2">
+<h2>Least squares regression</h2>
 <p>The line is adjusted to minimise the SSE (sum of squared deviations; <span class="math inline">\(e_{i}^{2}\)</span>) of each point from the line:</p>
 <p>Minimise SSE = <span class="math inline">\(min \underset{i=1}{\stackrel{n}{\sum}}e_{i}^{2} = min \underset{i=1}{\stackrel{n}{\sum}}(y_{i} - \hat{y}_{i})^2\)</span></p>
 <ul>
@@ -434,6 +459,14 @@ Dr Peter E McKenna
 <li><span class="math inline">\(\underset{i=1}{\stackrel{n}{\sum}}\)</span> = summation of a sequence of terms indexed by <span class="math inline">\(i\)</span>, starting from <span class="math inline">\(i = 1\)</span> and ending at <span class="math inline">\(i = n\)</span></li>
 </ul>
 </section></section>
+<section id="illustration-of-regression" class="title-slide slide level1 center">
+<h1>Illustration of regression</h1>
+<p><img data-src="images/RM3_regression.png" data-left="0" width="580" height="590"></p>
+<ul>
+<li>So, least squares regression is summation of all of the squared differences (<span class="math inline">\(e_{i}\)</span>) between the observed (<span class="math inline">\(y_{i}\)</span>) and predicted (<span class="math inline">\(\hat{y}_{i}\)</span>) values of <span class="math inline">\(y\)</span></li>
+</ul>
+</section>
+
 <section id="regression-formula" class="title-slide slide level1 center">
 <h1>Regression formula</h1>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_i + e_i\]</span></p>
@@ -446,22 +479,20 @@ Dr Peter E McKenna
 <li><span class="math inline">\(\epsilon_{i}\)</span> = error or residual of the <span class="math inline">\(i\)</span>th observation</li>
 <li><span class="math inline">\(n\)</span> = total number of observations</li>
 </ul>
+<!--
+# Calculating coefficients
+
+$\beta_{0}$ and $\beta_{1}$ are **coefficients** and can be estimated
+using the following equations:
+
+$\hat{\beta}_{1} = \frac{\underset{i=1}{\stackrel{n}{\sum}}(x_{i} - \overline{x})(y_{i} - \overline{y})}{\underset{i=1}{\stackrel{n}{\sum}}(x_{i} - \overline{x})^2}$
+
+$\beta_{0} = \overline{y} - \hat{\beta}_{1}\overline{x}$    
+-->
 </section>
 
-<section id="illustration-of-regression" class="title-slide slide level1 center">
-<h1>Illustration of regression</h1>
-<p><img data-src="images/RM3_regression.png" data-left="0" width="580" height="590"></p>
-</section>
-
-<section id="calculating-coefficients" class="title-slide slide level1 center">
-<h1>Calculating coefficients</h1>
-<p><span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> are <strong>coefficients</strong> and can be estimated using the following equations:</p>
-<p><span class="math inline">\(\hat{\beta}_{1} = \frac{\underset{i=1}{\stackrel{n}{\sum}}(x_{i} - \overline{x})(y_{i} - \overline{y})}{\underset{i=1}{\stackrel{n}{\sum}}(x_{i} - \overline{x})^2}\)</span></p>
-<p><span class="math inline">\(\beta_{0} = \overline{y} - \hat{\beta}_{1}\overline{x}\)</span></p>
-</section>
-
-<section id="what-about-the-relationship-between-correlation-and-regression" class="title-slide slide level1 center">
-<h1>what about the relationship between correlation and regression?</h1>
+<section id="the-relationship-between-correlation-and-regression" class="title-slide slide level1 center">
+<h1>The relationship between correlation and regression?</h1>
 <ul>
 <li>Correlation tells us about the strength and relationship between two variables.</li>
 <li>Regression (on the other hand) predicts the value of one variable based on the value of another variable.</li>
@@ -469,73 +500,77 @@ Dr Peter E McKenna
 </ul>
 </section>
 
-<section id="set-up-code-for-the-session" class="title-slide slide level1 center">
-<h1>Set up code for the session</h1>
+<section id="reproducibility-notation" class="title-slide slide level1 center">
+<h1>Reproducibility &amp; notation</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load packages</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(corrr)</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># Read in the data</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>handw <span class="ot">&lt;-</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">read_csv</span>(<span class="st">"data_raw/heights_and_weights.csv"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>           <span class="at">col_types =</span> <span class="st">"dd"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># Add log transformed vectors to dataset</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>handw_log <span class="ot">&lt;-</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>  handw <span class="sc">|&gt;</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>  <span class="fu">mutate</span>(<span class="at">hlog =</span> <span class="fu">log</span>(height_in),  </span>
-<span id="cb1-16"><a href="#cb1-16"></a>         <span class="at">wlog =</span> <span class="fu">log</span>(weight_lbs))</span>
-<span id="cb1-17"><a href="#cb1-17"></a></span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="co"># Set seed for reproducibility</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="co"># Change the output format</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># Change the output format</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="load-packages" class="title-slide slide level1 center">
+<h1>Load packages</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Load packages</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>               corrr,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>               tidyplots)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="data-setup" class="title-slide slide level1 center">
+<h1>Data setup</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>handw <span class="ot">&lt;-</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">read_csv</span>(<span class="st">"data_raw/heights_and_weights.csv"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>           <span class="at">col_types =</span> <span class="st">"dd"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># Add log transformed vectors to dataset</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>handw_log <span class="ot">&lt;-</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  handw <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="fu">mutate</span>(<span class="at">hlog =</span> <span class="fu">log</span>(height_in),  </span>
+<span id="cb3-11"><a href="#cb3-11"></a>         <span class="at">wlog =</span> <span class="fu">log</span>(weight_lbs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
 <section id="remind-me-why-are-we-using-the-log-of-the-data" class="title-slide slide level1 center">
 <h1>Remind me, why are we using the log of the data?</h1>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Raw data</a></li><li><a href="#tabset-1-2">Normalised data</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div id="tabset-1-2">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 </section>
+
+<section id="raw-data" class="title-slide slide level1 center">
+<h1>Raw data</h1>
+
+<img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+
+<section id="normalised-data" class="title-slide slide level1 center">
+<h1>Normalised data</h1>
+
+<img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 
 <section id="rationale-for-taking-the-log" class="title-slide slide level1 center">
 <h1>Rationale for taking the log</h1>
 <ul>
-<li><p>When we take the log of the data we normalise it, to stabilise the variance in our vectors.</p></li>
-<li><p>This is particularly useful if the data are highly skewed or show <strong>heteroscedasticity</strong></p>
+<li>When we take the log of the data we normalise it, to stabilise the variance in our vectors.</li>
+<li>This is particularly useful if the data are highly skewed or show <strong>heteroscedasticity</strong>
 <ul>
 <li>When the difference between the observed and predicted values (i.e., the residuals <span class="math inline">\(e_i\)</span>) is not constant across all levels of the independent variables.</li>
+<li>For the heights and weights data, you can see that the residuals increase as the values for height and weight approach the upper limit</li>
 </ul></li>
-<li><p>Normalised data is more suitable for statistical analysis that assume normality, such as linear regression.</p></li>
+<li>Normalised data is more suitable for statistical analysis that assume normality, such as linear regression.</li>
 </ul>
 </section>
 
 <section id="using-regression-to-make-predictions-based-on-height-and-weight-data" class="title-slide slide level1 center">
 <h1>Using regression to make predictions based on height and weight data</h1>
+<p><strong>Regression formula</strong></p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_i + e_i\]</span></p>
+<p><strong>In the context of predicting height from weight</strong></p>
 <ul>
 <li><p><span class="math inline">\(Y_i\)</span> = prediction of a person <span class="math inline">\(i\)</span>’s weight</p></li>
 <li><p><span class="math inline">\(X_i\)</span> = observed height</p></li>
@@ -552,9 +587,9 @@ Dr Peter E McKenna
 <h1>Making predictions using the available statistics</h1>
 <p>To estimate the parameters of the regression between the y-intercept (<span class="math inline">\(\beta_0\)</span>) and the slope (<span class="math inline">\(\beta_1\)</span>) all we need is the:</p>
 <ul>
-<li>Mean estimates for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, or <span class="math inline">\(\hat{\mu_x}\)</span> &amp; <span class="math inline">\(\hat{\mu_y}\)</span></li>
-<li>Standard deviations for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, or <span class="math inline">\(\hat{\sigma_x}\)</span> &amp; <span class="math inline">\(\hat{\sigma_y}\)</span></li>
-<li>Correlations between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, or <span class="math inline">\(\hat{\rho}\)</span></li>
+<li>Mean estimates for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, denoted as <span class="math inline">\(\hat{\mu_x}\)</span> &amp; <span class="math inline">\(\hat{\mu_y}\)</span></li>
+<li>Standard deviations for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, denoted as <span class="math inline">\(\hat{\sigma_x}\)</span> &amp; <span class="math inline">\(\hat{\sigma_y}\)</span></li>
+<li>Correlations between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, denoted as <span class="math inline">\(\hat{\rho}\)</span></li>
 <li>Note: the <span class="math inline">\(\hat{hat}\)</span> denotes an estimate of a population parameter.</li>
 </ul>
 <p>So, the statistics required to estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are much the same as we used for simulating correlational data.</p>
@@ -586,9 +621,9 @@ Dr Peter E McKenna
 <p><span class="math display">\[\beta_1 = \rho\frac{ \sigma_Y}{\sigma_X}\]</span></p>
 <p>In R Code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Estimate slope using formula</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>b1 <span class="ot">&lt;-</span> .<span class="dv">96</span> <span class="sc">*</span> (.<span class="dv">65</span> <span class="sc">/</span> .<span class="dv">26</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>b1 <span class="co"># 2.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Estimate slope using formula</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>b1 <span class="ot">&lt;-</span> .<span class="dv">96</span> <span class="sc">*</span> (.<span class="dv">65</span> <span class="sc">/</span> .<span class="dv">26</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>b1 <span class="co"># 2.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.4</code></pre>
 </div>
@@ -598,11 +633,36 @@ Dr Peter E McKenna
 <section id="using-the-axis-to-fill-in-the-blanks-part-1" class="title-slide slide level1 center">
 <h1>Using the Axis to fill in the blanks: part 1</h1>
 <ul>
-<li><p>For mathematical reasons, the regression line is guaranteed to go through the point corresponding to the mean of both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, i.e., the point (<span class="math inline">\(\mu_x\)</span>, <span class="math inline">\(\mu_y\)</span>).</p></li>
+<li><p>For mathematical reasons, the regression line is <strong>guaranteed to go through the point corresponding to the mean of both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, i.e., the point (<span class="math inline">\(\mu_x\)</span>, <span class="math inline">\(\mu_y\)</span>)</strong>.</p></li>
 <li><p>One way to think about this is that the regression line pivots around that point depending on the slope (<span class="math inline">\(\beta_1\)</span>).</p></li>
 <li><p>We also know that <span class="math inline">\(\beta_0\)</span> is the y-intercept, where the line crosses the vertical axis at <span class="math inline">\(X\)</span> = 0.</p></li>
 </ul>
 </section>
+
+<section id="regression-line-passing-through-variable-means-mu_x-mu_y" class="title-slide slide level1 center">
+<h1>Regression line passing through variable means (<span class="math inline">\(\mu_x\)</span>, <span class="math inline">\(\mu_y\)</span>)</h1>
+
+<!--
+
+This code will generate a plot with:
+- A scatter plot of the log-transformed data points in blue.
+- A red regression line.
+- Green dashed lines representing the means of log-transformed height and weight.
+- A purple point at the intersection of the means of log-transformed height and weight, labeled "Mean (hlog, wlog)".
+
+Feel free to run this code in your R environment and let me know if you need any further assistance!
+
+
+This code will generate a plot with:
+- A scatter plot of the data points in blue.
+- A red regression line.
+- Green dashed lines representing the means of X and Y.
+- A purple point at the intersection of the means of X and Y, labeled "Mean (X, Y)".
+
+Feel free to run this code in your R environment and let me know if you need any further assistance!
+
+-->
+<img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
 
 <section id="using-the-axis-to-fill-in-the-blanks-part-2" class="title-slide slide level1 center">
 <h1>Using the Axis to fill in the blanks: part 2</h1>
@@ -622,6 +682,11 @@ Dr Peter E McKenna
 </ul>
 </section>
 
+<section id="illustrating-this-relationship" class="title-slide slide level1 center">
+<h1>Illustrating this relationship</h1>
+
+<img data-src="images/regression_equation.png" class="r-stretch"></section>
+
 <section id="the-solution" class="title-slide slide level1 center">
 <h1>The Solution</h1>
 <ul>
@@ -634,8 +699,14 @@ Dr Peter E McKenna
 <li><p><span class="math inline">\(\mu_y - 4.74\)</span></p></li>
 <li><p><span class="math inline">\(\beta_0 = -5.124\)</span></p></li>
 </ul></li>
-<li><p>So the formula becomes: <span class="math display">\[Y_i = -5.124 + 2.4X_i + e_i\]</span></p></li>
 </ul>
+</section>
+
+<section id="plugging-in-the-numbers-1" class="title-slide slide level1 center">
+<h1>Plugging in the numbers</h1>
+<p>So..</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_i + e_i\]</span> Becomes…</p>
+<p><span class="math display">\[Y_i = -5.124 + 2.4X_i + e_i\]</span></p>
 </section>
 
 <section id="checking-the-results" class="title-slide slide level1 center">
@@ -646,8 +717,8 @@ Dr Peter E McKenna
 <li>Note, you are interested in the <code>Estimate</code> values.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(wlog <span class="sc">~</span> hlog,</span>
-<span id="cb4-2"><a href="#cb4-2"></a>           <span class="at">data =</span> handw_log))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(wlog <span class="sc">~</span> hlog,</span>
+<span id="cb6-2"><a href="#cb6-2"></a>           <span class="at">data =</span> handw_log))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>
@@ -687,22 +758,22 @@ F-statistic:  5802 on 1 and 473 DF,  p-value: &lt; 0.00000000000000022</code></p
 <h1>Checking your regression estimate with a plot</h1>
 <p>Another way to check the accuracy of your regression calculations is to superimpose the regression line on the scatter-plot of the log transformed data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> handw_log, </span>
-<span id="cb6-2"><a href="#cb6-2"></a>       <span class="fu">aes</span>(hlog, wlog)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">5.124</span>, </span>
-<span id="cb6-5"><a href="#cb6-5"></a>              <span class="at">slope =</span> <span class="fl">2.4</span>, </span>
-<span id="cb6-6"><a href="#cb6-6"></a>              <span class="at">colour =</span> <span class="st">'purple'</span>) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Superimposed regression line onto log transformed data"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8"></a>       <span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">log(height)"</span>, </span>
-<span id="cb6-9"><a href="#cb6-9"></a>       <span class="at">y =</span> <span class="st">"log(weight)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> handw_log, </span>
+<span id="cb8-2"><a href="#cb8-2"></a>       <span class="fu">aes</span>(hlog, wlog)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span><span class="fl">5.124</span>, </span>
+<span id="cb8-5"><a href="#cb8-5"></a>              <span class="at">slope =</span> <span class="fl">2.4</span>, </span>
+<span id="cb8-6"><a href="#cb8-6"></a>              <span class="at">colour =</span> <span class="st">'purple'</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Superimposed regression line onto log transformed data"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>       <span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">log(height)"</span>, </span>
+<span id="cb8-9"><a href="#cb8-9"></a>       <span class="at">y =</span> <span class="st">"log(weight)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>
 
 <section id="checking-your-regression-estimate-with-a-plot-output" class="title-slide slide level1 output-location-slide center"><h1>Checking your regression estimate with a plot</h1><div class="cell output-location-slide">
 <div class="cell-output-display">
-<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
 </div>
 </div></section><section id="predicting-someones-weight-given-their-height" class="title-slide slide level1 center">
 <h1>Predicting someone’s weight given their height</h1>
@@ -728,262 +799,281 @@ F-statistic:  5802 on 1 and 473 DF,  p-value: &lt; 0.00000000000000022</code></p
 </ul>
 </section>
 
-<section id="r2-coefficient-of-determination" class="title-slide slide level1 center">
-<h1><span class="math inline">\(R^{2}\)</span> Coefficient of determination</h1>
-<p>To this point we have created a regression equation and used it to predict someone’s weight given their height. But, we also want to know how good a fit our equation is given the data. To calculate this we use the <strong><em>coefficient of determination</em></strong> (<span class="math inline">\(R^2\)</span>):</p>
-<p><span class="math inline">\(R^2 = \frac{\text{Sum of Squares Explained by Regression (SSR)}}{\text{Total Sum of Squares (before regression)(TSS)}} = \frac{\underset{i=1}{\stackrel{n}{\sum}}(\hat{y}_{i} - \overline{y})^2}{\underset{i=1}{\stackrel{n}{\sum}}(y_{i} - \overline{y})^{2}}\)</span></p>
-<p>The total variation (TSS) in the dependent variable (weight) is split into two parts: the part explained (SSR) by the association between the dependent (weight) and independent (height) variables, and the part that is unexplained (SSE) since the relationship is never perfect and there are always some residuals.</p>
-</section>
-
-<section id="r2-thresholds" class="title-slide slide level1 center">
-<h1><span class="math inline">\(R^{2}\)</span> Thresholds</h1>
-<p>The higher the <span class="math inline">\(R^{2}\)</span> value (at least <span class="math inline">\(70\%\)</span>) the better the model fit. A reasonable model fit would be more <span class="math inline">\(R^{2} &gt;= 60\%\)</span>.</p>
-<p>The coefficient of determination can take values between 0 and 1, but is commonly reported as a percentage, as it represent the proportion of the variation in the dependent variable (<span class="math inline">\(Y_{i}\)</span>) which is explained by the predictor/independent variable (<span class="math inline">\(X_{i}\)</span>).</p>
-</section>
-
-<section id="exploring-the-errors" class="title-slide slide level1 center">
-<h1>Exploring the Errors</h1>
-<p>To diagnose the quality of the model further we need to look at the errors or residuals <span class="math inline">\((y_{i} - \hat{y}_{i})\)</span> after running the regression model.</p>
-<p>Model residuals should be <strong>randomly scattered</strong> with <strong>no extreme values</strong> and should have a <strong>mean of zero</strong>.</p>
-<p>Should these requirements not be met we would have to further investigate whether there is information in the residuals that could be covered by the model or be considered a cause for concern.</p>
-<p>A histogram of the residuals and normal probability plot can help you decide how well your residuals fit into the model.</p>
-</section>
-
-<section id="histogram-of-model-residuals" class="title-slide slide level1 center">
-<h1>Histogram of model residuals</h1>
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Raw data: residuals plot code</a></li><li><a href="#tabset-2-2">Raw data: residuals plot output</a></li><li><a href="#tabset-2-3">Transformed data: residuals plot</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Create model for raw data</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>mod1 <span class="ot">&lt;-</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> height_in,</span>
-<span id="cb7-4"><a href="#cb7-4"></a>     <span class="at">data =</span> handw)</span>
-<span id="cb7-5"><a href="#cb7-5"></a></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co"># Create residuals object</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>residuals_df <span class="ot">&lt;-</span> </span>
-<span id="cb7-8"><a href="#cb7-8"></a>  mod1<span class="sc">$</span>residuals <span class="sc">|&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">rename</span>(<span class="at">residuals =</span> value)</span>
-<span id="cb7-11"><a href="#cb7-11"></a></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co"># Plot the data</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="fu">ggplot</span>(residuals_df, <span class="fu">aes</span>(<span class="at">x =</span> residuals)) <span class="sc">+</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Residuals"</span>,</span>
-<span id="cb7-16"><a href="#cb7-16"></a>       <span class="at">x =</span> <span class="st">"Residuals"</span>,</span>
-<span id="cb7-17"><a href="#cb7-17"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div id="tabset-2-2">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div id="tabset-2-3">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section id="normal-probability-probability-p-p-plots" class="title-slide slide level1 center">
-<h1>Normal Probability-Probability (P-P) Plots</h1>
-<div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Raw data: Normal PP plot code</a></li><li><a href="#tabset-3-2">Raw data: Normal PP plot output</a></li><li><a href="#tabset-3-3">Transformed data: Normal PP plot ouput</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Extract residuals</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>residuals <span class="ot">&lt;-</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>  mod1<span class="sc">$</span>residuals</span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co"># Calculate theoretical quantiles</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>mod1_quantiles <span class="ot">&lt;-</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">qqnorm</span>(residuals, <span class="at">plot.it =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>x</span>
-<span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co"># Create a data frame with residuals and theoretical quantiles</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>pp_df <span class="ot">&lt;-</span> </span>
-<span id="cb8-11"><a href="#cb8-11"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb8-12"><a href="#cb8-12"></a>  <span class="at">residuals =</span> residuals,</span>
-<span id="cb8-13"><a href="#cb8-13"></a>  <span class="at">theoretical_quantiles =</span> mod1_quantiles</span>
-<span id="cb8-14"><a href="#cb8-14"></a>)</span>
-<span id="cb8-15"><a href="#cb8-15"></a></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="co"># Plot the P-P plot</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="fu">ggplot</span>(pp_df, <span class="fu">aes</span>(<span class="at">sample =</span> residuals)) <span class="sc">+</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Normal P-P Plot of Residuals"</span>,</span>
-<span id="cb8-21"><a href="#cb8-21"></a>       <span class="at">x =</span> <span class="st">"Theoretical Quantiles"</span>,</span>
-<span id="cb8-22"><a href="#cb8-22"></a>       <span class="at">y =</span> <span class="st">"Sample Quantiles"</span>) <span class="sc">+</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div id="tabset-3-2">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div id="tabset-3-3">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="L7_Correlation_and_regression_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section>
-<section id="testing-the-significance-of-the-model-and-its-coefficients" class="title-slide slide level1 center">
-<h1>Testing the Significance of the model and its coefficients</h1>
-<p>We can use statistical tests to determine how well we are approximating the population parameters with those in our model. To do this we can use two methods:</p>
+<section id="model-fit" class="title-slide slide level1 center">
+<h1>Model fit</h1>
 <ul>
-<li>Analysis of variance (ANOVA): tests overall significance of the model</li>
-<li><span class="math inline">\(t\)</span>-test: test the individual significance of the coefficients.</li>
+<li>We did not cover how to test the model’s fit today</li>
+<li>This is covered in the RM3 textbook, and there are good resources elsewhere</li>
+<li>I prioritised familiarity with the modelling process over assumption checking</li>
 </ul>
 </section>
-<section id="testing-the-overall-significance-of-the-model" class="slide level2">
-<h2>Testing the overall significance of the model</h2>
-<p>Testing the overall significance of the model evaluates how well the independent variables reliable predict the dependent variable. We can create hypotheses to make our statistical inferences:</p>
-<p><span class="math inline">\(H_{0}\)</span>: The regression model does not explain a significant proportion of the variance in weight (our DV).</p>
-<p>VS</p>
-<p><span class="math inline">\(H_{1}\)</span>: The regression model does explain a significant proportion of the variation in weight.</p>
-<p>And we test the above using the <span class="math inline">\(F\)</span>-distribution.</p>
-</section></section>
-<section id="anova-for-regression-modelling" class="title-slide slide level1 center">
-<h1>ANOVA for regression modelling</h1>
-<div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">ANOVA for regression</a></li><li><a href="#tabset-4-2">ANOVA for regression: key</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1">
-<table>
-<colgroup>
-<col style="width: 17%">
-<col style="width: 18%">
-<col style="width: 21%">
-<col style="width: 15%">
-<col style="width: 26%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Source of Variation</th>
-<th>Sum of Squares (SS)</th>
-<th>Degrees of Freedom (df)</th>
-<th>Mean Square (MS)</th>
-<th>F-Statistic (F)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Model</td>
-<td><span class="math inline">\(\text{SS}_{\text{model}} = \underset{i=1}{\stackrel{n}{\sum}}(\hat{y}_i - \bar{y})^2\)</span></td>
-<td>( k )</td>
-<td><span class="math inline">\(\text{MSR} = \frac{\text{SSR}}{k}\)</span></td>
-<td><span class="math inline">\(\frac{\text{MSR}}{\text{MSE}}\)</span></td>
-</tr>
-<tr class="even">
-<td>Residual</td>
-<td><span class="math inline">\(\text{SS}_{\text{residual}} = \underset{i=1}{\stackrel{n}{\sum}}(y_i - \hat{y}_i)^2\)</span></td>
-<td>( n - k - 1 )</td>
-<td><span class="math inline">\(\text{MSE} = \frac{\text{SSE}}{n - k - 1}\)</span></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td><span class="math inline">\(\text{TSS} = SSR + SSE = \underset{i=1}{\stackrel{n}{\sum}}(y_i - \bar{y})^2\)</span></td>
-<td>( n - 1 )</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="tabset-4-2">
-<p>Where…</p>
+
+<section id="roundup" class="title-slide slide level1 center">
+<h1>Roundup</h1>
 <ul>
-<li><span class="math inline">\(n\)</span> = total number of observations</li>
-<li><span class="math inline">\(k\)</span> = total number of independent variables</li>
-<li><span class="math inline">\(y\)</span> = the observed values</li>
-<li><span class="math inline">\(\overline{y}\)</span> = mean of the dependent variables</li>
-<li><span class="math inline">\(\hat{y}_{i}\)</span> = the estimated values</li>
+<li>Today I have shown you how to calculate a simple regression model by hand using formula</li>
+<li>The aim was to unveil some of the computation that goes on behind the scene to help you understand what regression analysis is actually doing.</li>
+<li>Using this method, we also made a prediction about someone’s height given their weight.</li>
+<li>On Monday, we are going to look at multiple regression</li>
 </ul>
-</div>
-</div>
-</div>
+<!--
+
+# $R^{2}$ Coefficient of determination
+
+To this point we have created a regression equation and used it to
+predict someone's weight given their height. But, we also want to know
+how good a fit our equation is given the data. To calculate this we use
+the ***coefficient of determination*** ($R^2$):
+
+$R^2 = \frac{\text{Sum of Squares Explained by Regression (SSR)}}{\text{Total Sum of Squares (before regression)(TSS)}} = \frac{\underset{i=1}{\stackrel{n}{\sum}}(\hat{y}_{i} - \overline{y})^2}{\underset{i=1}{\stackrel{n}{\sum}}(y_{i} - \overline{y})^{2}}$
+
+The total variation (TSS) in the dependent variable (weight) is split
+into two parts: the part explained (SSR) by the association between the
+dependent (weight) and independent (height) variables, and the part that
+is unexplained (SSE) since the relationship is never perfect and there
+are always some residuals.
+
+
+# $R^{2}$ Thresholds
+
+The higher the $R^{2}$ value (at least $70\%$) the better the model fit.
+A reasonable model fit would be more $R^{2} >= 60\%$.
+
+The coefficient of determination can take values between 0 and 1, but is
+commonly reported as a percentage, as it represent the proportion of the
+variation in the dependent variable ($Y_{i}$) which is explained by the
+predictor/independent variable ($X_{i}$).
+
+
+# Exploring the Errors
+
+To diagnose the quality of the model further we need to look at the
+errors or residuals $(y_{i} - \hat{y}_{i})$ after running the regression
+model.
+
+Model residuals should be **randomly scattered** with **no extreme
+values** and should have a **mean of zero**.
+
+Should these requirements not be met we would have to further
+investigate whether there is information in the residuals that could be
+covered by the model or be considered a cause for concern.
+
+A histogram of the residuals and normal probability plot can help you
+decide how well your residuals fit into the model.
+
+# Histogram of model residuals
+
+Raw data: residuals plot code
+
+
+::: {.cell}
+
+```{.r .cell-code}
+# Create model for raw data
+mod1 <-
+  lm(weight_lbs ~ height_in,
+     data = handw)
+
+# Create residuals object
+residuals_df <- 
+  mod1$residuals |>
+  as_tibble() |>
+  rename(residuals = value)
+
+# Plot the data
+ggplot(residuals_df, aes(x = residuals)) +
+  geom_histogram(binwidth = 10) +
+  labs(title = "Histogram of Residuals",
+       x = "Residuals",
+       y = "Frequency")
+```
+:::
+
+
+# Raw data: residuals plot output
+
+
+::: {.cell}
+
+:::
+
+
+# Transformed data: residuals plot
+
+
+::: {.cell}
+
+:::
+
+
+
+# Normal Probability-Probability (P-P) Plots
+
+**Raw data: Normal PP plot code**
+
+
+::: {.cell}
+
+```{.r .cell-code}
+# Extract residuals
+residuals <-
+  mod1$residuals
+
+# Calculate theoretical quantiles
+mod1_quantiles <-
+  qqnorm(residuals, plot.it = FALSE)$x
+
+# Create a data frame with residuals and theoretical quantiles
+pp_df <- 
+  data.frame(
+  residuals = residuals,
+  theoretical_quantiles = mod1_quantiles
+)
+
+# Plot the P-P plot
+ggplot(pp_df, aes(sample = residuals)) +
+  stat_qq() +
+  stat_qq_line() +
+  labs(title = "Normal P-P Plot of Residuals",
+       x = "Theoretical Quantiles",
+       y = "Sample Quantiles") +
+  theme_minimal()
+```
+:::
+
+
+# Raw data: Normal PP plot output
+
+
+::: {.cell}
+
+:::
+
+
+# Transformed data: Normal PP plot ouput
+
+
+::: {.cell}
+
+:::
+
+
+
+# Testing the Significance of the model and its coefficients
+
+We can use statistical tests to determine how well we are approximating the population parameters with those in our model. 
+To do this we can use two methods:
+
+- Analysis of variance (ANOVA): tests overall significance of the model
+- $t$-test: test the individual significance of the coefficients.
+
+
+## Testing the overall significance of the model
+
+Testing the overall significance of the model evaluates how well the independent variables reliable predict the dependent variable. 
+We can create hypotheses to make our statistical inferences:
+
+$H_{0}$: The regression model does not explain a significant proportion of the variance in weight (our DV). 
+
+VS
+
+$H_{1}$: The regression model does explain a significant proportion of the variation in weight. 
+
+And we test the above using the $F$-distribution. 
+
+
+# ANOVA for regression modelling
+
+**ANOVA for regression**
+
+| Source of Variation | Sum of Squares (SS) | Degrees of Freedom (df) | Mean Square (MS) | F-Statistic (F)               |
+|---------------------|----------------------|-------------------------|------------------|-------------------------------|
+| Model               | $\text{SS}_{\text{model}} = \underset{i=1}{\stackrel{n}{\sum}}(\hat{y}_i - \bar{y})^2$ | \( k \)                   | $\text{MSR} = \frac{\text{SSR}}{k}$ | $\frac{\text{MSR}}{\text{MSE}}$ |
+| Residual            | $\text{SS}_{\text{residual}} = \underset{i=1}{\stackrel{n}{\sum}}(y_i - \hat{y}_i)^2$ | \( n - k - 1 \)           | $\text{MSE} = \frac{\text{SSE}}{n - k - 1}$ |                               |
+| Total               | $\text{TSS} = SSR + SSE = \underset{i=1}{\stackrel{n}{\sum}}(y_i - \bar{y})^2$ | \( n - 1 \)               |                              |                               |
+----
+
+ANOVA for regression: key
+
+- $n$ = total number of observations
+- $k$ = total number of independent variables
+- $y$ = the observed values
+- $\overline{y}$ = mean of the dependent variables
+- $\hat{y}_{i}$ = the estimated values
+
+
+# ANOVA for log transformed model
+
+
+::: {.cell}
+
+```{.r .cell-code}
+# Run an ANOVA on our log transformed model
+anova_results <-
+  anova(mod2)
+
+print(anova_results)
+```
+:::
+
+
+----
+
+
+::: {.cell}
+
+```{.r .cell-code}
+# Calculate TSS
+ss_model <-
+  anova_results["hlog", "Sum Sq"]
+
+ss_residual <-
+  anova_results["Residuals", "Sum Sq"]
+
+tss <- 
+  ss_model + ss_residual
+
+print(tss)
+```
+:::
+
+
+## Interpreting the results of ANOVA
+
+We can see from the output that `hlog` that the slope of the line is significant difference from 0, where $p < 0.001$. 
+Thus we reject the null hypothesis ($H_{0}$). 
+
+
+# Testing individual coefficients
+
+It is important to determine whether each coefficient is relevant for our model.
+We can do this by checking if it is significantly different from 0.
+
+This can be done by dividing the coefficient by its standard error and comparing the absolute value of that $t$-ratio to the relevant statistic from the $t$-distribution. 
+
+The hypothesis being tested here is as follows:
+
+$H_{0}: \beta_{i}=0$
+
+VS
+
+$H_{a}: \beta_{i}\neq0$
+-->
 </section>
 
-<section>
-<section id="anova-for-log-transformed-model" class="title-slide slide level1 center">
-<h1>ANOVA for log transformed model</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Run an ANOVA on our log transformed model</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>anova_results <span class="ot">&lt;-</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">anova</span>(mod2)</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">print</span>(anova_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-
-Response: wlog
-           Df  Sum Sq Mean Sq F value                Pr(&gt;F)    
-hlog        1 182.622 182.622  5801.8 &lt; 0.00000000000000022 ***
-Residuals 473  14.888   0.031                                  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Calculate TSS</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>ss_model <span class="ot">&lt;-</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>  anova_results[<span class="st">"hlog"</span>, <span class="st">"Sum Sq"</span>]</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a>ss_residual <span class="ot">&lt;-</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a>  anova_results[<span class="st">"Residuals"</span>, <span class="st">"Sum Sq"</span>]</span>
-<span id="cb11-7"><a href="#cb11-7"></a></span>
-<span id="cb11-8"><a href="#cb11-8"></a>tss <span class="ot">&lt;-</span> </span>
-<span id="cb11-9"><a href="#cb11-9"></a>  ss_model <span class="sc">+</span> ss_residual</span>
-<span id="cb11-10"><a href="#cb11-10"></a></span>
-<span id="cb11-11"><a href="#cb11-11"></a><span class="fu">print</span>(tss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 197.5102</code></pre>
-</div>
-</div>
-</section>
-<section id="interpreting-the-results-of-anova" class="slide level2">
-<h2>Interpreting the results of ANOVA</h2>
-<p>We can see from the output that <code>hlog</code> that the slope of the line is significant difference from 0, where <span class="math inline">\(p &lt; 0.001\)</span>. Thus we reject <span class="math inline">\(H_{0}\)</span>.</p>
-</section></section>
-<section>
-<section id="testing-individual-coefficients" class="title-slide slide level1 center">
-<h1>Testing individual coefficients</h1>
-<p>It is important to determine whether each coefficient is relevant for our model. We can do this by checking if it is significantly different from 0.</p>
-<p>This can be done by dividing the coefficient by its standard error and comparing the absolute value of that <span class="math inline">\(t\)</span>-ratio to the relevant statistic from the <span class="math inline">\(t\)</span>-distribution.</p>
-<p>The hypothesis being tested here is as follows:</p>
-<p><span class="math inline">\(H_{0}: \beta_{i}=0\)</span></p>
-<p>VS</p>
-<p><span class="math inline">\(H_{a}: \beta_{i}\neq0\)</span></p>
-</section>
-<h4 id="up-to-page-235-rm3-textbook">UP TO PAGE 235 RM3 TEXTBOOK</h4></section>
-<section id="related-reading" class="title-slide slide level1 center">
-<h1>Related Reading</h1>
-<p><a href="https://psyteachr.github.io/stat-models-v1/correlation-and-regression.html">Learning Statistical Models Through Simulation in R: Correlation and Regression</a></p>
+<section id="references" class="title-slide slide level1 smaller scrollable">
+<h1>References</h1>
 
 <img src="sossdoc-logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Barr_2025" class="csl-entry" role="listitem">
+Barr, Dale J. 2025. <span>“Learning Statistical Models Through Simulation in r: An Interactive Textbook.”</span> In <em>PsyTeachR</em>, 1.0.0 ed. Creative Commons. <a href="https://psyteachr.github.io/stat-models-v1/">https://psyteachr.github.io/stat-models-v1/</a>.
+</div>
+<div id="ref-Canduela_Raeside_2020" class="csl-entry" role="listitem">
+Canduela, Jesus, and Robert Raeside. 2020. <em>The Quantitative Researcher</em>. Heriot-Watt University. <a href="https://www.hw.ac.uk/ebs">www.hw.ac.uk/ebs</a>.
+</div>
 </div>
 </section>
     </div>

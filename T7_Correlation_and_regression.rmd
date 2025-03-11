@@ -1,11 +1,11 @@
 ---
-title: "The Relationship Between Correlation and Regression"
+title: "Computer lab 7: The Relationship Between Correlation and Regression"
 subtitle: "C91AR: Advanced Statistics using R"
 title-slide-attributes:
-    data-background-image: images/peter_staff_photo_small.jpg
-    data-background-size: auto
-    data-background-position: "50% 10%"
-author: "Dr Peter E McKenna"
+    data-background-image: images/anime_programming.jpg
+    data-background-size: 20%
+    data-background-position: "50% 8%"
+author: "Dr Pete McKenna"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 format: 
   revealjs:
@@ -17,16 +17,68 @@ format:
 editor: 
   markdown: 
     wrap: 72
+bibliography: ref.bib 
 ---
 
 ```{r setup, include=FALSE}
 
-# markdown formatting
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = T, 
+                       cache = F,
+                       eval = T,    
+                       message = FALSE, 
+                       warning = FALSE, 
+                       tidy.opts = list(width.cutoff = 60),
+                       tidy = TRUE)
 
 ```
 
+# Packages for today
+
+```{r}
+
+# load packages
+pacman::p_load(tidyverse,
+               corrr,
+               psych,
+               tidyplots,
+               HistData) # new data package
+
+```
+
+# Dataset
+
+[Galton's data on the heights of parents and their children, by child](https://friendly.github.io/HistData/reference/GaltonFamilies.html)
+
+This data set lists the individual observations for 934 children in 205 families on which Galton (1886) based his cross-tabulation.
+
+I have wrangled two datasets for you to choose from today
+
+  - "father_son_height.csv"
+  - "mother_daughter_height.csv"
+
+Both of these are on Canvas for download.   
+**You are free to select either for the exercise today.**
+  
+  
 # Session outline
+
+- Your job is work in groups to follow the steps outlined on Monday's lecture to
+  - visualise each vectors distribution
+  - visualise their relationship with one another
+  - gather the relevant statistics to simulate data based on the source data
+  - simulate 1000 new observations
+  - plot the real against the simulated data
+
+# Group work suggestions
+
+- Work with someone new today!
+- Use the terminal to display Monday's slides
+- Delegate tasks as part of a team: this'll help to speed things up.
+- As always, annotate and comment your RMarkdown scripts
+- Strive to keep the code tidy
+- Good luck!
+
+<!--
 
 -   Today, we are continuing to learn about statistics through data
     simulation.
@@ -97,7 +149,7 @@ $\beta_{0} = \overline{y} - \hat{\beta}_{1}\overline{x}$
 
 # Set up code for the session
 
-```{r}
+```{r, eval = F}
 # Load packages
 library(tidyverse)
 library(corrr)
@@ -129,7 +181,7 @@ options(scipen = 999)
 ::: panel-tabset
 ### Raw data
 
-```{r echo=FALSE}
+```{r echo=FALSE, eval=F}
 # generate the scatter plot with ggplot2
 ggplot(data = handw,                                    # specify data source
        mapping = aes(x = height_in, y = weight_lbs)) +  # specify x and y axis
@@ -141,7 +193,7 @@ ggplot(data = handw,                                    # specify data source
 
 ### Normalised data
 
-```{r echo=FALSE}
+```{r echo=FALSE, eval=F}
 # generate a scatter plot of the log data
 ggplot(data = handw_log,                      # don't forget to enter the new dataset              
        mapping = aes(x = hlog, y = wlog)) +  
@@ -226,7 +278,7 @@ $$\beta_1 = \rho\frac{ \sigma_Y}{\sigma_X}$$
 
 In R Code:
 
-```{r estimate slope}
+```{r estimate slope, eval = F}
 
 # Estimate slope using formula
 b1 <- .96 * (.65 / .26)
@@ -302,7 +354,7 @@ b1 # 2.4
     by the regression line.
 -   Note, you are interested in the `Estimate` values.
 
-```{r}
+```{r, eval=F}
 #| echo: true
 #| output-location: slide
 summary(lm(wlog ~ hlog,
@@ -328,7 +380,7 @@ Another way to check the accuracy of your regression calculations is to
 superimpose the regression line on the scatter-plot of the log
 transformed data.
 
-```{r}
+```{r, eval=F}
 #| echo: true
 #| output-location: slide
 ggplot(data = handw_log, 
@@ -416,7 +468,7 @@ decide how well your residuals fit into the model.
 ::: panel-tabset
 ### Raw data: residuals plot code
 
-```{r}
+```{r, eval=F}
 
 # Create model for raw data
 mod1 <-
@@ -441,7 +493,7 @@ ggplot(residuals_df, aes(x = residuals)) +
 
 ### Raw data: residuals plot output
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=F}
 
 # Create model for raw data
 mod1 <-
@@ -466,7 +518,7 @@ ggplot(residuals_df, aes(x = residuals)) +
 
 ### Transformed data: residuals plot
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=F}
 
 # Create model for transformed data
 mod2 <-
@@ -495,7 +547,7 @@ ggplot(residuals_df, aes(x = residuals)) +
 ::: panel-tabset
 ### Raw data: Normal PP plot code
 
-```{r}
+```{r, eval=F}
 
 # Extract residuals
 residuals <-
@@ -526,7 +578,7 @@ ggplot(pp_df, aes(sample = residuals)) +
 
 ### Raw data: Normal PP plot output
 
-```{r echo=FALSE}
+```{r echo=FALSE, eval=F}
 
 # Extract residuals
 residuals <-
@@ -557,7 +609,7 @@ ggplot(pp_df, aes(sample = residuals)) +
 
 ### Transformed data: Normal PP plot ouput
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=F}
 
 # Extract residuals
 residuals <-
@@ -635,7 +687,7 @@ Where...
 
 # ANOVA for log transformed model
 
-```{r}
+```{r, eval=F}
 
 # Run an ANOVA on our log transformed model
 anova_results <-
@@ -686,3 +738,5 @@ $H_{a}: \beta_{i}\neq0$
 
 [Learning Statistical Models Through Simulation in R: Correlation and
 Regression](https://psyteachr.github.io/stat-models-v1/correlation-and-regression.html)
+
+-->
