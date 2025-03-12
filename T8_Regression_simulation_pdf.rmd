@@ -59,7 +59,7 @@ Using the slides from Monday..
 
 # Futher instructions
 
-  - See [my Markdown doc for Monday's lecture on Github](https://github.com/petermckenna/MSc_C91AR/blob/main/L7_Correlation_and_regression_pdf.rmd) to familiarise yourself with the notation format using $ wrappers. These are to be written in the regular text sections of your Markdown document. 
+  - See [my Markdown doc for Monday's lecture on Github](https://github.com/petermckenna/MSc_C91AR/blob/main/L7_Regression_pdf.rmd) to familiarise yourself with the notation format using $ wrappers. These are to be written in the regular text sections of your Markdown document. 
 - Check your model against the results of running the model using `lm(DV ~ IV, data = data)`   
 - Once you have created your model, predict a new value for
   - a parent's height based on their child's height
