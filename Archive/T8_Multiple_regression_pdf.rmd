@@ -1,0 +1,77 @@
+---
+title: "Computer Lab 8: Regression modelling"
+subtitle: "C91AR: Advanced Statistics using R"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+bibliography: ref.bib
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+    fig_caption: true
+    latex_engine: xelatex
+    includes:
+      in_header: preamble.tex
+    keep_tex: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+
+# markdown formatting
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+# Setup code
+
+```{r}
+
+# change output format
+options(scipen = 999)
+
+# set the seed
+set.seed(453)
+
+# load packages
+pacman::p_load(corrr,
+               tidyverse,
+               psych,
+               tidyplots)
+
+```
+
+# Outline for today's session
+
+Using the slides from Monday..
+
+- develop a regression model for for either the 
+  - "fathers_son_height.csv"
+  - "mother_daughter_height.csv"
+- Use the dataset **that you did NOT simulate last Thursday**
+- Use mathematics notation in your report
+
+
+# Futher instructions
+
+  - see [my Markdown doc for Monday's lecture on Github](https://github.com/petermckenna/MSc_C91AR/blob/main/L7_Correlation_and_regression_pdf.rmd) to familiarise yourself with the notation format using $ wrappers. These are to be written in the regular text sections of your Markdown document. 
+- Check your model against the results of running the model using `lm(DV ~ IV, data = data)`   
+- Once you have created your model, predict a new value for
+  - a parent's height based on their child's height
+  - a child's height based on their parent's height 
+- Visualise the data with a regression line to check that your predicted values fall within the model's parameters.
+  
+# As always
+
+- Annotate and comment your report
+- Ask for help if you need it
+- Take. Your. Time. 
+
+  
+  
+  
+
