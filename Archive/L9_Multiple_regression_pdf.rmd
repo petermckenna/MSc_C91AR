@@ -2,20 +2,23 @@
 title: "Lecture 8: Multiple Regression"
 subtitle: "C91AR: Advanced Statistics using R"
 author: "Dr Peter E McKenna"
+title-slide-attributes:
+    data-background-image: images/anime_programming.jpg
+    data-background-size: 20%
+    data-background-position: "50% 8%"
+author: "Dr Pete McKenna"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
-bibliography: ref.bib
-output: 
-  pdf_document:
-    toc: true
-    number_sections: true
-    fig_caption: true
-    latex_engine: xelatex
-    includes:
-      in_header: preamble.tex
-    keep_tex: true
+format: 
+  revealjs:
+    code-block-height: 300px
+    slide-number: true
+    logo: sossdoc-logo.png
+    css: peter_style.css
+    theme: [default, my_quarto_theme.scss]
 editor: 
   markdown: 
     wrap: 72
+bibliography: ref.bib   
 ---
 
 ```{r setup, include=FALSE}

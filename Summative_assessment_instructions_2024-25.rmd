@@ -1,0 +1,98 @@
+---
+	
+	title: "C91AR | Advanced Statistics using R"
+subtitle: "Summative Assessment Instructions"
+author: "Dr Peter E McKenna"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+bibliography: ref.bib
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+    fig_caption: true
+    latex_engine: xelatex
+    includes:
+      in_header: preamble.tex
+    keep_tex: true
+editor: 
+  markdown: 
+    wrap: 72
+
+---
+
+# Summative Assessment Details
+
+- Deadline: 11/04/2025 | 1500 (GMT)
+- Development format: R Markdown (.rmd)
+- Submission format: R Markdown (.rmd)
+
+# The task
+
+- **Please read through these instructions carefully from start to end.**
+- For the assessment, you will be working with two datasets:
+  1) Demographic data `c91ar_sa_demog.csv`.
+  2) Task data `c91ar_sa.csv`.
+- I will upload these to Canvas for you.
+- The assessment has two parts: 
+  1. Using the Tidyverse to clean and tidy up the demographic dataset `c91ar_sa_demog.csv`
+  2. Performing multiple regression analysis and interpretation on the task data `c91ar_sa.csv`.
+- Packages required
+  - tidyverse
+  - corrr
+  - GGally
+  - psych
+  
+# Part 1
+
+With the demographic dataset `c91ar_sa_demog.csv`I'd like you to:
+
+- Read in the data to your raw data folder.
+- Tidy up the vector headings using `snakecase`.
+- Convert the date vector into the correct machine readable format.
+- Modify erroneous entries in the nominal vectors where appropriate. This includes the use of a dash `-` as these should always be an underscore `_`. 
+- Generate summary statistics for the nominal vectors and comment on these.
+- Join your tidied version of this data with the task data `c91ar_sa.csv` using `left_join`.
+- Save the tidy data into your tidy data folder.
+
+# Part 2 
+
+With the task data `c91ar_sa.csv`, the context is as follows:
+
+Participants completed an online cognitive test of memory. The researchers were
+keen to learn whether their memory task performance could be explained
+by their age and IQ (the focal predictors). The control variable was the number of
+weekly diary entries participant reported to make.
+
+Using multiple regression analysis, determine whether performance in cognitive memory is predicted better by age and IQ, than it is by the control variable, reported weekly diary entries. 
+
+## Your objectives
+
+- Use [PsyTeachR's Multiple Regression chapter](https://psyteachr.github.io/stat-models-v1/multiple-regression.html) as a guide. 
+- Set the seed.
+- Read in the data (from the tidy data folder).
+- Examine the correlations and comment on these.
+- Write out the regression formula for your model.
+- Construct your model in R using `lm()`, run, and interpret it.
+- Test your multiple regression model's predictive capability using `predict()` and a new dataset that includes **at least 6 rows** of data.
+- Visualise the partial effects for your focal predictor variables (age and IQ); you will need to look at [the hidden solution at the foot of this page to do it correctly for both variables](https://psyteachr.github.io/stat-models-v1/multiple-regression.html).
+- Compare the model output with another model in which coefficients have been standardised using z-scores. 
+- Run a model comparison using `anova` to check the predictive power of your focal predictors.
+- Interpret the out of the model comparison.
+
+# Metadata 
+
+## Tidyverse dataset
+
+- `I.D` = unique id
+- `date.Exp` = the date of the experiment (conducted online)
+- `Gender` = 5 levels ("male", "female", "non-binary", "other", "no_entry") 
+- `detail.last.holiday` = 3 levels ("poor", "good", "very good")
+
+## Task Data
+
+-   `id` = participant id
+-   `age` = participant age in years
+-   `wk_diary_entry` = number of diary entries participants reported to  make (quasi-experimental)
+-   `iq` = participants tested IQ
+-   `cog_mem` = score on an online cognitive test of memory
+

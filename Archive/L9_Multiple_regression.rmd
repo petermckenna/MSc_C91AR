@@ -1,5 +1,5 @@
 ---
-title: "Lecture 9: Multiple Regression"
+title: "Lecture 8: Multiple Regression"
 subtitle: "C91AR: Advanced Statistics using R"
 title-slide-attributes:
     data-background-image: images/anime_programming.jpg
@@ -17,7 +17,7 @@ format:
 editor: 
   markdown: 
     wrap: 72
-bibliography: ref.bib  
+bibliography: ref.bib   
 ---
 
 ```{r setup, include=FALSE}
@@ -29,6 +29,8 @@ knitr::opts_chunk$set(echo = TRUE,
 
 ```
 
+# Setup code
+
 ```{r}
 
 # change output format
@@ -38,9 +40,10 @@ options(scipen = 999)
 set.seed(453)
 
 # load packages
-library(corrr) # correlation matrices
-library(tidyverse)
-library(psych)
+pacman::p_load(corrr,
+               tidyverse,
+               psych,
+               tidyplots)
 
 ```
 
@@ -142,7 +145,7 @@ $$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + ... \beta_mX_{mi} + e_i$$
     -   $\beta_0$ = the intercept term
     -   $\beta_1 X_{1i}$ = the regression coefficient for predictor
         variable $X_1$
-    -   $\beta_2 X_{2i}$ = the regression coefficient for predictor variable $X_2$  
+    -   $\beta_2 X_{2i}$ = the regression coefficient for predictor variable $X_2$
     -   $e_i$ = model residuals
     -   $\hat{hat}$ = presence of a hat denotes and sample estimate, not
         the actual sample statistic
@@ -284,7 +287,24 @@ ggplot(grades, aes(lecture, grade)) +
        x = "Lectures attended",
        y = "Predicted grade")
 ```
+
+<!--
+# With **`Tidyplots`**
+
+```{r, eval = F, include = F}
+
+grades |>
+  tidyplot(x = lecture, y = grade) |>
+  add_data_points() |>
+  add_curve_fit(new_lecture2) |>
+ # add_line(data = new_lecture2) |>
+  adjust_x_axis_title("Lectures attended") |>
+  adjust_y_axis_title("Predicted grade")
   
+
+```
+
+--> 
   
 ## A word on partial effects plots
 

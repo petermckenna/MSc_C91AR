@@ -1,0 +1,33 @@
+# Summative Assessment data generation
+
+library(simstudy)
+set.seed(1965)
+
+def <- 
+  defData(varname="x", 
+          formula = 10, 
+          variance = 2, 
+          dist = "normal")
+
+def <- 
+  defData(def, 
+          varname="y", 
+          formula = "3 + 0.5 * x", 
+          variance = 1, 
+          dist = "normal")
+
+dd <- 
+  genData(250, def)
+
+dd <- 
+  trtAssign(dd, 
+            nTrt = 4, 
+            grpName = "grp", 
+            balanced = TRUE)
+
+dd
+
+
+# Resources
+# https://kgoldfeld.github.io/simstudy/
+# https://kgoldfeld.github.io/simstudy/articles/simstudy.html
